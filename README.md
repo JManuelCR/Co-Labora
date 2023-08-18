@@ -2,8 +2,8 @@
 <h1 align="center">Co-Labora: Where Next-Gen Workspace Discovery Meets Cutting-Edge Tech Stack</h1>
 
 <div style="display: flex; justify-content: align-items: center; center; padding: 8px 16px; gap: 8px;">
-<a href="https://legacy.reactjs.org/">
-<img alt="Static Badge" src="https://img.shields.io/badge/GitHub-v%2018.2.0-gray?logo=react&logoColor=white&label=React&labelColor=%2361DAFB">
+<a href="https://nextjs.org/docs">
+<img alt="Static Badge" src="https://img.shields.io/badge/NextJs-v%2013.4.18-Black?style=plastic&logo=nextdotjs&logoColor=%23ffffff&labelColor=black&color=grey">
 </a>
 <a href="https://nodejs.org/en/docs">
     <img alt="Static Badge" src="https://img.shields.io/badge/node-v18.16.1-green?logo=Node.js&logoColor=silver&labelColor=%23339933&color=gray">
