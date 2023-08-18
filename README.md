@@ -1,4 +1,66 @@
-# Co-Labora: Where Next-Gen Workspace Discovery Meets Cutting-Edge Tech Stack
+
+<h1 align="center">Co-Labora: Where Next-Gen Workspace Discovery Meets Cutting-Edge Tech Stack</h1>
+
+<div style="display: flex; justify-content: align-items: center; center; padding: 8px 16px; gap: 8px;">
+<a href="https://legacy.reactjs.org/">
+<img alt="Static Badge" src="https://img.shields.io/badge/GitHub-v%2018.2.0-gray?logo=react&logoColor=white&label=React&labelColor=%2361DAFB">
+</a>
+<a href="https://nodejs.org/en/docs">
+    <img alt="Static Badge" src="https://img.shields.io/badge/node-v18.16.1-green?logo=Node.js&logoColor=silver&labelColor=%23339933&color=gray">
+</a> 
+<!-- <a href="https://developer.mozilla.org/en-US/">
+    <img alt="Static Badge" src="https://img.shields.io/badge/MDN-Web%20Docs-gray?logo=mdnwebdocs&logoColor=white&labelColor=%23000000">
+</a>  -->
+<a href="https://docs.npmjs.com/">
+    <img alt="Static Badge" src="https://img.shields.io/badge/NPM-9.5.1-gray?logo=npm&logoColor=white&label=NPM&labelColor=%23CB3837">
+</a> 
+<a href="https://github.com/nvm-sh/nvm">
+    <img alt="Static Badge" src="https://img.shields.io/badge/NVM-0.39.1-gray?logoColor=white&label=NVM&labelColor=green">
+</a> 
+<a href="https://v3.vitejs.dev/">
+    <img alt="Static Badge" src="https://img.shields.io/badge/Vite-v%203-gray?logo=Vite&logoColor=white&label=Vite&labelColor=%23646CFF">
+</a>
+<a href="https://tailwindcss.com/docs/guides/vite">
+    <img alt="Static Badge" src="https://img.shields.io/badge/Tailwind-v%203.3.2%20for%20vite-gray?logo=tailwindcss&logoColor=white&label=Taildwind&labelColor=%2306B6D4">
+</a>
+<a href="https://vitejs.dev/guide/features.html">
+    <img alt="Static Badge" src="https://img.shields.io/badge/Tailwind-1.63.6%20for%20vite-gray?style=plastic&logo=sass&logoColor=white&label=Sass&labelColor=%23CC6699">
+</a>
+<a href="https://www.typescriptlang.org/docs/">
+    <img alt="Static Badge" src="https://img.shields.io/badge/typescript-v%205.0.2-gray?logo=typescript&logoColor=white&label=TypeScript&labelColor=%233178C6">
+</a>
+<a href="https://daisyui.com/">
+    <img alt="Static Badge" src="https://img.shields.io/badge/daisyui-v%203.1.7-gray?style=plastic&logo=daisyui&logoColor=white&label=Daisyui&labelColor=%235A0EF8">
+</a>
+<!-- <a href="https://git-scm.com/doc">
+    <img alt="Static Badge" src="https://img.shields.io/badge/status-v%202.34.1-gray?logo=git&logoColor=white&label=Git&labelColor=%232396F3">
+</a> -->
+<!-- <a href="https://github.com/Paoox/RetoReact">
+    <img alt="Static Badge" src="https://img.shields.io/badge/GitHub-repository-gray?logo=github&logoColor=white&label=GitHub&labelColor=%23181717">
+</a> -->
+<!-- <a href="https://www.mongodb.com/">
+    <img alt="Static Badge" src="https://img.shields.io/badge/mongoDB-cluster-gray?logo=mongodb&logoColor=white&label=MongoBD&labelColor=%2347A248">
+</a>
+<a href="https://mongoosejs.com/">
+    <img alt="Static Badge" src="https://img.shields.io/badge/mongoose-v%207.3.0-gray?logo=mongoose&logoColor=white&label=Mongoose&labelColor=%23880000">
+</a> -->
+<!-- <a href="https://www.mongodb.com/docs/">
+    <img alt="Static Badge" src="https://img.shields.io/badge/mongoose-v%204.18.2-gray?logo=express&logoColor=white&label=Express&labelColor=%23000000">
+</a>
+<a href="https://www.npmjs.com/package/bcrypt">
+    <img alt="Static Badge" src="https://img.shields.io/badge/bcrypt-v%205.1.0-gray?logoColor=white&label=Bcrypt&labelColor=%23E6484F">
+</a> -->
+<!-- <a href="https://www.mongodb.com/products/compass">
+    <img alt="Static Badge" src="https://img.shields.io/badge/GU--%20%2300a564?style=plastic&logoColor=white&label=Compass&labelColor=%20%2300a564">
+</a> -->
+<!-- <a href="https://www.npmjs.com/package/nodemon">
+    <img alt="Static Badge" src="https://img.shields.io/badge/nodeamon-v%202.0.22-gray?logo=nodemon&logoColor=white&label=Nodemon&labelColor=%2376D04B">
+</a>
+<a href="https://docs.insomnia.rest/">
+    <img alt="Static Badge" src="https://img.shields.io/badge/Insomia-API%20Rest-gray?logo=insomnia&logoColor=white&label=Insomnia&labelColor=%234000BF">
+</a> -->
+</div>
+<img alt="Static Badge" src="https://img.shields.io/badge/status-Developing-gray?logoColor=white&label=Status&labelColor=%232396F3">
 
 Co-Labora isn't just a workspace solution; it's a fusion of visionary workspace discovery with a robust technological backbone. Crafted with precision, Co-Labora is poised to be built upon a sophisticated tech stack that comprises the best-in-class tools for seamless performance and user experience. Let's delve into the heart of Co-Labora's architecture:
 
