@@ -1,4 +1,4 @@
-
+<img alt="Co-Labora logo" style="width: 100%; heigth: auto;" src="https://ibb.co/8XXYgZh">
 <h1 align="center">Co-Labora: Where Next-Gen Workspace Discovery Meets Cutting-Edge Tech Stack</h1>
 
 <div style="display: flex; justify-content: align-items: center; center; padding: 8px 16px; gap: 8px;">
