@@ -25,3 +25,9 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.divrojo{
+  background-color: red;
+  width: 4rem;
+  height: 4rem;
+}
