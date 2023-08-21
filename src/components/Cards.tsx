@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /* eslint-disable @next/next/no-img-element */
+=======
+import { dataBD } from "@/data/card-data";
+>>>>>>> develop
 interface Props {
   name: string;
   address: string;
