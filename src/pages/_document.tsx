@@ -1,4 +1,5 @@
 import { Html, Head, Main, NextScript } from 'next/document'
+import Advantages from './Advantages/Advantages'
 
 export default function Document() {
   return (
@@ -7,7 +8,7 @@ export default function Document() {
       <body>
         <Main />
         <NextScript />
-        <h1 className='bg-white'>Hola</h1>
+        <Advantages />
       </body>
     </Html>
   )
