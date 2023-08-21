@@ -11,7 +11,7 @@ const config: Config = {
       primary: "#A54729",
       secondary: "#E19C5B",
       third: "#FACCAD",
-      white: "#FACCAD",
+      white: "#FFFFFF",
       blue_800: "#37474F",
       blue_700: "#455A64",
       blue_500: "#607D8B",
