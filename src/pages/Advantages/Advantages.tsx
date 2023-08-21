@@ -4,7 +4,9 @@ export default function Advantages(){
         <>
         <section className="bg-white md:h-[452px] w-full flex flex-col md:p-14 gap-14">
             <div className="flex justify-center">
-                <h1 className="text-4xl font-[acme]">¿Porqué Co-labora?</h1>
+                <div className="border-b-4 border-secondary">
+                   <h1 className="text-4xl leading-loose font-[acme]">¿Porqué Co-labora?</h1>
+                </div>
             </div>
             <section className="flex gap-5 text-center">
                 <div className="flex flex-col items-center p-3 basis-1/4">
@@ -83,6 +85,13 @@ export default function Advantages(){
                     </div>
                 </div>
             </section>
+        </section>
+        <section className="w-full md:h-[900px] bg-white md:p-14">
+           <div className="flex justify-center">
+                <div className="border-b-4 border-secondary">
+                   <h1 className="text-4xl leading-loose font-[acme]">Lo que nuestros clientes opinan</h1>
+                </div>
+            </div>
         </section>
         </>
     )
