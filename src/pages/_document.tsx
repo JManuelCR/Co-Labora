@@ -1,5 +1,4 @@
 import { Html, Head, Main, NextScript } from 'next/document'
-import Advantages from './Advantages/Advantages'
 
 export default function Document() {
   return (
