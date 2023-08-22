@@ -18,6 +18,10 @@ const config: Config = {
       blue_300: "#90A4AE",
     },
     extend: {
+      fontFamily: {
+        poppins: ['var(--font-Poppins)'],
+        acme: ['var(--font-Acme)'],
+    },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
