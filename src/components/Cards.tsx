@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { dataBD } from "@/data/card-data";
 interface Props {
   name: string;
@@ -31,7 +32,7 @@ export default function Cards(props: Props) {
     <article className="bg-white w-80  rounded-2xl border-solid border border-primary flex flex-col justify-evenly">
       <section>
         <img
-          src="../holder-carpenter.webp"
+          src="../temporal-images/holder-carpenter.webp"
           alt="imagen de la carpinteria momentanea"
           className="bg-cover rounded-t-2xl w-80 h-52"
         />
@@ -58,7 +59,9 @@ export default function Cards(props: Props) {
         </article>
       </section>
       <article className="flex justify-between p-3">
-        <button className="bg-primary rounded-full px-4 p-2">+ Detalles</button>
+        <button className="bg-primary rounded-full px-4 p-2 font-bold">
+          + Detalles
+        </button>
         <strong className="font-bold text-blue_800 text-xl mt-1">{`$${price} x dia`}</strong>
       </article>
     </article>
