@@ -13,8 +13,8 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --background-start-rgb: 245,245, 245;
+    --background-end-rgb: 250, 250, 250;
   }
 }
 
@@ -27,6 +27,7 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+<<<<<<< HEAD
 
 .divrojo{
   background-color: red;
@@ -34,3 +35,8 @@ body {
   height: 4rem;
 }
 
+=======
+.navItemFocused{
+  @apply font-black text-primary border-secondary border-b-[3px];
+}
+>>>>>>> b49eda80fdbd66c5e06a8a3f8c73140b8f67e70c

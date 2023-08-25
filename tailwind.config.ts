@@ -16,8 +16,13 @@ const config: Config = {
       blue_700: "#455A64",
       blue_500: "#607D8B",
       blue_300: "#90A4AE",
+      back: "FEFEFE"
     },
     extend: {
+      fontFamily: {
+        poppins: ['var(--font-Poppins)'],
+        acme: ['var(--font-Acme)'],
+    },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
