@@ -1,4 +1,5 @@
 import CardComments from "./CardComments"
+import { dataCommentsUsers } from "@/data/card-dataCommentsUsers"
 
 export default function CommentsUsers (){
     return (
