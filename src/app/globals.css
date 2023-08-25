@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Poppins&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -25,6 +27,16 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+<<<<<<< HEAD
+
+.divrojo{
+  background-color: red;
+  width: 4rem;
+  height: 4rem;
+}
+
+=======
 .navItemFocused{
   @apply font-black text-primary border-secondary border-b-[3px];
 }
+>>>>>>> b49eda80fdbd66c5e06a8a3f8c73140b8f67e70c
