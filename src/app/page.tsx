@@ -1,6 +1,9 @@
 import Image from "next/image";
 import { dataBD } from "@/data/card-data";
 import Cards from "@/components/Cards";
+import Advantages from "@/pages/Advantages/Advantages";
+import CommentsUsers from "@/components/CommentsUser";
+
 export default function Home() {
   return (
     <>
@@ -171,6 +174,13 @@ export default function Home() {
           </div>
         ))}
       </div>
+      <Advantages 
+      pictureProfile="https://res.cloudinary.com/practicaldev/image/fetch/s--l1HNuEDK--/c_imagga_scale,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/53570/2cb42370-2fcf-4f63-90fb-8b5a41aae9ee.jpg"
+      name="Leandro Molina"
+      subtitleProfession="Medico especialista en nutricion"
+      profession="Doctor"
+      />  
+    <CommentsUsers />  
     </>
   );
 }
