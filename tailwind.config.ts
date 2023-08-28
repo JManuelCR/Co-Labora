@@ -18,6 +18,14 @@ const config: Config = {
       blue_300: "#90A4AE",
       back: "FEFEFE"
     },
+    fontSize:{
+      titles: "40px",
+      sections: "32px",
+      suTitles: "24px",
+      text: "18px",
+      light: "18px",
+      small: "14px",
+    },
     extend: {
       fontFamily: {
         poppins: ['var(--font-Poppins)'],
@@ -27,6 +35,7 @@ const config: Config = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "hero-pattern": "url('/public/temporal-images/temporal-image-consult.webp')"
       },
     },
   },

@@ -1,4 +1,4 @@
-import Navbar from "@/components/Navigator"
+import Navbar from "@/components/Navbar"
 export default function Rent () {
     return(
         <>

@@ -5,8 +5,8 @@ import bubble from "../../public/illustrations/conversation-asset.webp";
 export default function Hero() {
   return (
     <>
-      <article className="flex">
-        <section className="flex flex-col gap-3">
+      <article className="flex w-full px-[60px] justify-center items-center">
+        <section className="flex flex-col gap-3 pt-[32px]">
           <div className="flex gap-3">
             <input
               type="text"
@@ -25,30 +25,30 @@ export default function Hero() {
           <div>
             <Image
               src={location}
-              width={380}
-              height={380}
+              width={416}
+              height={416}
               alt="mobile-with-pin-location"
             />
           </div>
         </section>
-        <section>
+        <section className="relative backgroundGradienHero h-[756px]">
           {/* <span className="bg-gradient-to-b from-white via-orange-300 to-orange-900 z-10 w-full h-full" /> AQUI SE SUPONE QUE DEBERIA DE IR EL GRADIENTE ENCIMA DE LA IMAGEN PERO NO SE COMO HACERLO*/}
-          <div className="image_holder">
+          <div className="image_holder bg-hero-pattern">
             <Image
               src={consult}
-              width={585}
-              height={400}
+              width={908}
+              height={756}
               alt="temporal-image-consult"
-              className="absolute z-0"
+              className="absolute z-[-1]"
             />
           </div>
-          <div className="flex flex-col">
+          <div className="flex flex-col absolute top-0">
             <Image
               src={bubble}
               width={300}
               height={165}
               alt="Chat-bubble-w/text"
-              className="relative ms-5 mt-5 inset-0 z-10 "
+              className="ms-5 mt-5 inset-0 z-10"
             />
           </div>
         </section>
