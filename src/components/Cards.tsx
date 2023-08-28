@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-/* eslint-disable @next/next/no-img-element */
->>>>>>> b49eda80fdbd66c5e06a8a3f8c73140b8f67e70c
 import { dataBD } from "@/data/card-data";
 interface Props {
   name: string;
