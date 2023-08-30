@@ -29,7 +29,7 @@ export default function SliderLandinDesktop() {
         }}
         pagination={true}
         modules={[EffectCoverflow, Pagination]}
-        className="mySwiper max-w-[90%]"
+        className="mySwiper max-w-[99%]"
       >
            {dataCommentsUsers.map((card, index) => (
             <SwiperSlide key={index} className="swiper-component mb-6">
