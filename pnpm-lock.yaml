@@ -38,6 +38,9 @@ dependencies:
   react-dom:
     specifier: 18.2.0
     version: 18.2.0(react@18.2.0)
+  react-id-swiper:
+    specifier: ^4.0.0
+    version: 4.0.0(react-dom@18.2.0)(react@18.2.0)(swiper@10.2.0)
   swiper:
     specifier: ^10.2.0
     version: 10.2.0
@@ -2073,6 +2076,20 @@ packages:
       loose-envify: 1.4.0
       react: 18.2.0
       scheduler: 0.23.0
+    dev: false
+
+  /react-id-swiper@4.0.0(react-dom@18.2.0)(react@18.2.0)(swiper@10.2.0):
+    resolution: {integrity: sha512-BFY8VQYgc1ECkT1Ek6MYSF8MADjWYZctdeRlMA202mjGcdjq1Bugfhg207KHTjGWKWZlY/7/nxFShqQo74RslA==}
+    engines: {node: '>= 6.11.0'}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      swiper: '>=5.0.0'
+    dependencies:
+      object-assign: 4.1.1
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      swiper: 10.2.0
     dev: false
 
   /react-is@16.13.1:

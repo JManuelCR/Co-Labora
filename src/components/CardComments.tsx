@@ -1,4 +1,5 @@
-import { dataCommentsUsers } from "@/data/card-dataCommentsUsers";
+import Image from "next/image";
+import raitingStars from "../../public/icons/stars.svg"
 
 
 interface Props {
@@ -23,21 +24,18 @@ export default function CardComments (props:Props){
                 <div className="flex gap-5">
                     <img src={pictureProfile} alt={name} className="w-[108px] h-[135px] rounded-[50%] "/>
                     <div className="flex flex-col justify-center">
-                        <span className="font-[acme] text-3xl leading-none p-0 ">{name}</span>
-                        <span className="font-[acme] text-xl ">{profession}</span>
+                        <span className="font-acme text-blue_800 text-[40px] leading-none p-0">{name}</span>
+                        <span className="font-acme text-blue_800 text-[24px] ">{profession}</span>
                     </div>
                 </div>
-                <div className="flex gap-10 m-10 justify-center items-center">
+                <div className="flex gap-10 my-10 justify-start  items-center">
                     <div className="flex gap-3">
-                        <img src="icons/star-icon.webp" alt="star" className="h-4 w-4" />
-                        <img src="icons/star-icon.webp" alt="star" className="h-4 w-4" />
-                        <img src="icons/star-icon.webp" alt="star" className="h-4 w-4" />
-                        <img src="icons/star-icon.webp" alt="star" className="h-4 w-4" />
+                            <Image src={raitingStars} alt={"raiting stars"} />
                     </div>
                     <div>
-                        <p className=" font-[poppins] text-lg ">{rating}</p>
+                        <p className="font-poppins text-[18px] text-blue_800">{rating}</p>
                     </div>
                 </div>
-                <p className="font-[poppins] text-lg ">{description} </p>
+                <p className="font-poppins text-[18px] text-blue_800">{description} </p>
             </div>
     )}

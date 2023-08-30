@@ -18,7 +18,7 @@ export default function Advantages(props:Props){
         <section className="bg-white md:h-[452px] w-full flex flex-col md:p-14 gap-14">
             <div className="flex justify-center">
                 <div className="border-b-4 border-secondary">
-                   <h1 className="text-4xl leading-loose font-[acme]">¿Porqué Co-labora?</h1>
+                   <h1 className="text-4xl leading-loose font-acme text-blue_800 text-[40px]">¿Porqué Co-labora?</h1>
                 </div>
             </div>
             <section className="flex gap-5 text-center">
