@@ -6,7 +6,7 @@ export const dataCommentsUsers = [
       profession:"Doctor",
       rating:4,
       description:
-      "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500",
+      "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum",
     },
     {  
         id:2, 
@@ -15,7 +15,7 @@ export const dataCommentsUsers = [
         profession:"Dentista",
         rating:5,
         description:
-        "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500",
+        "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum",
       },
       {
         id:3,
@@ -24,7 +24,7 @@ export const dataCommentsUsers = [
         profession:"Carpintero",
         rating:3,
         description:
-        "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500",
+        "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum",
       },
       {
         id:4,
@@ -33,7 +33,7 @@ export const dataCommentsUsers = [
         profession:"Terapeuta Cognitiva",
         rating:4,
         description:
-        "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500",
+        "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum",
       },
       {
         id:5,
@@ -42,6 +42,6 @@ export const dataCommentsUsers = [
         profession:"Psicologa",
         rating:3,
         description:
-        "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500",
+        "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum",
       }
 ]
