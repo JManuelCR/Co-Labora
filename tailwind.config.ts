@@ -1,6 +1,6 @@
 import type { Config } from "tailwindcss";
 
-const config: Config = {
+export default {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -16,7 +16,8 @@ const config: Config = {
       blue_700: "#455A64",
       blue_500: "#607D8B",
       blue_300: "#90A4AE",
-      back: "FEFEFE"
+      back: "FEFEFE",
+
     },
     fontSize:{
       titles: "40px",
@@ -28,17 +29,14 @@ const config: Config = {
     },
     extend: {
       fontFamily: {
-        poppins: ['var(--font-Poppins)'],
-        acme: ['var(--font-Acme)'],
+        poppins: ['var(--font-poppins)'],
+        acme: ['var(--font-acme)'],
     },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-        "hero-pattern": "url('/public/temporal-images/temporal-image-consult.webp')"
       },
     },
   },
   plugins: [],
-};
-export default config;
+} satisfies Config
+
