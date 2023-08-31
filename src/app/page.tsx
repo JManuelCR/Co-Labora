@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Acme, Poppins } from "next/font/google";
 import { dataBD } from "@/data/card-data";
 import Cards from "@/components/Cards";
@@ -7,8 +8,9 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
 import SliderLandinDesktop from "@/components/SliderLandigDesktop";
-import building from "../../public/building-mobile-nav.svg";
+import building from "../../public/icons/building-mobile-nav.svg";
 import house from "../../public/icons/home-mobile-nav.svg";
+import FooterMobile from "@/components/FooterMobile";
 export default function Home() {
   return (
     <div className="w-full h-full flex justify-center items-center  bg-black">
@@ -19,15 +21,20 @@ export default function Home() {
           {/* <h1 className="text-blue_800">This is hero</h1> */}
           <section className="max-sm:flex w-full justify-around  sm:hidden font-semibold">
             <article className="text-blue_800 flex">
-              <img src={house} alt="home" />
+              <Image src={house} width={12} height={12} alt="Home-logo" />
               <p>Tus espacios</p>
             </article>
             <article className="text-blue_800 flex">
-              <img src="../../building-mobile-nav.svg" alt="edificio" />
+              <Image
+                src={building}
+                width={12}
+                height={12}
+                alt="Building-logo"
+              />
               <p>En renta</p>
             </article>
           </section>
-          <section className="flex flex-col items-center justify-center px-[156  px] pt-[56px]">
+          <section className="flex flex-col items-center justify-center px-[156px] pt-[56px]">
             <div className="w-[520px] border-secondary border-solid border-b-[4px] mb-[60px] max-sm:hidden">
               <h2 className=" text-[40px] text-center font-acme text-blue_800">
                 ¡Los mejor calificados!
@@ -60,10 +67,21 @@ export default function Home() {
             name="Leandro Molina"
             subtitleProfession="Medico especialista en nutricion"
             profession="Doctor"
+            opinion="Lorem Ipsum es simplemente el texto de relleno de las
+            imprentas y archivos de texto. Lorem Ipsum ha sido el texto de
+            relleno estándar de las industrias desde el año 1500, cuando un
+            impresor (N. del T. persona que se dedica a la imprenta)
+            desconocido usó una galería de textos y los mezcló de tal manera
+            que logró hacer un libro de textos especimen."
           />
           <CommentsUsers />
         </main>
-        <Footer />
+        <footer className="hidden md:block">
+          <Footer />
+        </footer>
+        <footer className="block md:hidden">
+          <FooterMobile />
+        </footer>
       </div>
     </div>
   );
