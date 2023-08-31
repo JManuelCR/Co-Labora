@@ -24,7 +24,7 @@ export default function Navbar(props: Navbar) {
 
   return (
     <header className="flex items-center justify-center w-full h-[56px] px-[65px]">
-      <nav className="flex items-center justify-between w-full max-h-[56px] w-full">
+      <nav className="flex items-center justify-between w-full max-h-[56px]">
         <div>
           <Link href="/">
             <Image

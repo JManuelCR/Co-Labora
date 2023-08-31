@@ -2,6 +2,14 @@ import Image from "next/image";
 import location from "../../public/illustrations/mobile-location-ilustration.svg";
 import consult from "../../public/temporal-images/temporal-image-consult.webp";
 import bubble from "../../public/illustrations/conversation-asset.webp";
+import wifi from "../../public/icons/icon-wifi-white.svg";
+import camera from "../../public/icons/icon-videocam-outline-white.svg";
+import restaurant from "../../public/icons/icon-restaurant-outline-white.svg";
+import pets from "../../public/icons/icon-paw-outline-white.svg";
+import firstAidKit from "../../public/icons/icon-medkit-outline-white.svg";
+import arrowRigth from "../../public/icons/icon-arrow-right-white.svg";
+import arrowLeft from "../../public/icons/icon-arrow-left-white.svg";
+
 export default function Hero() {
   return (
     <>
@@ -50,6 +58,52 @@ export default function Hero() {
               alt="Chat-bubble-w/text"
               className="ms-5 mt-5 inset-0 z-10"
             />
+          </div>
+          <div className="flex absolute bottom-[37px] w-[100%]">
+            <div className="flex gap-[28px] w-[100%]">
+              <Image
+                src={consult}
+                alt="temporal-image-consult"
+                className="propertyAvatar"
+              />
+              <div className="flex flex-col gap-2">
+                <h2 className="font-poppins text-[24px] font-[800] text-white">
+                  Consultorio psicoterapéutico
+                </h2>
+                <h3 className="max-w-[397px] block font-poppins text-[18px] font-[500   ]">
+                  Con una serenidad y silencio total, puedes ofrecer las mejores
+                  sesiones.
+                </h3>
+                <span className="flex">
+                  <span>Coyoacán, CDMX</span>
+                  <span>30 m2</span>
+                </span>
+                <div className="flex gap-8">
+                  <Image src={wifi} alt={"Wifi amenity icon"} />
+                  <Image
+                    src={camera}
+                    alt={"Surveillance camera amenity icon"}
+                  />
+                  <Image src={restaurant} alt={"Space to eat amenity icon"} />
+                  <Image src={pets} alt={"Pet-friendly amenity icon"} />
+                  <Image src={firstAidKit} alt={"First-aid- kit amenity"} />
+                </div>
+                <div className="flex gap-[24px] mt-[20px]">
+                  <button className="w-[150px] px-[18px] py-[4px] border-[1px] border-primary rounded-lg bg-white font-[600] font-poppins text-[14px] text-primary">
+                    Ver más
+                  </button>
+                  <button className="w-[150px] px-[18px] py-[4px]   rounded-lg bg-primary font-[600] font-poppins text-[14px] text-white">
+                    Ver más
+                  </button>
+                </div>
+              </div>
+              <div className="relative w-[100%] h-[100%] ">
+                <div className="absolute end-0 top-0 flex gap-[40px] pe-[60px]">
+                  <Image src={arrowLeft} alt={"Slider arrow left icon"} />
+                  <Image src={arrowRigth} alt={"Slider arrow right icon"} />
+                </div>
+              </div>
+            </div>
           </div>
         </section>
       </article>
