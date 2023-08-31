@@ -1,4 +1,9 @@
 import Image from "next/image";
+import Space from "../../public/icons/spaceship.webp";
+import Money from "../../public/icons/Icon-Money.svg";
+import User from "../../public/icons/Icon-Users.svg";
+import Compass from "../../public/icons/Icon-Compass.svg";
+
 interface Props {
   pictureProfile: string;
   name: string;
@@ -22,8 +27,10 @@ export default function Advantages(props: Props) {
         </div>
         <section className="flex gap-5 text-center ">
           <div className="flex flex-col items-center p-3 basis-1/4">
-            <img
-              src="icons/spaceship.webp"
+            <Image
+              src={Space}
+              width={104}
+              height={24}
               alt="Icono Cohete"
               className="h-28 w-28"
             />
@@ -36,8 +43,10 @@ export default function Advantages(props: Props) {
             </p>
           </div>
           <div className="flex flex-col items-center p-3 basis-1/4">
-            <img
-              src="icons/Icon-Money.svg"
+            <Image
+              src={Money}
+              width={104}
+              height={24}
               alt="Icono bolsa con dinero"
               className="h-28 w-28"
             />
@@ -47,9 +56,11 @@ export default function Advantages(props: Props) {
             </p>
           </div>
           <div className="flex flex-col items-center p-3 basis-1/4">
-            <img
-              src="icons/Icon-Users.svg"
-              alt="Icono Usuarios"
+            <Image
+              src={User}
+              width={104}
+              height={24}
+              alt="Icono usuario"
               className="h-28 w-28"
             />
             <h2 className="text-4xl font-[acme] text-primary">Te conectamos</h2>
@@ -58,9 +69,11 @@ export default function Advantages(props: Props) {
             </p>
           </div>
           <div className="flex flex-col items-center p-3 basis-1/4">
-            <img
-              src="icons/Icon-Compass.svg"
-              alt="Icono Compass"
+            <Image
+              src={Compass}
+              width={104}
+              height={24}
+              alt="Icono brujula"
               className="h-28 w-28"
             />
             <h2 className="text-4xl font-[acme] text-primary">Explora</h2>

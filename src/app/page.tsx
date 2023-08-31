@@ -2,7 +2,7 @@ import Image from "next/image";
 import { Acme, Poppins } from "next/font/google";
 import { dataBD } from "@/data/card-data";
 import Cards from "@/components/Cards";
-import Advantages from "@/pages/Advantages/Advantages";
+import Advantages from "@/components/Advantages";
 import CommentsUsers from "@/components/CommentsUser";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
@@ -19,22 +19,22 @@ export default function Home() {
         <main className="flex flex-col items-center justify-between h-auto max-sm:w-full">
           <Hero />
           {/* <h1 className="text-blue_800">This is hero</h1> */}
-          <section className="max-sm:flex w-full justify-around  sm:hidden font-semibold">
+          <section className="max-sm:flex w-full justify-around  sm:hidden font-semibold p-5 mt-10 bg-back rounded-t-2xl">
             <article className="text-blue_800 flex">
-              <Image src={house} width={12} height={12} alt="Home-logo" />
+              <Image src={house} width={24} height={24} alt="Home-logo" />
               <p>Tus espacios</p>
             </article>
             <article className="text-blue_800 flex">
               <Image
                 src={building}
-                width={12}
-                height={12}
+                width={24}
+                height={24}
                 alt="Building-logo"
               />
               <p>En renta</p>
             </article>
           </section>
-          <section className="flex flex-col items-center justify-center px-[156px] pt-[56px]">
+          <section className="flex flex-col items-center justify-center px-[156px] pt-[56px] max-sm:pt-0">
             <div className="w-[520px] border-secondary border-solid border-b-[4px] mb-[60px] max-sm:hidden">
               <h2 className=" text-[40px] text-center font-acme text-blue_800">
                 ¡Los mejor calificados!
