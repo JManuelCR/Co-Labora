@@ -16,7 +16,8 @@ export default {
       blue_700: "#455A64",
       blue_500: "#607D8B",
       blue_300: "#90A4AE",
-      back: "FEFEFE"
+      back: "FEFEFE",
+
     },
     fontSize:{
       titles: "40px",
