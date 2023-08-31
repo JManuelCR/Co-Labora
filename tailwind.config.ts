@@ -16,10 +16,10 @@ export default {
       blue_700: "#455A64",
       blue_500: "#607D8B",
       blue_300: "#90A4AE",
-      back: "FEFEFE",
-
+      back: "#FEFEFE",
+      gray: "#b5b5b5",
     },
-    fontSize:{
+    fontSize: {
       titles: "40px",
       sections: "32px",
       suTitles: "24px",
@@ -29,14 +29,13 @@ export default {
     },
     extend: {
       fontFamily: {
-        poppins: ['var(--font-poppins)'],
-        acme: ['var(--font-acme)'],
-    },
+        poppins: ["var(--font-poppins)"],
+        acme: ["var(--font-acme)"],
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
       },
     },
   },
   plugins: [],
-} satisfies Config
-
+} satisfies Config;

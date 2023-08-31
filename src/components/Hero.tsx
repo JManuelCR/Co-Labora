@@ -13,8 +13,8 @@ import arrowLeft from "../../public/icons/icon-arrow-left-white.svg";
 export default function Hero() {
   return (
     <>
-      <article className="flex w-full px-[60px] justify-center items-center">
-        <section className="flex flex-col gap-3 pt-[32px]">
+      <article className="flex w-full px-[60px] justify-center gap-5 max-sm:flex-wrap-reverse ">
+        <section className="flex flex-col gap-3 ">
           <div className="flex gap-3">
             <input
               type="text"
@@ -30,7 +30,7 @@ export default function Hero() {
               ¡Encuentra tu espacio perfecto!
             </h5>
           </div>
-          <div>
+          <div className="max-sm:hidden">
             <Image
               src={location}
               width={416}
@@ -41,36 +41,36 @@ export default function Hero() {
         </section>
         <section className="relative backgroundGradienHero h-[756px]">
           {/* <span className="bg-gradient-to-b from-white via-orange-300 to-orange-900 z-10 w-full h-full" /> AQUI SE SUPONE QUE DEBERIA DE IR EL GRADIENTE ENCIMA DE LA IMAGEN PERO NO SE COMO HACERLO*/}
-          <div className="image_holder bg-hero-pattern">
+          <div className="image_holder bg-hero-pattern flex max-sm:w-[375px]">
             <Image
               src={consult}
               width={908}
               height={756}
               alt="temporal-image-consult"
-              className="absolute z-[-1]"
+              className="absolute z-[-1] max-sm:object-fill h-full w-[64rem]"
             />
           </div>
-          <div className="flex flex-col absolute top-0">
+          <div className="flex flex-col absolute top-5 start-10">
             <Image
               src={bubble}
               width={300}
               height={165}
               alt="Chat-bubble-w/text"
-              className="ms-5 mt-5 inset-0 z-10"
+              className="z-10 max-sm:0"
             />
           </div>
           <div className="flex absolute bottom-[37px] w-[100%]">
-            <div className="flex gap-[28px] w-[100%]">
+            <div className="flex gap-[28px] w-[100%] max-sm:w-auto">
               <Image
                 src={consult}
                 alt="temporal-image-consult"
                 className="propertyAvatar"
               />
-              <div className="flex flex-col gap-2">
-                <h2 className="font-poppins text-[24px] font-[800] text-white">
+              <div className="flex flex-col gap-2 max-sm:w-52">
+                <h2 className="font-poppins text-[24px] font-[800] text-white ">
                   Consultorio psicoterapéutico
                 </h2>
-                <h3 className="max-w-[397px] block font-poppins text-[18px] font-[500   ]">
+                <h3 className="max-w-[397px] block font-poppins text-[18px] font-[500] max-sm:text-[14px] ">
                   Con una serenidad y silencio total, puedes ofrecer las mejores
                   sesiones.
                 </h3>
@@ -89,15 +89,15 @@ export default function Hero() {
                   <Image src={firstAidKit} alt={"First-aid- kit amenity"} />
                 </div>
                 <div className="flex gap-[24px] mt-[20px]">
-                  <button className="w-[150px] px-[18px] py-[4px] border-[1px] border-primary rounded-lg bg-white font-[600] font-poppins text-[14px] text-primary">
+                  <button className="w-[150px] px-[18px] py-[4px] border-[1px] border-primary rounded-lg bg-white font-[600] font-poppins text-[14px] text-primary max-sm:w-44">
                     Ver más
                   </button>
-                  <button className="w-[150px] px-[18px] py-[4px]   rounded-lg bg-primary font-[600] font-poppins text-[14px] text-white">
-                    Ver más
+                  <button className="w-[150px] px-[18px] py-[4px]   rounded-lg bg-primary font-[600] font-poppins text-[14px] text-white ">
+                    Rentar
                   </button>
                 </div>
               </div>
-              <div className="relative w-[100%] h-[100%] ">
+              <div className="relative w-[100%] h-[100%] max-sm:hidden">
                 <div className="absolute end-0 top-0 flex gap-[40px] pe-[60px]">
                   <Image src={arrowLeft} alt={"Slider arrow left icon"} />
                   <Image src={arrowRigth} alt={"Slider arrow right icon"} />
