@@ -58,7 +58,7 @@ body {
   padding-bottom: 50px;
 }
 .mySwiper .swiper-component {
-  width: 27% !important;
+  width: 300px !important;
   height: auto !important;
 }
 .propertyAvatar {
