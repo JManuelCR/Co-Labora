@@ -23,7 +23,7 @@ export default function Navbar(props: Navbar) {
   };
 
   return (
-    <header className="flex items-center justify-center w-full h-[56px] px-[65px]">
+    <header className="flex items-center justify-center w-full h-[56px] px-[65px] max-sm:px-1">
       <nav className="flex items-center justify-between w-full max-h-[56px]">
         <div>
           <Link href="/">
@@ -36,8 +36,8 @@ export default function Navbar(props: Navbar) {
             />
           </Link>
         </div>
-        <div className="flex gap-[35px] items-center">
-          <ul className=" flex gap-[35px] text-[14px] text-blue_700 font-semibold">
+        <div className="flex gap-[35px] items-center ">
+          <ul className=" flex gap-[35px] text-[14px] text-blue_700 font-semibold max-sm:hidden">
             <li>
               <Link
                 href={"/"}
@@ -72,7 +72,7 @@ export default function Navbar(props: Navbar) {
               </Link>
             </li>
           </ul>
-          <span className="flex gap-[14px] items-center border border-secondary rounded-[42px] py-[6px] px-4">
+          <span className="flex gap-[14px] items-center border border-secondary rounded-[42px] py-[6px] px-4 ">
             <button>
               <Image src={burgerLogo} alt="" width={28} height={28} />
             </button>

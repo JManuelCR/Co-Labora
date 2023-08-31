@@ -7,22 +7,33 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
 import SliderLandinDesktop from "@/components/SliderLandigDesktop";
-
+import building from "../../public/building-mobile-nav.svg";
+import house from "../../public/icons/home-mobile-nav.svg";
 export default function Home() {
   return (
-    <div className="w-full h-full flex justify-center items-center relative bg-black">
+    <div className="w-full h-full flex justify-center items-center  bg-black">
       <div className="2xl:max-w-[1440px] w-full h-full flex flex-col  relative over">
         <Navbar page="home" />
-        <main className="flex flex-col items-center justify-between h-auto">
+        <main className="flex flex-col items-center justify-between h-auto max-sm:w-full">
           <Hero />
           {/* <h1 className="text-blue_800">This is hero</h1> */}
+          <section className="max-sm:flex w-full justify-around  sm:hidden font-semibold">
+            <article className="text-blue_800 flex">
+              <img src={house} alt="home" />
+              <p>Tus espacios</p>
+            </article>
+            <article className="text-blue_800 flex">
+              <img src="../../building-mobile-nav.svg" alt="edificio" />
+              <p>En renta</p>
+            </article>
+          </section>
           <section className="flex flex-col items-center justify-center px-[156  px] pt-[56px]">
-            <div className="w-[520px] border-secondary border-solid border-b-[4px] mb-[60px]">
+            <div className="w-[520px] border-secondary border-solid border-b-[4px] mb-[60px] max-sm:hidden">
               <h2 className=" text-[40px] text-center font-acme text-blue_800">
                 ¡Los mejor calificados!
               </h2>
             </div>
-            <div className="flex flex-wrap gap-x-[84px] mb-[42px] gap-y-[80px] h-auto px-[150px]">
+            <div className="flex flex-wrap gap-x-[84px] mb-[42px] gap-y-[80px] h-auto px-[150px] max-sm:hidden">
               {dataBD.map((card, index) => (
                 <div key={index} className="flex flex-ro gap-1">
                   <Cards
@@ -38,11 +49,11 @@ export default function Home() {
                 </div>
               ))}
             </div>
-              <div className="flex w-[100%] justify-center">
-                <button className="w-[280px] px-[18px] py-[4px]   rounded-lg bg-primary font-[600] font-poppins text-[20px] text-white">
+            <div className="flex w-[100%] justify-center max-sm:hidden">
+              <button className="w-[280px] px-[18px] py-[4px]   rounded-lg bg-primary font-[600] font-poppins text-[20px] text-white">
                 ¡Explora más lugares!
-                </button>
-              </div>
+              </button>
+            </div>
           </section>
           <Advantages
             pictureProfile="https://res.cloudinary.com/practicaldev/image/fetch/s--l1HNuEDK--/c_imagga_scale,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/53570/2cb42370-2fcf-4f63-90fb-8b5a41aae9ee.jpg"

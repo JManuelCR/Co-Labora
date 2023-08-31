@@ -8,7 +8,7 @@ import linkedInLogo from "../../public/icons/linkedin-logo.svg";
 export default function Footer() {
   return (
     <>
-      <footer className="h-[190px] w-full backgroundGradienFooter px-[128px] py-[20px]">
+      <footer className="h-[190px] w-full backgroundGradienFooter px-[128px] py-[20px] max-sm:py-0 ">
         <div className="flex justify-between">
           <ul className="flex flex-col gap-2">
             <li className="text-light flex gap-[10px]">
