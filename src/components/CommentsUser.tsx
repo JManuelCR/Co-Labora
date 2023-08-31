@@ -10,7 +10,7 @@ export default function CommentsUsers() {
           </h1>
         </div>
       </div>
-    <SliderLandinDesktop />
+      <SliderLandinDesktop />
     </section>
   );
 }
