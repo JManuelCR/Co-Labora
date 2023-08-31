@@ -18,34 +18,34 @@ export default function Advantages(props:Props){
         <section className="bg-white md:h-[452px] w-full flex flex-col md:p-14 gap-14">
             <div className="flex justify-center">
                 <div className="border-b-4 border-secondary">
-                   <h1 className="text-4xl leading-loose font-acme text-blue_800 text-[40px]">¿Porqué Co-labora?</h1>
+                   <h1 className="leading-loose font-acme text-blue_800 text-[40px]">¿Porqué Co-labora?</h1>
                 </div>
             </div>
             <section className="flex gap-5 text-center">
                 <div className="flex flex-col items-center p-3 basis-1/4">
                     <img src="icons/spaceship.webp" alt="Icono Cohete" className="h-28 w-28" />
-                    <h2 className="text-4xl font-[acme] text-primary">Experiencias únicas</h2>
-                    <p className="text-lg font-[poppins] text-blue_800">Cada vez que rentes estas abriendo la ventana a una experiencia nueva</p>
+                    <h2 className="text-[40px] font-acme text-primary">Experiencias únicas</h2>
+                    <p className="text-[18px] font-poppins text-blue_800">Cada vez que rentes estas abriendo la ventana a una experiencia nueva</p>
                 </div>
                 <div className="flex flex-col items-center p-3 basis-1/4">
                     <img src="icons/Icon-Money.svg" alt="Icono bolsa con dinero" className="h-28 w-28" />
-                    <h2 className="text-4xl font-[acme] text-primary">Adaptado a ti</h2>
-                    <p className="text-lg font-[poppins] text-blue_800">Renta el lugar que cumpla con lo que necesitas</p>
+                    <h2 className="text-[40px] font-acme text-primary">Adaptado a ti</h2>
+                    <p className="text-[18px] font-poppins text-blue_800">Renta el lugar que cumpla con lo que necesitas</p>
                 </div>
                 <div className="flex flex-col items-center p-3 basis-1/4">
                     <img src="icons/Icon-Users.svg" alt="Icono Usuarios" className="h-28 w-28" />
-                    <h2 className="text-4xl font-[acme] text-primary">Te conectamos</h2>
-                    <p className="text-lg font-[poppins] text-blue_800">Conoce nuevas personas cada día</p>
+                    <h2 className="text-[40px] font-acme text-primary">Te conectamos</h2>
+                    <p className="text-[18px] font-poppins text-blue_800">Conoce nuevas personas cada día</p>
                 </div>
                 <div className="flex flex-col items-center p-3 basis-1/4">
                     <img src="icons/Icon-Compass.svg" alt="Icono Compass" className="h-28 w-28" />
-                    <h2 className="text-4xl font-[acme] text-primary">Explora</h2>
-                    <p className="text-lg font-[poppins] text-blue_800">Nuevo día nuevas oportunidades de viajar con tu trabajo por la ciudad</p>
+                    <h2 className="text-[40px] font-acme text-primary">Explora</h2>
+                    <p className="text-[18px] font-poppins text-blue_800">Nuevo día nuevas oportunidades de viajar con tu trabajo por la ciudad</p>
                 </div>
 
             </section>
         </section>
-        <section className="bg-secondary md:h-[452px] w-full flex flex-col md:p-14 gap-14">
+        <section className="bg-secondary md:h-auto w-full flex flex-col md:p-14 gap-14 mt-[91px]">
             <div className="flex gap-5">
                 <div className="flex basis-1/4 gap-5 ">
                     <img src="icons/Boton-back.svg" alt="Boton Back" />

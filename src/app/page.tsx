@@ -13,7 +13,7 @@ export default function Home() {
     <div className="w-full h-full flex justify-center items-center relative bg-black">
       <div className="2xl:max-w-[1440px] w-full h-full flex flex-col  relative over">
         <Navbar page="home" />
-        <main className="flex flex-col items-center justify-between h-auto">
+        <main className="flex flex-col items-center justify-between h-auto ">
           <Hero />
           {/* <h1 className="text-blue_800">This is hero</h1> */}
           <section className="flex flex-col items-center justify-center px-[156  px] pt-[56px]">
@@ -50,7 +50,7 @@ export default function Home() {
             subtitleProfession="Medico especialista en nutricion"
             profession="Doctor"
           />
-          <CommentsUsers />
+           <CommentsUsers />
         </main>
         <Footer />
       </div>
