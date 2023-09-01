@@ -13,24 +13,24 @@ import arrowLeft from "../../public/icons/icon-arrow-left-white.svg";
 export default function Hero() {
   return (
     <>
-      <article className="flex w-full px-[60px] justify-center gap-5 max-sm:flex-wrap-reverse ">
-        <section className="flex flex-col gap-3 ">
-          <div className="flex gap-3">
+      <section className="flex w-full lg:px-[60px] justify-center gap-5 max-lg:flex-col-reverse max-lg:items-center">
+        <article className="flex flex-col gap-3 max-md:px-4">
+          <div className="flex gap-[18px] border-b border-secondary pb-3 w-[343px]">
             <input
               type="text"
               placeholder="Encuentra tu espacio..."
-              className="border focus:outline-none p-2 rounded-md focus:bg-gray-100 focus:shadow-md text-blue_800"
+              className="border focus:outline-none p-2 rounded-md focus:bg-gray-100 focus:shadow-md text-blue_800 w-[205px]"
             />
-            <button className="bg-primary rounded-lg font-bold px-10 py-1">
+            <button className="bg-primary rounded-lg font-bold px-10 py-1 w-[120px]">
               Buscar
             </button>
           </div>
           <div>
-            <h5 className="text-lg text-primary font-bold ">
+            <h5 className="text-lg text-primary font-bold max-lg:hidden">
               ¡Encuentra tu espacio perfecto!
             </h5>
           </div>
-          <div className="max-sm:hidden">
+          <div className="max-lg:hidden">
             <Image
               src={location}
               width={416}
@@ -38,8 +38,8 @@ export default function Hero() {
               alt="mobile-with-pin-location"
             />
           </div>
-        </section>
-        <section className="relative backgroundGradienHero h-[756px]">
+        </article>
+        <article className="relative backgroundGradienHero h-[756px] w-full">
           {/* <span className="bg-gradient-to-b from-white via-orange-300 to-orange-900 z-10 w-full h-full" /> AQUI SE SUPONE QUE DEBERIA DE IR EL GRADIENTE ENCIMA DE LA IMAGEN PERO NO SE COMO HACERLO*/}
           <div className="image_holder bg-hero-pattern flex max-sm:w-[375px]">
             <Image
@@ -105,8 +105,8 @@ export default function Hero() {
               </div>
             </div>
           </div>
-        </section>
-      </article>
+        </article>
+      </section>
     </>
   );
 }

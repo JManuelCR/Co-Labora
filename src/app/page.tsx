@@ -14,33 +14,18 @@ import FooterMobile from "@/components/FooterMobile";
 export default function Home() {
   return (
     <div className="w-full h-full flex justify-center items-center  bg-black">
-      <div className="2xl:max-w-[1440px] w-full h-full flex flex-col  relative over">
+      <div className="2xl:max-w-[1440px] w-full h-screen flex flex-col  relative over">
         <Navbar page="home" />
-        <main className="flex flex-col items-center justify-between h-auto max-sm:w-full">
+        <main className="flex flex-col items-center justify-between h-auto max-lg:w-full">
           <Hero />
           {/* <h1 className="text-blue_800">This is hero</h1> */}
-          <section className="max-sm:flex w-full justify-around  sm:hidden font-semibold p-5 mt-10 bg-back rounded-t-2xl">
-            <article className="text-blue_800 flex">
-              <Image src={house} width={24} height={24} alt="Home-logo" />
-              <p>Tus espacios</p>
-            </article>
-            <article className="text-blue_800 flex">
-              <Image
-                src={building}
-                width={24}
-                height={24}
-                alt="Building-logo"
-              />
-              <p>En renta</p>
-            </article>
-          </section>
           <section className="flex flex-col items-center justify-center px-[156px] pt-[56px] max-sm:pt-0">
             <div className="w-[520px] border-secondary border-solid border-b-[4px] mb-[60px] max-sm:hidden">
               <h2 className=" text-[40px] text-center font-acme text-blue_800">
                 ¡Los mejor calificados!
               </h2>
             </div>
-            <div className="flex flex-wrap gap-x-[84px] mb-[42px] gap-y-[80px] h-auto px-[150px] max-sm:hidden">
+            <div className="flex flex-wrap gap-x-[84px] mb-[42px] gap-y-[80px] h-auto max-sm:hidden">
               {dataBD.map((card, index) => (
                 <div key={index} className="flex flex-ro gap-1">
                   <Cards
@@ -61,6 +46,21 @@ export default function Home() {
                 ¡Explora más lugares!
               </button>
             </div>
+          </section>
+          <section className="max-sm:flex w-full justify-around max-lg:z-50  sm:hidden font-semibold p-5 mt-10 bg-back rounded-b-2xl sticky top-0">
+            <article className="text-blue_800 flex">
+              <Image src={house} width={24} height={24} alt="Home-logo" />
+              <p>Tus espacios</p>
+            </article>
+            <article className="text-blue_800 flex">
+              <Image
+                src={building}
+                width={24}
+                height={24}
+                alt="Building-logo"
+              />
+              <p>En renta</p>
+            </article>
           </section>
           <Advantages
             pictureProfile="https://res.cloudinary.com/practicaldev/image/fetch/s--l1HNuEDK--/c_imagga_scale,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/53570/2cb42370-2fcf-4f63-90fb-8b5a41aae9ee.jpg"
