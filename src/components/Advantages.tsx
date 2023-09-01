@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
 import Space from "../../public/icons/spaceship.webp";
 import Money from "../../public/icons/Icon-Money.svg";
