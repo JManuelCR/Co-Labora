@@ -40,7 +40,6 @@ body {
   );
 }
 .image_holder {
-  width: 908px;
   height: 700px;
   background-image: url("../../public/temporal-images/temporal-image-consult.webp");
   background-size: cover;

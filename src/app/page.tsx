@@ -14,18 +14,18 @@ import FooterMobile from "@/components/FooterMobile";
 export default function Home() {
   return (
     <div className="w-full h-full flex justify-center items-center  bg-black">
-      <div className="2xl:max-w-[1440px] w-full h-screen flex flex-col  relative over">
+      <div className="2xl:max-w-[1440px] w-full h-full flex flex-col  relative over">
         <Navbar page="home" />
         <main className="flex flex-col items-center justify-between h-auto max-lg:w-full">
           <Hero />
           {/* <h1 className="text-blue_800">This is hero</h1> */}
-          <section className="flex flex-col items-center justify-center px-[156px] pt-[56px] max-sm:pt-0">
+          <section className="flex flex-col items-center justify-center px-[40px] lg:px-[80px] xl:px-[156px] pt-[56px] max-sm:pt-0 w-full">
             <div className="w-[520px] border-secondary border-solid border-b-[4px] mb-[60px] max-sm:hidden">
               <h2 className=" text-[40px] text-center font-acme text-blue_800">
                 ¡Los mejor calificados!
               </h2>
             </div>
-            <div className="flex flex-wrap gap-x-[84px] mb-[42px] gap-y-[80px] h-auto max-sm:hidden">
+            <div className="flex md:w-[700px] lg:w-[700px] xl:w-full 2xl:w-full flex-wrap gap-3 md:gap-x-[60px] lg:gap-x-[60px] xl:gap-x-[84px] mb-[42px] gap-y-[80px] h-auto max-sm:hidden">
               {dataBD.map((card, index) => (
                 <div key={index} className="flex flex-ro gap-1">
                   <Cards
