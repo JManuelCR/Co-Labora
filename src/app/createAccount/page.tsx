@@ -27,9 +27,15 @@ export default function Login(){
                             </button>
                         </div>
                         <div className="h-1 w-full bg-primary mb-[11px] "></div>
-                        <p className="font-poppins text-[16px] text-blue_700 ">Al crear tu cuenta en <span className="text-primary">Co-Labora</span> aceptas los <span className="text-black">Términos y Condiciones</span> y el <span className="text-black">Aviso de privacidad</span> del servicio</p>
+                        <p className="font-poppins text-[16px] text-blue_700 text-center">Al crear tu cuenta en <span className="text-primary">Co-Labora</span> aceptas los <span className="text-black">Términos y Condiciones</span> y el <span className="text-black">Aviso de privacidad</span> del servicio</p>
                     </div>
                 </section>
+            </section>
+            <section className="md:hidden mt-[25px] " >
+              <FooterMobile/>
+            </section>
+            <section className="windowXl2 hidden md:block md:mt-[270px] lg:mt-[235px]">
+              <Footer/>
             </section>
         </>       
     )
