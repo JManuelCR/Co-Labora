@@ -25,7 +25,7 @@ export default function Home() {
                 ¡Los mejor calificados!
               </h2>
             </div>
-            <div className="flex md:w-[700px] lg:w-[700px] xl:w-full 2xl:w-full flex-wrap gap-3 md:gap-x-[60px] lg:gap-x-[60px] xl:gap-x-[84px] mb-[42px] gap-y-[80px] h-auto max-sm:hidden">
+            <div className="flex md:w-[700px]  xl:w-[700px] 2xl:w-full max-md:flex-col md:flex-wrap  md:gap-x-[60px] 2xl:gap-x-[84px] mb-[42px] gap-y-[80px] h-auto max-sm:hidden">
               {dataBD.map((card, index) => (
                 <div key={index} className="flex flex-ro gap-1">
                   <Cards
@@ -34,7 +34,7 @@ export default function Home() {
                     size={card.size}
                     amenities={card.amenities}
                     rating={card.rating}
-                    opinions={card.opinions}
+                    opinions={card.opinions} 
                     price={card.price}
                     description={card.description}
                   />

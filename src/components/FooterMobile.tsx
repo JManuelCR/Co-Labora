@@ -6,7 +6,7 @@ export default function FooterMobile() {
   return (
     <section className="bg-primary flex justify-between p-3 ">
       <article className="flex items-center">
-        <Image src={Logo} width={150} height={20} alt="Co-Labora logo" />
+        <Image src={Logo} width={150} height={20} alt="Co-Labora logo" className="rounded-md" />
       </article>
       <article className="flex flex-col gap-2">
         <div className="flex gap-2">

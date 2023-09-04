@@ -35,10 +35,10 @@ export default function Advantages(props: Props) {
               alt="Icono Cohete"
               className="h-28 w-28"
             />
-            <h2 className="text-4xl font-[acme] text-primary">
+            <h2 className="text-4xl font-acme text-primary">
               Experiencias únicas
             </h2>
-            <p className="text-lg font-[poppins] text-blue_800">
+            <p className="text-lg font-poppins text-blue_800">
               Cada vez que rentes estas abriendo la ventana a una experiencia
               nueva
             </p>
@@ -51,8 +51,8 @@ export default function Advantages(props: Props) {
               alt="Icono bolsa con dinero"
               className="h-28 w-28"
             />
-            <h2 className="text-4xl font-[acme] text-primary">Adaptado a ti</h2>
-            <p className="text-lg font-[poppins] text-blue_800">
+            <h2 className="text-4xl font-acme text-primary">Adaptado a ti</h2>
+            <p className="text-lg font-poppins text-blue_800">
               Renta el lugar que cumpla con lo que necesitas
             </p>
           </div>

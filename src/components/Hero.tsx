@@ -64,7 +64,7 @@ export default function Hero() {
               <Image
                 src={consult}
                 alt="temporal-image-consult"
-                className="propertyAvatar"
+                className="propertyAvatar ms-2 md:ms-[48px]"
               />
               <div className="flex flex-col gap-2 max-sm:w-52">
                 <h2 className="font-poppins text-[24px] font-[800] text-white ">
