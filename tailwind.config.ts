@@ -18,9 +18,11 @@ export default {
       blue_300: "#90A4AE",
       back: "#FEFEFE",
       gray: "#b5b5b5",
+      black: "#0a0a0a",
     },
     fontSize: {
       titles: "40px",
+      titleMobil:"36px",
       sections: "32px",
       suTitles: "24px",
       text: "18px",
