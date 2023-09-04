@@ -18,6 +18,7 @@ export default {
       blue_300: "#90A4AE",
       back: "#FEFEFE",
       gray: "#b5b5b5",
+      black: "#0a0a0a",
     },
     fontSize: {
       titles: "40px",

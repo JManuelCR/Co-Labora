@@ -21,11 +21,13 @@ export default function Login(){
                             <input type="radio" name="rememberPassword" id="rememberPassword" className="accent-primary" />
                             <p className="font-poppins text-[20px] text-blue_800 ">Recordar contraseña</p>
                         </div>
-                        <div className="m-[9px] flex justify-center gap-[9px] ">
+                        <div className="m-[9px] flex justify-center ">
                             <button className="bg-primary rounded-lg w-[200px] h-[60px]">
                                 <p className="font-poppins text-suTitles text-white">Ingresa</p>
                             </button>
                         </div>
+                        <div className="h-1 w-full bg-primary mb-[11px] "></div>
+                        <p className="font-poppins text-[16px] text-blue_700 ">Al crear tu cuenta en <span className="text-primary">Co-Labora</span> aceptas los <span className="text-black">Términos y Condiciones</span> y el <span className="text-black">Aviso de privacidad</span> del servicio</p>
                     </div>
                 </section>
             </section>
