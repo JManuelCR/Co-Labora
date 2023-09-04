@@ -41,7 +41,7 @@ export default function Hero() {
         </article>
         <article className="relative backgroundGradienHero h-[756px] w-full">
           {/* <span className="bg-gradient-to-b from-white via-orange-300 to-orange-900 z-10 w-full h-full" /> AQUI SE SUPONE QUE DEBERIA DE IR EL GRADIENTE ENCIMA DE LA IMAGEN PERO NO SE COMO HACERLO*/}
-          <div className="image_holder bg-hero-pattern flex max-sm:w-[375px]">
+          <div className="image_holder bg-hero-pattern flex max-sm:w-full">
             <Image
               src={consult}
               width={908}
@@ -60,7 +60,7 @@ export default function Hero() {
             />
           </div>
           <div className="flex absolute bottom-[37px] w-[100%]">
-            <div className="flex gap-[28px] w-[100%] max-sm:w-auto">
+            <div className="flex gap-[20px] md:gap-[28px] w-[100%] max-sm:w-auto">
               <Image
                 src={consult}
                 alt="temporal-image-consult"
@@ -78,7 +78,7 @@ export default function Hero() {
                   <span>Coyoacán, CDMX</span>
                   <span>30 m2</span>
                 </span>
-                <div className="flex gap-8">
+                <div className="flex gap-5 md:gap-8">
                   <Image src={wifi} alt={"Wifi amenity icon"} />
                   <Image
                     src={camera}
@@ -88,7 +88,7 @@ export default function Hero() {
                   <Image src={pets} alt={"Pet-friendly amenity icon"} />
                   <Image src={firstAidKit} alt={"First-aid- kit amenity"} />
                 </div>
-                <div className="flex gap-[24px] mt-[20px]">
+                <div className="flex gap-4 md:gap-[24px] mt-[20px]">
                   <button className="w-[150px] px-[18px] py-[4px] border-[1px] border-primary rounded-lg bg-white font-[600] font-poppins text-[14px] text-primary max-sm:w-44">
                     Ver más
                   </button>
