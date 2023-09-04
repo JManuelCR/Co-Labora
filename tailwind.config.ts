@@ -21,6 +21,7 @@ export default {
     },
     fontSize: {
       titles: "40px",
+      titleMobil:"36px",
       sections: "32px",
       suTitles: "24px",
       text: "18px",
