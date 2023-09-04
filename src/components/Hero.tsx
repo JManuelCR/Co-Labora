@@ -13,7 +13,7 @@ import arrowLeft from "../../public/icons/icon-arrow-left-white.svg";
 export default function Hero() {
   return (
     <>
-      <section className="flex w-full lg:px-[60px] justify-center gap-5 max-lg:flex-col-reverse max-lg:items-center">
+      <section className="flex w-full lg:px-[60px] justify-center gap-5 max-xl:flex-col-reverse max-xl:items-center">
         <article className="flex flex-col gap-3 max-md:px-4">
           <div className="flex gap-[18px] border-b border-secondary pb-3 w-[343px]">
             <input
@@ -26,11 +26,11 @@ export default function Hero() {
             </button>
           </div>
           <div>
-            <h5 className="text-lg text-primary font-bold max-lg:hidden">
+            <h5 className="text-lg text-primary font-bold max-xl:hidden">
               ¡Encuentra tu espacio perfecto!
             </h5>
           </div>
-          <div className="max-lg:hidden">
+          <div className="max-xl:hidden">
             <Image
               src={location}
               width={416}
@@ -47,7 +47,7 @@ export default function Hero() {
               width={908}
               height={756}
               alt="temporal-image-consult"
-              className="absolute z-[-1] max-sm:object-fill h-full w-[64rem]"
+              className="absolute z-[-1] max-sm:object-fill h-full w-full"
             />
           </div>
           <div className="flex flex-col absolute top-5 start-10">
@@ -64,7 +64,7 @@ export default function Hero() {
               <Image
                 src={consult}
                 alt="temporal-image-consult"
-                className="propertyAvatar"
+                className="propertyAvatar ms-2 md:ms-[48px]"
               />
               <div className="flex flex-col gap-2 max-sm:w-52">
                 <h2 className="font-poppins text-[24px] font-[800] text-white ">
