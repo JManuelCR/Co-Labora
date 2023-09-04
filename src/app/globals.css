@@ -73,3 +73,9 @@ body {
     margin-left: 12px;
   }
 }
+
+@media (min-height:1144px) {
+    .windowXl {
+     margin-top: 305px;
+    }
+}
