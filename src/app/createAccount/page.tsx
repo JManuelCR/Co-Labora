@@ -16,12 +16,12 @@ export default function Login(){
                         <input type="email" name="email" placeholder="Correo Electronico" className="flex rounded-[15px] border-2 border-primary w-full h-[65px] font-poppins text-[16px] text-blue_500 placeholder:p-[5px] placeholder:text-start" />
                         <input type="password" name="password" placeholder="Contraseña" className="flex rounded-[15px] border-2 border-primary w-full h-[65px] font-poppins text-[16px] text-blue_500 placeholder:p-[5px] placeholder:text-start mt-5" />
                         <p className="font-poppins text-small text-blue_500">Debe contener al menos un carácter especial ( @ , # , ! ) un numero y una mayúscula</p>
-                        
-                        <div className="flex my-[50px] gap-[15px]">
+                        <input type="password" name="password" placeholder="Confirmar contraseña" className="flex rounded-[15px] border-2 border-primary w-full h-[65px] font-poppins text-[16px] text-blue_500 placeholder:p-[5px] placeholder:text-start mt-5" />
+                        <div className="flex my-[9px] gap-[15px]">
                             <input type="radio" name="rememberPassword" id="rememberPassword" className="accent-primary" />
                             <p className="font-poppins text-[20px] text-blue_800 ">Recordar contraseña</p>
                         </div>
-                        <div className="m-16 flex justify-center">
+                        <div className="m-[9px] flex justify-center gap-[9px] ">
                             <button className="bg-primary rounded-lg w-[200px] h-[60px]">
                                 <p className="font-poppins text-suTitles text-white">Ingresa</p>
                             </button>
