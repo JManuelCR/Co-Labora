@@ -74,3 +74,15 @@ body {
 .buttoonPrimaryBackground{
   background-color: brown;
 }
+
+@media (min-height:1144px) {
+    .windowXl {
+     margin-top: 170px;
+    }
+}
+
+@media (min-height:1144px) {
+    .windowXl2 {
+     margin-top: 310px;
+    }
+}

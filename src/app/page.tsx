@@ -13,7 +13,7 @@ import house from "../../public/icons/home-mobile-nav.svg";
 import FooterMobile from "@/components/FooterMobile";
 export default function Home() {
   return (
-    <div className="w-full h-full flex justify-center items-center  bg-black">
+    <div className="w-full h-full flex justify-center items-center">
       <div className="2xl:max-w-[1440px] w-full h-full flex flex-col  relative over">
         <Navbar page="home" />
         <main className="flex flex-col items-center justify-between h-auto max-lg:w-full">
