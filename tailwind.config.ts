@@ -33,6 +33,7 @@ export default {
       fontFamily: {
         poppins: ["var(--font-poppins)"],
         acme: ["var(--font-acme)"],
+        roboto: ["var(--font-roboto)"],
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
