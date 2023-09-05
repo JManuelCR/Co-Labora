@@ -12,6 +12,14 @@ export default function Login() {
                     <div className="mt-[67px] lg:my-0 gap-[13px]">
                         <h1 className="font-acme text-titleMobil text-blue_800 text-center">Bienvenido a <span className="text-primary">Co-Labora</span></h1>
                         <p className="font-poppins text-center text-suTitles text-blue_700">Encuentra tu espacio perfecto</p>
+                    </div >
+                    <div className="flex justify-between text-center mt-6">
+                        <div className="font-poppins text-suTitles hover:text-primary hover:underline text-blue_800">
+                            <a href="">Soy Usuario</a>
+                        </div>
+                        <div className="font-poppins text-suTitles hover:text-primary text-blue_800 hover:underline">
+                            <a href="">Soy Negocio</a>
+                        </div>
                     </div>
                     <form className="mt-[30px]">
                         <input type="email" name="email" placeholder="Correo Electronico" className="flex rounded-[15px] border-2 border-primary w-full h-[65px] font-poppins text-[16px] text-blue_500 placeholder:p-[10px] p-[15px] placeholder:text-start focus:outline-0 focus:border-primary required" />
