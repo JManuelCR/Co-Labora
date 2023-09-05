@@ -52,7 +52,6 @@ export default function Home() {
           </section>
           <section className="max-md:flex w-full justify-around max-lg:z-50  md:hidden font-semibold p-5 mt-4 bg-back rounded-b-2xl sticky top-0">
             <article className="text-blue_800 flex">
-              <Image src={house} width={24} height={24} alt="Home-logo" />
               <p>Tus espacios</p>
             </article>
             <article className="text-blue_800 flex">
