@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import { Acme, Poppins } from "next/font/google";
 import { dataBD } from "@/data/card-data";
@@ -11,15 +12,13 @@ import SliderLandinDesktop from "@/components/SliderLandigDesktop";
 import building from "../../public/icons/building-mobile-nav.svg";
 import house from "../../public/icons/home-mobile-nav.svg";
 import FooterMobile from "@/components/FooterMobile";
+
 export default function Home() {
   return (
     <div className="w-full h-full flex justify-center items-center">
-<<<<<<< HEAD
-      <div className="2xl:max-w-[1440px] w-full h-screen flex flex-col  relative over">
-=======
       <div className="2xl:max-w-[1440px] w-full h-full flex flex-col  relative over">
->>>>>>> develop
         <Navbar page="home" />
+
         <main className="flex flex-col items-center justify-between h-auto max-lg:w-full">
           <Hero />
           {/* <h1 className="text-blue_800">This is hero</h1> */}
@@ -38,7 +37,7 @@ export default function Home() {
                     size={card.size}
                     amenities={card.amenities}
                     rating={card.rating}
-                    opinions={card.opinions} 
+                    opinions={card.opinions}
                     price={card.price}
                     description={card.description}
                   />
