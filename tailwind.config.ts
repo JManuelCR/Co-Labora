@@ -38,6 +38,14 @@ export default {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
       },
     },
+    screens: {
+      'xsm': '375px',
+      'sm': '425px',
+      'md': '768px',
+      'lg': '1024px',
+      'xl': '1440px',
+      '2xl': '1536px',
+    },
   },
   plugins: [],
 } satisfies Config;
