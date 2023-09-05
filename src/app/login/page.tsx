@@ -1,7 +1,7 @@
 import Navbar from "@/components/Navbar"
 import FooterMobile from "@/components/FooterMobile"
 import Footer from "@/components/Footer"
-import eye from "../../public/icons/eye.svg"
+
 
 export default function Login() {
     return (
@@ -20,6 +20,7 @@ export default function Login() {
                         </div>
                         <div className="flex my-[50px] gap-[15px]">
                             <input type="radio" name="rememberPassword" id="rememberPassword" className="accent-primary  w-5 h-5 required" />
+                            <input type="radio" name="rememberPassword" id="rememberPassword" className="inputStyle accent-primary  w-5 h-5 required" />
                             <p className="font-poppins text-[20px] text-blue_800 ">Recordar contraseña</p>
                         </div>
                         <div className="m-16 flex justify-center">

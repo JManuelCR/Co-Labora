@@ -40,7 +40,6 @@ body {
   );
 }
 .image_holder {
-  width: 908px;
   height: 700px;
   background-image: url("../../public/temporal-images/temporal-image-consult.webp");
   background-size: cover;
@@ -66,12 +65,14 @@ body {
   height: 100px;
   border: 5px solid white;
   border-radius: 50%;
-  margin-left: 48px;
 }
 @media (max-width: 375px) {
   .propertyAvatar {
     margin-left: 12px;
   }
+}
+.buttoonPrimaryBackground{
+  background-color: brown;
 }
 
 @media (min-height:1144px) {
@@ -85,3 +86,4 @@ body {
      margin-top: 310px;
     }
 }
+
