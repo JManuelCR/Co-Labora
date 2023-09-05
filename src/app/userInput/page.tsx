@@ -21,7 +21,7 @@ export default function userInput(){
                             Por que te pedimos esta información?
                             Es importante para los usuarios que ponen en renta sus espacios conocer un poco mas sobre ti y tu profesión para poderte brindar el mejor servicio.
                         </p>
-                        <p className="font-roboto text-small text-[#280AE5] p-[19px] text-center ">Conoce más ....</p>
+                        <p className="font-poppins text-small text-[#280AE5] p-[19px] text-center ">Conoce más ....</p>
                     </div>
                 </form>
                 <div className="flex flex-col gap-[10px] items-center">
