@@ -12,7 +12,7 @@ export default function Login() {
                         <h1 className="font-acme text-titleMobil text-blue_800 text-center">Bienvenido a <span className="text-primary">Co-Labora</span></h1>
                         <p className="font-poppins text-center text-suTitles text-blue_700">Encuentra tu espacio perfecto</p>
                     </div>
-                    <div className="mt-[17px]">
+                    <form className="mt-[17px]">
                         <input type="email" name="email" placeholder="Correo Electronico" className="flex rounded-[15px] border-2 border-primary w-full h-[65px] font-poppins text-[16px] text-blue_500 placeholder:p-[10px] p-[15px] placeholder:text-start focus:outline-0 focus:border-primary required my-5" />
                         <input type="password" name="password" placeholder="Contraseña" className="flex rounded-[15px] border-2 border-primary w-full h-[65px] font-poppins text-[16px] text-blue_500 placeholder:p-[10px] p-[15px] placeholder:text-start mt-5 focus:outline-0 focus:border-primary required my-5" />
                         <div className="flex my-[50px] gap-[15px]">
@@ -24,7 +24,7 @@ export default function Login() {
                                 <p className="font-poppins text-suTitles text-white">Ingresa</p>
                             </button>
                         </div>
-                    </div>
+                    </form>
                 </section>
             </section>
             <section className="md:hidden" >
