@@ -13,7 +13,7 @@ import arrowLeft from "../../public/icons/icon-arrow-left-white.svg";
 export default function Hero() {
   return (
     <>
-      <section className="flex w-full lg:px-[60px] justify-center gap-5 max-lg:flex-col-reverse max-lg:items-center">
+      <section className="flex w-full lg:px-[60px] justify-center gap-5 max-xl:flex-col-reverse max-xl:items-center">
         <article className="flex flex-col gap-3 max-md:px-4">
           <div className="flex gap-[18px] border-b border-secondary pb-3 w-[343px]">
             <input
@@ -26,11 +26,11 @@ export default function Hero() {
             </button>
           </div>
           <div>
-            <h5 className="text-lg text-primary font-bold max-lg:hidden">
+            <h5 className="text-lg text-primary font-bold max-xl:hidden">
               ¡Encuentra tu espacio perfecto!
             </h5>
           </div>
-          <div className="max-lg:hidden">
+          <div className="max-xl:hidden">
             <Image
               src={location}
               width={416}
@@ -41,13 +41,13 @@ export default function Hero() {
         </article>
         <article className="relative backgroundGradienHero h-[756px] w-full">
           {/* <span className="bg-gradient-to-b from-white via-orange-300 to-orange-900 z-10 w-full h-full" /> AQUI SE SUPONE QUE DEBERIA DE IR EL GRADIENTE ENCIMA DE LA IMAGEN PERO NO SE COMO HACERLO*/}
-          <div className="image_holder bg-hero-pattern flex max-sm:w-[375px]">
+          <div className="image_holder bg-hero-pattern flex max-sm:w-full">
             <Image
               src={consult}
               width={908}
               height={756}
               alt="temporal-image-consult"
-              className="absolute z-[-1] max-sm:object-fill h-full w-[64rem]"
+              className="absolute z-[-1] max-sm:object-fill h-full w-full"
             />
           </div>
           <div className="flex flex-col absolute top-5 start-10">
@@ -60,17 +60,17 @@ export default function Hero() {
             />
           </div>
           <div className="flex absolute bottom-[37px] w-[100%]">
-            <div className="flex gap-[28px] w-[100%] max-sm:w-auto">
+            <div className="flex gap-[20px] md:gap-[28px] w-[100%] max-sm:w-auto">
               <Image
                 src={consult}
                 alt="temporal-image-consult"
-                className="propertyAvatar"
+                className="propertyAvatar ms-2 md:ms-[48px]"
               />
-              <div className="flex flex-col gap-2 max-sm:w-52">
+              <div className="flex flex-col gap-2 max-md:w-52">
                 <h2 className="font-poppins text-[24px] font-[800] text-white ">
                   Consultorio psicoterapéutico
                 </h2>
-                <h3 className="max-w-[397px] block font-poppins text-[18px] font-[500] max-sm:text-[14px] ">
+                <h3 className="max-w-[397px] block font-poppins text-[18px] font-[500] max-md:text-[14px] ">
                   Con una serenidad y silencio total, puedes ofrecer las mejores
                   sesiones.
                 </h3>
@@ -78,7 +78,7 @@ export default function Hero() {
                   <span>Coyoacán, CDMX</span>
                   <span>30 m2</span>
                 </span>
-                <div className="flex gap-8">
+                <div className="flex gap-5 md:gap-8">
                   <Image src={wifi} alt={"Wifi amenity icon"} />
                   <Image
                     src={camera}
@@ -88,8 +88,8 @@ export default function Hero() {
                   <Image src={pets} alt={"Pet-friendly amenity icon"} />
                   <Image src={firstAidKit} alt={"First-aid- kit amenity"} />
                 </div>
-                <div className="flex gap-[24px] mt-[20px]">
-                  <button className="w-[150px] px-[18px] py-[4px] border-[1px] border-primary rounded-lg bg-white font-[600] font-poppins text-[14px] text-primary max-sm:w-44">
+                <div className="flex gap-4 md:gap-[24px] mt-[20px]">
+                  <button className="w-[150px] px-[18px] py-[4px] border-[1px] border-primary rounded-lg bg-white font-[600] font-poppins text-[14px] text-primary max-md:w-44">
                     Ver más
                   </button>
                   <button className="w-[150px] px-[18px] py-[4px]   rounded-lg bg-primary font-[600] font-poppins text-[14px] text-white ">
@@ -97,7 +97,7 @@ export default function Hero() {
                   </button>
                 </div>
               </div>
-              <div className="relative w-[100%] h-[100%] max-sm:hidden">
+              <div className="relative w-[100%] h-[100%] max-md:hidden">
                 <div className="absolute end-0 top-0 flex gap-[40px] pe-[60px]">
                   <Image src={arrowLeft} alt={"Slider arrow left icon"} />
                   <Image src={arrowRigth} alt={"Slider arrow right icon"} />

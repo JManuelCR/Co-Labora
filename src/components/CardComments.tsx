@@ -31,7 +31,7 @@ export default function CardComments (props:Props){
                 </div>
                 <div className="flex gap-10 my-10 justify-start  items-center">
                     <div className="flex gap-3">
-                            <Image src={raitingStars} alt={"raiting stars"} />
+                            <Image src={raitingStars} alt={"raiting stars"}/>
                     </div>
                     <div>
                         <p className="font-poppins text-[18px] text-blue_800">{rating}</p>

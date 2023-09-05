@@ -18,8 +18,8 @@ export default function Advantages(props: Props) {
     props;
   return (
     <>
-      <section className="bg-white md:h-[452px] w-full flex flex-col gap-14 max-sm:hidden">
-        <div className="flex justify-center ">
+      <section className="bg-white md:h-[452px] w-full flex flex-col gap-14 max-md:hidden mt-[113px]">
+        <div className="flex justify-center">
           <div className="border-b-4 border-secondary">
             <h1 className="text-4xl leading-loose font-acme text-blue_800 text-[40px]">
               ¿Porqué Co-labora?
@@ -35,10 +35,10 @@ export default function Advantages(props: Props) {
               alt="Icono Cohete"
               className="h-28 w-28"
             />
-            <h2 className="text-4xl font-[acme] text-primary">
+            <h2 className="text-4xl font-acme text-primary">
               Experiencias únicas
             </h2>
-            <p className="text-lg font-[poppins] text-blue_800">
+            <p className="text-lg font-poppins text-blue_800">
               Cada vez que rentes estas abriendo la ventana a una experiencia
               nueva
             </p>
@@ -51,8 +51,8 @@ export default function Advantages(props: Props) {
               alt="Icono bolsa con dinero"
               className="h-28 w-28"
             />
-            <h2 className="text-4xl font-[acme] text-primary">Adaptado a ti</h2>
-            <p className="text-lg font-[poppins] text-blue_800">
+            <h2 className="text-4xl font-acme text-primary">Adaptado a ti</h2>
+            <p className="text-lg font-poppins text-blue_800">
               Renta el lugar que cumpla con lo que necesitas
             </p>
           </div>
@@ -85,8 +85,8 @@ export default function Advantages(props: Props) {
           </div>
         </section>
       </section>
-      <section className="bg-secondary md:h-[452px] w-full flex flex-col md:p-5 gap-14 max-sm:p-2 max-sm:w-full">
-        <div className="flex px-20 gap-5 py-3  max-sm:px-5 max-sm:justify-between">
+      <section className="bg-secondary h-auto xl:h-[452px] w-full flex flex-col md:p-5 gap-14 max-md:p-2 max-md:w-full">
+        <div className="flex px-20 gap-5 py-3  max-md:px-5 max-md:justify-between">
           <div className="flex basis-1/4 gap-5 ">
             <Image
               src="icons/Boton-back.svg"
@@ -109,7 +109,7 @@ export default function Advantages(props: Props) {
             />
           </div>
         </div>
-        <section className="flex gap-24 md:px-[90px] max-sm:flex-wrap">
+        <section className="flex gap-24 lg:px-[90px] max-md:flex-col max-md:justify-center max-md:items-center pb-4">
           <div className="flex flex-col gap-5 md:basis-1/2 ">
             <div>
               <p className="text-lg font-[poppins] text-white">{opinion}</p>
@@ -139,9 +139,9 @@ export default function Advantages(props: Props) {
               </div>
             </div>
           </div>
-          <div className="gap-5 md:basis-1/2 max-sm:flex flex-col ">
+          <div className="gap-5 md:basis-1/2 max-md:flex flex-col items-center max-md:mb-4">
             <div className="flex ">
-              <div className="md:border-l-4 px-3 md:basis-1/2 max-sm:border-l-4 border-blue_800">
+              <div className="md:border-l-4 px-3 md:basis-1/2 max-md:border-l-4 border-blue_800">
                 <p className="font-[poppins] text-[40px] text-blue_800 font-medium ">
                   204
                 </p>
@@ -149,7 +149,7 @@ export default function Advantages(props: Props) {
                   Espacios en renta
                 </p>
               </div>
-              <div className="md:border-l-4 px-3 md:basis-1/2 max-sm:border-l-4 border-blue_800">
+              <div className="md:border-l-4 px-3 md:basis-1/2 max-md:border-l-4 border-blue_800">
                 <p className="font-[poppins] text-[40px] text-blue_800 font-medium">
                   +500
                 </p>
