@@ -23,7 +23,7 @@ export default function Navbar(props: Navbar) {
   };
 
   return (
-    <header className="flex items-center justify-center w-full h-[56px] px-[65px] max-sm:px-1">
+    <header className="flex items-center justify-center w-full h-[56px] px-1 min-lg:px-[65px]">
       <nav className="flex items-center justify-between w-full max-h-[56px]">
         <div>
           <Link href="/">
@@ -37,7 +37,7 @@ export default function Navbar(props: Navbar) {
           </Link>
         </div>
         <div className="flex gap-[35px] items-center ">
-          <ul className=" flex gap-[35px] text-[14px] text-blue_700 font-semibold max-sm:hidden">
+          <ul className=" flex gap-[35px] text-[14px] text-blue_700 font-semibold max-md:hidden">
             <li>
               <Link
                 href={"/"}
