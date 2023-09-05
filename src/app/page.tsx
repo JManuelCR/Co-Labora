@@ -20,12 +20,12 @@ export default function Home() {
           <Hero />
           {/* <h1 className="text-blue_800">This is hero</h1> */}
           <section className="flex flex-col items-center justify-center px-[40px] lg:px-[80px] xl:px-[156px] pt-[56px] max-sm:pt-0 w-full">
-            <div className="w-[520px] border-secondary border-solid border-b-[4px] mb-[60px] max-sm:hidden">
+            <div className="w-[520px] border-secondary border-solid border-b-[4px] mb-[60px] max-md:hidden">
               <h2 className=" text-[40px] text-center font-acme text-blue_800">
                 ¡Los mejor calificados!
               </h2>
             </div>
-            <div className="flex md:w-[700px]  xl:w-[700px] 2xl:w-full max-md:flex-col md:flex-wrap  md:gap-x-[60px] 2xl:gap-x-[84px] mb-[42px] gap-y-[80px] h-auto max-sm:hidden">
+            <div className="flex md:w-[700px] xl:w-full max-md:flex-col md:flex-wrap  md:gap-x-[60px] 2xl:gap-x-[84px] mb-[42px] gap-y-[80px] h-auto max-sm:hidden">
               {dataBD.map((card, index) => (
                 <div key={index} className="flex flex-ro gap-1">
                   <Cards
@@ -47,7 +47,7 @@ export default function Home() {
               </button>
             </div>
           </section>
-          <section className="max-sm:flex w-full justify-around max-lg:z-50  sm:hidden font-semibold p-5 mt-10 bg-back rounded-b-2xl sticky top-0">
+          <section className="max-md:flex w-full justify-around max-lg:z-50  md:hidden font-semibold p-5 mt-4 bg-back rounded-b-2xl sticky top-0">
             <article className="text-blue_800 flex">
               <Image src={house} width={24} height={24} alt="Home-logo" />
               <p>Tus espacios</p>

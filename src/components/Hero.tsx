@@ -66,11 +66,11 @@ export default function Hero() {
                 alt="temporal-image-consult"
                 className="propertyAvatar ms-2 md:ms-[48px]"
               />
-              <div className="flex flex-col gap-2 max-sm:w-52">
+              <div className="flex flex-col gap-2 max-md:w-52">
                 <h2 className="font-poppins text-[24px] font-[800] text-white ">
                   Consultorio psicoterapéutico
                 </h2>
-                <h3 className="max-w-[397px] block font-poppins text-[18px] font-[500] max-sm:text-[14px] ">
+                <h3 className="max-w-[397px] block font-poppins text-[18px] font-[500] max-md:text-[14px] ">
                   Con una serenidad y silencio total, puedes ofrecer las mejores
                   sesiones.
                 </h3>
@@ -89,7 +89,7 @@ export default function Hero() {
                   <Image src={firstAidKit} alt={"First-aid- kit amenity"} />
                 </div>
                 <div className="flex gap-4 md:gap-[24px] mt-[20px]">
-                  <button className="w-[150px] px-[18px] py-[4px] border-[1px] border-primary rounded-lg bg-white font-[600] font-poppins text-[14px] text-primary max-sm:w-44">
+                  <button className="w-[150px] px-[18px] py-[4px] border-[1px] border-primary rounded-lg bg-white font-[600] font-poppins text-[14px] text-primary max-md:w-44">
                     Ver más
                   </button>
                   <button className="w-[150px] px-[18px] py-[4px]   rounded-lg bg-primary font-[600] font-poppins text-[14px] text-white ">
@@ -97,7 +97,7 @@ export default function Hero() {
                   </button>
                 </div>
               </div>
-              <div className="relative w-[100%] h-[100%] max-sm:hidden">
+              <div className="relative w-[100%] h-[100%] max-md:hidden">
                 <div className="absolute end-0 top-0 flex gap-[40px] pe-[60px]">
                   <Image src={arrowLeft} alt={"Slider arrow left icon"} />
                   <Image src={arrowRigth} alt={"Slider arrow right icon"} />

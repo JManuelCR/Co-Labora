@@ -2,7 +2,7 @@ import Navbar from "@/components/Navbar"
 import FooterMobile from "@/components/FooterMobile"
 import Footer from "@/components/Footer"
 
-export default function Login(){
+export default function Login(){    
     return(
         <>
             <Navbar page="login" />
@@ -31,7 +31,7 @@ export default function Login(){
                     </div>
                 </section>
             </section>
-            <section className="md:hidden mt-[25px] " >
+            <section className="md:hidden mt-[25px]">
               <FooterMobile/>
             </section>
             <section className="windowXl2 hidden md:block md:mt-[270px] lg:mt-[235px]">
