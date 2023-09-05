@@ -1,4 +1,3 @@
-"use client";
 import Image from "next/image";
 import { Acme, Poppins } from "next/font/google";
 import { dataBD } from "@/data/card-data";
@@ -12,15 +11,11 @@ import SliderLandinDesktop from "@/components/SliderLandigDesktop";
 import building from "../../public/icons/building-mobile-nav.svg";
 import house from "../../public/icons/home-mobile-nav.svg";
 import FooterMobile from "@/components/FooterMobile";
-import CustomStepper from "@/components/Stepper";
 export default function Home() {
   return (
-    <div className="w-full h-full flex justify-center items-center  bg-black">
+    <div className="w-full h-full flex justify-center items-center">
       <div className="2xl:max-w-[1440px] w-full h-screen flex flex-col  relative over">
         <Navbar page="home" />
-        <div className="flex justify-between w-[800px]">
-          <CustomStepper />
-        </div>
         <main className="flex flex-col items-center justify-between h-auto max-lg:w-full">
           <Hero />
           {/* <h1 className="text-blue_800">This is hero</h1> */}
