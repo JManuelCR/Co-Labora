@@ -19,7 +19,7 @@ export default function Login() {
                             <input type="password" name="password" placeholder="Contraseña" className="flex rounded-[15px] border-2 border-primary w-full h-[65px] font-poppins text-[16px] text-blue_500 placeholder:p-[10px] p-[15px] placeholder:text-start mt-5 focus:outline-0 focus:border-primary required my-5" />
                         </div>
                         <div className="flex my-[50px] gap-[15px]">
-                            <input type="radio" name="rememberPassword" id="rememberPassword" className="inputStyle accent-primary  w-5 h-5 required" />
+                            <input type="radio" name="rememberPassword" id="rememberPassword" className="accent-primary  w-5 h-5 required" />
                             <p className="font-poppins text-[20px] text-blue_800 ">Recordar contraseña</p>
                         </div>
                         <div className="m-16 flex justify-center">
