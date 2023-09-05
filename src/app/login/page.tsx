@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar"
 import FooterMobile from "@/components/FooterMobile"
 import Footer from "@/components/Footer"
+import eye from "../../public/icons/eye.svg"
 
 export default function Login() {
     return (
@@ -14,7 +15,9 @@ export default function Login() {
                     </div>
                     <form className="mt-[17px]">
                         <input type="email" name="email" placeholder="Correo Electronico" className="flex rounded-[15px] border-2 border-primary w-full h-[65px] font-poppins text-[16px] text-blue_500 placeholder:p-[10px] p-[15px] placeholder:text-start focus:outline-0 focus:border-primary required my-5" />
-                        <input type="password" name="password" placeholder="Contraseña" className="flex rounded-[15px] border-2 border-primary w-full h-[65px] font-poppins text-[16px] text-blue_500 placeholder:p-[10px] p-[15px] placeholder:text-start mt-5 focus:outline-0 focus:border-primary required my-5" />
+                        <div>
+                            <input type="password" name="password" placeholder="Contraseña" className="flex rounded-[15px] border-2 border-primary w-full h-[65px] font-poppins text-[16px] text-blue_500 placeholder:p-[10px] p-[15px] placeholder:text-start mt-5 focus:outline-0 focus:border-primary required my-5" />
+                        </div>
                         <div className="flex my-[50px] gap-[15px]">
                             <input type="radio" name="rememberPassword" id="rememberPassword" className="inputStyle accent-primary  w-5 h-5 required" />
                             <p className="font-poppins text-[20px] text-blue_800 ">Recordar contraseña</p>
@@ -28,10 +31,10 @@ export default function Login() {
                 </section>
             </section>
             <section className="md:hidden" >
-              <FooterMobile/>
+                <FooterMobile />
             </section>
             <section className="windowXl2 hidden md:block md:mt-[270px] lg:mt-[235px]">
-              <Footer/>
+                <Footer />
             </section>
         </>
     )
