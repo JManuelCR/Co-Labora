@@ -15,10 +15,10 @@ export default function createAccount() {
                     </div >
                     <div className="flex justify-between text-center mt-6">
                         <div className="font-poppins text-suTitles hover:text-primary hover:underline text-blue_800">
-                            <a href="">Soy Usuario</a>
+                            <link href="">Soy Usuario</link>
                         </div>
                         <div className="font-poppins text-suTitles hover:text-primary text-blue_800 hover:underline">
-                            <a href="">Soy Negocio</a>
+                            <link href="">Soy Negocio</link>
                         </div>
                     </div>
                     <form className="mt-[30px]">
