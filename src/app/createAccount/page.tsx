@@ -6,7 +6,7 @@ import Footer from "@/components/Footer"
 export default function createAccount() {
     return (
         <>
-            <Navbar page="crateAccount" />
+            <Navbar page="login" />
             <section className=" w-100% h-100% md:w-full md:h-100% flex items-center justify-center lg:mt-[212px] ">
                 <section className="flex flex-col mx-5 md:w-[440px] md:h-[510px] windowXl">
                     <div className="mt-[67px] lg:my-0 gap-[13px]">
@@ -15,14 +15,15 @@ export default function createAccount() {
                     </div >
                     <div className="flex justify-between text-center mt-6">
                         <div className="font-poppins text-suTitles hover:text-primary hover:underline text-blue_800">
-                            <link href="">Soy Usuario</link>
+                            <a href="">Soy Usuario</a>
                         </div>
                         <div className="font-poppins text-suTitles hover:text-primary text-blue_800 hover:underline">
-                            <link href="">Soy Negocio</link>
+                            <a href="">Soy Negocio</a>
                         </div>
                     </div>
                     <form className="mt-[30px]">
                         <input type="email" name="email" placeholder="Correo Electronico" className="flex rounded-[15px] border-2 border-primary w-full h-[65px] font-poppins text-[16px] text-blue_500 placeholder:p-[10px] p-[15px] placeholder:text-start focus:outline-0 focus:border-primary required" />
+                        
                         <div className="h-[65px] relative flex items-center justify-end mt-4 ">
                            {/* <img src="icons/eye.svg" alt="Eye" className="w-8 h-8 absolute mr-3" />*/ } 
                             <img src="icons/Eye-Off.svg" alt="Eye block" className="w-8 h-8 absolute mr-3" />
