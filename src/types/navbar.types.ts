@@ -1,3 +1,3 @@
 export interface Navbar {
-        page: string;
+  page: string;
 }

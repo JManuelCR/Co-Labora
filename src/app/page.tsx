@@ -1,6 +1,5 @@
 "use client";
 import Image from "next/image";
-import { Acme, Poppins } from "next/font/google";
 import { dataBD } from "@/data/card-data";
 import Cards from "@/components/Cards";
 import Advantages from "@/components/Advantages";

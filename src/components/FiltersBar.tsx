@@ -1,36 +1,62 @@
+"use client";
+import { useState } from "react";
 import Image from "next/image";
 import Search from "../../public/icons/search.svg";
 import FilterIcn from "../../public/icons/adjustments.svg";
 import map from "../../public/icons/map.svg";
+
 export default function FiltersBar() {
+  const [menu, setMenu] = useState(false);
+  const toogleMenu = () => {
+    setMenu(!menu);
+  };
   return (
-    <article className="flex justify-around my-5">
-      <section className="flex items-center gap-5">
-        <div className="flex h-fit  border-solid border-2 border-primary rounded-xl p-2 foc">
-          <input
-            type="text"
-            placeholder="Encuentra un espacio..."
-            className="border-none focus:outline-none text-blue_800"
-          />
-          <Image src={Search} alt="search icon" width={24} height={24} />
-        </div>
-        <button
-          type="button"
-          className="bg-primary text-white font-poppins px-10 py-2 rounded-xl">
-          Buscar
-        </button>
-      </section>
-      <section className="flex gap-10">
-        <button
-          type="button"
-          className="bg-primary text-white font-poppins px-10 py-2 flex items-center rounded-xl gap-3">
-          Filter
-          <Image src={FilterIcn} alt="filter button" width={32} height={32} />
-        </button>
-        <button>
-          <Image src={map} alt="map icon" width={50} height={50} />
-        </button>
-      </section>
-    </article>
+    <>
+      <article className="flex justify-around my-3 relative">
+        <section className="flex items-center gap-5">
+          <div className="flex h-fit  border-solid border-2 border-blue_700 rounded-xl p-2 ">
+            <input
+              type="text"
+              placeholder="Encuentra un espacio..."
+              className="border-none focus:outline-none text-blue_800"
+            />
+            <Image
+              src={Search}
+              alt="search icon"
+              width={24}
+              height={24}
+              className="max-md:hidden"
+            />
+          </div>
+          <button
+            type="button"
+            className="bg-primary text-white font-poppins px-10 py-3 rounded-xl">
+            Buscar
+          </button>
+        </section>
+        <section className="flex gap-10 max-md:hidden">
+          <button
+            type="button"
+            onClick={toogleMenu}
+            className="bg-primary text-white font-poppins px-10 py-1 flex items-center rounded-xl gap-3">
+            Filter
+            <Image src={FilterIcn} alt="filter button" width={24} height={24} />
+          </button>
+          {menu && (
+            <div className="absolute end-0-full top-10 ">
+              <ul className="text-primary">
+                <li>lslsls</li>
+                <li>lslsls</li>
+                <li>lslsl</li>
+              </ul>
+            </div>
+          )}
+          <button>
+            <Image src={map} alt="map icon" width={50} height={50} />
+          </button>
+        </section>
+      </article>
+      <div className=" h-min border border-solid border-b-secondary md:hidden flex justify-center mx-5"></div>
+    </>
   );
 }
