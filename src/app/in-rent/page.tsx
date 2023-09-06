@@ -1,12 +1,13 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FooterMobile from "@/components/FooterMobile";
+import FiltersBar from "@/components/FiltersBar";
 export default function Rent() {
   return (
     <>
       <Navbar page="in rent" />
-      <h1>Yos oy una renta</h1>
-      <div>
+      <FiltersBar />
+      <div className="footers">
         <footer className="hidden md:block">
           <Footer />
         </footer>
