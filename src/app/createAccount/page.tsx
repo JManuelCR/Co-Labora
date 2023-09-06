@@ -3,7 +3,7 @@ import FooterMobile from "@/components/FooterMobile"
 import Footer from "@/components/Footer"
 
 
-export default function Login() {
+export default function createAccount() {
     return (
         <>
             <Navbar page="login" />
