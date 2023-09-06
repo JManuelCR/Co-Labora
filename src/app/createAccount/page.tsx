@@ -6,7 +6,7 @@ import Footer from "@/components/Footer"
 export default function createAccount() {
     return (
         <>
-            <Navbar page="login" />
+            <Navbar page="crateAccount" />
             <section className=" w-100% h-100% md:w-full md:h-100% flex items-center justify-center lg:mt-[212px] ">
                 <section className="flex flex-col mx-5 md:w-[440px] md:h-[510px] windowXl">
                     <div className="mt-[67px] lg:my-0 gap-[13px]">
