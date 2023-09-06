@@ -4,7 +4,7 @@ import Image from "next/image";
 import Search from "../../public/icons/search.svg";
 import FilterIcn from "../../public/icons/adjustments.svg";
 import map from "../../public/icons/map.svg";
-
+import Filters from "./Filters";
 export default function FiltersBar() {
   const [menu, setMenu] = useState(false);
   const toogleMenu = () => {
@@ -43,12 +43,8 @@ export default function FiltersBar() {
             <Image src={FilterIcn} alt="filter button" width={24} height={24} />
           </button>
           {menu && (
-            <div className="absolute end-0-full top-10 ">
-              <ul className="text-primary">
-                <li>lslsls</li>
-                <li>lslsls</li>
-                <li>lslsl</li>
-              </ul>
+            <div className="absolute end-0-full top-16">
+              <Filters />
             </div>
           )}
           <button>
