@@ -88,4 +88,13 @@ body {
      margin-top: 310px;
     }
 }
-
+#RFS-StepperContainer{
+  padding: 0px;
+  margin-top: 40px;
+}
+#RFS-StepMain{
+    @apply flex flex-col items-center
+}
+.buttonMobileShadow{
+  box-shadow: 0px 4px 32px 0px rgba(26, 26, 26, 0.25);
+}
