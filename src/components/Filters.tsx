@@ -5,7 +5,7 @@ import Range from "rc-slider";
 import "rc-slider/assets/index.css";
 export default function Filters() {
   return (
-    <article className="flex flex-col bg-white text-blue_800">
+    <article className="flex flex-col bg-white text-blue_800 w-96 rounded-lg">
       <section className="flex justify-between px-3 border border-solid border-b-blue_800 ">
         <p className="font-semibold">Filters</p>
         <div className=" flex gap-3 ">
@@ -34,9 +34,11 @@ export default function Filters() {
       <section></section>
       <section>
         <h4 className="text-center font-bold text-blue_800">Por amenidades</h4>
-        {amenities.map((am, index) => (
-          <ButtonAmenities name={am.name} src={am.src} key={index} />
-        ))}
+        <div className="flex gap-3 flex-wrap">
+          {amenities.map((am, index) => (
+            <ButtonAmenities name={am.name} src={am.src} key={index} />
+          ))}
+        </div>
       </section>
     </article>
   );
