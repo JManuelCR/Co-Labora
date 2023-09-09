@@ -7,7 +7,6 @@ import CommentsUsers from "@/components/CommentsUser";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
-import SliderLandinDesktop from "@/components/SliderLandigDesktop";
 import building from "../../public/icons/building-mobile-nav.svg";
 import house from "../../public/icons/home-mobile-nav.svg";
 import FooterMobile from "@/components/FooterMobile";
@@ -77,12 +76,7 @@ export default function Home() {
           />
           <CommentsUsers />
         </main>
-        <footer className="hidden md:block">
-          <Footer />
-        </footer>
-        <footer className="block md:hidden">
-          <FooterMobile />
-        </footer>
+        <Footer />
       </div>
     </div>
   );

@@ -4,11 +4,17 @@ import twitterLogo from "../../public/icons/twitter-logo.svg";
 import facebookLogo from "../../public/icons/facebook-logo.svg";
 import googlePlusLogo from "../../public/icons/googleplus-logo.svg";
 import linkedInLogo from "../../public/icons/linkedin-logo.svg";
+import FooterMobile from "./FooterMobile";
+
 
 export default function Footer() {
   return (
     <>
-      <footer className="h-[190px] w-full backgroundGradienFooter px-[128px] py-[20px]">
+    <footer className="w-full h-auto">
+      <div className="md:hidden">
+        <FooterMobile />
+      </div>      
+      <div className="hidden md:block h-[190px] w-full backgroundGradientFooter px-[128px] py-[20px]">
         <div className="flex justify-between">
           <ul className="flex flex-col gap-2">
             <li className="text-light flex gap-[10px]">
@@ -62,7 +68,8 @@ export default function Footer() {
             </li>
           </ul>
         </div>
-      </footer>
+      </div>
+    </footer>
     </>
   );
 }
