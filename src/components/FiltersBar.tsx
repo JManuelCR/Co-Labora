@@ -43,7 +43,7 @@ export default function FiltersBar() {
             <Image src={FilterIcn} alt="filter button" width={24} height={24} />
           </button>
           {menu && (
-            <div className="absolute end-0-full top-16">
+            <div className="absolute right-32 top-16 max-sm:absolute min-lg:right-48">
               <Filters />
             </div>
           )}
@@ -53,6 +53,20 @@ export default function FiltersBar() {
         </section>
       </article>
       <div className=" h-min border border-solid border-b-secondary md:hidden flex justify-center mx-5"></div>
+      <section className="hidden max-sm:flex justify-end p-2 ">
+        <button
+          type="button"
+          onClick={toogleMenu}
+          className="bg-blue_800 text-white font-poppins px-3 py-1 flex items-center gap-3 rounded-md">
+          Filter
+          <Image src={FilterIcn} alt="filter button" width={24} height={24} />
+        </button>
+        {menu && (
+          <div className="absolute top-44 right-5">
+            <Filters />
+          </div>
+        )}
+      </section>
     </>
   );
 }
