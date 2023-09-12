@@ -98,3 +98,10 @@ body {
 .buttonMobileShadow{
   box-shadow: 0px 4px 32px 0px rgba(26, 26, 26, 0.25);
 }
+.form-control{
+  width: 198px;
+}
+/* .ant-picker-dropdown{
+  width: 1060px;
+  height: 20vh;
+} */

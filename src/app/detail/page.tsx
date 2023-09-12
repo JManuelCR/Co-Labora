@@ -1,9 +1,13 @@
-import React, { useState } from 'react'; 
+/* eslint-disable react-hooks/exhaustive-deps */
+"use client";
+import React, { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import CalendarMobile from "@/components/Calendar";
 import Image from "next/image";
 import SliderRent from "@/components/SliderRentDetail";
 import { sliderRentImages } from "@/data/sliderRentData";
+import CalendarDesktop from "@/components/CalendarDesktop.";
 
 const stars = [0, 1, 2];
 const amenities = {
@@ -16,16 +20,30 @@ const amenities = {
 };
 
 export default function Detail() {
+  const [isDesktop, setIsDesktop] = useState(false);
   const images = sliderRentImages;
+  ("selectDatesDesktop");
+  useEffect(() => {
+    const checkWindowWidth = () => {
+      setIsDesktop(window.innerWidth >= 1024);
+    };
+    checkWindowWidth();
+    window.addEventListener('resize', checkWindowWidth);
+
+    return () => {
+        window.removeEventListener('resize', checkWindowWidth)
+    }
+  });
+
   return (
     <>
       <Navbar page={"in rent"} />
       <main className="lg:flex flex-col items-center">
         <header>
           <div className="flex flex-row w-full justify-center items-center gap-[18px]">
-          <div className="relative w-[358px] h-[245px] md:w-[460px] md:h-[280px] lg:w-[520px] lg:h-[380px] xl:w-[600px] xl:h-[420px]">
-          <SliderRent image={images} />
-          </div>
+            <div className="relative w-[358px] h-[245px] md:w-[460px] md:h-[280px] lg:w-[520px] lg:h-[380px] xl:w-[600px] xl:h-[420px]">
+              <SliderRent image={images} />
+            </div>
             <div className="hidden lg:block lg:w-[490px] lg:h-[400px] xl:w-[528px] xl:h-[420px]"></div>
           </div>
         </header>
@@ -201,18 +219,17 @@ export default function Detail() {
                 {`10:00 am - 8:00 pm`}
               </span>
             </div>
-            <div className="mt-[30px] hidden lg:">
+            <div id="selectDatesDesktop" className="mt-[30px] hidden lg:flex">
               <div className="border-2 border-blue_300 rounded-[10px] w-[220px] h-[64px] flex flex-col ps-[14px] pt-2">
                 <p className="text-[14px] text-blue_700 font-poppins font-[700] leading-[22px] tracking-[-0.28px]">
                   Llegada
                 </p>
-                <span className="text-[18px] text-blue_700 font-poppins font-normal leading-[27px] tracking-[-0.36px] mt-[3px]">{`08/08/2023`}</span>
+                <CalendarDesktop show={isDesktop} />
               </div>
               <div className="border-2 border-blue_300 rounded-[10px] w-[220px] h-[64px] flex flex-col ps-[14px] pt-2">
                 <p className="text-[14px] text-blue_700 font-poppins font-[700] leading-[22px] tracking-[-0.28px]">
                   Salida
                 </p>
-                <span className="text-[18px] text-blue_700 font-poppins font-normal leading-[27px] tracking-[-0.36px] mt-[3px]">{`08/08/2023`}</span>
               </div>
             </div>
             <section className="hidden w-full justify-center items-center lg:flex flex-col gap-[10px] mb-[20px] mt-[24px]">
@@ -241,18 +258,20 @@ export default function Detail() {
                   <p className="text-[14px] text-blue_700 font-poppins font-[700] leading-[22px] tracking-[-0.28px]">
                     Llegada
                   </p>
-                  <span className="text-[18px] text-blue_700 font-poppins font-normal leading-[27px] tracking-[-0.36px] mt-[3px]">{`08/08/2023`}</span>
+                  <span className="text-[18px] text-blue_700 font-poppins font-normal leading-[27px] tracking-[-0.36px]">
+                    <CalendarMobile />
+                  </span>
                 </div>
-                <div className="w-[290px] h-[295px]"></div>
               </div>
               <div className="mt-[30px] flex flex-col gap-3">
                 <div className="border-2 border-blue_300 rounded-[10px] w-[220px] h-[64px] flex flex-col ps-[14px] pt-2">
                   <p className="text-[14px] text-blue_700 font-poppins font-[700] leading-[22px] tracking-[-0.28px]">
                     Salida
                   </p>
-                  <span className="text-[18px] text-blue_700 font-poppins font-normal leading-[27px] tracking-[-0.36px] mt-[3px]">{`08/08/2023`}</span>
+                  <span className="text-[18px] text-blue_700 font-poppins font-normal leading-[27px] tracking-[-0.36px]">
+                    <CalendarMobile />
+                  </span>
                 </div>
-                <div className="w-[290px] h-[295px]"></div>
               </div>
             </div>
           </div>

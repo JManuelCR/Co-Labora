@@ -13,7 +13,6 @@ import { Pagination } from "swiper/modules";
 
 export default function SliderRent(props: SliderRentDetails) {
     const imagesArray = props
-    console.log("images", imagesArray)
   return (
     <>
       <Swiper pagination={true} modules={[Pagination]} className="mySwiper">
