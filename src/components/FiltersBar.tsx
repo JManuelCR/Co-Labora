@@ -12,7 +12,7 @@ export default function FiltersBar() {
   };
   return (
     <>
-      <article className="flex justify-around my-3 relative">
+      <article className="flex justify-evenly my-3 relative">
         <section className="flex items-center gap-5">
           <div className="flex h-fit  border-solid border-2 border-blue_700 rounded-xl p-2 ">
             <input
@@ -47,9 +47,9 @@ export default function FiltersBar() {
               <Filters />
             </div>
           )}
-          <button>
+          {/* <button>
             <Image src={map} alt="map icon" width={50} height={50} />
-          </button>
+          </button> */}
         </section>
       </article>
       <div className=" h-min border border-solid border-b-secondary md:hidden flex justify-center mx-5"></div>
