@@ -1,10 +1,10 @@
+'use client'
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FooterMobile from "@/components/FooterMobile";
 import FiltersBar from "@/components/FiltersBar";
 import { dataBD } from "@/data/card-data";
 import CardsAvailable from "@/components/CardsAvailable";
-("use client");
 import OwnStepper from "@/components/OwnStepper";
 export default function Rent() {
   return (
