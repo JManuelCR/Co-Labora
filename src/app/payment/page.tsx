@@ -1,11 +1,7 @@
 "use client";
-import CustomStepper from "@/components/Stepper";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "@/components/CheckoutForm";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import FooterMobile from "@/components/FooterMobile";
 import Image from "next/image";
 import paymentImg from "../../../public/illustrations/cost-per-day-ilustration.webp";
 const stripePromise = loadStripe(
