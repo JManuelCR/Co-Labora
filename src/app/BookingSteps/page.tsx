@@ -4,22 +4,23 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FooterMobile from "@/components/FooterMobile";
 import Payment from "../payment/page";
-import Rent from "../in-rent/page";
 import React, { useState } from "react";
-
+import Extras from "../addItems/page";
+import Description from "../userInput/page";
+import Confirm from "../ConfirmReservation/page";
 export default function BookingSteps() {
   const [activeStep, setActiveStep] = useState(0);
 
   function gatSelectionStep() {
     switch (activeStep) {
       case 0:
-        return <Payment />;
+        return <Extras />;
       case 1:
-        return <Rent />;
+        return <Description />;
       case 2:
         return <Payment />;
       case 3:
-        return <Rent />;
+        return <Confirm />;
     }
   }
 

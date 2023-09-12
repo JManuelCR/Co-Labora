@@ -1,7 +1,6 @@
 import Image from "next/image";
 import star from "../../../public/icons/star-shape-1-svgrepo-com.svg";
 import Confirm from "../../../public/illustrations/image 42.svg";
-import Navbar from "@/components/Navbar";
 import Carpenter from "../../../public/temporal-images/holder-carpenter.webp";
 import { dataConfirm } from "@/data/data-confirm";
 export default function ConfirmReservation() {
@@ -11,8 +10,6 @@ export default function ConfirmReservation() {
   const tax = total * 0.16;
   return (
     <>
-      <Navbar page="Confirm" />
-      <div>Aqui va el stepper</div>
       <section className="flex justify-center items-center max-md:flex-wrap">
         <section className="flex flex-col font-poppins text-blue_800 border border-solid border-blue_800 p-5 rounded-lg max-md:border-none">
           <article className="flex justify-evenly gap-5">

@@ -14,8 +14,8 @@ const stripePromise = loadStripe(
 export default function Payment() {
   return (
     <>
-      <article className="flex flex-col justify-center items-center w-full">
-        <section className="rounded-lg border-solid border-primary border-2 w-fit my-5 p-5">
+      <article className="flex flex-col justify-center items-center my-40 h-[100%]">
+        <section className="flex flex-col rounded-lg border-solid border-primary border-2 w-fit my-5 p-5">
           <h1 className="font-acme font-semibold text-blue_800 text-titleMobil text-center">
             Selecciona tu metodo de pago
           </h1>
