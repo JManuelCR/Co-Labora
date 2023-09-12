@@ -5,7 +5,6 @@ import FooterMobile from "@/components/FooterMobile";
 import FiltersBar from "@/components/FiltersBar";
 import { dataBD } from "@/data/card-data";
 import CardsAvailable from "@/components/CardsAvailable";
-
 import OwnStepper from "@/components/OwnStepper";
 export default function Rent() {
   return (

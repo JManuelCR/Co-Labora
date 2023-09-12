@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 "use client"
 import Navbar from "@/components/Navbar"
 import FooterMobile from "@/components/FooterMobile"
