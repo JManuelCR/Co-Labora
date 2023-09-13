@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+'use client'
 import { useForm, SubmitHandler } from "react-hook-form";
 import inputs from "@/types/inputs.types";
 import Navbar from "@/components/Navbar";
