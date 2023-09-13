@@ -1,18 +1,46 @@
+"use client";
 import Image from "next/image";
 import star from "../../../public/icons/star-shape-1-svgrepo-com.svg";
-import Confirm from "../../../public/illustrations/image 42.svg";
+import confirm from "../../../public/illustrations/image 42.svg";
 import Carpenter from "../../../public/temporal-images/holder-carpenter.webp";
+import emergente from "../../../public/illustrations/Emergente.svg";
 import { dataConfirm } from "@/data/data-confirm";
+import { useState } from "react";
 export default function ConfirmReservation() {
+  const [blur, setBlur] = useState(false);
+
+  const handleClick = () => {
+    setBlur(true);
+    setTimeout(() => {
+      window.location.replace("/");
+    }, 3000);
+  };
+
   const { name, address, addons, price, rating, opinions } = dataConfirm;
   const total = price * 4;
   const commision = total * 0.3;
   const tax = total * 0.16;
   return (
     <>
-      <section className="flex justify-center items-center max-md:flex-wrap">
+      {blur ? (
+        <section className="flex items-center justify-center h-screen w-screen absolute top-0 left-0 z-20 ">
+          <Image
+            src={emergente}
+            alt="emergent image"
+            width={600}
+            height={200}
+            className="z-30"
+          />
+        </section>
+      ) : (
+        <></>
+      )}
+      <section
+        className={`flex justify-center items-center max-md:flex-wrap relative ${
+          blur ? "blur-xl" : ""
+        } `}>
         <section className="flex flex-col font-poppins text-blue_800 border border-solid border-blue_800 p-5 rounded-lg max-md:border-none">
-          <article className="flex justify-evenly gap-5">
+          <article className="flex justify-between gap-5">
             <div className="flex flex-col gap-3 w-1/2">
               <h3 className="font-acme text-suTitles">{name}</h3>
               <p>{address}</p>
@@ -96,14 +124,16 @@ export default function ConfirmReservation() {
           </article>
           <article className="flex justify-center max-md:hidden">
             <Image
-              src={Confirm}
+              src={confirm}
               alt="illustration-confirm-reservation"
               width={320}
               height={230}
             />
           </article>
           <article className="flex justify-center">
-            <button className="bg-primary text-white px-4 py-2 rounded-xl">
+            <button
+              className="bg-primary text-white px-4 py-2 rounded-xl"
+              onClick={handleClick}>
               Confirmar Reserva
             </button>
           </article>

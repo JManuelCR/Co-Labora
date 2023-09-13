@@ -27,6 +27,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-form-stepper": "^2.0.3",
+    "react-hook-form": "^7.46.1",
     "react-id-swiper": "^4.0.0",
     "react-uploader": "^3.41.0",
     "styled-components": "^6.0.7",
