@@ -4,7 +4,8 @@ import OwnStepper from "@/components/OwnStepper";
 import Footer from "@/components/Footer";
 import { useEffect, useState } from "react";
 import Rent from "../in-rent/page";
-import Detail from "../contacts/page";
+import Detail from "../contacts/page"; 
+import GeneralInfo from "@/components/generalDataSpaceInRent";
 
 export default function ReservationSteps() {
   const [showComponent, setShowComponent] = useState(false);
@@ -22,7 +23,7 @@ export default function ReservationSteps() {
       case 0:
         return <Rent />;
       case 1:
-        return <Detail />;
+        return <GeneralInfo />;
       case 2:
         return <Rent />;
       case 3:
