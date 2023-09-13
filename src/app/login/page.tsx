@@ -3,15 +3,21 @@ import Navbar from "@/components/Navbar";
 import FooterMobile from "@/components/FooterMobile";
 import Footer from "@/components/Footer";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { FormEvent, useState } from "react";
 import inputs from "@/types/inputs.types";
 export default function Login() {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm<inputs>();
   const onSubmit: SubmitHandler<inputs> = (data) => console.log(data);
+
+  const [passShow, setPassShow] = useState(false);
+  const tooglePass = (e: FormEvent) => {
+    e.preventDefault();
+    setPassShow(!passShow);
+  };
   return (
     <>
       <Navbar page="login" />
@@ -36,17 +42,20 @@ export default function Login() {
               })}
             />
             <p>{errors.email?.message}</p>
-            <div>
+            <div className="flex rounded-[15px] border-2 border-primary font-poppins text-[16px] text-blue_500 px-3">
               <input
-                type="password"
+                type={passShow ? "text" : "password"}
                 {...register("password", {
                   required: "Este campo es obligatorio",
                 })}
                 placeholder="Contraseña"
-                className="flex rounded-[15px] border-2 border-primary w-full h-[65px] font-poppins text-[16px] text-blue_500 placeholder:p-[10px] p-[15px] placeholder:text-start mt-5 focus:outline-0 focus:border-primary  my-5"
+                className="flex w-full focus:outline-0 focus:border-primary my-5"
               />
-              <p>{errors.password?.message}</p>
+              <button onClick={tooglePass}>
+                <p className="text-blue_800 underline">Mostrar</p>
+              </button>
             </div>
+            <p className="text-primary">{errors.password?.message}</p>
             <div className="flex my-[25px] gap-[10px] items-center">
               <input
                 type="radio"
