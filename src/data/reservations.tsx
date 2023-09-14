@@ -70,7 +70,7 @@ export const reservations = [
     end_date: "25 Agosto",
   },
   {
-    name: "Carpinteria angel",
+    name: "Sastreria Iris",
     address:
       "Calz.de la Ronda 99-loc.b, Ex hipodromo de la peravillo, Cuahutemoc,06250",
     size: 72,
@@ -105,7 +105,7 @@ export const reservations = [
     end_date: "25 Agosto",
   },
   {
-    name: "Carpinteria angel",
+    name: "vidrieria Zeus",
     address:
       "Calz.de la Ronda 99-loc.b, Ex hipodromo de la peravillo, Cuahutemoc,06250",
     size: 72,
@@ -133,10 +133,10 @@ export const reservations = [
     },
     rating: 5,
     opinions: 12,
-    price: 250,
+    price: 400,
     description:
       "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años,",
-    start_date: "18 Agosto",
+    start_date: "1 Agosto",
     end_date: "25 Agosto",
   },
   {
