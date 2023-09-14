@@ -1,18 +1,45 @@
 import Navbar from "@/components/Navbar";
-import Link from "next/link";
+import Footer from "@/components/Footer";
+import FooterMobile from "@/components/FooterMobile";
+import Image from "next/image";
+import Spaceless from "../../../public/illustrations/No-spaces.svg";
 export default function Detail() {
   return (
     <>
-    <Navbar page="your spaces"/>
-      <h1 className="font-Acme">It works</h1>
-      <Link href={"/"}>Home</Link>
-      <Link href={"/Rent"}>
-        <div className="bg-primary w-10 h-10">hola</div>
-        <div className="bg-secondary w-10 h-10 mt-3">hola</div>
-      </Link>
-      <div>
-        <h2 className="decoration-solid text-primary underline">esto es un texto de prueba</h2>
-      </div>
+      <Navbar page="your spaces" />
+      <article className="flex h-[100%] my-10 justify-evenly  max-md:flex-col max-md:items-center max-md:gap-44">
+        <section className="flex flex-col justify-between items-center border border-solid border-secondary rounded-xl w-96">
+          <div>
+            <h5 className="font-poppins text-suTitles text-blue_800 text-center">
+              Ninguna propiedad aun...
+            </h5>
+          </div>
+          <div className="p-5">
+            <button className="bg-primary rounded-2xl px-3 py-1 text-white ">
+              + Agregar
+            </button>
+          </div>
+        </section>
+        <section className="flex flex-col justify-center w-[50rem] items-center max-md:w-fit mb-28">
+          <Image
+            src={Spaceless}
+            alt="no space image"
+            width={850}
+            height={680}
+            className="max-md:hidden"
+          />
+          <h2 className="font-acme text-titles text-blue_800 max-md:text-titleMobil ">
+            No haz dado de alta ninguna propiedad aun Haz click en “ Agregar + “
+            para iniciar el registro de propiedad
+          </h2>
+        </section>
+      </article>
+      <footer className="hidden md:block ">
+        <Footer />
+      </footer>
+      <footer className="block md:hidden ">
+        <FooterMobile />
+      </footer>
     </>
   );
 }

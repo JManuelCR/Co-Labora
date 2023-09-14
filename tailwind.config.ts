@@ -42,7 +42,8 @@ export default {
     },
     screens: {
       'xsm': '375px',
-      'sm': '425px',
+      'sm': '414px',
+      'spc600': '600px',
       'md': '768px',
       'lg': '1024px',
       'xl': '1440px',

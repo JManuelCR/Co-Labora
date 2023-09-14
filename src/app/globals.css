@@ -34,7 +34,7 @@ body {
 .navItemFocused {
   @apply font-black text-primary border-secondary border-b-[3px];
 }
-.backgroundGradienFooter {
+.backgroundGradientFooter {
   background: linear-gradient(
     180deg,
     rgba(165, 71, 41, 0.9) 0%,
@@ -88,4 +88,23 @@ body {
      margin-top: 310px;
     }
 }
-
+#RFS-StepperContainer{
+  padding: 0px;
+  margin-top: 40px;
+}
+#RFS-StepMain{
+    @apply flex flex-col items-center
+}
+.buttonMobileShadow{
+  box-shadow: 0px 4px 32px 0px rgba(26, 26, 26, 0.25);
+}
+.form-control{
+  width: 198px;
+}
+.boxShadow-details{
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+/* .ant-picker-dropdown{
+  width: 1060px;
+  height: 20vh;
+} */
