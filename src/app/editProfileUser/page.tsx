@@ -5,115 +5,118 @@ import Navbar from "@/components/Navbar"
 import FooterMobile from "@/components/FooterMobile"
 import Footer from "@/components/Footer"
 import { useRef, useState } from "react";
+import { sliderRentImages } from "@/data/sliderRentData";
 
 export default function editProfile() {
-    const [dragActive, setDragActive] = useState<boolean>(false);
-    const inputRef = useRef<any>(null);
-    const [files, setFiles] = useState<any>([]);
+    const [images, setImages] = useState<any>([]);
+    const [isDragging, setIsDragging] = useState(false);
+    const fileInputRef = useRef(null);
 
-    function handleChange(e: any) {
-        e.preventDefault();
-        console.log("File has been added");
-        if (e.target.files && e.target.files[0]) {
-            for (let i = 0; i < e.target.files["length"]; i++) {
-                setFiles((prevState: any) => [...prevState, e.target.files[i]]);
+    function selectFiles(){
+        fileInputRef.current.click();
+    }
+
+    function onFileSelect(event: any) {
+        const files = event.target.files;
+        if(files.length === 0) return;
+        for (let i = 0; i < files.length; i++) {
+            if(files[i].type.split('/')[0]!== 'image') continue;
+            if(!images.some((e: any)=> e.name === files[i].name)) {
+                setImages((prevImages: any) => [
+                    ...prevImages,
+                    {
+                        name: files[i].name,
+                        url: URL.createObjectURL(files[i]),
+                    },
+                ]);
             }
         }
     }
 
-    function handleSubmitFile(e: any) {
-        if (files.length === 0) {
-            // no file has been submitted
-        } else {
-            // write submit logic here
-        }
+    function deleteImage(index: any){
+        setImages((prevImages: any) => 
+            prevImages.filter((_: any, i: any)=> i !== index)
+        );
     }
-    function handleDrop(e: any) {
-        e.preventDefault();
-        e.stopPropagation();
-        setDragActive(false);
-        if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-            for (let i = 0; i < e.dataTransfer.files["length"]; i++) {
-                setFiles((prevState: any) => [...prevState, e.dataTransfer.files[i]]);
+
+    function onDragOver(event: any){
+        event.preventDefault();
+        setIsDragging(true);
+        event.dataTransfer.dropEffect = "copy";
+    }
+
+    function onDragLeave(event: any){
+        event.preventDefault();
+        setIsDragging(false);
+    }
+
+    function onDrop(event: any){
+        event.preventDefault();
+        setIsDragging(false);
+        const files = event.dataTransfer.files;
+        for (let i = 0; i < files.length; i++) {
+            if(files[i].type.split('/')[0]!== 'image') continue;
+            if(!images.some((e: any)=> e.name === files[i].name)) {
+                setImages((prevImages: any) => [
+                    ...prevImages,
+                    {
+                        name: files[i].name,
+                        url: URL.createObjectURL(files[i]),
+                    },
+                ]);
             }
         }
     }
-    function handleDragLeave(e: any) {
-        e.preventDefault();
-        e.stopPropagation();
-        setDragActive(false);
-    }
-    function handleDragOver(e: any) {
-        e.preventDefault();
-        e.stopPropagation();
-        setDragActive(true);
-    }
-    function handleDragEnter(e: any) {
-        e.preventDefault();
-        e.stopPropagation();
-        setDragActive(true);
-    }
-    function removeFile(fileName: any, idx: any) {
-        const newArr = [...files];
-        newArr.splice(idx, 1);
-        setFiles([]);
-        setFiles(newArr);
-    }
-
-    function openFileExplorer() {
-        inputRef.current.value = "";
-        inputRef.current.click();
-    }
-
-
     return (
         <>
             <Navbar page="login" />
-            <section className="mx-[23px] my-[66px] md:my-0 xl:mx-0">
+            <section className="mx-[23px] my-[66px] md:my-0 lg:mx-52 xl:mx-28">
                 <div className="md:mt-[209px] xl:mx-96">
                     <h1 className=" font-acme text-titles text-blue_700 text-center mb-[38px] ">Personaliza tu perfil</h1>
-                    <form className="flex flex-col items-center justify-center">
+                    <form className="flex flex-col items-center justify-center gap-7">
                         <article
-                            className={`${dragActive ? "border-2 border-primary" : "border-2 border-primary"
+                            className={`${isDragging ? "border-2 border-primary" : "border-2 border-primary"
                                 }  p-4 w-full rounded-[20px]  min-h-[10rem] text-center flex flex-col items-center justify-center`}
-                            onDragEnter={handleDragEnter}
-                            onSubmit={(e) => e.preventDefault()}
-                            onDrop={handleDrop}
-                            onDragLeave={handleDragLeave}
-                            onDragOver={handleDragOver}
+                        
+                            onDrop={onDrop}
+                            onDragLeave={onDragLeave}
+                            onDragOver={onDragOver}
                         >
                             <input
                                 placeholder="fileInput"
                                 className="hidden"
-                                ref={inputRef}
+                                ref={fileInputRef}
                                 type="file"
                                 multiple={true}
-                                onChange={handleChange}
+                                onChange={onFileSelect}
                                 accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"
                             />
-                            <div className="flex flex-col justify-center gap-3">
-                                <div className="flex justify-center">
-                                    <img src="icons/cloud-upload-icon.webp" alt="Cloud upload" className="w-20 h-20" />
+                            <div className="flex  gap-5">
+                                <div className="flex flex-col basis-1/2 justify-center">
+                                    <div className="flex justify-center">
+                                        <img src="icons/cloud-upload-icon.webp" alt="Cloud upload" className="w-20 h-20" />
+                                    </div>
+                                    <span
+                                        className=" cursor-pointer"
+                                        role="button"
+                                        onClick={selectFiles}
+                                    >
+                                        <u className="font-poppins text-[16px] text-blue_800 no-underline">Selecciona una foto de perfil</u>
+                                    </span>{" "}
                                 </div>
-                                <span
-                                    className=" cursor-pointer"
-                                    onClick={openFileExplorer}
-                                >
-                                    <u className="font-poppins text-[16px] text-blue_800 no-underline">Selecciona una foto de perfil</u>
-                                </span>{" "}
-                            </div>
-                            <div className="flex flex-col items-center p-3">
-                                {files.map((file: any, idx: any) => (
-                                    <div key={idx} className="flex flex-row space-x-5">
-                                        <span>{file.name}</span>
+                                <div className="basis-1/2 flex flex-wrap">
+                                {images.map((images: any, index: any) => (
+                                    <div key={index} className="flex flex-col space-x-5">
                                         <span
-                                            className="text-primary font-bold cursor-pointer"
-                                            onClick={() => removeFile(file.name, idx)}
+                                            className="text-primary font-bold cursor-pointer gap-3"
+                                            onClick={() => deleteImage(index)}
                                         >
                                             remove
                                         </span>
+                                 <img src={images.url} alt={images.name} className="spc600:h-60 spc600:w-40 h-32 w-20 rounded-lg" />
                                     </div>
                                 ))}
+                                </div>
                             </div>
                         </article>
                         <textarea name="userName" id="userName" className="w-full placeholder:font-poppins placeholder:text-[16px] h-20 md:h-full placeholder:text-blue_700 border-2 border-primary rounded-md my-[26px] mx-[17px] placeholder:text-center placeholder:pt-2 pl-4 pt-4 focus:outline-0 focus:border-primary" placeholder="Cambia tu nombre de usuario"></textarea>
