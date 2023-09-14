@@ -5,7 +5,6 @@ import Navbar from "@/components/Navbar"
 import FooterMobile from "@/components/FooterMobile"
 import Footer from "@/components/Footer"
 import { useRef, useState } from "react";
-import { sliderRentImages } from "@/data/sliderRentData";
 
 export default function editProfile() {
     const [images, setImages] = useState<any>([]);
