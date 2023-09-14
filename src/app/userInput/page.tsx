@@ -1,3 +1,4 @@
+"client"
 import Navbar from "@/components/Navbar";
 import FooterMobile from "@/components/FooterMobile";
 import Footer from "@/components/Footer";
@@ -5,7 +6,8 @@ import Footer from "@/components/Footer";
 export default function userInput() {
   return (
     <>
-      <section className="mx-[29px] lg:mx-52 lg:my-32 items-center">
+      <Navbar page="reservation" />
+      <section className="mx-[29px] lg:mx-[550px] lg:my-32 items-center md:mx-36">
         <h1 className="font-poppins text-suTitles text-blue_700 font-bold text-center">
           Permite a Juan conocer mas de ti{" "}
         </h1>
@@ -39,6 +41,12 @@ export default function userInput() {
           </div>
         </form>
       </section>
+      <footer className="hidden md:block ">
+        <Footer />
+      </footer>
+      <footer className="block md:hidden ">
+        <FooterMobile />
+      </footer>
     </>
   );
 }
