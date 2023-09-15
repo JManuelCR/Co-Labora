@@ -4,12 +4,29 @@ import Footer from "@/components/Footer";
 import FooterMobile from "@/components/FooterMobile";
 import { reservations } from "@/data/reservations";
 import { useState } from "react";
+import Link from "next/link";
 
 
 
-export default function ConfirmedReservations() {
+export default function historyReservations() {
   const [term, setTerm] = useState("");
+  let pageNumbers =[];
+  let currentPage = 1;
+  const totaldata = reservations.length;
+  const dataPerPage = 8;
+  let totalPages = Math.ceil(totaldata / dataPerPage);
   
+  if(Number(searchParams.page) >=1 ){
+    currentPage = Number(searchParams.page)
+  }
+
+  let offset= (currentPage -1) * dataPerPage;
+
+  for(let i = currentPage; i <= currentPage; i++){
+    if(i < 1) continue;
+    if(i > dataPerPage) break;
+    pageNumbers.push(i);
+  }
 
   return (
     <>
@@ -36,7 +53,7 @@ export default function ConfirmedReservations() {
             <tbody className="font-semibold text-start">
               {reservations?.filter((reservations) => reservations.name.toLocaleLowerCase().includes(term.toLocaleLowerCase()))
               .map((reservation, index) => (
-                <tr key={index}>
+                <tr key={index} >
                   <td className="border border-solid border-secondary p-3">
                     {reservation.name}
                   </td>
@@ -52,24 +69,21 @@ export default function ConfirmedReservations() {
           </table>
         </article>
         <article className="flex text-blue_800 font-semibold font-poppins justify-center items-center my-14 pb-[120px] lg:pb-40">
-          <button className="border border-solid border-secondary px-5 py-3">
-            Anterior
-          </button>
-          <button className="border border-solid border-secondary px-5 py-3">
-            1
-          </button>
-          <button className="border border-solid border-secondary px-5 py-3  max-sm:hidden">
-            2
-          </button>
-          <button className="border border-solid border-secondary px-5 py-3 max-sm:hidden">
-            3
-          </button>
-          <button className="border border-solid border-secondary px-5 py-3 max-sm:hidden">
-            4
-          </button>
-          <button className="border border-solid border-secondary px-5 py-3">
-            Siguiente
-          </button>
+          <div className="justify-center flex gap-4">
+            {currentPage -1 >= 1 && (
+              <Link href="/confirmedReservations">{"<<"} </Link>
+            )}
+            {
+              pageNumbers.map((page) => <Link key={page} href={`/confirmedReservations?page=${page}`}
+              className={`page === currentPage ? text-secondary font-bold : ""`}
+              >{page}</Link>)
+            }
+            {currentPage +1 <= totalPages && (
+              <Link href="/confirmedReservations">{">>"} </Link>
+            )}
+          </div>
+          
+          
         </article>
       </article>
       <footer className="hidden md:block ">
