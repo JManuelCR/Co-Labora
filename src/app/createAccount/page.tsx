@@ -1,10 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
-'use client'
+'use client';
 import { useForm, SubmitHandler } from "react-hook-form";
 import inputs from "@/types/inputs.types";
 import Navbar from "@/components/Navbar";
 import FooterMobile from "@/components/FooterMobile";
 import Footer from "@/components/Footer";
+import { FormEvent, useState } from "react";
+
 
 <<<<<<< HEAD
 
@@ -71,6 +73,13 @@ export default function CreateAccount() {
     formState: { errors },
   } = useForm<inputs>();
   const onSubmit: SubmitHandler<inputs> = (data) => console.log(data);
+
+  const [passShow, setPassShow] = useState(false);
+  const tooglePass = (e: FormEvent) => {
+    e.preventDefault();
+    setPassShow(!passShow);
+  };
+
   return (
     <>
       <Navbar page="createAccount" />
@@ -102,39 +111,39 @@ export default function CreateAccount() {
               placeholder="Correo Electronico"
               className="flex rounded-[15px] border-2 border-primary w-full h-[65px] font-poppins text-[16px] text-blue_500 placeholder:p-[10px] p-[15px] placeholder:text-start focus:outline-0 focus:border-primary required"
             />
-            <div className="h-[65px] relative flex items-center justify-end mt-4 ">
-              <img
-                src="icons/Eye-Off.svg"
-                alt="Eye block"
-                className="w-8 h-8 absolute mr-3"
-              />
+            <p className="text-primary">{errors.email?.message}</p>
+            <div className="my-5 flex rounded-[15px] border-2 border-primary font-poppins text-[16px] text-blue_500 px-3">
               <input
-                type="password"
+              id="password1"
+                type={passShow ? "text" : "password"}
                 {...register("password", {
                   required: "Este campo es obligatorio",
                 })}
                 placeholder="Contraseña"
-                className="flex rounded-[15px] border-2 border-primary w-full h-[65px] font-poppins text-[16px] text-blue_500 placeholder:p-[10px] p-[15px] placeholder:text-start focus:outline-0 focus:border-primary required "
+                className="flex w-full focus:outline-0 focus:border-primary my-5 "
               />
+              <button onClick={tooglePass} form="password1">
+                <p className="text-blue_800 underline">Mostrar</p>
+              </button>
             </div>
             <p className="font-poppins text-small text-blue_500">
               Debe contener al menos un carácter especial ( @ , # , ! ) un
               numero y una mayúscula
             </p>
-            <div className="h-[65px] relative flex items-center justify-end mt-4 ">
-              <img
-                src="icons/Eye-Off.svg"
-                alt="Eye block"
-                className="w-8 h-8 absolute mr-3"
-              />
+            <p className="text-primary">{errors.email?.message}</p>
+            <div className="my-5 flex rounded-[15px] border-2 border-primary font-poppins text-[16px] text-blue_500 px-3">
               <input
-                type="password"
+              id="2password"
+                type={passShow ? "text" : "password"}
                 {...register("confirmPassword", {
                   required: "Este campo es obligatorio",
                 })}
                 placeholder="Confirmar contraseña"
-                className="flex rounded-[15px] border-2 border-primary w-full h-[65px] font-poppins text-[16px] text-blue_500 placeholder:p-[10px] p-[15px] placeholder:text-start focus:outline-0 focus:border-primary required "
+                className="flex w-full focus:outline-0 focus:border-primary my-5 "
               />
+              <button onClick={tooglePass} form="2password" >
+                <p className="text-blue_800 underline">Mostrar</p>
+              </button>
             </div>
             <div className="flex my-3 gap-[15px]">
               <input
