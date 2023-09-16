@@ -81,13 +81,13 @@ export default function Navbar(props: Navbar) {
               <Image src={burgerLogo} alt="" width={28} height={28} />
             </button>
             <div>
-              <Image
+              <Link href={"/login"}><Image
                 src={userIcon}
                 alt=""
                 width={28}
                 height={28}
                 className="rounded-full"
-              />
+              /></Link>
             </div>
           </span>
           {menu && (

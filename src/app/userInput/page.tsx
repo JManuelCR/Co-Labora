@@ -2,6 +2,7 @@
 import Navbar from "@/components/Navbar";
 import FooterMobile from "@/components/FooterMobile";
 import Footer from "@/components/Footer";
+import Link from "next/link";
 
 export default function userInput() {
   return (
@@ -39,6 +40,13 @@ export default function userInput() {
               Conoce más ....
             </p>
           </div>
+          <Link href={"/"}>
+            <div className="flex justify-center">
+            <button className="text-white font-poppins bg-primary rounded-lg px-7 py-2 mt-5">
+            Enviar
+          </button>
+            </div>
+          </Link>
         </form>
       </section>
       <footer className="hidden md:block ">

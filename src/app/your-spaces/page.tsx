@@ -3,6 +3,8 @@ import Footer from "@/components/Footer";
 import FooterMobile from "@/components/FooterMobile";
 import Image from "next/image";
 import Spaceless from "../../../public/illustrations/No-spaces.svg";
+import Link from "next/link";
+
 export default function Detail() {
   return (
     <>
@@ -15,9 +17,9 @@ export default function Detail() {
             </h5>
           </div>
           <div className="p-5">
-            <button className="bg-primary rounded-2xl px-3 py-1 text-white ">
+           <Link href={"/photoEvidence"}> <button className="bg-primary rounded-2xl px-3 py-1 text-white ">
               + Agregar
-            </button>
+            </button></Link>
           </div>
         </section>
         <section className="flex flex-col justify-center w-[50rem] items-center max-md:w-fit mb-28">

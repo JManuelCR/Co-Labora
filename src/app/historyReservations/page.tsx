@@ -16,9 +16,11 @@ export default function historyReservations() {
   const dataPerPage = 8;
   let totalPages = Math.ceil(totaldata / dataPerPage);
   
-  if(Number(searchParams.page) >=1 ){
-    currentPage = Number(searchParams.page)
-  }
+ {
+  //if(Number(searchParams.page) >=1 ){
+    //currentPage = Number(searchParams.page)
+  //}
+ }
 
   let offset= (currentPage -1) * dataPerPage;
 

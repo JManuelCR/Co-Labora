@@ -8,7 +8,7 @@ import location from "../../public/icons/Map-footer.svg"
 import phone from "../../public/icons/Phone-footer.svg"
 import email from "../../public/icons/Email-footer.svg"
 import FooterMobile from "./FooterMobile";
-
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -21,7 +21,7 @@ export default function Footer() {
         <div className="flex justify-between">
           <ul className="flex flex-col gap-2 mt-[20px]">
             <li className="text-white text-[14px] font-[300] font-poppins leading-[22px] tracking-[-0.28px] flex gap-[10px] justify-center">
-              <Image src={ColaboraFooterLogo} alt={""} className="rounded-lg" />
+              <Link href={"/"}><Image src={ColaboraFooterLogo} alt={""} className="rounded-lg" /></Link>
             </li>
             <li className="text-white text-[14px] text-center font-[300] font-poppins leading-[22px] tracking-[-0.28px] block max-w-[215px]">
               Lorem ipsum dolor sit amet consectetur adipisicing .
@@ -58,10 +58,10 @@ export default function Footer() {
             <li className="text-white text-[14px] font-[300] font-poppins leading-[22px] tracking-[-0.28px]">AQ</li>
             <li className="text-white text-[14px] font-[300] font-poppins leading-[22px] tracking-[-0.28px]">Our Brand</li>
             <li className="text-white text-[14px] font-[300] font-poppins leading-[22px] tracking-[-0.28px]">Our Staff</li>
-            <li className="text-white text-[14px] font-[300] font-poppins leading-[22px] tracking-[-0.28px]">Contact Us</li>
+            <Link href={"/contacts"}><li className="text-white text-[14px] font-[300] font-poppins leading-[22px] tracking-[-0.28px]">Contact Us</li></Link>
           </ul>
           <ul className="flex flex-col gap-3">
-            <li className="text-white text-[14px] font-[300] font-poppins leading-[22px] tracking-[-0.28px]">Contact Us</li>
+           <Link href={"/contacts"}> <li className="text-white text-[14px] font-[300] font-poppins leading-[22px] tracking-[-0.28px]">Contact Us</li></Link>
             <li className="text-white text-[14px] font-[300] font-poppins leading-[22px] tracking-[-0.28px] flex gap-[14px]">
               <Image src={location} alt="Location icon" />
               Trant Ave.25
