@@ -3,11 +3,13 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import FooterMobile from "@/components/FooterMobile";
 import CalendarMobile from "@/components/Calendar";
 import Image from "next/image";
 import SliderRent from "@/components/SliderRentDetail";
 import { sliderRentImages } from "@/data/sliderRentData";
 import CalendarDesktop from "@/components/CalendarDesktop.";
+import Link from "next/link";
 
 const stars = [0, 1, 2];
 const amenities = {
@@ -283,9 +285,9 @@ export default function Detail() {
           <button
             className={`bg-primary rounded-lg px-[18px] py-1 w-[224px] h-[35px] buttonMobileShadow`}
           >
-            <span className="text-[14px] font-[600] leading-[27px] text-white tracking-[-0.28px]">
+            <Link href={"/payment"}><span className="text-[14px] font-[600] leading-[27px] text-white tracking-[-0.28px]">
               Continuar con la reserva
-            </span>
+            </span></Link>
           </button>
           <div className="flex gap-[2px]">
             <Image
@@ -294,13 +296,18 @@ export default function Detail() {
               width={20}
               height={20}
             />
-            <p className="font-poppins text-[10px] font-normal leading-[27px] tracking-[-0.36px] text-blue_500">
+            <Link href={"/contacts"}><p className="font-poppins text-[10px] font-normal leading-[27px] tracking-[-0.36px] text-blue_500">
               Reporta esta publicación
-            </p>
+            </p></Link>
           </div>
         </section>
       </main>
-      <Footer />
+      <footer className="hidden md:block ">
+        <Footer />
+      </footer>
+      <footer className="block md:hidden ">
+        <FooterMobile />
+      </footer>
     </>
   );
 }

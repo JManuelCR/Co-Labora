@@ -5,6 +5,8 @@ import Footer from "@/components/Footer";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { FormEvent, useState } from "react";
 import inputs from "@/types/inputs.types";
+import Link from "next/link";
+
 export default function Login() {
   const {
     register,
@@ -67,10 +69,13 @@ export default function Login() {
                 Recordar contraseña
               </p>
             </div>
+           <Link href={"/createAccount"}> <p className="font-poppins text-[20px] text-blue_800 cursor-pointer hover:text-secondary ">
+                Crear una cuenta nueva
+              </p></Link>
             <div className="m-10 flex justify-center">
-              <button className="bg-primary rounded-lg w-[200px] h-[60px]">
+              <Link href={"/"}><button className="bg-primary rounded-lg w-[200px] h-[60px]">
                 <p className="font-poppins text-suTitles text-white">Ingresa</p>
-              </button>
+              </button></Link>
             </div>
           </form>
         </section>

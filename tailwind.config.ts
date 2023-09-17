@@ -19,6 +19,7 @@ export default {
       back: "#FEFEFE",
       gray: "#b5b5b5",
       black: "#0a0a0a",
+      gray_ligth: "#eeeeee",
     },
     fontSize: {
       titles: "40px",

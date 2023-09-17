@@ -6,6 +6,8 @@ import carpenter from "../../../public/temporal-images/holder-carpenter.webp";
 import star from "../../../public/icons/Single-Star-icon.svg";
 import rateStar from "../../../public/icons/Star-Shape.svg";
 import Image from "next/image";
+import Link from "next/link";
+
 export default function ReservationDetail() {
   const {
     name,
@@ -154,9 +156,9 @@ export default function ReservationDetail() {
             placeholder="Anexa un comentario"
             className="text-blue_800 py-2 px-6 border-solid border-blue_700 focus:outline-none font-semibold border rounded-lg"
           />
-          <button className="text-white font-poppins bg-primary rounded-lg px-3 py-2">
+         <Link href={"/"}> <button className="text-white font-poppins bg-primary rounded-lg px-3 py-2">
             Calificar
-          </button>
+          </button></Link>
         </div>
       </section>
       <footer className="hidden md:block ">

@@ -11,11 +11,11 @@ export default function BurgerNav() {
         <p>Notificaciones</p>
       </section>
       <section>
-        <p>Favoritos</p>
+       <Link href={"/historyReservations"}> <p>Favoritos</p></Link>
       </section>
       <div className="border border-b-primary px-5"></div>
       <section>
-        <p>Configuracion</p>
+        <Link href={"/editProfileUser"}><p>Configuracion</p></Link>
       </section>
       <section>
         {token ? (

@@ -4,6 +4,8 @@ import Footer from "@/components/Footer";
 import FooterMobile from "@/components/FooterMobile";
 import { Uploader } from "uploader";
 import { UploadDropzone } from "react-uploader";
+import Link from "next/link";
+
 export default function PhotoEvidence() {
   const uploader = Uploader({ apiKey: "public_kW15bgi7zXRxZE5fEHnY5mtm5m7y" });
   const uploaderOptions = {
@@ -78,9 +80,9 @@ export default function PhotoEvidence() {
             />
           </div>
         </section>
-        <button className="bg-primary text-white font-poppins rounded-xl px-4 py-1">
+        <Link href={"/your-spaces"}><button className="bg-primary text-white font-poppins rounded-xl px-4 py-1">
           Siguiente
-        </button>
+        </button></Link>
       </article>
       <footer className="hidden md:block ">
         <Footer />
