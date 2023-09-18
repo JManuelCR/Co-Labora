@@ -89,8 +89,9 @@ export default function SliderHero(props: arrayProperty) {
                         width={14}
                         height={14}
                       />
+                      
                       <span>
-                        {`${location.neighbor}, ${location.city}, ${measurements.area} m`}
+                        &nbsp;{`${location.neighbor}, ${location.city}, ${measurements.area} m`}
                         <sup>2</sup>
                       </span>
                     </span>
