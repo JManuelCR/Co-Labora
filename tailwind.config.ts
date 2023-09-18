@@ -16,11 +16,14 @@ export default {
       blue_700: "#455A64",
       blue_500: "#607D8B",
       blue_300: "#90A4AE",
-      back: "FEFEFE",
-
+      back: "#FEFEFE",
+      gray: "#b5b5b5",
+      black: "#0a0a0a",
+      gray_ligth: "#eeeeee",
     },
-    fontSize:{
+    fontSize: {
       titles: "40px",
+      titleMobil:"36px",
       sections: "32px",
       suTitles: "24px",
       text: "18px",
@@ -29,14 +32,23 @@ export default {
     },
     extend: {
       fontFamily: {
-        poppins: ['var(--font-poppins)'],
-        acme: ['var(--font-acme)'],
-    },
+        poppins: ["var(--font-poppins)"],
+        acme: ["var(--font-acme)"],
+        roboto: ["var(--font-roboto)"],
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
       },
     },
+    screens: {
+      'xsm': '375px',
+      'sm': '414px',
+      'spc600': '600px',
+      'md': '768px',
+      'lg': '1024px',
+      'xl': '1440px',
+      '2xl': '1536px',
+    },
   },
   plugins: [],
-} satisfies Config
-
+} satisfies Config;

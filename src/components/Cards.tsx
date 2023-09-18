@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { dataBD } from "@/data/card-data";
 interface Props {
   name: string;
