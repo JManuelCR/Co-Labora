@@ -1,7 +1,6 @@
 'use client'
 import React, {useEffect, useState} from "react";
 import { Acme, Poppins } from "next/font/google";
-"use client";
 import Image from "next/image";
 import { dataBD } from "@/data/card-data";
 import Cards from "@/components/Cards";
