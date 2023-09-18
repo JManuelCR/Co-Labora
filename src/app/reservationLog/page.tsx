@@ -25,7 +25,7 @@ export default function ReservationLog() {
     return (
         <>
             <Navbar page="ReservationLog" />
-            <section className="sm:my-28"
+            <section className="sm:my-28">
                 <article className="my-[52px] mx-[22px]">
                     <h1 className="font-acme text-titles text-blue_700  mb-[52px] lg:mb-40 text-center ">Tus Reservaciones</h1>
                    
