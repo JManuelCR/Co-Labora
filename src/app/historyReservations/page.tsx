@@ -8,7 +8,7 @@ import Link from "next/link";
 
 
 
-export default function historyReservations() {
+export default function HistoryReservations() {
   const [term, setTerm] = useState("");
   let pageNumbers =[];
   let currentPage = 1;
