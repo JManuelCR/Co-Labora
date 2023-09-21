@@ -46,12 +46,8 @@ body {
   background-image: url("../../public/temporal-images/temporal-image-consult.webp");
   background-size: cover;
 }
-.backgroundGradienHero {
-  background: linear-gradient(
-    0deg,
-    rgba(165, 71, 41, 0.88) 0%,
-    rgba(165, 71, 41, 0) 100%
-  );
+.backgroundGradienHero{
+  background: linear-gradient(180deg, rgba(165, 71, 41, 0.00) 46.28%, rgba(91, 22, 0, 0.82) 79.09%);
 }
 .swiper {
   width: 100%;
@@ -75,6 +71,9 @@ body {
 }
 .buttoonPrimaryBackground{
   background-color: brown;
+}
+.sliderHero{
+  width: 200% !important; 
 }
 
 @media (min-height:1144px) {

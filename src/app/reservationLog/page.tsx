@@ -1,13 +1,14 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 import Navbar from "@/components/Navbar"
 import FooterMobile from "@/components/FooterMobile"
 import Footer from "@/components/Footer"
-import React from "react";
+import React, {useState} from "react";
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, getKeyValue } from "@nextui-org/react";
 import { dataBD } from "@/data/card-data";
 import Pagination from "@/components/Pagination";
 
-export default function confirmReservation() {
+export default function ReservationLog() {
     
 
     const [page, setPage] = React.useState(1);
@@ -23,7 +24,7 @@ export default function confirmReservation() {
 
     return (
         <>
-            <Navbar page="confirmReservation" />
+            <Navbar page="ReservationLog" />
             <section className="sm:my-28">
                 <article className="my-[52px] mx-[22px]">
                     <h1 className="font-acme text-titles text-blue_700  mb-[52px] lg:mb-40 text-center ">Tus Reservaciones</h1>

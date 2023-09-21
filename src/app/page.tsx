@@ -1,4 +1,6 @@
-"use client";
+'use client'
+import React, {useEffect, useState} from "react";
+import { Acme, Poppins } from "next/font/google";
 import Image from "next/image";
 import { dataBD } from "@/data/card-data";
 import Cards from "@/components/Cards";
@@ -12,9 +14,17 @@ import house from "../../public/icons/home-mobile-nav.svg";
 import FooterMobile from "@/components/FooterMobile";
 
 export default function Home() {
+  const [timer, setTimer] = useState(false)
+  useEffect(() => {
+    setTimeout(() => {
+      setTimer(true)
+    }, 500);
+  })
   return (
-    <div className="w-full h-full flex justify-center items-center">
-      <div className="2xl:max-w-[1440px] w-full h-full flex flex-col  relative over">
+    <div className="w-full h-full flex justify-center items-center relative bg-black">
+      {
+        timer 
+        ? <div className="2xl:max-w-[1440px] w-full h-full flex flex-col  relative over">
         <Navbar page="home" />
 
         <main className="flex flex-col items-center justify-between h-auto max-lg:w-full">
@@ -78,6 +88,8 @@ export default function Home() {
         </main>
         <Footer />
       </div>
+      : <></>
+      }
     </div>
   );
 }

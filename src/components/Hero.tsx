@@ -9,6 +9,8 @@ import pets from "../../public/icons/icon-paw-outline-white.svg";
 import firstAidKit from "../../public/icons/icon-medkit-outline-white.svg";
 import arrowRigth from "../../public/icons/icon-arrow-right-white.svg";
 import arrowLeft from "../../public/icons/icon-arrow-left-white.svg";
+import { dataProperty } from "@/data/propertiesData";
+import SliderHero from "./sliderHero";
 
 export default function Hero() {
   return (
@@ -60,50 +62,15 @@ export default function Hero() {
             />
           </div>
           <div className="flex absolute bottom-[37px] w-[100%]">
-            <div className="flex gap-[20px] md:gap-[28px] w-[100%] max-sm:w-auto">
-              <Image
-                src={consult}
-                alt="temporal-image-consult"
-                className="propertyAvatar ms-2 md:ms-[48px]"
-              />
-              <div className="flex flex-col gap-2 max-md:w-52">
-                <h2 className="font-poppins text-[24px] font-[800] text-white ">
-                  Consultorio psicoterapéutico
-                </h2>
-                <h3 className="max-w-[397px] block font-poppins text-[18px] font-[500] max-md:text-[14px] ">
-                  Con una serenidad y silencio total, puedes ofrecer las mejores
-                  sesiones.
-                </h3>
-                <span className="flex">
-                  <span>Coyoacán, CDMX</span>
-                  <span>30 m2</span>
-                </span>
-                <div className="flex gap-5 md:gap-8">
-                  <Image src={wifi} alt={"Wifi amenity icon"} />
-                  <Image
-                    src={camera}
-                    alt={"Surveillance camera amenity icon"}
-                  />
-                  <Image src={restaurant} alt={"Space to eat amenity icon"} />
-                  <Image src={pets} alt={"Pet-friendly amenity icon"} />
-                  <Image src={firstAidKit} alt={"First-aid- kit amenity"} />
-                </div>
-                <div className="flex gap-4 md:gap-[24px] mt-[20px]">
-                  <button className="w-[150px] px-[18px] py-[4px] border-[1px] border-primary rounded-lg bg-white font-[600] font-poppins text-[14px] text-primary max-md:w-44">
-                    Ver más
-                  </button>
-                  <button className="w-[150px] px-[18px] py-[4px]   rounded-lg bg-primary font-[600] font-poppins text-[14px] text-white ">
-                    Rentar
-                  </button>
-                </div>
-              </div>
-              <div className="relative w-[100%] h-[100%] max-md:hidden">
+            <SliderHero properties={dataProperty} />
+            {/* <div className="flex gap-[28px] w-[100%]">
+              <div className="relative w-[100%] h-[100%] ">
                 <div className="absolute end-0 top-0 flex gap-[40px] pe-[60px]">
                   <Image src={arrowLeft} alt={"Slider arrow left icon"} />
                   <Image src={arrowRigth} alt={"Slider arrow right icon"} />
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </article>
       </section>
