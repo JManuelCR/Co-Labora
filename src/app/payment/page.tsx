@@ -1,7 +1,7 @@
 "use client";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
-import CheckoutForm from "@/components/CheckoutForm";
+
 import Image from "next/image";
 import paymentImg from "../../../public/illustrations/cost-per-day-ilustration.webp";
 const stripePromise = loadStripe(
@@ -24,11 +24,7 @@ export default function Payment() {
                 height={200}
               />
             </div>
-            <div className="flex justify-center border-solid border-primary border-2 p-3 rounded-xl w-[28rem] max-sm:w-80 ">
-              <Elements stripe={stripePromise}>
-                <CheckoutForm />
-              </Elements>
-            </div>
+            <div className="flex justify-center border-solid border-primary border-2 p-3 rounded-xl w-[28rem] max-sm:w-80 "></div>
           </section>
         </section>
       </article>
