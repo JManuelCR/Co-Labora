@@ -1,20 +1,68 @@
 /* eslint-disable @next/next/no-img-element */
-'use client';
+"use client";
 import { useForm, SubmitHandler } from "react-hook-form";
 import inputs from "@/types/inputs.types";
 import Navbar from "@/components/Navbar";
 import FooterMobile from "@/components/FooterMobile";
 import Footer from "@/components/Footer";
-import { FormEvent, useState } from "react";
-
-
+import { FormEvent, useState, useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export default function CreateAccount() {
+  const [type, setType] = useState("user");
+
+  const handleTypeUser = () => {
+    setType("user");
+  };
+
+  const handleTypeSpace = () => {
+    setType("space");
+  };
+  useEffect(() => {
+    console.log(type);
+  }, [type]);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<inputs>();
-  const onSubmit: SubmitHandler<inputs> = (data) => console.log(data);
+
+  const onSubmit: SubmitHandler<inputs> = (data) => {
+    console.log("esto es la data del login", data);
+    const userType = type;
+    fetch("http://localhost:8080/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: data.email,
+        password: data.password,
+        userType: userType,
+      }),
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        if (response?.data) {
+          localStorage.setItem("token", response.data);
+          window.location.replace("/");
+        } else {
+          console.log("no se encontro el usuario");
+          toast.error("No se encontro el usuario", {
+            position: "top-center",
+            autoClose: 2500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        }
+      })
+      .catch(() => {
+        console.log("Error en los inputs, intentar de nuevo");
+      });
+  };
 
   const [passShow, setPassShow] = useState(false);
   const tooglePass = (e: FormEvent) => {
@@ -25,6 +73,18 @@ export default function CreateAccount() {
   return (
     <>
       <Navbar page="createAccount" />
+      <ToastContainer
+        position="top-center"
+        autoClose={2500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
       <section className=" w-100% h-100% md:w-full md:h-100% flex items-center justify-center lg:mt-[212px] ">
         <section className="flex flex-col mx-5 md:w-[440px] md:h-[510px] windowXl">
           <div className="mt-[67px] lg:my-0 gap-[13px]">
@@ -37,10 +97,10 @@ export default function CreateAccount() {
           </div>
           <div className="flex justify-between text-center mt-6">
             <div className="font-poppins text-suTitles hover:text-primary hover:underline text-blue_800">
-              <a href="">Soy Usuario</a>
+              <button onClick={handleTypeUser}>Soy Usuario</button>
             </div>
             <div className="font-poppins text-suTitles hover:text-primary text-blue_800 hover:underline">
-              <a href="">Soy Negocio</a>
+              <button onClick={handleTypeSpace}>Soy Negocio</button>
             </div>
           </div>
           <form className="mt-[30px]" onSubmit={handleSubmit(onSubmit)}>
@@ -56,7 +116,7 @@ export default function CreateAccount() {
             <p className="text-primary">{errors.email?.message}</p>
             <div className="my-5 flex rounded-[15px] border-2 border-primary font-poppins text-[16px] text-blue_500 px-3">
               <input
-              id="password1"
+                id="password1"
                 type={passShow ? "text" : "password"}
                 {...register("password", {
                   required: "Este campo es obligatorio",
@@ -75,7 +135,7 @@ export default function CreateAccount() {
             <p className="text-primary">{errors.email?.message}</p>
             <div className="my-5 flex rounded-[15px] border-2 border-primary font-poppins text-[16px] text-blue_500 px-3">
               <input
-              id="2password"
+                id="2password"
                 type={passShow ? "text" : "password"}
                 {...register("confirmPassword", {
                   required: "Este campo es obligatorio",
@@ -83,7 +143,7 @@ export default function CreateAccount() {
                 placeholder="Confirmar contraseña"
                 className="flex w-full focus:outline-0 focus:border-primary my-5 "
               />
-              <button onClick={tooglePass} form="2password" >
+              <button onClick={tooglePass} form="2password">
                 <p className="text-blue_800 underline">Mostrar</p>
               </button>
             </div>
