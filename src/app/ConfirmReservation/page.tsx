@@ -5,18 +5,17 @@ import confirm from "../../../public/illustrations/image 42.svg";
 import Carpenter from "../../../public/temporal-images/holder-carpenter.webp";
 import emergente from "../../../public/illustrations/Emergente.svg";
 import { dataConfirm } from "@/data/data-confirm";
-import { MouseEventHandler, useState, useRef } from "react";
+import { MouseEventHandler, useState } from "react";
+import Link from "next/link";
 import CheckoutForm from "@/components/CheckoutForm";
 
 export default function ConfirmReservation() {
   const [blur, setBlur] = useState(false);
-  const formRef = useRef(null);
 
   const handleClick = () => {
+    const stripeButton = document.getElementById("submit-stripe");
+    stripeButton ? stripeButton.click() : "";
     setBlur(true);
-    setTimeout(() => {
-      window.location.replace("/");
-    }, 3000);
   };
 
   const { name, address, addons, price, rating, opinions } = dataConfirm;
@@ -131,11 +130,13 @@ export default function ConfirmReservation() {
             />
           </article>
           <article className="flex justify-center">
-            <button
-              className="bg-primary text-white px-4 py-2 rounded-xl"
-              onClick={handleClick}>
-              Confirmar Reserva
-            </button>
+            <Link href={"/"}>
+              <button
+                className="bg-primary text-white px-4 py-2 rounded-xl"
+                onClick={handleClick}>
+                Confirmar Reserva
+              </button>
+            </Link>
           </article>
         </section>
       </section>

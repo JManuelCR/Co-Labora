@@ -42,11 +42,9 @@ const PayBox = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="w-96">
+    <form onSubmit={handleSubmit} className="w-96 flex flex-col gap-5">
       <CardElement /> {/** Esto es el input donde el usuario pone la tarjeta */}
-      <button className=" bg-primary text-white rounded-lg px-3 py-1">
-        Submit
-      </button>
+      <button className="bg-white" id="submit-stripe"></button>
     </form>
   );
 };
