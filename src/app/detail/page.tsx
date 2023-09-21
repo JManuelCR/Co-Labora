@@ -23,7 +23,7 @@ const amenities = {
 };
 
 export default function Detail() {
-  const key = "";
+  const key = ""; // ! aqui va la llave de google maps
   const libraries = useMemo(() => ["places"], []);
   const mapCenter = useMemo(
     () => ({ lat: 19.420831779520512, lng: -99.13501950384934 }),
