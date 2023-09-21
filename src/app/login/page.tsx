@@ -5,6 +5,8 @@ import Footer from "@/components/Footer";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { FormEvent, useState } from "react";
 import inputs from "@/types/inputs.types";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Link from "next/link";
 
 export default function Login() {
@@ -13,16 +15,61 @@ export default function Login() {
     handleSubmit,
     formState: { errors },
   } = useForm<inputs>();
-  const onSubmit: SubmitHandler<inputs> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<inputs> = (data) => {
+    console.log("esto es la data del login", data);
+    fetch("http://localhost:8080/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: data.email,
+        password: data.password,
+      }),
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        if (response?.data) {
+          localStorage.setItem("token", response.data);
+          window.location.replace("/");
+        } else {
+          console.log("no se encontro el usuario");
+          toast.error("No se encontro el usuario", {
+            position: "top-center",
+            autoClose: 2500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        }
+      })
+      .catch(() => {
+        console.log("Error en los inputs, intentar de nuevo");
+      });
+  };
 
   const [passShow, setPassShow] = useState(false);
   const tooglePass = (e: FormEvent) => {
     e.preventDefault();
     setPassShow(!passShow);
   };
+
   return (
     <>
       <Navbar page="login" />
+      <ToastContainer
+        position="top-center"
+        autoClose={2500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
       <section className=" w-100% h-100% md:w-full md:h-100% flex items-center justify-center lg:mt-[212px] text-blue_800">
         <section className="flex flex-col mx-5 md:w-[440px] md:h-[510px] windowXl">
           <div className="my-[74px] lg:my-0 gap-[15px]">
@@ -69,13 +116,17 @@ export default function Login() {
                 Recordar contraseña
               </p>
             </div>
-           <Link href={"/createAccount"}> <p className="font-poppins text-[20px] text-blue_800 cursor-pointer hover:text-secondary ">
+            <Link href={"/createAccount"}>
+              <p className="font-poppins text-[20px] text-blue_800 cursor-pointer hover:text-primary text-center">
                 Crear una cuenta nueva
-              </p></Link>
+              </p>
+            </Link>
             <div className="m-10 flex justify-center">
-              <Link href={"/"}><button className="bg-primary rounded-lg w-[200px] h-[60px]">
+              {/* <Link href={"/"}> */}
+              <button className="bg-primary rounded-lg w-[200px] h-[60px]">
                 <p className="font-poppins text-suTitles text-white">Ingresa</p>
-              </button></Link>
+              </button>
+              {/* </Link> */}
             </div>
           </form>
         </section>
