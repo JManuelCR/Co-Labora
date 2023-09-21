@@ -23,7 +23,7 @@ const amenities = {
 };
 
 export default function Detail() {
-  const key = "AIzaSyAD3TKhl38D75fORoK1ueJ3tr6KZ2MtbrE";
+  const key = "";
   const libraries = useMemo(() => ["places"], []);
   const mapCenter = useMemo(
     () => ({ lat: 19.420831779520512, lng: -99.13501950384934 }),
