@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
-import React, { useState, useEffect } from "react";
+import { GoogleMap, MarkerF, useLoadScript } from "@react-google-maps/api";
+import React, { useState, useEffect, useMemo } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FooterMobile from "@/components/FooterMobile";
@@ -22,6 +23,25 @@ const amenities = {
 };
 
 export default function Detail() {
+  const key = "AIzaSyAD3TKhl38D75fORoK1ueJ3tr6KZ2MtbrE";
+  const libraries = useMemo(() => ["places"], []);
+  const mapCenter = useMemo(
+    () => ({ lat: 19.420831779520512, lng: -99.13501950384934 }),
+    []
+  );
+  const mapOptions = useMemo<google.maps.MapOptions>(
+    () => ({
+      disableDefaultUI: false,
+      clickableIcons: true,
+      scrollwheel: false,
+    }),
+    []
+  );
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: key,
+    libraries: libraries as any,
+  });
+
   const [isDesktop, setIsDesktop] = useState(false);
   const images = sliderRentImages;
   ("selectDatesDesktop");
@@ -30,11 +50,11 @@ export default function Detail() {
       setIsDesktop(window.innerWidth >= 1024);
     };
     checkWindowWidth();
-    window.addEventListener('resize', checkWindowWidth);
+    window.addEventListener("resize", checkWindowWidth);
 
     return () => {
-        window.removeEventListener('resize', checkWindowWidth)
-    }
+      window.removeEventListener("resize", checkWindowWidth);
+    };
   });
 
   return (
@@ -46,7 +66,24 @@ export default function Detail() {
             <div className="relative w-[358px] h-[245px] md:w-[460px] md:h-[280px] lg:w-[520px] lg:h-[380px] xl:w-[600px] xl:h-[420px]">
               <SliderRent image={images} />
             </div>
-            <div className="hidden lg:block lg:w-[490px] lg:h-[400px] xl:w-[528px] xl:h-[420px]"></div>
+            <div className="hidden lg:block lg:w-[490px] lg:h-[400px] xl:w-[528px] xl:h-[420px]">
+              {!isLoaded ? (
+                <p>Loading ...</p>
+              ) : (
+                <GoogleMap
+                  options={mapOptions}
+                  zoom={18}
+                  center={mapCenter}
+                  mapTypeId={google.maps.MapTypeId.ROADMAP}
+                  mapContainerStyle={{ width: "550px", height: "420px" }}
+                  onLoad={() => console.log("Map Component Loaded...")}>
+                  <MarkerF
+                    position={mapCenter}
+                    onLoad={() => console.log("Marker Loaded")}
+                  />
+                </GoogleMap>
+              )}
+            </div>
           </div>
         </header>
         <section className="w-full max-md:w-full max-xl:w-[90%] mt-[26px] flex flex-col lg:flex-row gap-[12px]  xl:px-[182px] max-xl:ps-[24px]">
@@ -80,7 +117,24 @@ export default function Detail() {
               {`Este espacio es para que el que da el espacio a rentar pueda poner una descripción de unos 400 caracteres max, Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500,`}
             </span>
           </div>
-          <div className="w-[328px] h-[230px] mt-[24px] mb-[27px] lg:hidden"></div>
+          <div className="w-[328px] h-[230px] mt-[24px] mb-[27px] lg:hidden">
+            {!isLoaded ? (
+              <p>Loading ...</p>
+            ) : (
+              <GoogleMap
+                options={mapOptions}
+                zoom={14}
+                center={mapCenter}
+                mapTypeId={google.maps.MapTypeId.ROADMAP}
+                mapContainerStyle={{ width: "328px", height: "230px" }}
+                onLoad={() => console.log("Map Component Loaded...")}>
+                <MarkerF
+                  position={mapCenter}
+                  onLoad={() => console.log("Marker Loaded")}
+                />
+              </GoogleMap>
+            )}
+          </div>
           <div className="ps-[20px] lg:ps-[130px] xl:ps-[90px]">
             <h3 className="text-blue_700 text text-[24px] font-poppins font-[500] mb-3 tracking-[-0.48px] leading-[36px]">
               Lo que ofrecen
@@ -236,8 +290,7 @@ export default function Detail() {
             </div>
             <section className="hidden w-full justify-center items-center lg:flex flex-col gap-[10px] mb-[20px] mt-[24px]">
               <button
-                className={`bg-primary rounded-lg px-[18px] py-1 w-[400px] h-[35px] buttonMobileShadow`}
-              >
+                className={`bg-primary rounded-lg px-[18px] py-1 w-[400px] h-[35px] buttonMobileShadow`}>
                 <span className="text-[14px] font-[600] leading-[27px] text-white tracking-[-0.28px]">
                   Continuar con la reserva
                 </span>
@@ -283,11 +336,12 @@ export default function Detail() {
         </section>
         <section className="w-full justify-center items-center flex flex-col gap-[10px] lg:hidden mb-[20px] mt-[60px]">
           <button
-            className={`bg-primary rounded-lg px-[18px] py-1 w-[224px] h-[35px] buttonMobileShadow`}
-          >
-            <Link href={"/payment"}><span className="text-[14px] font-[600] leading-[27px] text-white tracking-[-0.28px]">
-              Continuar con la reserva
-            </span></Link>
+            className={`bg-primary rounded-lg px-[18px] py-1 w-[224px] h-[35px] buttonMobileShadow`}>
+            <Link href={"/payment"}>
+              <span className="text-[14px] font-[600] leading-[27px] text-white tracking-[-0.28px]">
+                Continuar con la reserva
+              </span>
+            </Link>
           </button>
           <div className="flex gap-[2px]">
             <Image
@@ -296,9 +350,11 @@ export default function Detail() {
               width={20}
               height={20}
             />
-            <Link href={"/contacts"}><p className="font-poppins text-[10px] font-normal leading-[27px] tracking-[-0.36px] text-blue_500">
-              Reporta esta publicación
-            </p></Link>
+            <Link href={"/contacts"}>
+              <p className="font-poppins text-[10px] font-normal leading-[27px] tracking-[-0.36px] text-blue_500">
+                Reporta esta publicación
+              </p>
+            </Link>
           </div>
         </section>
       </main>
