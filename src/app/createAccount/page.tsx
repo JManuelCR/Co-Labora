@@ -31,7 +31,7 @@ export default function CreateAccount() {
   const onSubmit: SubmitHandler<inputs> = (data) => {
     console.log("esto es la data del login", data);
     const userType = type;
-    fetch("http://localhost:8080/", {
+    fetch("http://localhost:8080/Users", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -43,7 +43,6 @@ export default function CreateAccount() {
       .then((response) => response.json())
       .then((response) => {
         if (response?.data) {
-          localStorage.setItem("token", response.data);
           window.location.replace("/");
         } else {
           console.log("no se encontro el usuario");
