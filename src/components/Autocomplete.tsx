@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 export default function Payment() {
   const [autoComplete, setAutoComplete] = useState(false);
   const [selectedPlace, setSelectedPlace] = useState("");
-  const apikey = "AIzaSyAD3TKhl38D75fORoK1ueJ3tr6KZ2MtbrE";
+  const apikey = "";
   const baseUrl = "https://maps.googleapis.com/maps/api/geocode/json";
   useEffect(() => {
     setTimeout(() => {

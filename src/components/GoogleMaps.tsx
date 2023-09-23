@@ -26,9 +26,7 @@ export default function GoogleMaps() {
 
   return (
     <div className="w-auto h-auto">
-      <LoadScript
-        googleMapsApiKey="AIzaSyAD3TKhl38D75fORoK1ueJ3tr6KZ2MtbrE"
-        libraries={["places"]}>
+      <LoadScript googleMapsApiKey="" libraries={["places"]}>
         <GoogleMap
           mapContainerStyle={mapContainerStyle}
           center={defaultCenter}
