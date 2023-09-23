@@ -9,7 +9,8 @@ export default function GoogleMaps() {
 
   const mapContainerStyle = {
     width: "100%",
-    height: "100%",
+    height: "350px",
+    rounded: "50px",
   };
 
   const defaultCenter = {
@@ -20,10 +21,14 @@ export default function GoogleMaps() {
   const onLoad = (map: any) => {
     setMap(map);
   };
+  const inputAddress = document.getElementById("auto");
+  console.log(inputAddress);
 
   return (
     <div className="w-auto h-auto">
-      <LoadScript googleMapsApiKey="" libraries={["places"]}>
+      <LoadScript
+        googleMapsApiKey="AIzaSyAD3TKhl38D75fORoK1ueJ3tr6KZ2MtbrE"
+        libraries={["places"]}>
         <GoogleMap
           mapContainerStyle={mapContainerStyle}
           center={defaultCenter}

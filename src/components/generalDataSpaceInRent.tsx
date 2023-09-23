@@ -6,13 +6,14 @@ import {
   FormGroup,
 } from "@mui/material";
 import GoogleMaps from "./GoogleMaps";
+import Autcomplete from "./Autocomplete";
 import Image from "next/image";
 
 export default function GeneralInfo() {
   return (
     <div className="w-full px-[20px] lg:mt-[50px] flex flex-col justify-center items-center max-w-[1440px]">
       <div className="w-full flex gap-4 xl:gap-6 items-center lg:justify-center">
-        <article className="bg-secondary rounded-[25px] w-full h-[280px] flex flex-col items-center lg:items-start px-[30px] lg:w-[700px] xl:w-[800px] lg:flex-row ">
+        <article className="bg-secondary rounded-[25px] w-full h-fit flex flex-col items-center lg:items-start px-[30px] lg:w-[700px] xl:w-[800px] lg:flex-row gap-5">
           <div className="flex flex-col items-center gap-5">
             <h1 className="pt-[30px] font-poppins font-[500] text-[1.25rem] leading-[25px] text-center">
               ¿Cómo te encontramos?
@@ -22,9 +23,9 @@ export default function GeneralInfo() {
               className="text-center text-[16px] font-[300] leading-[22px] tracking-[-0.32px]">
               Por favor ingrese la ubicación del inmueble
             </label>
-            <input type="text" className="rounded-lg bg-white text-blue_800" />
+            <Autcomplete />
           </div>
-          <div className="w-96">
+          <div className="w-full">
             <GoogleMaps />
           </div>
         </article>
