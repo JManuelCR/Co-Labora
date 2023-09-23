@@ -8,13 +8,6 @@ import {
 import GoogleMaps from "./GoogleMaps";
 import Autcomplete from "./Autocomplete";
 import Image from "next/image";
-import {
-  GoogleMap,
-  Marker,
-  useLoadScript,
-  Autocomplete,
-} from "@react-google-maps/api";
-import { useMemo, useState } from "react";
 
 export default function GeneralInfo() {
   return (

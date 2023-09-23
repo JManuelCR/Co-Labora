@@ -21,8 +21,8 @@ export default function GoogleMaps() {
   const onLoad = (map: any) => {
     setMap(map);
   };
-  const inputAddress = document.getElementById("auto");
-  console.log(inputAddress);
+  // const inputAddress = document.getElementById("auto");
+  // console.log(inputAddress);
 
   return (
     <div className="w-auto h-auto">
