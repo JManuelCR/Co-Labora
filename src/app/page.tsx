@@ -1,7 +1,6 @@
 'use client'
 import React, {useEffect, useState} from "react";
 import { Acme, Poppins } from "next/font/google";
-"use client";
 import Image from "next/image";
 import { dataBD } from "@/data/card-data";
 import Cards from "@/components/Cards";
@@ -22,7 +21,7 @@ export default function Home() {
     }, 500);
   })
   return (
-    <div className="w-full h-full flex justify-center items-center relative bg-black">
+    <div className="w-full h-full flex justify-center items-center relative">
       {
         timer 
         ? <div className="2xl:max-w-[1440px] w-full h-full flex flex-col  relative over">
@@ -38,7 +37,7 @@ export default function Home() {
               </h2>
             </div>
             <div className="flex md:w-[700px] xl:w-full max-md:flex-col md:flex-wrap  md:gap-x-[60px] 2xl:gap-x-[84px] mb-[42px] gap-y-[80px] h-auto max-sm:hidden">
-              {dataBD.map((card, index) => (
+              {dataBD.slice(0,6).map((card, index) => (
                 <div key={index} className="flex flex-ro gap-1">
                   <Cards
                     name={card.name}
