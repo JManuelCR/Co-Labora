@@ -9,10 +9,12 @@ import { useRef, useState } from "react";
 export default function editProfile() {
     const [images, setImages] = useState<any>([]);
     const [isDragging, setIsDragging] = useState(false);
-    const fileInputRef = useRef(null);
+    const fileInputRef = useRef<HTMLInputElement | null>(null);
 
     function selectFiles(){
-        fileInputRef.current.click();
+        if(fileInputRef.current){
+            fileInputRef.current.click();
+        }
     }
 
     function onFileSelect(event: any) {

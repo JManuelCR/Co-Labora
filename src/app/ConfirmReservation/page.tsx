@@ -5,15 +5,17 @@ import confirm from "../../../public/illustrations/image 42.svg";
 import Carpenter from "../../../public/temporal-images/holder-carpenter.webp";
 import emergente from "../../../public/illustrations/Emergente.svg";
 import { dataConfirm } from "@/data/data-confirm";
-import { useState } from "react";
+import { MouseEventHandler, useState } from "react";
+import Link from "next/link";
+import CheckoutForm from "@/components/CheckoutForm";
+
 export default function ConfirmReservation() {
   const [blur, setBlur] = useState(false);
 
   const handleClick = () => {
+    const stripeButton = document.getElementById("submit-stripe");
+    stripeButton ? stripeButton.click() : "";
     setBlur(true);
-    setTimeout(() => {
-      window.location.replace("/");
-    }, 3000);
   };
 
   const { name, address, addons, price, rating, opinions } = dataConfirm;
@@ -94,13 +96,10 @@ export default function ConfirmReservation() {
           <h3 className="font-acme text-blue_800 text-suTitles my-2">
             Metodo de pago
           </h3>
-          <article className="flex justify-between items-center my-3">
-            <div className="flex flex-col gap-2">
-              <p>Tarjeta de debito</p>
-              <p>XXXX-XXXX-XXXX-5129</p>
-              <p>04/05</p>
+          <article className="flex w-full">
+            <div>
+              <CheckoutForm />
             </div>
-            <div>Mastercard</div>
           </article>
           <article className="flex gap-3 my-3">
             <button className="rounded-full border border-solid border-blue_800 p-3"></button>
@@ -131,11 +130,13 @@ export default function ConfirmReservation() {
             />
           </article>
           <article className="flex justify-center">
-            <button
-              className="bg-primary text-white px-4 py-2 rounded-xl"
-              onClick={handleClick}>
-              Confirmar Reserva
-            </button>
+            <Link href={"/"}>
+              <button
+                className="bg-primary text-white px-4 py-2 rounded-xl"
+                onClick={handleClick}>
+                Confirmar Reserva
+              </button>
+            </Link>
           </article>
         </section>
       </section>
