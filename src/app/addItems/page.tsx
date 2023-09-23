@@ -8,8 +8,7 @@ import CardReservationDetail from "@/components/CardReservationDetail";
 export default function addItems() {
   return (
     <>
-    <Navbar page="addItems" />
-      <section className="mx-[27px] md: my-10 lg:flex lg:mx-40 items-center 2xl:mx-[400px] 2xl:mb-20 lg:mb-48 lg:mt-44 gap-8 ">
+      <section className="mx-[27px] md: my-10 lg:flex lg:mx-40 items-center 2xl:mx-[400px] 2xl:mb-20 lg:my-[6rem] gap-8 ">
         <article className="my-[30px] flex-wrap flex gap-x-12 gap-y-[30px] spc600:gap-x-[70px] sm:gap-x-20 md:mx-[76px]  lg:gap-x-6 lg:mx-0 basis-1/2 lg:gap-y-12 justify-center">
           <CardItems
             name="Desarmador"
@@ -42,7 +41,7 @@ export default function addItems() {
             iconItem="icons/Jigsaw.svg"
           />
         </article>
-        <div className="basis-1/2">
+        <div className="basis-1/2 flex items-center">
           <CardReservationDetail
             name={"Taller de Tapicería"}
             address={"calle Margarita Masa Miguel Hidalgo"}
@@ -55,12 +54,6 @@ export default function addItems() {
           />
         </div>
       </section>
-      <footer className="hidden md:block ">
-        <Footer />
-      </footer>
-      <footer className="block md:hidden ">
-        <FooterMobile />
-      </footer>
     </>
   );
 }

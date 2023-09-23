@@ -7,15 +7,14 @@ import Link from "next/link";
 export default function userInput() {
   return (
     <>
-      <Navbar page="reservation" />
-      <section className="mx-[29px] lg:mx-[550px] lg:my-32 items-center md:mx-36">
+      <section className="mx-[29px] my-[42px] lg:mx-[180px] xl:mx-[350px] lg:my-24 items-center md:mx-36">
         <h1 className="font-poppins text-suTitles text-blue_700 font-bold text-center">
           Permite a Juan conocer mas de ti{" "}
         </h1>
         <p className="font-poppins text-small text-blue_700 mt-[34px] mb-[30px] ">
           Danos una breve reseña de ti y del trabajo que desempeñas
         </p>
-        <form className="mb-36">
+        <form className="">
           <textarea
             name="reseña"
             id="reseña"
@@ -42,19 +41,11 @@ export default function userInput() {
           </div>
           <Link href={"/"}>
             <div className="flex justify-center">
-            <button className="text-white font-poppins bg-primary rounded-lg px-7 py-2 mt-5">
-            Enviar
-          </button>
+
             </div>
           </Link>
         </form>
       </section>
-      <footer className="hidden md:block ">
-        <Footer />
-      </footer>
-      <footer className="block md:hidden ">
-        <FooterMobile />
-      </footer>
     </>
   );
 }

@@ -87,6 +87,9 @@ body {
      margin-top: 310px;
     }
 }
+#RFS-LabelContainer{
+  width: 55px;
+}
 #RFS-StepperContainer{
   padding: 0px;
   margin-top: 40px;

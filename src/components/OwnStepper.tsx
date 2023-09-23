@@ -1,13 +1,14 @@
 import { Stepper } from "react-form-stepper";
 import { StepSelected } from "@/types/stepper.types";
 
-export default function OwnStepper(step: StepSelected ) {
+export default function OwnStepper(config: StepSelected ) {
+  const { stepOne, stepTwo, stepThree, actualStep } = config
   return (
 <div className="w-full flex justify-center items-center h-auto">
-<div className="w-[700px]">
+<div className="w-[420px]">
     <Stepper
-        steps={[{ label: "Agregar extras" }, { label: "Tu referencia" }, { label: "Pago" }, { label: "Confirma" }]}
-        activeStep={step.actualStep}
+        steps={[{ label: stepOne }, { label: stepTwo }, { label: stepThree }]}
+        activeStep={actualStep}
         connectorStateColors={true} 
         className="text-blue_800 text-[18px] font-[400] leading-[25px] text-center"
         styleConfig={{

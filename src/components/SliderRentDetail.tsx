@@ -22,7 +22,7 @@ export default function SliderRent(props: SliderRentDetails) {
                 <div className="relative w-[358px] h-[245px] md:w-[460px] md:h-[280px] lg:w-[520px] lg:h-[380px] xl:w-[600px] xl:h-[420px]">
                   <Image
                     src={`${act}`}
-                    alt=""
+                    alt="Property image"
                     className=""
                     objectFit="cover"
                     fill={true}
