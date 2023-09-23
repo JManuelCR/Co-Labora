@@ -24,7 +24,7 @@
 }
 body {
   color: rgb(var(--foreground-rgb));
-  background: rgb(var(--background-end-rgb)) rgb(var(--background-start-rgb));
+  background: #fafafa;
 }
 .divrojo {
   background-color: red;
@@ -86,6 +86,9 @@ body {
     .windowXl2 {
      margin-top: 310px;
     }
+}
+#RFS-LabelContainer{
+  width: 55px;
 }
 #RFS-StepperContainer{
   padding: 0px;

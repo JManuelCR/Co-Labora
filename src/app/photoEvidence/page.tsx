@@ -19,7 +19,6 @@ export default function PhotoEvidence() {
   };
   return (
     <>
-      <Navbar page="evidence" />
       <article className="flex flex-col border border-solid border-primary rounded-xl p-10 items-center h-[100%] m-14 max-md:flex-wrap max-md:p-2 max-md:m-3 ">
         <section className="">
           <h1 className="font-acme text-titles text-blue_800 max-sm:text-titleMobil ">
@@ -84,12 +83,6 @@ export default function PhotoEvidence() {
           Siguiente
         </button></Link>
       </article>
-      <footer className="hidden md:block ">
-        <Footer />
-      </footer>
-      <footer className="block md:hidden ">
-        <FooterMobile />
-      </footer>
     </>
   );
 }

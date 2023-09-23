@@ -38,7 +38,7 @@ export default function ConfirmReservation() {
         <></>
       )}
       <section
-        className={`flex justify-center items-center max-md:flex-wrap relative ${
+        className={`flex justify-center items-center max-md:flex-wrap relative my-[7rem] ${
           blur ? "blur-xl" : ""
         } `}>
         <section className="flex flex-col font-poppins text-blue_800 border border-solid border-blue_800 p-5 rounded-lg max-md:border-none">

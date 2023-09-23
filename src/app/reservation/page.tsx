@@ -3,9 +3,9 @@ import Navbar from "@/components/Navbar";
 import OwnStepper from "@/components/OwnStepper";
 import Footer from "@/components/Footer";
 import { useEffect, useState } from "react";
-import Rent from "../in-rent/page";
-import Detail from "../contacts/page";
+import PhotoEvidence from "../photoEvidence/page";
 import GeneralInfo from "@/components/generalDataSpaceInRent";
+import SaveNewPlace from "../SaveNewPlace/page";
 
 export default function ReservationSteps() {
   const [showComponent, setShowComponent] = useState(false);
@@ -21,13 +21,11 @@ export default function ReservationSteps() {
   function getSelectionComponent() {
     switch (actualStep) {
       case 0:
-        return <Rent />;
+        return <PhotoEvidence />;
       case 1:
         return <GeneralInfo />;
       case 2:
-        return <Rent />;
-      case 3:
-        return <Detail />;
+        return <SaveNewPlace />;
     }
   }
   function bookingConfirm() {
@@ -39,7 +37,12 @@ export default function ReservationSteps() {
       <div className="w-full flex justify-center">
         <div className="w-full flex flex-col justify-center items-center max-w-[1440px]">
           <Navbar page="in rent" />
-          <OwnStepper actualStep={actualStep} />
+          <OwnStepper 
+          actualStep={actualStep} 
+          stepOne="Agregar extras"
+          stepTwo="Tu referencia"
+          stepThree="Confirma"
+          />
           {getSelectionComponent()}
           <div className="w-full flex justify-center pb-[37px]">
             <div className="flex flex-col-reverse md:flex-row gap-[18px] md:gap-[100px] justify-center items-center">
@@ -53,7 +56,7 @@ export default function ReservationSteps() {
                   </span>
                 </button>
               )}
-              {actualStep <= 2 && (
+              {actualStep <= 1 && (
                 <button
                   className={`bg-primary rounded-lg px-[18px] py-1 w-[134px] h-[35px] buttonMobileShadow`}
                   onClick={() => setStep(actualStep + 1)}
@@ -62,18 +65,6 @@ export default function ReservationSteps() {
                     Siguiente
                   </span>
                 </button>
-              )}
-              {actualStep === 3 ? (
-                <button
-                  className={`bg-primary rounded-lg px-[18px] py-1 w-[224px] h-[35px] buttonMobileShadow`}
-                  onClick={() => bookingConfirm()}
-                >
-                  <span className="text-[14px] font-[600] leading-[27px] text-white tracking-[-0.28px]">
-                    Confirmar reserva
-                  </span>
-                </button>
-              ) : (
-                <></>
               )}
             </div>
           </div>
