@@ -24,7 +24,7 @@
 }
 body {
   color: rgb(var(--foreground-rgb));
-  background: #fafafa;
+  background: #fff;
 }
 .divrojo {
   background-color: red;
@@ -40,6 +40,9 @@ body {
     rgba(165, 71, 41, 0.9) 0%,
     #8f2200 99.99%
   );
+}
+.navbarShadow{
+  box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.12);
 }
 .image_holder {
   height: 700px;

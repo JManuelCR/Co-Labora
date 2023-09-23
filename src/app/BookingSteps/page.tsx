@@ -28,8 +28,6 @@ export default function BookingSteps() {
       case 1:
         return <Description />;
       case 2:
-        return <Payment />;
-      case 3:
         return <Confirm />;
     }
   }
@@ -63,7 +61,7 @@ export default function BookingSteps() {
                   </span>
                 </button>
               )}
-              {actualStep <= 2 && (
+              {actualStep <= 1 && (
                 <button
                   className={`bg-primary rounded-lg px-[18px] py-1 w-[134px] h-[35px] buttonMobileShadow`}
                   onClick={() => setStep(actualStep + 1)}
@@ -73,7 +71,7 @@ export default function BookingSteps() {
                   </span>
                 </button>
               )}
-              {actualStep === 3 ? (
+              {actualStep === 2 ? (
                 <button
                   className={`bg-primary rounded-lg px-[18px] py-1 w-[224px] h-[35px] buttonMobileShadow hidden`}
                 >
