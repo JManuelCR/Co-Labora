@@ -27,7 +27,7 @@ export default function Navbar(props: Navbar) {
     setMenu(!menu);
   };
   return (
-    <header className="flex items-center justify-center w-full h-[56px] px-1 min-lg:px-[65px] relative">
+    <header className="flex items-center justify-center w-full h-[56px] px-1 min-lg:px-[65px] relative bg-white">
       <nav className="flex items-center justify-between w-full max-h-[56px]">
         <div>
           <Link href="/">
