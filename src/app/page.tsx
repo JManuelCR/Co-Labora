@@ -36,7 +36,7 @@ export default function Home() {
                 </h2>
               </div>
               <div className="flex md:w-[700px] xl:w-full max-md:flex-col md:flex-wrap  md:gap-x-[60px] 2xl:gap-x-[84px] mb-[42px] gap-y-[80px] h-auto max-sm:hidden">
-                {dataBD.map((card, index) => (
+                {dataBD.slice(0, 6).map((card, index) => (
                   <div key={index} className="flex flex-ro gap-1">
                     <Cards
                       name={card.name}

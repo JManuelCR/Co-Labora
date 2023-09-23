@@ -26,7 +26,7 @@ export interface SliderHero{
     noAvailability: string[],
     owner: string,
     measurements: {
-        long: Number,
+        long: number,
         width: number,
         area: number
     },

@@ -13,6 +13,7 @@ import {
   Autocomplete,
 } from "@react-google-maps/api";
 import { useMemo, useState } from "react";
+
 export default function GeneralInfo() {
   const libraries = useMemo(() => ["places"], []);
   const mapCenter = useMemo(

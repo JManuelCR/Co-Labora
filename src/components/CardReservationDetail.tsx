@@ -27,7 +27,7 @@ export default function CardReservationDetail(props: Props) {
 
     return (
         <section>
-        <section className="rounded-se-xl rounded-ss-xl p-2 bg-secondary gap-3 text-white spc600:p-8 md:mt-36">
+        <section className="rounded-se-xl rounded-ss-xl p-2 bg-secondary gap-3 text-white spc600:p-8">
             <div className="flex mb-3">
                 <div className=" py-3 basis-1/2">
                     <h1 className="font-acme text-[20px]">{name}</h1>

@@ -28,7 +28,7 @@ export default function SliderHero(props: arrayProperty) {
     const navigationPrevRef = React.useRef(null)
     const navigationNextRef = React.useRef(null)
   return (
-    <div className="flex gap-[28px] w-[100%]">
+    <div className=" ps-[48px] flex gap-[26px] w-[100%]">
            <Swiper
         effect={"coverflow"}
         grabCursor={true}

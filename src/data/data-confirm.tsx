@@ -24,6 +24,18 @@ export const dataConfirm = {
       name: "Jigsaw",
       price: 230,
     },
+    drill: {
+      name: "Drill",
+      price: 500,
+    },
+    flexometer: {
+      name: "Flexometer",
+      price: 75,
+    },
+    screwdrivers: {
+      name: "Screwdrivers",
+      price: 270,
+    },
   },
   rating: 5,
   opinions: 12,

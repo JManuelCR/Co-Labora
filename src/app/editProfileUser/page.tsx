@@ -6,7 +6,7 @@ import FooterMobile from "@/components/FooterMobile"
 import Footer from "@/components/Footer"
 import { useRef, useState } from "react";
 
-export default function editProfile() {
+export default function EditProfile() {
     const [images, setImages] = useState<any>([]);
     const [isDragging, setIsDragging] = useState(false);
     const fileInputRef = useRef<HTMLInputElement | null>(null);
