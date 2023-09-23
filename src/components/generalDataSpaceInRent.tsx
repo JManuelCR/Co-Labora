@@ -22,6 +22,7 @@ export default function GeneralInfo() {
               className="text-center text-[16px] font-[300] leading-[22px] tracking-[-0.32px]">
               Por favor ingrese la ubicación del inmueble
             </label>
+            <input type="text" className="rounded-lg bg-white text-blue_800" />
           </div>
           <div className="w-96">
             <GoogleMaps />

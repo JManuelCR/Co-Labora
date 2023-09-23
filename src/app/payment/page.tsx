@@ -1,16 +1,33 @@
+/* eslint-disable react/no-find-dom-node */
 "use client";
-import { loadStripe } from "@stripe/stripe-js";
-import { Elements } from "@stripe/react-stripe-js";
-import { Autocomplete } from "@react-google-maps/api";
-import Image from "next/image";
-import paymentImg from "../../../public/illustrations/cost-per-day-ilustration.webp";
 import GoogleMaps from "@/components/GoogleMaps";
-const stripePromise = loadStripe(
-  "pk_test_51NkHgyKwUVEL5zK50M5ZNhf3yE4XnhMjuchOwmQuDLUuMMOqEbI4mLyUX2YxdxEQOwoIlNGB9d4QVAqMMbiBiaaP00ATaEKNxV"
-);
+import { Autocomplete } from "@react-google-maps/api";
+import { useState, useEffect } from "react";
+import ReactDOM from "react-dom";
 export default function Payment() {
+  const [autoComplete, setAutoComplete] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setAutoComplete(true);
+    }, 200);
+  });
+
   return (
     <>
+      {autoComplete ? (
+        <>
+          <Autocomplete>
+            <input
+              type="text"
+              className="text-blue_800 rounded-lg px-5 w-full border border-primary"
+              id="auto"
+            />
+          </Autocomplete>
+        </>
+      ) : (
+        <></>
+      )}
       <GoogleMaps />
     </>
   );
