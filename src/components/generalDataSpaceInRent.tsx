@@ -14,7 +14,6 @@ import {
 } from "@react-google-maps/api";
 import { useMemo, useState } from "react";
 export default function GeneralInfo() {
-  const [selectedLocation, setSelectedLocation] = useState(null);
   const libraries = useMemo(() => ["places"], []);
   const mapCenter = useMemo(
     () => ({ lat: 19.422956105841028, lng: -99.12572032496509 }),
@@ -29,7 +28,7 @@ export default function GeneralInfo() {
     []
   );
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: "AIzaSyAdEqTjoa8cnNUVDMNBtoTAC2guq4DaALY",
+    googleMapsApiKey: "AIzaSyAD3TKhl38D75fORoK1ueJ3tr6KZ2MtbrE",
     libraries: libraries as any,
   });
   if (loadError) {
@@ -48,11 +47,8 @@ export default function GeneralInfo() {
               className="text-center text-[16px] font-[300] leading-[22px] tracking-[-0.32px]">
               Por favor ingrese la ubicación del inmueble
             </label>
-            <input
-              id="location"
-              type="text"
-              className="bg-white rounded-[15px] border-[2px] border-primary w-[280px] h-[30px] text-blue_700 mt-[4px] boxShadow-details"
-            />
+
+            <input type="text" />
           </div>
           <div className="flex flex-wrap rounded-lg">
             {isLoaded ? (
@@ -63,16 +59,8 @@ export default function GeneralInfo() {
                 mapContainerStyle={{
                   width: "480px",
                   height: "280px",
-                }}
-                onLoad={(Map) => {
-                  console.log("Map Component Loaded...");
                 }}>
-                {selectedLocation && (
-                  <Marker
-                    position={mapCenter}
-                    onLoad={() => console.log("Marker Loaded")}
-                  />
-                )}
+                <Marker position={mapCenter} />
               </GoogleMap>
             ) : (
               <strong className="text-blue_800 font-acme">
