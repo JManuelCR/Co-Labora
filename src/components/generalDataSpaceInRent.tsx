@@ -8,8 +8,9 @@ import {
 import GoogleMaps from "./GoogleMaps";
 import Autcomplete from "./Autocomplete";
 import Image from "next/image";
-
+import { useForm } from "react-hook-form";
 export default function GeneralInfo() {
+  const { register, handleSubmit } = useForm();
   return (
     <div className="w-full px-[20px] lg:mt-[50px] flex flex-col justify-center items-center max-w-[1440px]">
       <div className="w-full flex gap-4 xl:gap-6 items-center lg:justify-center">

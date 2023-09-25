@@ -17,9 +17,11 @@ export default function Detail() {
             </h5>
           </div>
           <div className="p-5">
-           <Link href={"/photoEvidence"}> <button className="bg-primary rounded-2xl px-3 py-1 text-white ">
-              + Agregar
-            </button></Link>
+            <Link href={"/reservation"}>
+              <button className="bg-primary rounded-2xl px-3 py-1 text-white ">
+                + Agregar
+              </button>
+            </Link>
           </div>
         </section>
         <section className="flex flex-col justify-center w-[50rem] items-center max-md:w-fit mb-28">

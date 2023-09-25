@@ -10,6 +10,7 @@ import SaveNewPlace from "../SaveNewPlace/page";
 export default function ReservationSteps() {
   const [showComponent, setShowComponent] = useState(false);
   const [actualStep, setStep] = useState(0);
+  const [data, setData] = useState("");
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -37,11 +38,11 @@ export default function ReservationSteps() {
       <div className="w-full flex justify-center">
         <div className="w-full flex flex-col justify-center items-center max-w-[1440px]">
           <Navbar page="in rent" />
-          <OwnStepper 
-          actualStep={actualStep} 
-          stepOne="Agregar extras"
-          stepTwo="Tu referencia"
-          stepThree="Confirma"
+          <OwnStepper
+            actualStep={actualStep}
+            stepOne="Agregar extras"
+            stepTwo="Tu referencia"
+            stepThree="Confirma"
           />
           {getSelectionComponent()}
           <div className="w-full flex justify-center pb-[37px]">
@@ -49,8 +50,7 @@ export default function ReservationSteps() {
               {actualStep !== 0 && actualStep <= 3 && (
                 <button
                   className="bg-white rounded-lg px-[18px] py-1 w-[134px] h-[35px] border border-primary buttonMobileShadow"
-                  onClick={() => setStep(actualStep - 1)}
-                >
+                  onClick={() => setStep(actualStep - 1)}>
                   <span className="text-[14px] font-[600] leading-[27px] text-primary tracking-[-0.28px]">
                     Ir atrás
                   </span>
@@ -59,8 +59,7 @@ export default function ReservationSteps() {
               {actualStep <= 1 && (
                 <button
                   className={`bg-primary rounded-lg px-[18px] py-1 w-[134px] h-[35px] buttonMobileShadow`}
-                  onClick={() => setStep(actualStep + 1)}
-                >
+                  onClick={() => setStep(actualStep + 1)}>
                   <span className="text-[14px] font-[600] leading-[27px] text-white tracking-[-0.28px]">
                     Siguiente
                   </span>

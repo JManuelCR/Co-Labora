@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 export default function Payment() {
   const [autoComplete, setAutoComplete] = useState(false);
   const [selectedPlace, setSelectedPlace] = useState("");
-  const apikey = "";
+  const apikey = "AIzaSyAD3TKhl38D75fORoK1ueJ3tr6KZ2MtbrE";
   const baseUrl = "https://maps.googleapis.com/maps/api/geocode/json";
   useEffect(() => {
     setTimeout(() => {
@@ -40,6 +40,8 @@ export default function Payment() {
               const latitud = data.results[0].geometry.location.lat;
               const longitud = data.results[0].geometry.location.lng;
               console.log(`Latitud: ${latitud}, Longitud: ${longitud}`);
+              const direction = data.results[0].formatted_address.split(",");
+              console.log(direction);
             } else {
               console.log(
                 `No se pudo geocodificar la dirección. Estado: ${data.status} , ${data.error_message}`

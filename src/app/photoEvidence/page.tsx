@@ -79,9 +79,6 @@ export default function PhotoEvidence() {
             />
           </div>
         </section>
-        <Link href={"/your-spaces"}><button className="bg-primary text-white font-poppins rounded-xl px-4 py-1">
-          Siguiente
-        </button></Link>
       </article>
     </>
   );
