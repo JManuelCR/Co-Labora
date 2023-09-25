@@ -5,40 +5,15 @@ import {
   FormControlLabel,
   FormGroup,
 } from "@mui/material";
+import GoogleMaps from "./GoogleMaps";
+import Autcomplete from "./Autocomplete";
 import Image from "next/image";
-import {
-  GoogleMap,
-  Marker,
-  useLoadScript,
-  Autocomplete,
-} from "@react-google-maps/api";
-import { useMemo, useState } from "react";
 
 export default function GeneralInfo() {
-  const libraries = useMemo(() => ["places"], []);
-  const mapCenter = useMemo(
-    () => ({ lat: 19.422956105841028, lng: -99.12572032496509 }),
-    []
-  );
-  const mapOptions = useMemo(
-    () => ({
-      disableDefaultUI: false,
-      clickableIcons: true,
-      scrollwheel: false,
-    }),
-    []
-  );
-  const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: "AIzaSyAD3TKhl38D75fORoK1ueJ3tr6KZ2MtbrE",
-    libraries: libraries as any,
-  });
-  if (loadError) {
-    return <div>Error al cargar el mapa</div>;
-  }
   return (
     <div className="w-full px-[20px] lg:mt-[50px] flex flex-col justify-center items-center max-w-[1440px]">
       <div className="w-full flex gap-4 xl:gap-6 items-center lg:justify-center">
-        <article className="bg-secondary rounded-[25px] w-full h-[280px] flex flex-col items-center lg:items-start px-[30px] lg:w-[700px] xl:w-[800px] lg:flex-row ">
+        <article className="bg-secondary rounded-[25px] w-full h-fit flex flex-col items-center lg:items-start px-[30px] lg:w-[700px] xl:w-[800px] lg:flex-row gap-5">
           <div className="flex flex-col items-center gap-5">
             <h1 className="pt-[30px] font-poppins font-[500] text-[1.25rem] leading-[25px] text-center">
               ¿Cómo te encontramos?
@@ -48,26 +23,10 @@ export default function GeneralInfo() {
               className="text-center text-[16px] font-[300] leading-[22px] tracking-[-0.32px]">
               Por favor ingrese la ubicación del inmueble
             </label>
-
-            <input type="text" />
+            <Autcomplete />
           </div>
-          <div className="flex flex-wrap rounded-lg">
-            {isLoaded ? (
-              <GoogleMap
-                options={mapOptions}
-                zoom={18}
-                center={mapCenter}
-                mapContainerStyle={{
-                  width: "480px",
-                  height: "280px",
-                }}>
-                <Marker position={mapCenter} />
-              </GoogleMap>
-            ) : (
-              <strong className="text-blue_800 font-acme">
-                Loading map...
-              </strong>
-            )}
+          <div className="w-full">
+            <GoogleMaps />
           </div>
         </article>
         <div className=" hidden relative w-[358px] h-[245px] lg:block  lg:w-[520px] lg:h-[380px] xl:w-[600px] xl:h-[420px]">
