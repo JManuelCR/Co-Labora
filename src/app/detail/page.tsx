@@ -289,12 +289,14 @@ export default function Detail() {
               </div>
             </div>
             <section className="hidden w-full justify-center items-center lg:flex flex-col gap-[10px] mb-[20px] mt-[24px]">
-              <button
-                className={`bg-primary rounded-lg px-[18px] py-1 w-[400px] h-[35px] buttonMobileShadow`}>
-                <span className="text-[14px] font-[600] leading-[27px] text-white tracking-[-0.28px]">
-                  Continuar con la reserva
-                </span>
-              </button>
+              <Link href={"/BookingSteps"}>
+                <button
+                  className={`bg-primary rounded-lg px-[18px] py-1 w-[400px] h-[35px] buttonMobileShadow`}>
+                  <span className="text-[14px] font-[600] leading-[27px] text-white tracking-[-0.28px]">
+                    Continuar con la reserva
+                  </span>
+                </button>
+              </Link>
               <div className="flex gap-[2px]">
                 <Image
                   src={"/icons/Flag.svg"}
