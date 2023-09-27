@@ -11,7 +11,7 @@ export default function ImageUpload() {
 
   return (
 <div className="flex justify-center mt-[10px]">
-<div className="flex flex-col items-center w-[335px] h-auto  md:w-[750px] lg:w-[900px] md:h-[1008px] border-2 border-secondary rounded-[26px]">
+<div className="flex flex-col items-center w-[335px] h-auto  md:w-[750px] lg:w-[900px] md:h-[950px] border-2 border-secondary rounded-[26px]">
       <h1 className="font-acme text-blue_800 text-[24px] md:text-[40px] font-normal leading-[36px] tracking-[-0.8px] block h-[28px] mt-[17px]">Adjunta fotos del lugar</h1>
       <h2 className="font-poppins text-blue_800 leading-[36px] tracking-[-0.46px] block">(8min)</h2>
       <Dropzone onDrop={(acceptedImages) => console.log(acceptedImages)}>
