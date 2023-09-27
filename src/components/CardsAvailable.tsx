@@ -2,6 +2,7 @@ import Image from "next/image";
 import image from "../../public/temporal-images/holder-carpenter.webp";
 import Card from "@/types/card.types";
 import SingleStar from "../../public/icons/Single-Star-icon.svg";
+import Link from "next/link";
 export default function CardsAvailable(props: Card) {
   const { name, address, rating, price, opinions } = props;
   return (
@@ -28,12 +29,16 @@ export default function CardsAvailable(props: Card) {
           <strong className="text-blue_800 mt-1 ">${price} x dia</strong>
         </div>
         <div className="flex mt-2 justify-between">
-          <button className="px-3 py-1 border border-solid border-primary text-primary rounded-xl font-bold">
-            Ver mas
-          </button>
-          <button className="px-3 py-1 bg-primary rounded-xl text-white">
-            Rentar
-          </button>
+          <Link href={"/detail"}>
+            <button className="px-3 py-1 border border-solid border-primary text-primary rounded-xl font-bold">
+              Ver mas
+            </button>
+          </Link>
+          <Link href={"/detail"}>
+            <button className="px-3 py-1 bg-primary rounded-xl text-white">
+              Rentar
+            </button>
+          </Link>
         </div>
       </section>
     </article>

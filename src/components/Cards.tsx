@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { dataBD } from "@/data/card-data";
+import Link from "next/link";
 interface Props {
   name: string;
   address: string;
@@ -59,9 +60,11 @@ export default function Cards(props: Props) {
         </article>
       </section>
       <article className="flex justify-between p-3">
-        <button className="bg-primary rounded-full px-4 p-2 font-bold">
-          + Detalles
-        </button>
+        <Link href={"/detail"}>
+          <button className="bg-primary rounded-full px-4 p-2 font-bold">
+            + Detalles
+          </button>
+        </Link>
         <strong className="font-bold text-blue_800 text-xl mt-1">{`$${price} x dia`}</strong>
       </article>
     </article>
