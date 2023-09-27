@@ -2,7 +2,7 @@
 import { Autocomplete } from "@react-google-maps/api";
 import { useState, useEffect } from "react";
 
-export default function Payment() {
+export default function Payment({ props }: any) {
   const [autoComplete, setAutoComplete] = useState(false);
   const [selectedPlace, setSelectedPlace] = useState("");
   const apikey = "AIzaSyAD3TKhl38D75fORoK1ueJ3tr6KZ2MtbrE";
@@ -42,6 +42,7 @@ export default function Payment() {
               console.log(`Latitud: ${latitud}, Longitud: ${longitud}`);
               const direction = data.results[0].formatted_address.split(",");
               console.log(direction);
+              props(direction);
             } else {
               console.log(
                 `No se pudo geocodificar la dirección. Estado: ${data.status} , ${data.error_message}`

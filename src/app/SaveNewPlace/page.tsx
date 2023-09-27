@@ -6,20 +6,22 @@ import Carpenter from "../../../public/temporal-images/holder-carpenter.webp";
 import emergente from "../../../public/illustrations/Emergente.svg";
 import { dataConfirm } from "@/data/data-confirm";
 import { useState } from "react";
-export default function SaveNewPlace() {
+export default function SaveNewPlace(props: any) {
+  console.log(props);
   const [blur, setBlur] = useState(false);
 
   const handleClick = () => {
     setBlur(true);
     setTimeout(() => {
       window.location.replace("/");
-    }, 3000);
+    }, 4000);
   };
 
   const { name, address, addons, price, rating, opinions } = dataConfirm;
   const total = price * 4;
   const commision = total * 0.3;
   const tax = total * 0.16;
+
   return (
     <>
       {blur ? (
@@ -38,8 +40,7 @@ export default function SaveNewPlace() {
       <section
         className={`flex justify-center items-center max-md:flex-wrap relative ${
           blur ? "blur-xl" : ""
-        } `}
-      >
+        } `}>
         <section className="flex flex-col font-poppins text-blue_800 border border-solid border-blue_800 p-[36px] rounded-[24px] max-md:border-none lg:w-[554px] mb-[48px]">
           <article className="flex justify-between md:gap-5 pb-[10px] md:pb-[28px] border-b-[2px] border-secondary">
             <div className="flex flex-col gap-3 w-1/2">
@@ -70,27 +71,69 @@ export default function SaveNewPlace() {
             <h3 className="font-acme text-blue_800 text-suTitles">Items</h3>
             <ul className="flex flex-col gap-3 list-inside list-disc">
               <li className="flex justify-between">
-                <p className="flex h-1 gap-2"><div className="flex items-center justify-center h-1"><span className="block text-blue_800 text-[40px] h-16">.</span></div>{`${addons.hammer.name}`}</p>
+                <p className="flex h-1 gap-2">
+                  <div className="flex items-center justify-center h-1">
+                    <span className="block text-blue_800 text-[40px] h-16">
+                      .
+                    </span>
+                  </div>
+                  {`${addons.hammer.name}`}
+                </p>
                 <p>{`${addons.hammer.price} MXN`}</p>
               </li>
               <li className="flex justify-between">
-                <p className="flex h-1 gap-2"><div className="flex items-center justify-center h-1"><span className="block text-blue_800 text-[40px] h-16">.</span></div>{`${addons.jigsaw.name} `}</p>
+                <p className="flex h-1 gap-2">
+                  <div className="flex items-center justify-center h-1">
+                    <span className="block text-blue_800 text-[40px] h-16">
+                      .
+                    </span>
+                  </div>
+                  {`${addons.jigsaw.name} `}
+                </p>
                 <p>{`${addons.jigsaw.price} MXN`}</p>
               </li>
               <li className="flex justify-between">
-                <p className="flex h-1 gap-2"><div className="flex items-center justify-center h-1"><span className="block text-blue_800 text-[40px] h-16">.</span></div>{`${addons.drill.name} `}</p>
+                <p className="flex h-1 gap-2">
+                  <div className="flex items-center justify-center h-1">
+                    <span className="block text-blue_800 text-[40px] h-16">
+                      .
+                    </span>
+                  </div>
+                  {`${addons.drill.name} `}
+                </p>
                 <p>{`${addons.drill.price} MXN`}</p>
               </li>
               <li className="flex justify-between">
-                <p className="flex h-1 gap-2"><div className="flex items-center justify-center h-1"><span className="block text-blue_800 text-[40px] h-16">.</span></div>{`${addons.screwdrivers.name} `}</p>
+                <p className="flex h-1 gap-2">
+                  <div className="flex items-center justify-center h-1">
+                    <span className="block text-blue_800 text-[40px] h-16">
+                      .
+                    </span>
+                  </div>
+                  {`${addons.screwdrivers.name} `}
+                </p>
                 <p>{`${addons.screwdrivers.price} MXN`}</p>
               </li>
               <li className="flex justify-between">
-                <p className="flex h-1 gap-2"><div className="flex items-center justify-center h-1"><span className="block text-blue_800 text-[40px] h-16">.</span></div>{`${addons.flexometer.name} `}</p>
+                <p className="flex h-1 gap-2">
+                  <div className="flex items-center justify-center h-1">
+                    <span className="block text-blue_800 text-[40px] h-16">
+                      .
+                    </span>
+                  </div>
+                  {`${addons.flexometer.name} `}
+                </p>
                 <p>{`${addons.flexometer.price} MXN`}</p>
               </li>
               <li className="flex justify-between">
-                <p className="flex h-1 gap-2"><div className="flex items-center justify-center h-1"><span className="block text-blue_800 text-[40px] h-16">.</span></div>{`${addons.markers.name} `}</p>
+                <p className="flex h-1 gap-2">
+                  <div className="flex items-center justify-center h-1">
+                    <span className="block text-blue_800 text-[40px] h-16">
+                      .
+                    </span>
+                  </div>
+                  {`${addons.markers.name} `}
+                </p>
                 <p>{`${addons.markers.price} MXN`}</p>
               </li>
             </ul>
@@ -133,14 +176,12 @@ export default function SaveNewPlace() {
           <article className="flex justify-center">
             <button
               className="bg-primary text-white px-4 py-2 rounded-xl w-[134px]"
-              onClick={handleClick}
-            >
-              Confirmar 
+              onClick={handleClick}>
+              Confirmar
             </button>
           </article>
         </section>
       </section>
-          
     </>
   );
 }

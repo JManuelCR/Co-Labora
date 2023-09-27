@@ -339,7 +339,7 @@ export default function Detail() {
         <section className="w-full justify-center items-center flex flex-col gap-[10px] lg:hidden mb-[20px] mt-[60px]">
           <button
             className={`bg-primary rounded-lg px-[18px] py-1 w-[224px] h-[35px] buttonMobileShadow`}>
-            <Link href={"/payment"}>
+            <Link href={"/BookingSteps"}>
               <span className="text-[14px] font-[600] leading-[27px] text-white tracking-[-0.28px]">
                 Continuar con la reserva
               </span>

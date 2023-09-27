@@ -10,8 +10,12 @@ import SaveNewPlace from "../SaveNewPlace/page";
 export default function ReservationSteps() {
   const [showComponent, setShowComponent] = useState(false);
   const [actualStep, setStep] = useState(0);
-  const [data, setData] = useState("");
+  const [data, setData] = useState();
 
+  const getPropertyData = (propertyData: any) => {
+    setData(propertyData);
+  };
+  console.log("esta es la data del space del padre", data);
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       setShowComponent(true);
@@ -24,9 +28,9 @@ export default function ReservationSteps() {
       case 0:
         return <PhotoEvidence />;
       case 1:
-        return <GeneralInfo />;
+        return <GeneralInfo props={getPropertyData} />; // ? pasar data de aca
       case 2:
-        return <SaveNewPlace />;
+        return <SaveNewPlace props={data} />; // * para aca
     }
   }
   function bookingConfirm() {
@@ -59,7 +63,15 @@ export default function ReservationSteps() {
               {actualStep <= 1 && (
                 <button
                   className={`bg-primary rounded-lg px-[18px] py-1 w-[134px] h-[35px] buttonMobileShadow`}
-                  onClick={() => setStep(actualStep + 1)}>
+                  onClick={() => {
+                    setStep(actualStep + 1);
+                    const button = document.getElementById(
+                      "submit-button-data-form"
+                    );
+                    if (button) {
+                      button.click();
+                    }
+                  }}>
                   <span className="text-[14px] font-[600] leading-[27px] text-white tracking-[-0.28px]">
                     Siguiente
                   </span>

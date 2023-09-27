@@ -9,12 +9,72 @@ import GoogleMaps from "./GoogleMaps";
 import Autcomplete from "./Autocomplete";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
-export default function GeneralInfo() {
+import { useState } from "react";
+export default function GeneralInfo({ props }: any) {
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data: any) => console.log(data);
-  const handleCheck = (e: any) => {
-    console.log(e.target.checked);
+  const [autocomplete, setAutoComplete] = useState();
+  const [checkboxes, setCheckboxes] = useState<{
+    [key: string]: boolean;
+  }>({
+    WiFi: false,
+    Estacionamiento: false,
+    "Aire acondicionado": false,
+    Recepción: false,
+    "Pet friendly": false,
+    "Limpieza Incluida": false,
+  });
+
+  const [toolsBox, setToolBox] = useState<{
+    [key: string]: boolean;
+  }>({
+    desarmador: false,
+    extension: false,
+    flexometro: false,
+    taladro: false,
+    brochas: false,
+    caladora: false,
+  });
+
+  const handleTools = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, checked } = event.target;
+    setToolBox({
+      ...toolsBox,
+      [name]: checked,
+    });
   };
+  // console.log(toolsBox);
+  const handleCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, checked } = event.target;
+    setCheckboxes({
+      ...checkboxes,
+      [name]: checked,
+    });
+  };
+  // console.log(checkboxes);
+
+  function childCallback(childData: any) {
+    setAutoComplete(childData);
+  }
+
+  const onSubmit = (data: any) => {
+    const { broad, cost, description, long, name, tall } = data;
+    const toFetch = {
+      name: name,
+      cost: cost,
+      description: description,
+      measure: {
+        broad: broad,
+        tall: tall,
+        long: long,
+      },
+      addons: checkboxes,
+      tools: toolsBox,
+      address: autocomplete,
+    };
+    props(toFetch);
+    console.log("esta es la data de la propiedad del lado del hijo", toFetch);
+  };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="w-full px-[20px] lg:mt-[50px] flex flex-col justify-center items-center max-w-[1440px]">
@@ -29,7 +89,7 @@ export default function GeneralInfo() {
                 className="text-center text-[16px] font-[300] leading-[22px] tracking-[-0.32px]">
                 Por favor ingrese la ubicación del inmueble
               </label>
-              <Autcomplete />
+              <Autcomplete props={childCallback} />
             </div>
             <div className="w-full">
               <GoogleMaps />
@@ -66,7 +126,7 @@ export default function GeneralInfo() {
             <input
               {...register("name", { required: "Campo requerido" })}
               type="text"
-              className="bg-white rounded-[15px] border-[2px] border-primary w-[280px] h-[30px] text-blue_700 boxShadow-details mt-[15px]"
+              className="bg-white rounded-[15px] border-[2px] border-primary w-[280px] h-[30px] text-blue_700 boxShadow-details mt-[15px] px-3"
             />
           </section>
         </div>
@@ -80,7 +140,7 @@ export default function GeneralInfo() {
             <input
               {...register("cost", { required: "Campo requerido" })}
               type="number"
-              className="bg-white rounded-[15px] border-[2px] border-primary w-[280px] h-[30px] text-blue_700 boxShadow-details mt-[15px]"
+              className="bg-white rounded-[15px] border-[2px] border-primary w-[280px] h-[30px] text-blue_700 boxShadow-details mt-[15px]  px-3"
             />
           </section>
           <div className=" hidden relative w-[330px] h-[320px] lg:block top-[-40px] ">
@@ -182,37 +242,20 @@ export default function GeneralInfo() {
               </button>
               <div>
                 <FormGroup className="border-2 border-primary max-h-[280px] w-[220px] relative left-3 px-4">
-                  <FormControlLabel
-                    control={<Checkbox />}
-                    label="WiFi"
-                    className="text-blue_700 text-start text-[18px] font-[500] leading-[25px] font-poppins "
-                  />
-                  <FormControlLabel
-                    control={<Checkbox />}
-                    label="Estacionamiento"
-                    className="text-blue_700 text-start text-[18px] font-[500] leading-[25px] font-poppins "
-                  />
-                  <FormControlLabel
-                    control={<Checkbox />}
-                    label="Aire acondicionado"
-                    className="text-blue_700 text-start text-[18px] font-[500] leading-[25px] font-poppins "
-                  />
-                  <FormControlLabel
-                    control={<Checkbox />}
-                    label="Recepción"
-                    className="text-blue_700 text-start text-[18px] font-[500] leading-[25px] font-poppins "
-                    onChange={handleCheck}
-                  />
-                  <FormControlLabel
-                    control={<Checkbox />}
-                    label="Pet friendly"
-                    className="text-blue_700 text-start text-[18px] font-[500] leading-[25px] font-poppins "
-                  />
-                  <FormControlLabel
-                    control={<Checkbox />}
-                    label="Limpieza Incluida"
-                    className="text-blue_700 text-start text-[18px] font-[500] leading-[25px] font-poppins "
-                  />
+                  {Object.keys(checkboxes).map((key: string) => (
+                    <FormControlLabel
+                      key={key}
+                      control={
+                        <Checkbox
+                          checked={checkboxes[key]}
+                          onChange={handleCheck}
+                          name={key}
+                        />
+                      }
+                      label={key}
+                      className="text-blue_700 text-start text-[18px] font-[500] leading-[25px] font-poppins"
+                    />
+                  ))}
                 </FormGroup>
               </div>
             </div>
@@ -255,42 +298,32 @@ export default function GeneralInfo() {
               </button>
               <div>
                 <FormGroup className="border-2 border-primary max-h-[280px] w-[220px] relative left-3 px-4">
-                  <FormControlLabel
-                    control={<Checkbox />}
-                    label="Desarmador"
-                    className="text-blue_700 text-start text-[18px] font-[500] leading-[25px] font-poppins "
-                  />
-                  <FormControlLabel
-                    control={<Checkbox />}
-                    label="Caladora"
-                    className="text-blue_700 text-start text-[18px] font-[500] leading-[25px] font-poppins "
-                  />
-                  <FormControlLabel
-                    control={<Checkbox />}
-                    label="Llaves Inglesas"
-                    className="text-blue_700 text-start text-[18px] font-[500] leading-[25px] font-poppins "
-                  />
-                  <FormControlLabel
-                    control={<Checkbox />}
-                    label="Pinzas"
-                    className="text-blue_700 text-start text-[18px] font-[500] leading-[25px] font-poppins "
-                  />
-                  <FormControlLabel
-                    control={<Checkbox />}
-                    label="Cinta métrica"
-                    className="text-blue_700 text-start text-[18px] font-[500] leading-[25px] font-poppins "
-                  />
-                  <FormControlLabel
-                    control={<Checkbox />}
-                    label="Linterna"
-                    className="text-blue_700 text-start text-[18px] font-[500] leading-[25px] font-poppins "
-                  />
+                  {Object.keys(toolsBox).map((key: string) => (
+                    <FormControlLabel
+                      key={key}
+                      control={
+                        <Checkbox
+                          checked={toolsBox[key]}
+                          onChange={handleTools}
+                          name={key}
+                        />
+                      }
+                      label={key}
+                      className="text-blue_700 text-start text-[18px] font-[500] leading-[25px] font-poppins"
+                    />
+                  ))}
                 </FormGroup>
               </div>
             </div>
           </section>
         </div>
       </div>
+      <button
+        className="bg-[transparent] p-3 text-white"
+        type="submit"
+        id="submit-button-data-form">
+        testear info
+      </button>
     </form>
   );
 }
