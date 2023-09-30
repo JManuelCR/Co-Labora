@@ -319,7 +319,7 @@ export default function GeneralInfo({ props }: any) {
         </div>
       </div>
       <button
-        className="bg-[transparent] p-3 text-white"
+        className="bg-primary p-3 text-white"
         type="submit"
         id="submit-button-data-form">
         testear info

@@ -21,13 +21,11 @@ export default function GoogleMaps() {
   const onLoad = (map: any) => {
     setMap(map);
   };
-  // const inputAddress = document.getElementById("auto");
-  // console.log(inputAddress);
 
   return (
     <div className="w-auto h-auto">
       <LoadScript
-        googleMapsApiKey="AIzaSyAD3TKhl38D75fORoK1ueJ3tr6KZ2MtbrE"
+        googleMapsApiKey={`${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`}
         libraries={["places"]}>
         <GoogleMap
           mapContainerStyle={mapContainerStyle}

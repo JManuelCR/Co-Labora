@@ -7,9 +7,7 @@ import {
 } from "@stripe/react-stripe-js";
 import axios from "axios";
 import { FormEvent } from "react";
-const stripePromise = loadStripe(
-  "pk_test_51NkHgyKwUVEL5zK50M5ZNhf3yE4XnhMjuchOwmQuDLUuMMOqEbI4mLyUX2YxdxEQOwoIlNGB9d4QVAqMMbiBiaaP00ATaEKNxV"
-);
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY!);
 
 const PayBox = () => {
   const stripe = useStripe();

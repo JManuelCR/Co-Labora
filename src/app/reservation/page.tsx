@@ -15,7 +15,7 @@ export default function ReservationSteps() {
   const getPropertyData = (propertyData: any) => {
     setData(propertyData);
   };
-  console.log("esta es la data del space del padre", data);
+
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       setShowComponent(true);
