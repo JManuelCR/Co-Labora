@@ -41,23 +41,14 @@ export default function CreateAccount({ props }: any) {
       }),
     })
       .then((response) => {
-        response.json;
+        return response.json();
       })
-      .then((response) => {
-        if (response!) {
-          console.log("correo enviado", response);
-        } else {
-          toast.error("Error en el email", {
-            position: "top-center",
-            autoClose: 2500,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-          });
-        }
+      .then((responseData) => {
+        const otp = responseData.data;
+        localStorage.setItem("otp", otp);
+      })
+      .catch((error) => {
+        console.log("fetch error", error);
       });
     props(toPass);
   };

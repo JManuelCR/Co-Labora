@@ -59,7 +59,15 @@ export default function VerifyAccount() {
               {actualStep <= 1 && (
                 <button
                   className={`bg-primary rounded-lg px-[18px] py-1 w-[134px] h-[35px] buttonMobileShadow`}
-                  onClick={() => setStep(actualStep + 1)}>
+                  onClick={() => {
+                    setStep(actualStep + 1);
+                    const button = document.getElementById(
+                      "submit-user-register"
+                    );
+                    if (button) {
+                      button.click();
+                    }
+                  }}>
                   <span className="text-[14px] font-[600] leading-[27px] text-white tracking-[-0.28px]">
                     Siguiente
                   </span>
