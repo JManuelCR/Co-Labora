@@ -1,7 +1,7 @@
-export default function DoubleAuth() {
+export default function DoubleAuth(props: any) {
   return (
     <>
-      <article className="flex flex-col items-center justify-center text-center text-blue_800 h-screen ">
+      <article className="flex flex-col items-center justify-center text-center text-blue_800 my-20">
         <section className="border border-solid border-primary rounded-lg p-10 flex flex-col justify-center items-center gap-6 ">
           <h1 className="font-acme text-titles">
             Ingresa el codigo de verificacion
@@ -16,11 +16,6 @@ export default function DoubleAuth() {
             maxLength={4}
             pattern="[0-9]{4}" // Este patrón permite solo 4 dígitos numéricos
           />
-          <button
-            type="submit"
-            className="bg-primary px-3 py-1 text-white font-bold rounded-lg">
-            Verificar
-          </button>
         </section>
       </article>
     </>

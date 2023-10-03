@@ -116,7 +116,7 @@ export default function Login() {
                 Recordar contraseña
               </p>
             </div>
-            <Link href={"/createAccount"}>
+            <Link href={"/verifyAccount"}>
               <p className="font-poppins text-[20px] text-blue_800 cursor-pointer hover:text-primary text-center">
                 Crear una cuenta nueva
               </p>

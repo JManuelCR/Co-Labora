@@ -2,13 +2,10 @@
 "use client";
 import { useForm, SubmitHandler } from "react-hook-form";
 import inputs from "@/types/inputs.types";
-import Navbar from "@/components/Navbar";
-import FooterMobile from "@/components/FooterMobile";
-import Footer from "@/components/Footer";
 import { FormEvent, useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-export default function CreateAccount() {
+export default function CreateAccount({ props }: any) {
   const [type, setType] = useState("user");
 
   const handleTypeUser = () => {
@@ -31,22 +28,26 @@ export default function CreateAccount() {
   const onSubmit: SubmitHandler<inputs> = (data) => {
     console.log("esto es la data del login", data);
     const userType = type;
-    fetch("http://localhost:8080/Users", {
+    const toPass = {
+      email: data.email,
+      password: data.password,
+      userType: userType,
+    };
+    fetch("http://localhost:8080/otp/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         email: data.email,
-        password: data.password,
-        userType: userType,
       }),
     })
-      .then((response) => response.json())
       .then((response) => {
-        if (response?.data) {
-          window.location.replace("/");
+        response.json;
+      })
+      .then((response) => {
+        if (response!) {
+          console.log("correo enviado", response);
         } else {
-          console.log("no se encontro el usuario");
-          toast.error("No se encontro el usuario", {
+          toast.error("Error en el email", {
             position: "top-center",
             autoClose: 2500,
             hideProgressBar: false,
@@ -57,10 +58,8 @@ export default function CreateAccount() {
             theme: "colored",
           });
         }
-      })
-      .catch(() => {
-        console.log("Error en los inputs, intentar de nuevo");
       });
+    props(toPass);
   };
 
   const [passShow, setPassShow] = useState(false);
@@ -71,7 +70,6 @@ export default function CreateAccount() {
 
   return (
     <>
-      <Navbar page="createAccount" />
       <ToastContainer
         position="top-center"
         autoClose={2500}
@@ -84,9 +82,9 @@ export default function CreateAccount() {
         pauseOnHover
         theme="colored"
       />
-      <section className=" w-100% h-100% md:w-full md:h-100% flex items-center justify-center lg:mt-[212px] ">
+      <section className=" w-100%  md:w-full md:h-100% flex items-center justify-center mb-40">
         <section className="flex flex-col mx-5 md:w-[440px] md:h-[510px] windowXl">
-          <div className="mt-[67px] lg:my-0 gap-[13px]">
+          <div className=" lg:my-0 gap-[13px]">
             <h1 className="font-acme text-titleMobil text-blue_800 text-center">
               Bienvenido a <span className="text-primary">Co-Labora</span>
             </h1>
@@ -157,27 +155,18 @@ export default function CreateAccount() {
                 Recordar contraseña
               </p>
             </div>
-            <div className="m-3 flex justify-center ">
-              <button className="bg-primary rounded-lg w-[200px] h-[60px]">
-                <p className="font-poppins text-suTitles text-white">Ingresa</p>
-              </button>
-            </div>
+            <div className="m-3 flex justify-center "></div>
             <div className="h-1 w-full bg-primary mb-[11px] "></div>
             <p className="font-poppins text-[16px] text-blue_700 text-center">
-              Al crear tu cuenta en{" "}
-              <span className="text-primary">Co-Labora</span> aceptas los{" "}
+              Al crear tu cuenta en
+              <span className="text-primary"> Co-Labora</span> aceptas los{" "}
               <span className="text-black">Términos y Condiciones</span> y el{" "}
               <span className="text-black">Aviso de privacidad</span> del
               servicio
             </p>
+            <button id="submit-user-register" type="submit"></button>
           </form>
         </section>
-      </section>
-      <section className="md:hidden mt-[25px] ">
-        <FooterMobile />
-      </section>
-      <section className="windowXl2 hidden md:block md:mt-[270px] lg:mt-[235px]">
-        <Footer />
       </section>
     </>
   );
