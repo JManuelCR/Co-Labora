@@ -26,7 +26,6 @@ export default function CreateAccount({ props }: any) {
   } = useForm<inputs>();
 
   const onSubmit: SubmitHandler<inputs> = (data) => {
-    console.log("esto es la data del login", data);
     const userType = type;
     const toPass = {
       email: data.email,

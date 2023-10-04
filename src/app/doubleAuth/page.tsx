@@ -1,18 +1,47 @@
-import jwt from "jsonwebtoken";
+import { withSuccess } from "antd/es/modal/confirm";
 import { useState } from "react";
 
 export default function DoubleAuth(props: any) {
-  const code = localStorage.getItem("otp");
-  const key = process.env.NEXT_PUBLIC_JWT_KEY;
   const [number, setNumber] = useState();
 
-  const onSubmit = () => {
-    const decoded = jwt.verify(code!, key!);
-    if (decoded === number) {
-      console.log("los numeros coinciden");
-    } else {
-      console.log("los numeros no coinciden");
-    }
+  const onSubmit = async () => {
+    const code = localStorage.getItem("otp");
+    fetch("http://localhost:8080/otp/validate", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        code: code,
+        input: number,
+      }),
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((response) => {
+        if (response) {
+          localStorage.removeItem("otp");
+          const { email, password, userType } = props.props;
+          fetch("http://localhost:8080/Users", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              email: email,
+              password: password,
+              userType: userType,
+            }),
+          })
+            .then((response) => {
+              return response.json();
+            })
+            .then((response) => {
+              if (response.success) {
+                window.location.replace("/login");
+              }
+            });
+        } else {
+          console.log("Error al crear el usuario");
+        }
+      });
   };
 
   const handleInputChange = (event: any) => {
