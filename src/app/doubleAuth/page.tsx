@@ -1,6 +1,5 @@
-import { withSuccess } from "antd/es/modal/confirm";
 import { useState } from "react";
-
+import { ToastContainer, toast } from "react-toastify";
 export default function DoubleAuth(props: any) {
   const [number, setNumber] = useState();
 
@@ -15,10 +14,11 @@ export default function DoubleAuth(props: any) {
       }),
     })
       .then((response) => {
+        console.log(response);
         return response.json();
       })
       .then((response) => {
-        if (response) {
+        if (response === true) {
           localStorage.removeItem("otp");
           const { email, password, userType } = props.props;
           fetch("http://localhost:8080/Users", {
@@ -40,6 +40,16 @@ export default function DoubleAuth(props: any) {
             });
         } else {
           console.log("Error al crear el usuario");
+          toast.error("Error al verificar tu codigo", {
+            position: "top-center",
+            autoClose: 2500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
         }
       });
   };
@@ -51,6 +61,18 @@ export default function DoubleAuth(props: any) {
 
   return (
     <>
+      <ToastContainer
+        position="top-center"
+        autoClose={2500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
       <article className="flex flex-col items-center justify-center text-center text-blue_800 my-20">
         <section className="border border-solid border-primary rounded-lg p-10 flex flex-col justify-center items-center gap-6 ">
           <h1 className="font-acme text-titles">
