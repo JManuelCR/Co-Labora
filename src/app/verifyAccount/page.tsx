@@ -1,19 +1,17 @@
 "use client";
 import Navbar from "@/components/Navbar";
-import OwnStepper from "@/components/OwnStepper";
 import Footer from "@/components/Footer";
-import { useEffect, useState } from "react";
-import PhotoEvidence from "../photoEvidence/page";
-import GeneralInfo from "@/components/generalDataSpaceInRent";
-import SaveNewPlace from "../SaveNewPlace/page";
-
-export default function ReservationSteps() {
-  const [showComponent, setShowComponent] = useState(false);
+import VerifySteps from "@/components/VerifySteps";
+import React, { useState, useEffect } from "react";
+import Register from "../createAccount/page";
+import Verify from "../doubleAuth/page";
+export default function VerifyAccount() {
   const [actualStep, setStep] = useState(0);
+  const [showComponent, setShowComponent] = useState(false);
   const [data, setData] = useState();
 
-  const getPropertyData = (propertyData: any) => {
-    setData(propertyData);
+  const getUserData = (toPass: any) => {
+    setData(toPass);
   };
 
   useEffect(() => {
@@ -23,41 +21,39 @@ export default function ReservationSteps() {
     return () => clearTimeout(timeoutId);
   }, []);
 
-  function getSelectionComponent() {
+  function VerifyAccount() {
     switch (actualStep) {
       case 0:
-        return <PhotoEvidence />;
+        return <Register props={getUserData} />;
       case 1:
-        return <GeneralInfo props={getPropertyData} />; // ? pasar data de aca
-      case 2:
-        return <SaveNewPlace props={data} />; // * para aca
+        return <Verify props={data} />;
     }
   }
-  function bookingConfirm() {
-    console.log("Reserva confirmada");
-  }
 
-  if (showComponent) {
-    return (
-      <div className="w-full flex justify-center">
-        <div className="w-full flex flex-col justify-center items-center max-w-[1440px]">
-          <Navbar page="in rent" />
-          <OwnStepper
-            actualStep={actualStep}
-            stepOne="Agregar extras"
-            stepTwo="Tu referencia"
-            stepThree="Confirma"
-          />
-          {getSelectionComponent()}
+  return (
+    <>
+      {showComponent ? (
+        <>
+          <Navbar page="Register" />
+          <div className="flex flex-row justify-center">
+            <VerifySteps
+              actualStep={actualStep}
+              stepOne="Registrate"
+              stepTwo="Verifica tu cuenta"
+            />
+          </div>
+
+          <div className="mt-6">{VerifyAccount()}</div>
           <div className="w-full flex justify-center pb-[37px]">
             <div className="flex flex-col-reverse md:flex-row gap-[18px] md:gap-[100px] justify-center items-center">
-              {actualStep !== 0 && actualStep <= 3 && (
+              {actualStep !== 0 && actualStep <= 1 && (
                 <button
                   className="bg-white rounded-lg px-[18px] py-1 w-[134px] h-[35px] border border-primary buttonMobileShadow"
                   onClick={() => setStep(actualStep - 1)}>
                   <span className="text-[14px] font-[600] leading-[27px] text-primary tracking-[-0.28px]">
                     Ir atrás
                   </span>
+                  1
                 </button>
               )}
               {actualStep <= 1 && (
@@ -66,7 +62,7 @@ export default function ReservationSteps() {
                   onClick={() => {
                     setStep(actualStep + 1);
                     const button = document.getElementById(
-                      "submit-button-data-form"
+                      "submit-user-register"
                     );
                     if (button) {
                       button.click();
@@ -77,11 +73,23 @@ export default function ReservationSteps() {
                   </span>
                 </button>
               )}
+              {/* {actualStep === 3 ? (
+                <button
+                  className={`bg-primary rounded-lg px-[18px] py-1 w-[224px] h-[35px] buttonMobileShadow hidden`}>
+                  <span className="text-[14px] font-[600] leading-[27px] text-white tracking-[-0.28px]">
+                    Iniciar sesion
+                  </span>
+                </button>
+              ) : (
+                <></>
+              )} */}
             </div>
           </div>
           <Footer />
-        </div>
-      </div>
-    );
-  }
+        </>
+      ) : (
+        <></>
+      )}
+    </>
+  );
 }

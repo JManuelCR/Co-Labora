@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 export default function Payment({ props }: any) {
   const [autoComplete, setAutoComplete] = useState(false);
   const [selectedPlace, setSelectedPlace] = useState("");
-  const apikey = "AIzaSyAD3TKhl38D75fORoK1ueJ3tr6KZ2MtbrE";
   const baseUrl = "https://maps.googleapis.com/maps/api/geocode/json";
   useEffect(() => {
     setTimeout(() => {
@@ -22,10 +21,10 @@ export default function Payment({ props }: any) {
         // console.log(address); // ! Usar directamente 'address' ya que aqui esta almacenada la direccion seleccionada
         let params = new URLSearchParams({
           address: addressInput,
-          key: apikey,
+          key: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!,
         });
         const apiUrl = `${baseUrl}?${params.toString()}`;
-        console.log(apiUrl);
+        // console.log(apiUrl);
         fetch(apiUrl)
           .then((response) => {
             if (!response.ok) {
