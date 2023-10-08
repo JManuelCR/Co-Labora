@@ -7,10 +7,21 @@ import emergente from "../../../public/illustrations/Emergente.svg";
 import { dataConfirm } from "@/data/data-confirm";
 import { useState } from "react";
 export default function SaveNewPlace(props: any) {
-  console.log(props); // ! ESTE ES EL QUE VA A MANDARSE EN EL FETCH  BD
+  console.log(props.props); // ! ESTE ES EL QUE VA A MANDARSE EN EL FETCH  BD
   const [blur, setBlur] = useState(false);
 
   const handleClick = () => {
+    const token = localStorage.getItem("token");
+    fetch("http://localhost:8080/property/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        data: props.props,
+      }),
+    });
     setBlur(true);
     setTimeout(() => {
       window.location.replace("/");

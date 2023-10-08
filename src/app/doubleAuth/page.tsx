@@ -14,11 +14,12 @@ export default function DoubleAuth(props: any) {
       }),
     })
       .then((response) => {
-        console.log(response);
         return response.json();
       })
       .then((response) => {
-        if (response === true) {
+        console.log("esta es la respuesta raw", response);
+        console.log("este es el status de la respuesta", response.ok);
+        if (response.success === true) {
           localStorage.removeItem("otp");
           const { email, password, userType } = props.props;
           fetch("http://localhost:8080/Users", {
@@ -31,6 +32,7 @@ export default function DoubleAuth(props: any) {
             }),
           })
             .then((response) => {
+              console.log("esta es la respuesta del server", response);
               return response.json();
             })
             .then((response) => {
