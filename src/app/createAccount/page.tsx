@@ -26,6 +26,7 @@ export default function CreateAccount({ props }: any) {
   } = useForm<inputs>();
 
   const onSubmit: SubmitHandler<inputs> = (data) => {
+    localStorage.removeItem("otp");
     const userType = type;
     const toPass = {
       email: data.email,
