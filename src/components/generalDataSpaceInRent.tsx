@@ -57,19 +57,23 @@ export default function GeneralInfo({ props }: any) {
   }
 
   const onSubmit = (data: any) => {
-    const { broad, cost, description, long, name, tall } = data;
+    const { broad, cost, description, long, name, tall, AM, PM } = data;
     const toFetch = {
       name: name,
-      cost: cost,
+      location: autocomplete,
+      price: cost,
       description: description,
-      measure: {
+      measurements: {
         broad: broad,
-        tall: tall,
+        area: tall,
         long: long,
       },
       addons: checkboxes,
       tools: toolsBox,
-      address: autocomplete,
+      workTime: {
+        open: AM,
+        close: PM,
+      },
     };
     props(toFetch);
     console.log("esta es la data de la propiedad del lado del hijo", toFetch);
@@ -154,7 +158,7 @@ export default function GeneralInfo({ props }: any) {
             />
           </div>
         </div>
-        <div className="w-full flex gap-4 xl:gap-[90px] items-center lg:mt-[-25px] h-auto lg:justify-center">
+        <div className="w-full flex gap-4 xl:gap-[90px] items-center lg:mt-[-25px] h-auto lg:justify-center flex-wrap">
           <div className=" hidden relative w-[390px] h-[330px] lg:block top-[-40px] ">
             <Image
               src={`/icons/Tamaño.svg`}
@@ -195,6 +199,25 @@ export default function GeneralInfo({ props }: any) {
               placeholder="Alto"
               className="bg-white rounded-[15px] border-[2px] border-primary w-[102px] h-[30px] text-blue_700 boxShadow-details text-center font-[400] font-poppins leading-[25px] mt-[18px]"
             />
+          </section>
+          <section className="gap-8 text-blue_800 font-semibold rounded-[25px] w-full h-[173px] flex flex-col items-center px-[8px] border-2 border-secondary mt-[40px] justify-center lg:w-[390px]">
+            <h1 className="text-blue_700 text-center text-[20px] font-[500] leading-[25px] font-poppins">
+              Cual es el horario de tu negocio?
+            </h1>
+            <div className="flex gap-5">
+              <input
+                type="time"
+                placeholder="AM"
+                className="border border-solid border-primary p-2 rounded-lg"
+                {...register("AM", { required: "Campo requerido" })}
+              />
+              <input
+                type="time"
+                placeholder="PM"
+                className="border border-solid border-primary p-2 rounded-lg"
+                {...register("PM", { required: "Campo requerido" })}
+              />
+            </div>
           </section>
         </div>
         <div className="w-full flex gap-4 xl:gap-[90px] items-center lg:mt-[-25px] h-auto lg:justify-center">
@@ -318,10 +341,7 @@ export default function GeneralInfo({ props }: any) {
           </section>
         </div>
       </div>
-      <button
-        className="bg-primary p-3 text-white"
-        type="submit"
-        id="submit-button-data-form">
+      <button className="" type="submit" id="submit-button-data-form">
         testear info
       </button>
     </form>

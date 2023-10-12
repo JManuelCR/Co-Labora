@@ -38,14 +38,16 @@ export default function CreateAccount({ props }: any) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         email: data.email,
+        password: data.password,
+        userType: userType,
       }),
     })
       .then((response) => {
         return response.json();
       })
       .then((responseData) => {
-        const otp = responseData.data;
-        localStorage.setItem("otp", otp);
+        const id = responseData.data;
+        localStorage.setItem("id", id);
       })
       .catch((error) => {
         console.log("fetch error", error);
