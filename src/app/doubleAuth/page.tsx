@@ -4,12 +4,12 @@ export default function DoubleAuth(props: any) {
   const [number, setNumber] = useState();
 
   const onSubmit = async () => {
-    const code = localStorage.getItem("otp");
+    const id = localStorage.getItem("id");
     fetch("http://localhost:8080/otp/validate", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        code: code,
+        id: id,
         input: number,
       }),
     })
@@ -19,27 +19,9 @@ export default function DoubleAuth(props: any) {
       .then((response) => {
         console.log("esta es la respuesta raw", response);
         console.log("este es el status de la respuesta", response.ok);
-        if (response.success === true) {
-          localStorage.removeItem("otp");
-          const { email, password, userType } = props.props;
-          fetch("http://localhost:8080/Users", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              email: email,
-              password: password,
-              userType: userType,
-            }),
-          })
-            .then((response) => {
-              console.log("esta es la respuesta del server", response);
-              return response.json();
-            })
-            .then((response) => {
-              if (response.success) {
-                window.location.replace("/login");
-              }
-            });
+        if (response.data.verified === true) {
+          localStorage.removeItem("id");
+          window.location.replace("/login");
         } else {
           console.log("Error al crear el usuario");
           toast.error("Error al verificar tu codigo", {
