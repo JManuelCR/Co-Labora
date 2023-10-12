@@ -67,9 +67,11 @@ body {
   border: 5px solid white;
   border-radius: 50%;
 }
-@media (max-width: 375px) {
+@media (max-width: 470px) {
   .propertyAvatar {
     margin-left: 12px;
+    width: 70px;
+    height: 70px;
   }
 }
 .buttoonPrimaryBackground{

@@ -15,7 +15,7 @@ import SliderHero from "./sliderHero";
 export default function Hero() {
   return (
     <>
-      <section className="flex w-full lg:px-[60px] justify-center gap-5 max-xl:flex-col-reverse max-xl:items-center">
+      <section className="flex w-full lg:px-[60px] justify-center gap-5 max-xl:flex-col-reverse max-xl:items-center h-[528px] md:h-auto">
         <article className="flex flex-col gap-3 max-md:px-4">
           <div className="flex gap-[18px] border-b border-secondary pb-3 w-[343px]">
             <input
@@ -61,7 +61,7 @@ export default function Hero() {
               className="z-10 max-sm:0"
             />
           </div>
-          <div className="flex absolute bottom-[37px] w-[100%]">
+          <div className="flex absolute bottom-[24px] md:bottom-3 w-[100%]">
             <SliderHero properties={dataProperty} />
             {/* <div className="flex gap-[28px] w-[100%]">
               <div className="relative w-[100%] h-[100%] ">
