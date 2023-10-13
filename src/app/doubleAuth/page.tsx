@@ -5,7 +5,7 @@ export default function DoubleAuth(props: any) {
 
   const onSubmit = async () => {
     const code = localStorage.getItem("otp");
-    fetch("http://localhost:8080/otp/validate", {
+    fetch("https://co-labora-backend.jmanuelc.dev/otp/validate", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -21,7 +21,7 @@ export default function DoubleAuth(props: any) {
         if (response === true) {
           localStorage.removeItem("otp");
           const { email, password, userType } = props.props;
-          fetch("http://localhost:8080/Users", {
+          fetch("https://co-labora-backend.jmanuelc.dev/users", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({

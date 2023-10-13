@@ -52,7 +52,7 @@ export default function Hero() {
               className="absolute z-[-1] max-sm:object-fill h-full w-full"
             />
           </div>
-          <div className="flex flex-col absolute top-5 start-10">
+          <div className="flex flex-col absolute top-[155px] md:top-5 start-10">
             <Image
               src={bubble}
               width={300}
