@@ -36,12 +36,28 @@ export default function Payment({ props }: any) {
           })
           .then((data) => {
             if (data.status === "OK") {
+              // console.log("Esta es la data raw de geocode", data);
               const latitud = data.results[0].geometry.location.lat;
               const longitud = data.results[0].geometry.location.lng;
               console.log(`Latitud: ${latitud}, Longitud: ${longitud}`);
-              const direction = data.results[0].formatted_address.split(",");
-              console.log(direction);
-              props(direction);
+              // const direction = data.results[0].formatted_address.split(",");
+              // console.log(direction);
+              const direction = {
+                number: data.results[0].address_components[0].long_name,
+                street: data.results[0].address_components[1].long_name,
+                neighbor: data.results[0].address_components[2].long_name,
+                zip: data.results[0].address_components[6].long_name,
+                city: data.results[0].address_components[3].long_name,
+                mapCoordinates: {
+                  lat: latitud,
+                  lng: longitud,
+                },
+              };
+              console.log(
+                "esta es la direccion ya separada lista para el back",
+                direction
+              );
+              props(direction); // * aqui esta lo que vamos a mandar al back
             } else {
               console.log(
                 `No se pudo geocodificar la dirección. Estado: ${data.status} , ${data.error_message}`
