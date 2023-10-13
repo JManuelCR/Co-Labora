@@ -110,6 +110,9 @@ export default function CreateAccount({ props }: any) {
                 type={passShow ? "text" : "password"}
                 {...register("password", {
                   required: "Este campo es obligatorio",
+                  pattern:
+                    /^(?=.*[!@#$%^&*()_+])[A-Za-z0-9!@#$%^&*()_+]+(?=.*[A-Z])(?=.*\d).+$/,
+                  minLength: 8,
                 })}
                 placeholder="Contraseña"
                 className="flex w-full focus:outline-0 focus:border-primary my-5 "
@@ -129,6 +132,9 @@ export default function CreateAccount({ props }: any) {
                 type={passShow ? "text" : "password"}
                 {...register("confirmPassword", {
                   required: "Este campo es obligatorio",
+                  pattern:
+                    /^(?=.*[!@#$%^&*()_+])[A-Za-z0-9!@#$%^&*()_+]+(?=.*[A-Z])(?=.*\d).+$/,
+                  minLength: 8,
                 })}
                 placeholder="Confirmar contraseña"
                 className="flex w-full focus:outline-0 focus:border-primary my-5 "

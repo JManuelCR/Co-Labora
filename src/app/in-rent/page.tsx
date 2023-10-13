@@ -5,8 +5,21 @@ import FooterMobile from "@/components/FooterMobile";
 import FiltersBar from "@/components/FiltersBar";
 import { dataBD } from "@/data/card-data";
 import CardsAvailable from "@/components/CardsAvailable";
-import OwnStepper from "@/components/OwnStepper";
 export default function Rent() {
+  fetch("http://localhost:8080/property", {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((response) => {
+      console.log(
+        "esta es la respuesta del back al traer las propiedades",
+        response
+      );
+    });
   return (
     <>
       <Navbar page="in rent" />
