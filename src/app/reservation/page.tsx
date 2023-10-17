@@ -3,9 +3,9 @@ import Navbar from "@/components/Navbar";
 import OwnStepper from "@/components/OwnStepper";
 import Footer from "@/components/Footer";
 import { useEffect, useState } from "react";
-import PhotoEvidence from "../photoEvidence/page";
 import GeneralInfo from "@/components/generalDataSpaceInRent";
 import SaveNewPlace from "../SaveNewPlace/page";
+import ImageUpload from "../imagesUpload/page";
 
 export default function ReservationSteps() {
   const [showComponent, setShowComponent] = useState(false);
@@ -26,7 +26,7 @@ export default function ReservationSteps() {
   function getSelectionComponent() {
     switch (actualStep) {
       case 0:
-        return <PhotoEvidence />;
+        return <ImageUpload  />;
       case 1:
         return <GeneralInfo props={getPropertyData} />; // ? pasar data de aca
       case 2:
