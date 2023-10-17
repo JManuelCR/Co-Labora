@@ -16,23 +16,23 @@ export default function GeneralInfo({ props }: any) {
   const [checkboxes, setCheckboxes] = useState<{
     [key: string]: boolean;
   }>({
-    WiFi: false,
-    Estacionamiento: false,
-    "Aire acondicionado": false,
-    Recepción: false,
-    "Pet friendly": false,
-    "Limpieza Incluida": false,
+    wifi: false,
+    parking: false,
+    airConditioner: false,
+    reception: false,
+    petFriendly: false,
+    cleanService: false,
   });
 
   const [toolsBox, setToolBox] = useState<{
     [key: string]: boolean;
   }>({
-    desarmador: false,
-    extension: false,
-    flexometro: false,
-    taladro: false,
-    brochas: false,
-    caladora: false,
+    screwdrivers: false,
+    powerExtension: false,
+    flexometer: false,
+    drill: false,
+    carpenterBrush: false,
+    woodJigSaw: false,
   });
 
   const handleTools = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -57,8 +57,10 @@ export default function GeneralInfo({ props }: any) {
   }
 
   const onSubmit = (data: any) => {
+    const id = localStorage.getItem("id");
     const { broad, cost, description, long, name, tall, AM, PM } = data;
     const toFetch = {
+      userId: id,
       name: name,
       location: autocomplete,
       price: cost,
@@ -68,8 +70,8 @@ export default function GeneralInfo({ props }: any) {
         area: tall,
         long: long,
       },
-      addons: checkboxes,
-      tools: toolsBox,
+      amenities: checkboxes,
+      addOns: toolsBox,
       workTime: {
         open: AM,
         close: PM,
