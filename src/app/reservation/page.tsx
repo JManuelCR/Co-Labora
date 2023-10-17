@@ -11,10 +11,19 @@ export default function ReservationSteps() {
   const [showComponent, setShowComponent] = useState(false);
   const [actualStep, setStep] = useState(0);
   const [data, setData] = useState();
+  const [images, setImages] = useState([]);
+  const [documents, setDocuments] = useState([]);
+  const [dni, setDni] = useState("");
 
   const getPropertyData = (propertyData: any) => {
     setData(propertyData);
   };
+  const getPropertyImages = (images: [], documents: [], dni: any) => {
+    setImages(images);
+    setDocuments(documents);
+    setDni(dni);
+  }
+
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {

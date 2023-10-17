@@ -6,7 +6,7 @@ import { Uploader } from "uploader";
 import { UploadDropzone } from "react-uploader";
 import Link from "next/link";
 
-export default function PhotoEvidence() {
+export default function PhotoEvidence({props}:any) {
   const uploader = Uploader({ apiKey: "public_kW15bgi7zXRxZE5fEHnY5mtm5m7y" });
   const uploaderOptions = {
     multi: true,
