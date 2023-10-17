@@ -11,19 +11,51 @@ export default function ReservationSteps() {
   const [showComponent, setShowComponent] = useState(false);
   const [actualStep, setStep] = useState(0);
   const [data, setData] = useState();
-  const [images, setImages] = useState([]);
-  const [documents, setDocuments] = useState([]);
-  const [dni, setDni] = useState("");
+  const [images, setImages] = useState();
+  const [documents, setDocuments] = useState();
+  const [dni, setDni] = useState();
+  const formData = new FormData();
 
   const getPropertyData = (propertyData: any) => {
     setData(propertyData);
+    console.log("data ebfore if", data)
+    if(data){
+      formData.append('data', data)
+      console.log("data", formData)
+      const formDataEntries:any = formData.entries()
+      for (const [key, value] of formDataEntries) {
+        console.log("este es el entries",`${key}: ${value}`);
+        console.log("esta es la sata",value)
+      }
+    }
   };
-  const getPropertyImages = (images: [], documents: [], dni: any) => {
-    setImages(images);
-    setDocuments(documents);
-    setDni(dni);
-  }
+  const getPropertyImages = (propertyImages: any) => {
+    setImages(propertyImages.images);
+    console.log("say hello")
+    setDocuments(propertyImages.documents);
+    setDni(propertyImages.dni);
+    if(images){
+      formData.append('property-images', images);
+      formData.append('my test', 'hello into formdata')
+      console.log("Images", images)
+      console.log("say hello into image if")
+    }
+    const formDataEntries:any = formData.entries()
+    for (const [key, value] of formDataEntries) {
+      console.log("este es el entries",`${key}: ${value}`);
+    }
+    console.log("formData append text", formData.entries())
+    if(documents){
+      formData.append('property-documents', documents)
+    }
+    if(dni){
+      formData.append('property-dni', dni)
+    }
+    console.log("formdata", formData)
 
+  };
+
+ 
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -35,11 +67,11 @@ export default function ReservationSteps() {
   function getSelectionComponent() {
     switch (actualStep) {
       case 0:
-        return <ImageUpload  />;
+        return <ImageUpload props={getPropertyImages} />;
       case 1:
         return <GeneralInfo props={getPropertyData} />; // ? pasar data de aca
       case 2:
-        return <SaveNewPlace props={data} />; // * para aca
+        return <SaveNewPlace props={formData} />; // * para aca
     }
   }
   function bookingConfirm() {
@@ -63,7 +95,8 @@ export default function ReservationSteps() {
               {actualStep !== 0 && actualStep <= 3 && (
                 <button
                   className="bg-white rounded-lg px-[18px] py-1 w-[134px] h-[35px] border border-primary buttonMobileShadow"
-                  onClick={() => setStep(actualStep - 1)}>
+                  onClick={() => setStep(actualStep - 1)}
+                >
                   <span className="text-[14px] font-[600] leading-[27px] text-primary tracking-[-0.28px]">
                     Ir atrás
                   </span>
@@ -80,7 +113,13 @@ export default function ReservationSteps() {
                     if (button) {
                       button.click();
                     }
-                  }}>
+                    const uploadImages =
+                      document.getElementById("upload-images");
+                    if (uploadImages) {
+                      uploadImages.click();
+                    }
+                  }}
+                >
                   <span className="text-[14px] font-[600] leading-[27px] text-white tracking-[-0.28px]">
                     Siguiente
                   </span>

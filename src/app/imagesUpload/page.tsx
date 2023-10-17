@@ -12,32 +12,30 @@ import Image from "next/image";
 import uploadFile from "../../../public/icons/upload-files.svg";
 import { user } from "@nextui-org/react";
 
-export default function ImageUpload() {
+export default function ImageUpload({ props }: any) {
   const onDrop = useCallback((acceptedFiles: any) => {}, []);
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
   const [images, setImages] = useState<any>();
   const [files, setFiles] = useState<any>();
   const [identification, setIdentification] = useState<any>();
+
+  const submit = ():any => {
+    const toUpload = {
+      images: images,
+      documents: files,
+      dni:identification
+    };
+    props(toUpload);
+  }
+
   const PropertyImages = (images: any) => {
     setImages(images);
-    console.log("these are my images", images);
-    // useEffect(() => {
-    //   fetch("/awsService")
-    // })
   };
   const PropertyFiles = (images: any) => {
     setFiles(images);
-    console.log("these are my files", images);
-    // useEffect(() => {
-    //   fetch("/awsService")
-    // })
   };
   const UserDNI = (images: any) => {
     setIdentification(images);
-    console.log("these are my DNI", images);
-    // useEffect(() => {
-    //   fetch("/awsService")
-    // })
   };
   const clearPropertyImages = () => {
     return setImages(undefined);
@@ -256,6 +254,7 @@ export default function ImageUpload() {
           </div>
         </div>
       </div>
+      <button className="bg-transparent" onClick={submit()} id="upload-images"></button>
     </div>
   );
 }

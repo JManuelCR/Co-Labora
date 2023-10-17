@@ -7,7 +7,10 @@ import { dataConfirm } from "@/data/data-confirm";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 export default function SaveNewPlace(props: any) {
-  console.log(props.props); // ! ESTE ES EL QUE VA A MANDARSE EN EL FETCH  BD
+      const formDataEntries:any = formData.entries()
+    for (const [key, value] of formDataEntries) {
+      console.log("este es el entries",`${key}: ${value}`);
+    }; // ! ESTE ES EL QUE VA A MANDARSE EN EL FETCH  BD
   const [blur, setBlur] = useState(false);
   const [url, setUrl] = useState("");
   useEffect(() => {
