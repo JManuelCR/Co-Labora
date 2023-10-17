@@ -7,7 +7,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 export default function CreateAccount({ props }: any) {
   const [type, setType] = useState("user");
-
+  const [passShow, setPassShow] = useState(false);
+  const [valid, setValid] = useState(true);
   const handleTypeUser = () => {
     setType("user");
   };
@@ -55,10 +56,17 @@ export default function CreateAccount({ props }: any) {
     props(toPass);
   };
 
-  const [passShow, setPassShow] = useState(false);
   const tooglePass = (e: FormEvent) => {
     e.preventDefault();
     setPassShow(!passShow);
+  };
+
+  const checkPass = (e: any) => {
+    const passRegex =
+      /^(?=.*[!@#$%^&*()_+])(?=[A-Za-z0-9!@#$%^&*()_+]{6,})(?=.*[A-Z])(?=.*\d).+$/;
+    const input = e.target.value;
+    const isValid = passRegex.test(input);
+    setValid(isValid);
   };
 
   return (
@@ -110,13 +118,12 @@ export default function CreateAccount({ props }: any) {
                 type={passShow ? "text" : "password"}
                 {...register("password", {
                   required: "Este campo es obligatorio",
-                  pattern:
-                    /^(?=.*[!@#$%^&*()_+])[A-Za-z0-9!@#$%^&*()_+]+(?=.*[A-Z])(?=.*\d).+$/,
-                  minLength: 8,
                 })}
+                onChange={checkPass}
                 placeholder="Contraseña"
                 className="flex w-full focus:outline-0 focus:border-primary my-5 "
               />
+
               <button onClick={tooglePass} form="password1">
                 <p className="text-blue_800 underline">Mostrar</p>
               </button>
@@ -125,6 +132,11 @@ export default function CreateAccount({ props }: any) {
               Debe contener al menos un carácter especial ( @ , # , ! ) un
               numero y una mayúscula
             </p>
+            {!valid ? (
+              <p className="text-primary">
+                La contraseña no cumple los requerimientos
+              </p>
+            ) : null}
             <p className="text-primary">{errors.email?.message}</p>
             <div className="my-5 flex rounded-[15px] border-2 border-primary font-poppins text-[16px] text-blue_500 px-3">
               <input
