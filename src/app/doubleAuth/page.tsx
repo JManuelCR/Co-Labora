@@ -20,7 +20,6 @@ export default function DoubleAuth(props: any) {
         console.log("esta es la respuesta raw", response);
         console.log("este es el status de la respuesta", response.ok);
         if (response.data.verified === true) {
-          localStorage.removeItem("id");
           window.location.replace("/login");
         } else {
           console.log("Error al crear el usuario");

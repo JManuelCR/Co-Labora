@@ -1,17 +1,45 @@
 "use client";
 import Image from "next/image";
-import star from "../../../public/icons/star-shape-1-svgrepo-com.svg";
 import confirm from "../../../public/illustrations/image 42.svg";
 import Carpenter from "../../../public/temporal-images/holder-carpenter.webp";
 import emergente from "../../../public/illustrations/Emergente.svg";
 import { dataConfirm } from "@/data/data-confirm";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Link from "next/link";
 export default function SaveNewPlace(props: any) {
   console.log(props.props); // ! ESTE ES EL QUE VA A MANDARSE EN EL FETCH  BD
   const [blur, setBlur] = useState(false);
+  const [url, setUrl] = useState("");
+  useEffect(() => {
+    const getId = localStorage.getItem("id");
+    const fetchData = async () => {
+      const data = {
+        id: getId,
+      };
+
+      const response = await fetch("http://localhost:8080/stripe/onBoard", {
+        method: "POST", // Puedes ajustar el método según tus necesidades
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        const responseData = await response.json();
+        console.log("en teoria esta es la url del onBoarding", responseData);
+        setUrl(responseData.data);
+      } else {
+        console.error("Error al hacer la solicitud HTTP");
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const handleClick = () => {
     const token = localStorage.getItem("token");
+
     fetch("http://localhost:8080/property/", {
       method: "POST",
       headers: {
@@ -21,11 +49,23 @@ export default function SaveNewPlace(props: any) {
       body: JSON.stringify({
         data: props.props,
       }),
-    });
-    setBlur(true);
-    setTimeout(() => {
-      window.location.replace("/");
-    }, 4000);
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((response) => {
+        console.log("response en raw de propiedad", response);
+        if (response.success) {
+          setBlur(true);
+          setTimeout(() => {
+            window.location.replace(url);
+          }, 4000);
+        } else {
+          console.log(
+            "error al crear la propiedad, puede ser el response.success"
+          );
+        }
+      });
   };
 
   const { name, address, addons, price, rating, opinions } = dataConfirm;
@@ -153,12 +193,11 @@ export default function SaveNewPlace(props: any) {
             Metodo de pago
           </h3>
           <article className="flex justify-between items-center my-3">
-            <div className="flex flex-col gap-2">
-              <p>Tarjeta de debito</p>
-              <p>XXXX-XXXX-XXXX-5129</p>
-              <p>04/05</p>
-            </div>
-            <div>Mastercard</div>
+            <Link href={url}>
+              <button className="bg-primary px-3 py-1 text-white">
+                Completar el registro y dar de alta tu tarjeta de deposito
+              </button>
+            </Link>
           </article>
           <article className="flex gap-3 my-3">
             <button className="rounded-full border border-solid border-blue_800 p-3"></button>
