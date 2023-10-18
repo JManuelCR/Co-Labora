@@ -2,10 +2,11 @@
 import Image from "next/image";
 import confirm from "../../../public/illustrations/image 42.svg";
 import Carpenter from "../../../public/temporal-images/holder-carpenter.webp";
+import Stripe from "../../../public/temporal-images/stripe.png";
 import emergente from "../../../public/illustrations/Emergente.svg";
 import { dataConfirm } from "@/data/data-confirm";
 import { useState, useEffect } from "react";
-import Link from "next/link";
+
 export default function SaveNewPlace(props: any) {
   console.log(props.props); // ! ESTE ES EL QUE VA A MANDARSE EN EL FETCH  BD
   const [blur, setBlur] = useState(false);
@@ -190,19 +191,25 @@ export default function SaveNewPlace(props: any) {
             </ul>
           </article>
           <h3 className="font-acme text-blue_800 text-suTitles my-2">
-            Metodo de pago
+            Cuenta de deposito
           </h3>
-          <article className="flex justify-between items-center my-3">
-            <Link href={url}>
-              <button className="bg-primary px-3 py-1 text-white">
-                Completar el registro y dar de alta tu tarjeta de deposito
-              </button>
-            </Link>
+          <article className="flex justify-between items-center my-3 ">
+            <Image
+              src={Stripe}
+              width={100}
+              height={100}
+              alt="stripe logo"
+              className="px-3"
+            />
+            <p>
+              Al dar clic en Confirmar sera llevado a una ventana de stripe para
+              completar el registro de sus datos bancarios
+            </p>
           </article>
-          <article className="flex gap-3 my-3">
+          {/* <article className="flex gap-3 my-3">
             <button className="rounded-full border border-solid border-blue_800 p-3"></button>
             <p className="underline">Acepto terminos y Condiciones</p>
-          </article>
+          </article> */}
         </section>
         <section className="flex flex-col lg:px-[90px] lg:py-[30px] font-poppins text-blue_800 items-stretch gap-10 lg:w-[541px]">
           <article className="max-lg:hidden">

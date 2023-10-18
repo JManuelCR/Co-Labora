@@ -23,7 +23,28 @@ const amenities = {
 };
 
 export default function Detail() {
+  const [property, setProperty] = useState({});
+  const _id = localStorage.getItem("selectedPropertyId");
+  useEffect(() => {
+    if (_id) {
+      fetch(`http://localhost:8080/property/${_id}`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => {
+          return response.json();
+        })
+        .then((response) => {
+          setProperty(response);
+        })
+        .catch((error) => {
+          console.error("Error fetching property:", error);
+        });
+    }
+  }, [_id]);
   const key = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!; // ! aqui va la llave de google maps
+  console.log("esta es la propiedad en el useState", property);
   const libraries = useMemo(() => ["places"], []);
   const mapCenter = useMemo(
     () => ({ lat: 19.420831779520512, lng: -99.13501950384934 }),
