@@ -7,10 +7,19 @@ import { dataConfirm } from "@/data/data-confirm";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 export default function SaveNewPlace(props: any) {
-      const formDataEntries:any = formData.entries()
-    for (const [key, value] of formDataEntries) {
-      console.log("este es el entries",`${key}: ${value}`);
-    }; // ! ESTE ES EL QUE VA A MANDARSE EN EL FETCH  BD
+  const formDataEntries:any = props.props
+  console.log("props", props.props)
+ // ! ESTE ES EL QUE VA A MANDARSE EN EL FETCH  BD
+ const formData = new FormData();
+//  formData.append('data',JSON.stringify(props.props.data));
+ formData.append('propertyImages', JSON.stringify(props.props.propertyImages));
+ formData.append('propertyDocuments', JSON.stringify(props.props.propertyDocuments));
+ formData.append('propertyDni', JSON.stringify(props.props.propertyDni));
+//  console.log(formData.get('data'))
+ console.log(formData.get('propertyImages'))
+ console.log(formData.get('propertyDocuments'))
+ console.log(formData.get('propertyDni'))
+
   const [blur, setBlur] = useState(false);
   const [url, setUrl] = useState("");
   useEffect(() => {
@@ -46,12 +55,12 @@ export default function SaveNewPlace(props: any) {
     fetch("http://localhost:8080/property/", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        'Content-type': 'multipart/form-data; boundary=<calculated when request is sent>',
+        'Content-Length': '<calculated when request is sent>',
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({
-        data: props.props,
-      }),
+      body:  formData,
+
     })
       .then((response) => {
         return response.json();

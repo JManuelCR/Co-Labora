@@ -10,6 +10,7 @@ import { useDropzone } from "react-dropzone";
 import Dropzone from "react-dropzone";
 import Image from "next/image";
 import uploadFile from "../../../public/icons/upload-files.svg";
+import { useForm } from "react-hook-form";
 import { user } from "@nextui-org/react";
 
 export default function ImageUpload({ props }: any) {
@@ -18,18 +19,21 @@ export default function ImageUpload({ props }: any) {
   const [images, setImages] = useState<any>();
   const [files, setFiles] = useState<any>();
   const [identification, setIdentification] = useState<any>();
+  const { register, handleSubmit } = useForm();
+  const onSubmit = (data: any) => console.log(data);
 
-  const submit = ():any => {
+  const submit = (): any => {
     const toUpload = {
       images: images,
       documents: files,
-      dni:identification
+      dni: identification,
     };
     props(toUpload);
-  }
+  };
 
   const PropertyImages = (images: any) => {
     setImages(images);
+    console.log("images", images)
   };
   const PropertyFiles = (images: any) => {
     setFiles(images);
@@ -64,7 +68,7 @@ export default function ImageUpload({ props }: any) {
   // };
 
   return (
-    <div className="flex justify-center mt-[10px]">
+    <div className="flex justify-center mt-[10px] mb-8">
       <div className="flex flex-col items-center w-[335px] h-auto  md:w-[750px] lg:w-[900px] pb-8 border-2 border-secondary rounded-[26px]">
         <h1 className="font-acme text-blue_800 text-[24px] md:text-[40px] font-normal leading-[36px] tracking-[-0.8px] block h-[28px] mt-[17px]">
           Adjunta fotos del lugar
@@ -141,52 +145,52 @@ export default function ImageUpload({ props }: any) {
                   >
                     <input {...getInputProps()} />
                     {files === undefined ? (
-                  <>
-                    <Image
-                      src={uploadFile}
-                      alt="Upload file icon"
-                      className="w-[48px] h-[37px] md:w-[94px] md:h-[75px] stroke-2"
-                    />
-                    <div className="text-white text-[14px] font-semibold leading-[22px] tracking-[-0.28px] rounded-md bg-primary flex justify-center items-center w-[140px] md:w-[170px] h-[40px] mt-[19px] md:mt-[30px]">
-                      Sube tus imágenes
-                    </div>
-                    <p className="hidden md:block text-white font-poppins font-light text-[14px] tracking-[0.28px] leading-[22px]">
-                      o anexa tus archivo aquí
-                    </p>
-                  </>
-                ) : (
-                  <>
-                    <p className="text-primary font-acme stroke-[-0.48px] leading-[48px] font-semibold text-2xl ">
-                      Imágenes seleccionadas:
-                    </p>
-                    <ul className="w-full">
-                      {files.map((img: any, index: Number) => {
-                        return (
-                          <li
-                            key={`img-${index}`}
-                            className="text-white font-semibold text-lg break-words"
-                          >
-                            {img.path}
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  </>
-                )}
+                      <>
+                        <Image
+                          src={uploadFile}
+                          alt="Upload file icon"
+                          className="w-[48px] h-[37px] md:w-[94px] md:h-[75px] stroke-2"
+                        />
+                        <div className="text-white text-[14px] font-semibold leading-[22px] tracking-[-0.28px] rounded-md bg-primary flex justify-center items-center w-[140px] md:w-[170px] h-[40px] mt-[19px] md:mt-[30px]">
+                          Sube tus imágenes
+                        </div>
+                        <p className="hidden md:block text-white font-poppins font-light text-[14px] tracking-[0.28px] leading-[22px]">
+                          o anexa tus archivo aquí
+                        </p>
+                      </>
+                    ) : (
+                      <>
+                        <p className="text-primary font-acme stroke-[-0.48px] leading-[48px] font-semibold text-2xl ">
+                          Imágenes seleccionadas:
+                        </p>
+                        <ul className="w-full">
+                          {files.map((img: any, index: Number) => {
+                            return (
+                              <li
+                                key={`img-${index}`}
+                                className="text-white font-semibold text-lg break-words"
+                              >
+                                {img.path}
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      </>
+                    )}
                   </div>
                 </section>
               )}
             </Dropzone>
             {files !== undefined ? (
-          <button
-            onClick={clearPropertyFiles}
-            className="text-white text-[14px] font-semibold leading-[22px] tracking-[-0.28px] rounded-md bg-primary flex justify-center items-center w-[140px] md:w-[170px] h-[40px] mt-[19px] md:mt-[30px]"
-          >
-            Cancelar
-          </button>
-        ) : (
-          <></>
-        )}
+              <button
+                onClick={clearPropertyFiles}
+                className="text-white text-[14px] font-semibold leading-[22px] tracking-[-0.28px] rounded-md bg-primary flex justify-center items-center w-[140px] md:w-[170px] h-[40px] mt-[19px] md:mt-[30px]"
+              >
+                Cancelar
+              </button>
+            ) : (
+              <></>
+            )}
           </div>
           <div className="w-full md:w-1/2 flex flex-col items-center">
             <h3 className="font-acme text-blue_800 text-[24px] md:text-[32px] text-center font-normal leading-[36px] tracking-[-0.8px] block w-[235px]">
@@ -205,56 +209,70 @@ export default function ImageUpload({ props }: any) {
                   >
                     <input {...getInputProps()} />
                     {identification === undefined ? (
-                  <>
-                    <Image
-                      src={uploadFile}
-                      alt="Upload file icon"
-                      className="w-[48px] h-[37px] md:w-[94px] md:h-[75px] stroke-2"
-                    />
-                    <div className="text-white text-[14px] font-semibold leading-[22px] tracking-[-0.28px] rounded-md bg-primary flex justify-center items-center w-[140px] md:w-[170px] h-[40px] mt-[19px] md:mt-[30px]">
-                      Sube tus imágenes
-                    </div>
-                    <p className="hidden md:block text-white font-poppins font-light text-[14px] tracking-[0.28px] leading-[22px]">
-                      o anexa tus archivo aquí
-                    </p>
-                  </>
-                ) : (
-                  <>
-                    <p className="text-primary font-acme stroke-[-0.48px] leading-[48px] font-semibold text-2xl ">
-                      Identificación seleccionada:
-                    </p>
-                    <ul className="w-full">
-                      {identification.map((img: any, index: Number) => {
-                        return (
-                          <li
-                            key={`img-${index}`}
-                            className="text-white font-semibold text-lg break-words"
-                          >
-                            {img.path}
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  </>
-                )}
+                      <>
+                        <Image
+                          src={uploadFile}
+                          alt="Upload file icon"
+                          className="w-[48px] h-[37px] md:w-[94px] md:h-[75px] stroke-2"
+                        />
+                        <div className="text-white text-[14px] font-semibold leading-[22px] tracking-[-0.28px] rounded-md bg-primary flex justify-center items-center w-[140px] md:w-[170px] h-[40px] mt-[19px] md:mt-[30px]">
+                          Sube tus imágenes
+                        </div>
+                        <p className="hidden md:block text-white font-poppins font-light text-[14px] tracking-[0.28px] leading-[22px]">
+                          o anexa tus archivo aquí
+                        </p>
+                      </>
+                    ) : (
+                      <>
+                        <p className="text-primary font-acme stroke-[-0.48px] leading-[48px] font-semibold text-2xl ">
+                          Identificación seleccionada:
+                        </p>
+                        <ul className="w-full">
+                          {identification.map((img: any, index: Number) => {
+                            return (
+                              <li
+                                key={`img-${index}`}
+                                className="text-white font-semibold text-lg break-words"
+                              >
+                                {img.path}
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      </>
+                    )}
                   </div>
                 </section>
               )}
             </Dropzone>
             {identification !== undefined ? (
-          <button
-            onClick={clearUserDNI}
-            className="text-white text-[14px] font-semibold leading-[22px] tracking-[-0.28px] rounded-md bg-primary flex justify-center items-center w-[140px] md:w-[170px] h-[40px] mt-[19px] md:mt-[30px]"
-          >
-            Cancelar
-          </button>
-        ) : (
-          <></>
-        )}
+              <button
+                onClick={clearUserDNI}
+                className="text-white text-[14px] font-semibold leading-[22px] tracking-[-0.28px] rounded-md bg-primary flex justify-center items-center w-[140px] md:w-[170px] h-[40px] mt-[19px] md:mt-[30px]"
+              >
+                Cancelar
+              </button>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
+        <form className="mt-4" onSubmit={handleSubmit(onSubmit)}>
+          <input className="border-4 border-red-400 text-black text-md" {...register("firstName")} />
+          <select className="bg-violet-500 w-8 h-4" {...register("gender")}>
+            <option className="text-black text-lg" value="female">female</option>
+            <option className="text-black text-lg" value="male">male</option>
+            <option className="text-black text-lg" value="other">other</option>
+          </select>
+          <input type="file" multiple {...register("images")}/>
+          <input className="bg-red-500 w-8 h-4" type="submit" />
+        </form>
       </div>
-      <button className="bg-transparent" onClick={submit()} id="upload-images"></button>
+      <button
+        className="bg-transparent"
+        onClick={submit()}
+        id="upload-images"
+      ></button>
     </div>
   );
 }

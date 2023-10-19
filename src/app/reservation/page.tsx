@@ -15,47 +15,24 @@ export default function ReservationSteps() {
   const [documents, setDocuments] = useState();
   const [dni, setDni] = useState();
   const formData = new FormData();
+  const [preview, setPreview] = useState<String | undefined>();
 
   const getPropertyData = (propertyData: any) => {
-    setData(propertyData);
-    console.log("data ebfore if", data)
-    if(data){
-      formData.append('data', data)
-      console.log("data", formData)
-      const formDataEntries:any = formData.entries()
-      for (const [key, value] of formDataEntries) {
-        console.log("este es el entries",`${key}: ${value}`);
-        console.log("esta es la sata",value)
-      }
+    try{
+      setData(propertyData);
+    }catch(err){
+      console.log("error", err)
     }
   };
   const getPropertyImages = (propertyImages: any) => {
-    setImages(propertyImages.images);
-    console.log("say hello")
-    setDocuments(propertyImages.documents);
-    setDni(propertyImages.dni);
-    if(images){
-      formData.append('property-images', images);
-      formData.append('my test', 'hello into formdata')
-      console.log("Images", images)
-      console.log("say hello into image if")
+    try{
+      setImages(propertyImages.images);
+      setDocuments(propertyImages.documents);
+      setDni(propertyImages.dni);
+    }catch(err){
+      console.log("error", err)
     }
-    const formDataEntries:any = formData.entries()
-    for (const [key, value] of formDataEntries) {
-      console.log("este es el entries",`${key}: ${value}`);
-    }
-    console.log("formData append text", formData.entries())
-    if(documents){
-      formData.append('property-documents', documents)
-    }
-    if(dni){
-      formData.append('property-dni', dni)
-    }
-    console.log("formdata", formData)
-
   };
-
- 
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -71,7 +48,14 @@ export default function ReservationSteps() {
       case 1:
         return <GeneralInfo props={getPropertyData} />; // ? pasar data de aca
       case 2:
-        return <SaveNewPlace props={formData} />; // * para aca
+        return <SaveNewPlace props={
+          {
+            data: data,
+            propertyImages: images,
+            propertyDocuments: documents,
+            propertyDni: dni
+          }
+        } />; // * para aca
     }
   }
   function bookingConfirm() {
