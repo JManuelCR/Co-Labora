@@ -14,7 +14,6 @@ import Link from "next/link";
 import { dateData } from "@/types/dateData";
 import moment from "moment";
 
-
 const stars = [0, 1, 2];
 interface Property {
   name: string;
@@ -51,15 +50,10 @@ interface Property {
   };
   propertyImages: [string];
 }
-<<<<<<< HEAD
 export default function Detail({ params }: any) {
-  console.log(params.id);
-=======
-export default function Detail({params}: any) {
   const [isDesktop, setIsDesktop] = useState(false);
   const [startDate, setStartDate] = useState<String>();
   const [endDate, setEndDate] = useState<String>();
->>>>>>> develop
   const [property, setProperty] = useState<Property>({
     name: "test",
     comments: "test",
@@ -111,20 +105,20 @@ export default function Detail({params}: any) {
         .catch((error) => {
           console.error("Error fetching property:", error);
         });
-      }
-    }, [params.id]);
-    
-    useEffect(() => {
-      const checkWindowWidth = () => {
-        setIsDesktop(window.innerWidth >= 1024);
-      };
-      checkWindowWidth();
-      window.addEventListener("resize", checkWindowWidth);
-  
-      return () => {
-        window.removeEventListener("resize", checkWindowWidth);
-      };
-    });
+    }
+  }, [params.id]);
+
+  useEffect(() => {
+    const checkWindowWidth = () => {
+      setIsDesktop(window.innerWidth >= 1024);
+    };
+    checkWindowWidth();
+    window.addEventListener("resize", checkWindowWidth);
+
+    return () => {
+      window.removeEventListener("resize", checkWindowWidth);
+    };
+  });
 
   const key = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!; // ! aqui va la llave de google maps
   const libraries = useMemo(() => ["places"], []);
@@ -151,11 +145,6 @@ export default function Detail({params}: any) {
   const images = sliderRentImages;
   ("selectDatesDesktop");
 
-<<<<<<< HEAD
-    return () => {
-      window.removeEventListener("resize", checkWindowWidth);
-    };
-  });
   const passData = (e: any) => {
     const dataToPass = {
       name: property.name,
@@ -163,18 +152,15 @@ export default function Detail({params}: any) {
         property.location.street +
         property.location.number +
         property.location.neighbor,
-=======
-  const getDates = (data: dateData) => {
-    setStartDate(moment(data.startDate).format('DD-MM-YYYY'));
-    setEndDate(moment(data.endDate).format('DD-MM-YYYY'));
-  }
->>>>>>> develop
-
       comments: property.comments.length,
       score: property.score,
       propertyImages: property.propertyImages[0],
     };
     localStorage.setItem("property", JSON.stringify(dataToPass));
+  };
+  const getDates = (data: dateData) => {
+    setStartDate(moment(data.startDate).format("DD-MM-YYYY"));
+    setEndDate(moment(data.endDate).format("DD-MM-YYYY"));
   };
   return (
     <>
@@ -419,25 +405,21 @@ export default function Detail({params}: any) {
                   <p className="text-[14px] text-blue_700 font-poppins font-[700] leading-[22px] tracking-[-0.28px]">
                     Llegada
                   </p>
-<<<<<<< HEAD
-                  <span className="text-black text-md font-poppins font-semibold inline-block w-full">
-                    10/08/2023
+                  <span
+                    id="startDate"
+                    className="text-black text-md font-poppins font-semibold inline-block w-full">
+                    {startDate}
                   </span>
-=======
-                    <span id="startDate" className="text-black text-md font-poppins font-semibold inline-block w-full">{startDate}</span>
->>>>>>> develop
                 </div>
                 <div className="border-2 border-blue_300 rounded-[10px] w-[220px] h-[64px] flex flex-col ps-[14px] pt-2">
                   <p className="text-[14px] text-blue_700 font-poppins font-[700] leading-[22px] tracking-[-0.28px]">
                     Salida
                   </p>
-<<<<<<< HEAD
-                  <span className="text-black text-md font-poppins font-semibold inline-block w-full">
-                    10/08/2023
+                  <span
+                    id="endDate"
+                    className="text-black text-md font-poppins font-semibold inline-block w-full">
+                    {endDate}
                   </span>
-=======
-                  <span id="endDate" className="text-black text-md font-poppins font-semibold inline-block w-full">{endDate}</span>
->>>>>>> develop
                 </div>
               </div>
               <section className="hidden w-full justify-center items-center lg:flex flex-col gap-[10px] mb-[20px] mt-[24px]">
@@ -492,7 +474,7 @@ export default function Detail({params}: any) {
                   <p className="text-[14px] text-blue_700 font-poppins font-[700] leading-[22px] tracking-[-0.28px]">
                     Llegada
                   </p>
-                  <CalendarDesktop show={isDesktop} values={getDates}/>
+                  <CalendarDesktop show={isDesktop} values={getDates} />
                 </div>
                 <div className="border-2 border-blue_300 rounded-[10px] w-[220px] h-[64px] flex flex-col ps-[14px] pt-2">
                   <p className="text-[14px] text-blue_700 font-poppins font-[700] leading-[22px] tracking-[-0.28px]">
