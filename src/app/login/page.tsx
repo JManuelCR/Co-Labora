@@ -17,7 +17,7 @@ export default function Login() {
   } = useForm<inputs>();
   const onSubmit: SubmitHandler<inputs> = (data) => {
     console.log("esto es la data del login", data);
-    fetch("http://localhost:8080/login", {
+    fetch("https://co-labora-backend.jmanuelc.dev/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
