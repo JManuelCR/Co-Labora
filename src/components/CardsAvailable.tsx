@@ -10,9 +10,8 @@ export default function CardsAvailable(props: Card) {
     props;
   const ratingList = ratings;
   return (
-    <Link href={`/detail`}>
-      <button onClick={() => onClick(props._id)}>
-      <article className="relative w-[296px] h-[340px] flex flex-col border border-solid border-primary rounded-2xl cursor-pointer">
+    <Link href={`/in-rent/${props._id}`}>
+            <article className="relative w-[296px] h-[340px] flex flex-col border border-solid border-primary rounded-2xl cursor-pointer">
       <div className="relative w-full h-[195px]">
         <Image
           src={image}
@@ -41,7 +40,6 @@ export default function CardsAvailable(props: Card) {
         </div>
       </section>
     </article>
-      </button>
     </Link>
    
   );
