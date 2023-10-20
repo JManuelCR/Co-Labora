@@ -53,22 +53,6 @@ export default function ImageUpload({ props }: any) {
     return setIdentification(undefined);
   };
 
-  //   Dropzone.options.myDropzone = {
-  //   url: "https://your-bucket-name.s3.amazonaws.com/",
-  //   paramName: "file",
-  //   maxFilesize: 10, // MB
-  //   createImageThumbnails: false,
-  //   headers: {
-  //     "x-amz-acl": "public-read"
-  //   },
-  //   init: function() {
-  //     this.on("sending", function(file, xhr, formData) {
-  //       formData.append("key", "uploads/" + file.name);
-  //       formData.append("Content-Type", file.type);
-  //     });
-  //   }
-  // };
-
   return (
     <div className="flex justify-center mt-[10px] mb-8">
       <div className="flex flex-col items-center w-[335px] h-auto  md:w-[750px] lg:w-[900px] pb-8 border-2 border-secondary rounded-[26px]">
@@ -259,16 +243,6 @@ export default function ImageUpload({ props }: any) {
             )}
           </div>
         </div>
-        <form className="mt-4" onSubmit={handleSubmit(onSubmit)}>
-          <input className="border-4 border-red-400 text-black text-md" {...register("firstName")} />
-          <select className="bg-violet-500 w-8 h-4" {...register("gender")}>
-            <option className="text-black text-lg" value="female">female</option>
-            <option className="text-black text-lg" value="male">male</option>
-            <option className="text-black text-lg" value="other">other</option>
-          </select>
-          <input type="file" multiple {...register("images")}/>
-          <input className="bg-red-500 w-8 h-4" type="submit" />
-        </form>
       </div>
       <button
         className="bg-transparent"
