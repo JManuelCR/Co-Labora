@@ -18,7 +18,7 @@ export default function UserInput() {
         return response.json();
       })
       .then((response) => {
-        console.log("esta es la respuesta del getuser", response);
+        // console.log("esta es la respuesta del getuser", response);
         if (response.data.description) {
           setDesc(response.data.description);
         }
@@ -45,7 +45,7 @@ export default function UserInput() {
           return response.json();
         })
         .then((response) => {
-          console.log("esta es la respuesta al patch", response);
+          // console.log("esta es la respuesta al patch", response);
         });
     }
   };
@@ -100,9 +100,7 @@ export default function UserInput() {
           {/* <Link href={"/"}>
             <div className="flex justify-center"></div>
           </Link> */}
-          <button className="bg-primary text-white" type="submit">
-            Testear info
-          </button>
+          <button type="submit" id="submit-description"></button>
         </form>
       </section>
     </>

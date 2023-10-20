@@ -39,7 +39,7 @@ export default function Payment({ props }: any) {
               // console.log("Esta es la data raw de geocode", data);
               const latitud = data.results[0].geometry.location.lat;
               const longitud = data.results[0].geometry.location.lng;
-              console.log(`Latitud: ${latitud}, Longitud: ${longitud}`);
+              // console.log(`Latitud: ${latitud}, Longitud: ${longitud}`);
               // const direction = data.results[0].formatted_address.split(",");
               // console.log(direction);
               const direction = {
@@ -53,19 +53,19 @@ export default function Payment({ props }: any) {
                   lng: longitud,
                 },
               };
-              console.log(
-                "esta es la direccion ya separada lista para el back",
-                direction
-              );
+              // console.log(
+              //   "esta es la direccion ya separada lista para el back",
+              //   direction
+              // );
               props(direction); // * aqui esta lo que vamos a mandar al back
             } else {
-              console.log(
-                `No se pudo geocodificar la dirección. Estado: ${data.status} , ${data.error_message}`
-              );
+              // console.log(
+              //   `No se pudo geocodificar la dirección. Estado: ${data.status} , ${data.error_message}`
+              // );
             }
           })
           .catch((error) => {
-            console.log(`Error en la solicitud: ${error.message}`);
+            // console.log(`Error en la solicitud: ${error.message}`);
           });
       }
     }

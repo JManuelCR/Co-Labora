@@ -141,6 +141,20 @@ export default function Detail() {
     };
   });
 
+  const passData = (e: any) => {
+    const dataToPass = {
+      name: property.name,
+      addres:
+        property.location.street +
+        property.location.number +
+        property.location.neighbor,
+
+      comments: property.comments.length,
+      score: property.score,
+    };
+    localStorage.setItem("property", JSON.stringify(dataToPass));
+  };
+
   return (
     <>
       <Navbar page={"in rent"} />
@@ -393,14 +407,13 @@ export default function Detail() {
                 </div>
               </div>
               <section className="hidden w-full justify-center items-center lg:flex flex-col gap-[10px] mb-[20px] mt-[24px]">
-                <Link href={"/BookingSteps"}>
-                  <button
-                    className={`bg-primary rounded-lg px-[18px] py-1 w-[400px] h-[35px] buttonMobileShadow`}>
-                    <span className="text-[14px] font-[600] leading-[27px] text-white tracking-[-0.28px]">
-                      Continuar con la reserva
-                    </span>
-                  </button>
-                </Link>
+                <button
+                  className={`bg-primary rounded-lg px-[18px] py-1 w-[400px] h-[35px] buttonMobileShadow`}>
+                  <span className="text-[14px] font-[600] leading-[27px] text-white tracking-[-0.28px]">
+                    Continuar con la reserva
+                  </span>
+                </button>
+
                 <div className="flex gap-[2px]">
                   <Image
                     src={"/icons/Flag.svg"}
@@ -443,11 +456,11 @@ export default function Detail() {
           <section className="w-full justify-center items-center flex flex-col gap-[10px] lg:hidden mb-[20px] mt-[60px]">
             <button
               className={`bg-primary rounded-lg px-[18px] py-1 w-[224px] h-[35px] buttonMobileShadow`}>
-              <Link href={"/BookingSteps"}>
-                <span className="text-[14px] font-[600] leading-[27px] text-white tracking-[-0.28px]">
-                  Continuar con la reserva
-                </span>
-              </Link>
+              <button
+                className="text-[14px] font-[600] leading-[27px] text-white tracking-[-0.28px]"
+                onClick={passData}>
+                Continuar con la reserva
+              </button>
             </button>
             <div className="flex gap-[2px]">
               <Image

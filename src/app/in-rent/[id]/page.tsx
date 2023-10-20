@@ -14,7 +14,6 @@ import Link from "next/link";
 import { dateData } from "@/types/dateData";
 import moment from "moment";
 
-
 const stars = [0, 1, 2];
 interface Property {
   name: string;
@@ -51,7 +50,7 @@ interface Property {
   };
   propertyImages: [string];
 }
-export default function Detail({params}: any) {
+export default function Detail({ params }: any) {
   const [isDesktop, setIsDesktop] = useState(false);
   const [startDate, setStartDate] = useState<String>();
   const [endDate, setEndDate] = useState<String>();
@@ -106,20 +105,20 @@ export default function Detail({params}: any) {
         .catch((error) => {
           console.error("Error fetching property:", error);
         });
-      }
-    }, [params.id]);
-    
-    useEffect(() => {
-      const checkWindowWidth = () => {
-        setIsDesktop(window.innerWidth >= 1024);
-      };
-      checkWindowWidth();
-      window.addEventListener("resize", checkWindowWidth);
-  
-      return () => {
-        window.removeEventListener("resize", checkWindowWidth);
-      };
-    });
+    }
+  }, [params.id]);
+
+  useEffect(() => {
+    const checkWindowWidth = () => {
+      setIsDesktop(window.innerWidth >= 1024);
+    };
+    checkWindowWidth();
+    window.addEventListener("resize", checkWindowWidth);
+
+    return () => {
+      window.removeEventListener("resize", checkWindowWidth);
+    };
+  });
 
   const key = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!; // ! aqui va la llave de google maps
   const libraries = useMemo(() => ["places"], []);
@@ -146,11 +145,26 @@ export default function Detail({params}: any) {
   const images = sliderRentImages;
   ("selectDatesDesktop");
 
+  const passData = (e: any) => {
+    const dataToPass = {
+      name: property.name,
+      addres:
+        property.location.street +
+        property.location.number +
+        property.location.neighbor,
+      comments: property.comments.length,
+      score: property.score,
+      propertyImages: property.propertyImages[0],
+      startDay: startDate,
+      endDay: endDate,
+    };
+    localStorage.setItem("property", JSON.stringify(dataToPass));
+    // console.log(dataToPass);
+  };
   const getDates = (data: dateData) => {
-    setStartDate(moment(data.startDate).format('DD-MM-YYYY'));
-    setEndDate(moment(data.endDate).format('DD-MM-YYYY'));
-  }
-
+    setStartDate(moment(data.startDate).format("DD-MM-YYYY"));
+    setEndDate(moment(data.endDate).format("DD-MM-YYYY"));
+  };
   return (
     <>
       <Navbar page={"in rent"} />
@@ -394,22 +408,32 @@ export default function Detail({params}: any) {
                   <p className="text-[14px] text-blue_700 font-poppins font-[700] leading-[22px] tracking-[-0.28px]">
                     Llegada
                   </p>
-                    <span id="startDate" className="text-black text-md font-poppins font-semibold inline-block w-full">{startDate}</span>
+                  <span
+                    id="startDate"
+                    className="text-black text-md font-poppins font-semibold inline-block w-full">
+                    {startDate}
+                  </span>
                 </div>
                 <div className="border-2 border-blue_300 rounded-[10px] w-[220px] h-[64px] flex flex-col ps-[14px] pt-2">
                   <p className="text-[14px] text-blue_700 font-poppins font-[700] leading-[22px] tracking-[-0.28px]">
                     Salida
                   </p>
-                  <span id="endDate" className="text-black text-md font-poppins font-semibold inline-block w-full">{endDate}</span>
+                  <span
+                    id="endDate"
+                    className="text-black text-md font-poppins font-semibold inline-block w-full">
+                    {endDate}
+                  </span>
                 </div>
               </div>
               <section className="hidden w-full justify-center items-center lg:flex flex-col gap-[10px] mb-[20px] mt-[24px]">
                 <Link href={"/BookingSteps"}>
                   <button
                     className={`bg-primary rounded-lg px-[18px] py-1 w-[400px] h-[35px] buttonMobileShadow`}>
-                    <span className="text-[14px] font-[600] leading-[27px] text-white tracking-[-0.28px]">
+                    <button
+                      className="text-[14px] font-[600] leading-[27px] text-white tracking-[-0.28px]"
+                      onClick={passData}>
                       Continuar con la reserva
-                    </span>
+                    </button>
                   </button>
                 </Link>
                 <div className="flex gap-[2px]">
@@ -448,12 +472,12 @@ export default function Detail({params}: any) {
               </div>
             </div>
             <div className="hidden lg:block w-[470px] h-[260px] xl:w-[580px] xl:h-[295px]">
-            <div id="selectDatesDesktop" className="mt-[30px] hidden lg:flex">
+              <div id="selectDatesDesktop" className="mt-[30px] hidden lg:flex">
                 <div className="border-2 border-blue_300 rounded-[10px] w-[220px] h-[64px] flex flex-col ps-[14px] pt-2">
                   <p className="text-[14px] text-blue_700 font-poppins font-[700] leading-[22px] tracking-[-0.28px]">
                     Llegada
                   </p>
-                  <CalendarDesktop show={isDesktop} values={getDates}/>
+                  <CalendarDesktop show={isDesktop} values={getDates} />
                 </div>
                 <div className="border-2 border-blue_300 rounded-[10px] w-[220px] h-[64px] flex flex-col ps-[14px] pt-2">
                   <p className="text-[14px] text-blue_700 font-poppins font-[700] leading-[22px] tracking-[-0.28px]">
@@ -467,9 +491,11 @@ export default function Detail({params}: any) {
             <button
               className={`bg-primary rounded-lg px-[18px] py-1 w-[224px] h-[35px] buttonMobileShadow`}>
               <Link href={"/BookingSteps"}>
-                <span className="text-[14px] font-[600] leading-[27px] text-white tracking-[-0.28px]">
+                <button
+                  className="text-[14px] font-[600] leading-[27px] text-white tracking-[-0.28px]"
+                  onClick={passData}>
                   Continuar con la reserva
-                </span>
+                </button>
               </Link>
             </button>
             <div className="flex gap-[2px]">

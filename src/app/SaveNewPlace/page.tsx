@@ -9,42 +9,41 @@ import { useState, useEffect, useRef } from "react";
 import loadConfig from "next/dist/server/config";
 export default function SaveNewPlace(props: any) {
   const formDataEntries: any = props.props;
-  console.log("props", props.props);
+  // console.log("props", props.props);
   // ! ESTE ES EL QUE VA A MANDARSE EN EL FETCH  BD
   const data = props.props.data;
   const [render, setRender] = useState(false);
   useEffect(() => {
     setRender(data !== undefined);
   }, [data]);
-  
-  (async () =>{
-    const dataImage = await props.props.propertyImages
-    console.log("images", dataImage[0])
+
+  (async () => {
+    const dataImage = await props.props.propertyImages;
+    // console.log("images", dataImage[0])
     const imageBox = document.getElementById("imageBox");
-    const renderImage = document.getElementById("renderImage")
-        console.log("acacacac")
-        if(renderImage){
-          return 
-        }
-        const render = new FileReader()
-        render.onload = (e) => {
-          const image:any = document.createElement('img');
-          if(e !== null){
-            console.log("event", e.target?.result)
-            image.src = e.target?.result
-            image.id = "renderImage"
-            image.style = ""
-          }else{
-            image.src = ""
-          }
-          console.log("image to render", image)
-          // imageBox?.appendChild(image)
-          imageBox?.setAttribute('style',`background-image: url(${image.src})`)
-        }
-        render.readAsDataURL(dataImage[0])
-        console.log("lkjdsalkjf", render)
-    
-  })()
+    const renderImage = document.getElementById("renderImage");
+    // console.log("acacacac")
+    if (renderImage) {
+      return;
+    }
+    const render = new FileReader();
+    render.onload = (e) => {
+      const image: any = document.createElement("img");
+      if (e !== null) {
+        // console.log("event", e.target?.result)
+        image.src = e.target?.result;
+        image.id = "renderImage";
+        image.style = "";
+      } else {
+        image.src = "";
+      }
+      // console.log("image to render", image)
+      // imageBox?.appendChild(image)
+      imageBox?.setAttribute("style", `background-image: url(${image.src})`);
+    };
+    render.readAsDataURL(dataImage[0]);
+    // console.log("lkjdsalkjf", render)
+  })();
   const formData = new FormData();
   formData.append("data", JSON.stringify(props.props.data));
   const imagesUpload = props.props.propertyImages;
@@ -83,7 +82,7 @@ export default function SaveNewPlace(props: any) {
 
       if (response.ok) {
         const responseData = await response.json();
-        console.log("en teoria esta es la url del onBoarding", responseData);
+        // console.log("en teoria esta es la url del onBoarding", responseData);
         setUrl(responseData.data);
       } else {
         console.error("Error al hacer la solicitud HTTP");
@@ -107,7 +106,7 @@ export default function SaveNewPlace(props: any) {
         return response.json();
       })
       .then((response) => {
-        console.log("response en raw de propiedad", response);
+        // console.log("response en raw de propiedad", response);
         setBlur(true);
         setTimeout(() => {
           window.location.replace(url);
@@ -140,8 +139,7 @@ export default function SaveNewPlace(props: any) {
           <section
             className={`flex justify-center items-center max-md:flex-wrap relative ${
               blur ? "blur-xl" : ""
-            } `}
-          >
+            } `}>
             <section className="flex flex-col font-poppins text-blue_800 border border-solid border-blue_800 p-[36px] rounded-[24px] max-md:border-none lg:w-[554px] mb-[48px]">
               <article className="flex justify-between md:gap-5 pb-[10px] md:pb-[28px] border-b-[2px] border-secondary">
                 <div className="flex flex-col gap-3 w-1/2">
@@ -160,8 +158,9 @@ export default function SaveNewPlace(props: any) {
                       data.location.zip}{" "}
                   </p>
                 </div>
-                <div id="imageBox" className=" relative w-[170px] h-[128px] lg:w-[260px] md:h-[140px] bg-cover bg-no-repeat bg-center rounded-lg" >
-                </div>
+                <div
+                  id="imageBox"
+                  className=" relative w-[170px] h-[128px] lg:w-[260px] md:h-[140px] bg-cover bg-no-repeat bg-center rounded-lg"></div>
               </article>
               <article className="my-8">
                 <h3 className="font-acme text-blue_800 text-suTitles">
@@ -175,62 +174,53 @@ export default function SaveNewPlace(props: any) {
                 </div>
                 <h3 className="font-acme text-blue_800 text-suTitles">Items</h3>
                 <ul className="flex flex-col gap-3 list-inside list-disc">
-                      {
-                        data.addOns.screwdrivers ? (
-                          <li className="flex justify-between">
-                          <p className="flex h-1 gap-2">
-                            <div className="flex items-center justify-center h-1">
-                              <span className="block text-blue_800 text-[40px] h-16">
-                                .
-                              </span>
-                            </div>
-                            {`Screwdrivers`}
-                          </p>
-                          <p>{`${addons.hammer.price} MXN`}</p>
-                        </li>
-                        ):
-                        (
-                          <></>
-                        )
-                        
-                      }
-                      {
-                        data.addOns.powerExtension ? (
-                          <li className="flex justify-between">
-                          <p className="flex h-1 gap-2">
-                            <div className="flex items-center justify-center h-1">
-                              <span className="block text-blue_800 text-[40px] h-16">
-                                .
-                              </span>
-                            </div>
-                            {`Power Extension`}
-                          </p>
-                          <p>{`${addons.jigsaw.price} MXN`}</p>
-                        </li>
-                        ) : (
-                          <></>
-                        )
-                      }
-                  {
-                    data.addOns.flexometer ? (
-                      <li className="flex justify-between">
-                    <p className="flex h-1 gap-2">
-                      <div className="flex items-center justify-center h-1">
-                        <span className="block text-blue_800 text-[40px] h-16">
-                          .
-                        </span>
-                      </div>
-                      {`Flexometer`}
-                    </p>
-                    <p>{`${addons.drill.price} MXN`}</p>
-                  </li>
-                    ) : (
-                      <></>
-                    )
-                  }
-                  {
-                    data.addOns.drill ? (
-                      <li className="flex justify-between">
+                  {data.addOns.screwdrivers ? (
+                    <li className="flex justify-between">
+                      <p className="flex h-1 gap-2">
+                        <div className="flex items-center justify-center h-1">
+                          <span className="block text-blue_800 text-[40px] h-16">
+                            .
+                          </span>
+                        </div>
+                        {`Screwdrivers`}
+                      </p>
+                      <p>{`${addons.hammer.price} MXN`}</p>
+                    </li>
+                  ) : (
+                    <></>
+                  )}
+                  {data.addOns.powerExtension ? (
+                    <li className="flex justify-between">
+                      <p className="flex h-1 gap-2">
+                        <div className="flex items-center justify-center h-1">
+                          <span className="block text-blue_800 text-[40px] h-16">
+                            .
+                          </span>
+                        </div>
+                        {`Power Extension`}
+                      </p>
+                      <p>{`${addons.jigsaw.price} MXN`}</p>
+                    </li>
+                  ) : (
+                    <></>
+                  )}
+                  {data.addOns.flexometer ? (
+                    <li className="flex justify-between">
+                      <p className="flex h-1 gap-2">
+                        <div className="flex items-center justify-center h-1">
+                          <span className="block text-blue_800 text-[40px] h-16">
+                            .
+                          </span>
+                        </div>
+                        {`Flexometer`}
+                      </p>
+                      <p>{`${addons.drill.price} MXN`}</p>
+                    </li>
+                  ) : (
+                    <></>
+                  )}
+                  {data.addOns.drill ? (
+                    <li className="flex justify-between">
                       <p className="flex h-1 gap-2">
                         <div className="flex items-center justify-center h-1">
                           <span className="block text-blue_800 text-[40px] h-16">
@@ -241,44 +231,39 @@ export default function SaveNewPlace(props: any) {
                       </p>
                       <p>{`${addons.screwdrivers.price} MXN`}</p>
                     </li>
-                    ) : (
-                      <></>
-                    )
-                  }
-                  {
-                    data.addOns.carpenterBrush ? (
-                      <li className="flex justify-between">
-                    <p className="flex h-1 gap-2">
-                      <div className="flex items-center justify-center h-1">
-                        <span className="block text-blue_800 text-[40px] h-16">
-                          .
-                        </span>
-                      </div>
-                      {` Carpenter Brush`}
-                    </p>
-                    <p>{`${addons.flexometer.price} MXN`}</p>
-                  </li>
-                    ) : (
-                      <></>
-                    )                 
-                  }
-                  {
-                    data.addOns.woodJigSaw ? (
-                      <li className="flex justify-between">
-                    <p className="flex h-1 gap-2">
-                      <div className="flex items-center justify-center h-1">
-                        <span className="block text-blue_800 text-[40px] h-16">
-                          .
-                        </span>
-                      </div>
-                      {`Wood Jigsaw`}
-                    </p>
-                    <p>{`${addons.markers.price} MXN`}</p>
-                  </li>
-                    ) : (
-                      <></>
-                    )                    
-                  }
+                  ) : (
+                    <></>
+                  )}
+                  {data.addOns.carpenterBrush ? (
+                    <li className="flex justify-between">
+                      <p className="flex h-1 gap-2">
+                        <div className="flex items-center justify-center h-1">
+                          <span className="block text-blue_800 text-[40px] h-16">
+                            .
+                          </span>
+                        </div>
+                        {` Carpenter Brush`}
+                      </p>
+                      <p>{`${addons.flexometer.price} MXN`}</p>
+                    </li>
+                  ) : (
+                    <></>
+                  )}
+                  {data.addOns.woodJigSaw ? (
+                    <li className="flex justify-between">
+                      <p className="flex h-1 gap-2">
+                        <div className="flex items-center justify-center h-1">
+                          <span className="block text-blue_800 text-[40px] h-16">
+                            .
+                          </span>
+                        </div>
+                        {`Wood Jigsaw`}
+                      </p>
+                      <p>{`${addons.markers.price} MXN`}</p>
+                    </li>
+                  ) : (
+                    <></>
+                  )}
                 </ul>
               </article>
               <h3 className="font-acme text-blue_800 text-suTitles my-2">
@@ -325,8 +310,7 @@ export default function SaveNewPlace(props: any) {
               <article className="flex justify-center">
                 <button
                   className="bg-primary text-white px-4 py-2 rounded-xl w-[134px]"
-                  onClick={handleClick}
-                >
+                  onClick={handleClick}>
                   Confirmar
                 </button>
               </article>
@@ -336,6 +320,6 @@ export default function SaveNewPlace(props: any) {
       ) : (
         <></>
       )}
-      </>
+    </>
   );
 }

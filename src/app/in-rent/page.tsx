@@ -32,7 +32,7 @@ export default function Rent() {
         return;
       });
   }, []);
-  console.log("ahora estas son las propiedades en el useState", properties);
+  // console.log("ahora estas son las propiedades en el useState", properties);
   function handleCardClick(_id: any) {
     localStorage.setItem("selectedPropertyId", _id);
   }

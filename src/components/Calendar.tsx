@@ -5,7 +5,7 @@ import moment from "moment";
 import { DatePicker, Space } from "antd";
 
 const onChange: DatePickerProps["onChange"] = (date, dateString) => {
-  console.log("esto es date", date);
+  // console.log("esto es date", date);
 };
 
 const CalendarMobile: React.FC = () => (
