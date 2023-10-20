@@ -6,7 +6,7 @@ import FooterMobile from "@/components/FooterMobile";
 
 import React, { useState, useEffect } from "react";
 import Extras from "../addItems/page";
-import Description from "../userInput/page";
+import Description from "../UserInput/page";
 import Confirm from "../ConfirmReservation/page";
 import OwnStepper from "@/components/OwnStepper";
 
