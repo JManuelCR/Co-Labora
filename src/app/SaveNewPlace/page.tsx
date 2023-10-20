@@ -7,23 +7,23 @@ import emergente from "../../../public/illustrations/Emergente.svg";
 import { dataConfirm } from "@/data/data-confirm";
 import { useState, useEffect } from "react";
 export default function SaveNewPlace(props: any) {
-  const formDataEntries:any = props.props
-  console.log("props", props.props)
- // ! ESTE ES EL QUE VA A MANDARSE EN EL FETCH  BD
- const formData = new FormData();
- formData.append('data',JSON.stringify(props.props.data));
- const imagesUpload = props.props.propertyImages;
- imagesUpload.forEach((image:any, index: any) => {
-  formData.append(`propertyImages-${index}`, image)
- });
- const documentsUpload = props.props.propertyDocuments
- documentsUpload.forEach((document: any, index: any) => {
-  formData.append(`propertyDocuments-${index}`, document);
- });
-const dniUpload = props.props.propertyDni;
-dniUpload.forEach((dni: any, index: any) => {
-  formData.append(`propertyDni-${index}`, dni); 
-});
+  const formDataEntries: any = props.props;
+  console.log("props", props.props);
+  // ! ESTE ES EL QUE VA A MANDARSE EN EL FETCH  BD
+  const formData = new FormData();
+  formData.append("data", JSON.stringify(props.props.data));
+  const imagesUpload = props.props.propertyImages;
+  imagesUpload.forEach((image: any, index: any) => {
+    formData.append(`propertyImages-${index}`, image);
+  });
+  const documentsUpload = props.props.propertyDocuments;
+  documentsUpload.forEach((document: any, index: any) => {
+    formData.append(`propertyDocuments-${index}`, document);
+  });
+  const dniUpload = props.props.propertyDni;
+  dniUpload.forEach((dni: any, index: any) => {
+    formData.append(`propertyDni-${index}`, dni);
+  });
 
   const [blur, setBlur] = useState(false);
   const [url, setUrl] = useState("");
@@ -55,22 +55,24 @@ dniUpload.forEach((dni: any, index: any) => {
   }, []);
 
   const handleClick = () => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
 
     fetch("http://localhost:8080/property/", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
       },
-      body:  formData,
-
+      body: formData,
     })
       .then((response) => {
         return response.json();
       })
       .then((response) => {
         console.log("response en raw de propiedad", response);
-      
+        setBlur(true);
+        setTimeout(() => {
+          window.location.replace(url);
+        }, 4000);
       });
   };
 

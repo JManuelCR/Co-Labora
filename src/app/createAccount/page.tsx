@@ -27,7 +27,7 @@ export default function CreateAccount({ props }: any) {
   } = useForm<inputs>();
 
   const onSubmit: SubmitHandler<inputs> = (data) => {
-    console.log("aca estea el submit")
+    console.log("aca estea el submit");
     localStorage.removeItem("otp");
     const userType = type;
     const toPass = {
@@ -35,7 +35,7 @@ export default function CreateAccount({ props }: any) {
       password: data.password,
       userType: userType,
     };
-    fetch("https://co-labora-backend.jmanuelc.dev/otp", {
+    fetch("https://co-labora-backend.jmanuelc.dev/otp/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
