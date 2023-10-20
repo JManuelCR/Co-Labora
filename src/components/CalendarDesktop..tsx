@@ -13,17 +13,19 @@ export default function CalendarDesktop(props:showCalendar )
     const [size, setSize] = useState<SizeType>('middle');
     const [renderTimer, setRenderTimer] = useState(false);
     const { show } = props;
-
+    const [startDate, setStartDate] = useState<Date>();
+    const [endDate, setEndDate] = useState<Date>();
     const handleSizeChange = (e: RadioChangeEvent) => {
       setSize(e.target.value);
     };
     setTimeout(() => {
         setRenderTimer(true)    
     }, 50)
-    if(renderTimer){
+    if(renderTimer && show){
         return (
             <Space direction="vertical" size={12}>
             <RangePicker 
+            open
             size={size}
             className='border-0 shadow-none text-[18px] text-blue_700 font-poppins font-500 p-0 w-[415px] flex gap-[20px] bg-[transparent]'
             disabledDate={(current) => {
@@ -31,6 +33,12 @@ export default function CalendarDesktop(props:showCalendar )
                 return current && current < moment(customDate, "DD-MM-YYYY");
               }} 
             format={"DD-MM-YYYY"}
+            onChange={(e:any) => {
+              if(e){
+                setStartDate(e[0].$d);
+                setEndDate(e[1].$d)
+              }
+            }}  
             />
           </Space>
         );

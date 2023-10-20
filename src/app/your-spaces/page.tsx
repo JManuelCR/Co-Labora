@@ -17,7 +17,7 @@ export default function Detail() {
             </h5>
           </div>
           <div className="p-5">
-            <Link href={"/reservation"}>
+            <Link href={"/new-property"}>
               <button className="bg-primary rounded-2xl px-3 py-1 text-white font-bold">
                 + Agregar
               </button>
