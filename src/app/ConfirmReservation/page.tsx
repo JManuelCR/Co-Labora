@@ -6,29 +6,31 @@ import Carpenter from "../../../public/temporal-images/holder-carpenter.webp";
 import emergente from "../../../public/illustrations/Emergente.svg";
 import { dataConfirm } from "@/data/data-confirm";
 import { ToastContainer, toast } from "react-toastify";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import CheckoutForm from "@/components/CheckoutForm";
 
 export default function ConfirmReservation() {
   const [data, setData] = useState();
   const getLocal = localStorage.getItem("property");
-  if (getLocal) {
-    const parseData = JSON.parse(getLocal);
-    setData(parseData);
-  } else {
-    toast.error("A ocurrido un error, favor de re-intentar la reserva", {
-      position: "top-center",
-      autoClose: 2500,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "colored",
-    });
-  }
-  // console.log(data);
+  useEffect(() => {
+    if (!getLocal) {
+      toast.error("A ocurrido un error, favor de re-intentar la reserva", {
+        position: "top-center",
+        autoClose: 2500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    } else {
+      const parseData = JSON.parse(getLocal);
+      setData(parseData);
+    }
+  }, [getLocal]); // Empty dependency array to ensure this effect runs only once on component mount
+
   const [blur, setBlur] = useState(false);
 
   const handleClick = () => {
