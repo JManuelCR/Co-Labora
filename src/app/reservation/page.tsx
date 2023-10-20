@@ -11,9 +11,27 @@ export default function ReservationSteps() {
   const [showComponent, setShowComponent] = useState(false);
   const [actualStep, setStep] = useState(0);
   const [data, setData] = useState();
+  const [images, setImages] = useState();
+  const [documents, setDocuments] = useState();
+  const [dni, setDni] = useState();
+  const formData = new FormData();
+  const [preview, setPreview] = useState<String | undefined>();
 
   const getPropertyData = (propertyData: any) => {
-    setData(propertyData);
+    try{
+      setData(propertyData);
+    }catch(err){
+      console.log("error", err)
+    }
+  };
+  const getPropertyImages = (propertyImages: any) => {
+    try{
+      setImages(propertyImages.images);
+      setDocuments(propertyImages.documents);
+      setDni(propertyImages.dni);
+    }catch(err){
+      console.log("error", err)
+    }
   };
 
   useEffect(() => {
@@ -26,11 +44,18 @@ export default function ReservationSteps() {
   function getSelectionComponent() {
     switch (actualStep) {
       case 0:
-        return <ImageUpload  />;
+        return <ImageUpload props={getPropertyImages} />;
       case 1:
         return <GeneralInfo props={getPropertyData} />; // ? pasar data de aca
       case 2:
-        return <SaveNewPlace props={data} />; // * para aca
+        return <SaveNewPlace props={
+          {
+            data: data,
+            propertyImages: images,
+            propertyDocuments: documents,
+            propertyDni: dni
+          }
+        } />; // * para aca
     }
   }
   function bookingConfirm() {
@@ -54,7 +79,8 @@ export default function ReservationSteps() {
               {actualStep !== 0 && actualStep <= 3 && (
                 <button
                   className="bg-white rounded-lg px-[18px] py-1 w-[134px] h-[35px] border border-primary buttonMobileShadow"
-                  onClick={() => setStep(actualStep - 1)}>
+                  onClick={() => setStep(actualStep - 1)}
+                >
                   <span className="text-[14px] font-[600] leading-[27px] text-primary tracking-[-0.28px]">
                     Ir atrás
                   </span>
@@ -71,7 +97,13 @@ export default function ReservationSteps() {
                     if (button) {
                       button.click();
                     }
-                  }}>
+                    const uploadImages =
+                      document.getElementById("upload-images");
+                    if (uploadImages) {
+                      uploadImages.click();
+                    }
+                  }}
+                >
                   <span className="text-[14px] font-[600] leading-[27px] text-white tracking-[-0.28px]">
                     Siguiente
                   </span>
