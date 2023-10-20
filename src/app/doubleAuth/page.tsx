@@ -17,12 +17,12 @@ export default function DoubleAuth(props: any) {
         return response.json();
       })
       .then((response) => {
-        console.log("esta es la respuesta raw", response);
-        console.log("este es el status de la respuesta", response.ok);
+        // console.log("esta es la respuesta raw", response);
+        // console.log("este es el status de la respuesta", response.ok);
         if (response.data.verified === true) {
           window.location.replace("/login");
         } else {
-          console.log("Error al crear el usuario");
+          // console.log("Error al crear el usuario");
           toast.error("Error al verificar tu codigo", {
             position: "top-center",
             autoClose: 2500,

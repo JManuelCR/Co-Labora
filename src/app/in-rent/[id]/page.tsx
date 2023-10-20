@@ -155,8 +155,11 @@ export default function Detail({ params }: any) {
       comments: property.comments.length,
       score: property.score,
       propertyImages: property.propertyImages[0],
+      startDay: startDate,
+      endDay: endDate,
     };
     localStorage.setItem("property", JSON.stringify(dataToPass));
+    // console.log(dataToPass);
   };
   const getDates = (data: dateData) => {
     setStartDate(moment(data.startDate).format("DD-MM-YYYY"));

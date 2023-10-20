@@ -78,7 +78,7 @@ export default function GeneralInfo({ props }: any) {
       },
     };
     props(toFetch);
-    console.log("esta es la data de la propiedad del lado del hijo", toFetch);
+    // console.log("esta es la data de la propiedad del lado del hijo", toFetch);
   };
 
   return (

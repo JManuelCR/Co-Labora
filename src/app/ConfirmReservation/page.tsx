@@ -5,11 +5,30 @@ import confirm from "../../../public/illustrations/image 42.svg";
 import Carpenter from "../../../public/temporal-images/holder-carpenter.webp";
 import emergente from "../../../public/illustrations/Emergente.svg";
 import { dataConfirm } from "@/data/data-confirm";
-import { MouseEventHandler, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import { useState } from "react";
 import Link from "next/link";
 import CheckoutForm from "@/components/CheckoutForm";
 
 export default function ConfirmReservation() {
+  const [data, setData] = useState();
+  const getLocal = localStorage.getItem("property");
+  if (getLocal) {
+    const parseData = JSON.parse(getLocal);
+    setData(parseData);
+  } else {
+    toast.error("A ocurrido un error, favor de re-intentar la reserva", {
+      position: "top-center",
+      autoClose: 2500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  }
+  // console.log(data);
   const [blur, setBlur] = useState(false);
 
   const handleClick = () => {
@@ -24,6 +43,18 @@ export default function ConfirmReservation() {
   const tax = total * 0.16;
   return (
     <>
+      <ToastContainer
+        position="top-center"
+        autoClose={2500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
       {blur ? (
         <section className="flex items-center justify-center h-screen w-screen absolute top-0 left-0 z-20 ">
           <Image

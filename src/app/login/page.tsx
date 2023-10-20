@@ -16,7 +16,7 @@ export default function Login() {
     formState: { errors },
   } = useForm<inputs>();
   const onSubmit: SubmitHandler<inputs> = (data) => {
-    console.log("esto es la data del login", data);
+    // console.log("esto es la data del login", data);
     fetch("https://co-labora-backend.jmanuelc.dev/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -31,7 +31,7 @@ export default function Login() {
           localStorage.setItem("token", response.data);
           window.location.replace("/");
         } else {
-          console.log("no se encontro el usuario");
+          // console.log("no se encontro el usuario");
           toast.error("No se encontro el usuario", {
             position: "top-center",
             autoClose: 2500,
@@ -45,7 +45,7 @@ export default function Login() {
         }
       })
       .catch(() => {
-        console.log("Error en los inputs, intentar de nuevo");
+        // console.log("Error en los inputs, intentar de nuevo");
       });
   };
 

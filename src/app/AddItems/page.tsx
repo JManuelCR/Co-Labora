@@ -24,7 +24,7 @@ export default function AddItems() {
     setProperty(parsedInfo);
     setIsLoading(false);
   }, []);
-  console.log(property);
+  // console.log(property);
   const [checkboxes, setCheckboxes] = useState<{ [key: string]: boolean }>({
     screwdrivers: false,
     powerExtension: false,
@@ -40,7 +40,7 @@ export default function AddItems() {
       [name]: checked,
     });
   };
-  console.log("toolbox", checkboxes);
+  // console.log("toolbox", checkboxes);
   return (
     <>
       {isLoading ? (

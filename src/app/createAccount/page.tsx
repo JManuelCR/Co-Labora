@@ -17,7 +17,7 @@ export default function CreateAccount({ props }: any) {
     setType("space");
   };
   useEffect(() => {
-    console.log(type);
+    // console.log(type);
   }, [type]);
 
   const {
@@ -27,7 +27,7 @@ export default function CreateAccount({ props }: any) {
   } = useForm<inputs>();
 
   const onSubmit: SubmitHandler<inputs> = (data) => {
-    console.log("aca estea el submit");
+    // console.log("aca estea el submit");
     localStorage.removeItem("otp");
     const userType = type;
     const toPass = {
@@ -52,7 +52,7 @@ export default function CreateAccount({ props }: any) {
         localStorage.setItem("id", id);
       })
       .catch((error) => {
-        console.log("fetch error", error);
+        // console.log("fetch error", error);
       });
     props(toPass);
   };
