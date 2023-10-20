@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 export default function Rent() {
   interface Property {
     name: string;
-    address: string;
+    location: any;
     ratings: number;
     price: number;
     comments: string;
@@ -50,7 +50,7 @@ export default function Rent() {
           <div key={index}>
             <CardsAvailable
               name={card.name}
-              address={card.address}
+              location={card.location}
               score={card.score}
               price={card.price}
               comments={card.comments}
