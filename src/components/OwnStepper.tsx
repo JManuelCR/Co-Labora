@@ -2,12 +2,12 @@ import { Stepper } from "react-form-stepper";
 import { StepSelected } from "@/types/stepper.types";
 
 export default function OwnStepper(config: StepSelected) {
-  const { stepOne, stepTwo, stepThree, actualStep } = config;
+  const { stepOne, stepTwo, actualStep } = config;
   return (
     <div className="w-full flex justify-center items-center h-auto">
       <div className="w-[420px]">
         <Stepper
-          steps={[{ label: stepOne }, { label: stepTwo }, { label: stepThree }]}
+          steps={[{ label: stepOne }, { label: stepTwo }]}
           activeStep={actualStep}
           connectorStateColors={true}
           className="text-blue_800 text-[18px] font-[400] leading-[25px] text-center"

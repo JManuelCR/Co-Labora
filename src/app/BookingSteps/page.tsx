@@ -24,10 +24,8 @@ export default function BookingSteps() {
   function gatSelectionStep() {
     switch (actualStep) {
       case 0:
-        return <Extras />;
-      case 1:
         return <Description />;
-      case 2:
+      case 1:
         return <Confirm />;
     }
   }
@@ -40,9 +38,8 @@ export default function BookingSteps() {
           <div className="flex flex-row justify-center">
             <OwnStepper
               actualStep={actualStep}
-              stepOne="Agregar extras"
-              stepTwo="Tu referencia"
-              stepThree="Confirma"
+              stepOne="Tu referencia"
+              stepTwo="Confirma"
             />
           </div>
 
