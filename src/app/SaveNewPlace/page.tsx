@@ -6,19 +6,25 @@ import emergente from "../../../public/illustrations/Emergente.svg";
 import { dataConfirm } from "@/data/data-confirm";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { Anybody } from "next/font/google";
 export default function SaveNewPlace(props: any) {
   const formDataEntries:any = props.props
   console.log("props", props.props)
  // ! ESTE ES EL QUE VA A MANDARSE EN EL FETCH  BD
  const formData = new FormData();
-//  formData.append('data',JSON.stringify(props.props.data));
- formData.append('propertyImages', JSON.stringify(props.props.propertyImages));
- formData.append('propertyDocuments', JSON.stringify(props.props.propertyDocuments));
- formData.append('propertyDni', JSON.stringify(props.props.propertyDni));
-//  console.log(formData.get('data'))
- console.log(formData.get('propertyImages'))
- console.log(formData.get('propertyDocuments'))
- console.log(formData.get('propertyDni'))
+ formData.append('data',JSON.stringify(props.props.data));
+ const imagesUpload = props.props.propertyImages;
+ imagesUpload.forEach((image:any, index: any) => {
+  formData.append(`propertyImages-${index}`, image)
+ });
+ const documentsUpload = props.props.propertyDocuments
+ documentsUpload.forEach((document: any, index: any) => {
+  formData.append(`propertyDocuments-${index}`, document);
+ });
+const dniUpload = props.props.propertyDni;
+dniUpload.forEach((dni: any, index: any) => {
+  formData.append(`propertyDni-${index}`, dni); 
+});
 
   const [blur, setBlur] = useState(false);
   const [url, setUrl] = useState("");
@@ -50,13 +56,11 @@ export default function SaveNewPlace(props: any) {
   }, []);
 
   const handleClick = () => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token');
 
     fetch("http://localhost:8080/property/", {
       method: "POST",
       headers: {
-        'Content-type': 'multipart/form-data; boundary=<calculated when request is sent>',
-        'Content-Length': '<calculated when request is sent>',
         Authorization: `Bearer ${token}`,
       },
       body:  formData,
@@ -67,16 +71,7 @@ export default function SaveNewPlace(props: any) {
       })
       .then((response) => {
         console.log("response en raw de propiedad", response);
-        if (response.success) {
-          setBlur(true);
-          setTimeout(() => {
-            window.location.replace(url);
-          }, 4000);
-        } else {
-          console.log(
-            "error al crear la propiedad, puede ser el response.success"
-          );
-        }
+      
       });
   };
 

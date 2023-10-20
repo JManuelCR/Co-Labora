@@ -23,6 +23,9 @@ export default function ImageUpload({ props }: any) {
   const onSubmit = (data: any) => console.log(data);
 
   const submit = (): any => {
+    console.log("upload files",
+    images,
+    "docs", files, "dni", identification)
     const toUpload = {
       images: images,
       documents: files,
@@ -31,15 +34,14 @@ export default function ImageUpload({ props }: any) {
     props(toUpload);
   };
 
-  const PropertyImages = (images: any) => {
-    setImages(images);
-    console.log("images", images)
+  const PropertyImages = (image: any) => {
+    setImages(image);
   };
-  const PropertyFiles = (images: any) => {
-    setFiles(images);
+  const PropertyFiles = (docs: any) => {
+    setFiles(docs);
   };
-  const UserDNI = (images: any) => {
-    setIdentification(images);
+  const UserDNI = (dni: any) => {
+    setIdentification(dni);
   };
   const clearPropertyImages = () => {
     return setImages(undefined);
