@@ -15,6 +15,7 @@ export default function Rent() {
     score: Number;
     onClicked: Function;
     _id: String;
+    propertyImages: string;
   }
   const [properties, setProperties] = useState<Property[]>([]);
   useEffect(() => {
@@ -55,6 +56,7 @@ export default function Rent() {
               comments={card.comments}
               ratings={card.ratings}
               onClicked={() => handleCardClick(card._id)}
+              image={card.propertyImages[0]}
               _id={card._id}
             />
           </div>

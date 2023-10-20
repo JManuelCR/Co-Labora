@@ -1,5 +1,4 @@
 import Image from "next/image";
-import image from "../../public/temporal-images/holder-carpenter.webp";
 import Card from "@/types/card.types";
 import SingleStar from "../../public/icons/Single-Star-icon.svg";
 import Link from "next/link";
@@ -7,7 +6,8 @@ export default function CardsAvailable(props: Card) {
   function onClick(_id: any) {
     localStorage.setItem("selectedPropertyId", _id);
   }
-  const { name, address, ratings, price, comments, score, onClicked } = props;
+  const { name, address, ratings, price, comments, score, onClicked, image } =
+    props;
   const ratingList = ratings;
   return (
     <article className="w-[296px] h-auto flex flex-col  border border-solid border-primary rounded-2xl">
