@@ -1,6 +1,6 @@
 export default interface Card {
   name: string;
-  address: string;
+  location: any;
   ratings: number;
   price: number;
   comments: string;

@@ -336,6 +336,6 @@ export default function SaveNewPlace(props: any) {
       ) : (
         <></>
       )}
-    </>
+      </>
   );
 }
