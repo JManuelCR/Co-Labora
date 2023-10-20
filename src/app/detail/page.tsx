@@ -13,17 +13,77 @@ import CalendarDesktop from "@/components/CalendarDesktop.";
 import Link from "next/link";
 
 const stars = [0, 1, 2];
-const amenities = {
-  climate: true,
-  petFriendly: true,
-  wifi: true,
-  reception: true,
-  cleanService: true,
-  parking: true,
-};
-
+interface Property {
+  name: string;
+  comments: string;
+  description: string;
+  price: string;
+  location: {
+    city: string;
+    neighbor: string;
+    number: string;
+    street: string;
+    zip: string;
+    mapCoordinates: {
+      lat: number;
+      lng: number;
+    };
+  };
+  amenities: {
+    wifi: boolean;
+    reception: boolean;
+    petFriendly: boolean;
+    parking: boolean;
+    cleanService: boolean;
+    airConditioner: boolean;
+  };
+  score: number;
+  measurements: {
+    long: string;
+    broad: string;
+  };
+  workTime: {
+    close: string;
+    open: string;
+  };
+  propertyImages: [string];
+}
 export default function Detail() {
-  const [property, setProperty] = useState({});
+  const [property, setProperty] = useState<Property>({
+    name: "test",
+    comments: "test",
+    description: "test",
+    price: "0",
+    location: {
+      city: "test",
+      neighbor: "test",
+      number: "test",
+      street: "test",
+      zip: "test",
+      mapCoordinates: {
+        lat: 19.420831779520512,
+        lng: -99.13501950384934,
+      },
+    },
+    amenities: {
+      wifi: false,
+      reception: false,
+      petFriendly: false,
+      parking: false,
+      cleanService: false,
+      airConditioner: false,
+    },
+    score: 5,
+    measurements: {
+      long: "1",
+      broad: "1",
+    },
+    workTime: {
+      close: "19:00",
+      open: "8:00",
+    },
+    propertyImages: [""],
+  });
   const _id = localStorage.getItem("selectedPropertyId");
   useEffect(() => {
     if (_id) {
@@ -47,7 +107,10 @@ export default function Detail() {
   console.log("esta es la propiedad en el useState", property);
   const libraries = useMemo(() => ["places"], []);
   const mapCenter = useMemo(
-    () => ({ lat: 19.420831779520512, lng: -99.13501950384934 }),
+    () => ({
+      lat: property.location.mapCoordinates.lat,
+      lng: property.location.mapCoordinates.lng,
+    }),
     []
   );
   const mapOptions = useMemo<google.maps.MapOptions>(
@@ -88,7 +151,7 @@ export default function Detail() {
           <header>
             <div className="flex flex-row w-full justify-center items-center gap-[18px]">
               <div className="relative w-[358px] h-[245px] md:w-[460px] md:h-[280px] lg:w-[520px] lg:h-[380px] xl:w-[600px] xl:h-[420px]">
-                <SliderRent image={images} />
+                <SliderRent image={property.propertyImages} />
               </div>
               <div className="hidden lg:block lg:w-[490px] lg:h-[400px] xl:w-[528px] xl:h-[420px]">
                 {!isLoaded ? (
@@ -98,16 +161,16 @@ export default function Detail() {
                     options={mapOptions}
                     zoom={18}
                     center={{
-                      lat: 19.420831779520512,
-                      lng: -99.13501950384934,
+                      lat: property.location.mapCoordinates.lat,
+                      lng: property.location.mapCoordinates.lng,
                     }}
                     mapTypeId={google.maps.MapTypeId.ROADMAP}
                     mapContainerStyle={{ width: "550px", height: "420px" }}
                     onLoad={() => console.log("Map Component Loaded...")}>
                     <MarkerF
                       position={{
-                        lat: 19.420831779520512,
-                        lng: -99.13501950384934,
+                        lat: property.location.mapCoordinates.lat,
+                        lng: property.location.mapCoordinates.lng,
                       }}
                       onLoad={() => console.log("Marker Loaded")}
                     />
@@ -121,23 +184,21 @@ export default function Detail() {
               {property.name || "Lorem Ipsum"}
             </h1>
             <div className="flex flex-col lg:flex-row-reverse">
-              <h2 className="font-acme text-blue_800 text-[40px] font-normal tracking-[-0.8px] leading-[36px] lg:ps-[67px]">{`$680.00 MXN / día`}</h2>
+              <h2 className="font-acme text-blue_800 text-[40px] font-normal tracking-[-0.8px] leading-[36px] lg:ps-[67px]">{`$${property.price} MXN / día`}</h2>
               <article className="flex gap-[6px] xl:ps-[100px] md:ps-[24px] max-lg:mt-3">
                 <div className="flex ">
-                  {stars.map((act, index) => {
-                    return (
-                      <Image
-                        src={"/icons/Star-Shape.svg"}
-                        alt={""}
-                        width={24}
-                        height={24}
-                        key={index}
-                      />
-                    );
-                  })}
+                  {Array.from({ length: property.score }, (_, index) => (
+                    <Image
+                      src="/icons/Star-Shape.svg"
+                      alt="Star"
+                      width={24}
+                      height={24}
+                      key={index}
+                    />
+                  ))}
                 </div>
                 <div className="flex text-blue_500 font-poppins gap-1 justify-center items-center tracking-[-0.2px] leading-[22px]">
-                  <span>{property.comments || "0"}</span>
+                  <span>{property.comments.length}</span>
                   <p>evaluaciones</p>
                 </div>
               </article>
@@ -156,14 +217,17 @@ export default function Detail() {
                 <GoogleMap
                   options={mapOptions}
                   zoom={14}
-                  center={{ lat: 19.420831779520512, lng: -99.13501950384934 }}
+                  center={{
+                    lat: property.location.mapCoordinates.lat,
+                    lng: property.location.mapCoordinates.lng,
+                  }}
                   mapTypeId={google.maps.MapTypeId.ROADMAP}
                   mapContainerStyle={{ width: "328px", height: "230px" }}
                   onLoad={() => console.log("Map Component Loaded...")}>
                   <MarkerF
                     position={{
-                      lat: 19.420831779520512,
-                      lng: -99.13501950384934,
+                      lat: property.location.mapCoordinates.lat,
+                      lng: property.location.mapCoordinates.lng,
                     }}
                     onLoad={() => console.log("Marker Loaded")}
                   />
@@ -176,7 +240,7 @@ export default function Detail() {
               </h3>
               <ul className="max-w-[450px] flex flex-col lg:flex-row lg:gap-[32px] max-lg:gap-3">
                 <div className="flex flex-col gap-3">
-                  {amenities.climate ? (
+                  {property.amenities.airConditioner === true ? (
                     <li className="flex gap-[5px] items-center">
                       <Image
                         src={"/icons/Ice.svg"}
@@ -191,7 +255,7 @@ export default function Detail() {
                   ) : (
                     <></>
                   )}
-                  {amenities.petFriendly ? (
+                  {property.amenities.petFriendly ? (
                     <li className="flex gap-[5px] items-center">
                       <Image
                         src={"/icons/paw-outline.svg"}
@@ -206,7 +270,7 @@ export default function Detail() {
                   ) : (
                     <></>
                   )}
-                  {amenities.wifi ? (
+                  {property.amenities.wifi === true ? (
                     <li className="flex gap-[5px] items-center">
                       <Image
                         src={"/icons/wifi.svg"}
@@ -223,7 +287,7 @@ export default function Detail() {
                   )}
                 </div>
                 <div className="flex flex-col gap-3">
-                  {amenities.reception ? (
+                  {property.amenities.reception === true ? (
                     <li className="flex gap-[5px] items-center">
                       <Image
                         src={"/icons/Person.svg"}
@@ -238,7 +302,7 @@ export default function Detail() {
                   ) : (
                     <></>
                   )}
-                  {amenities.cleanService ? (
+                  {property.amenities.cleanService === true ? (
                     <li className="flex gap-[5px] items-center">
                       <Image
                         src={"/icons/Award.svg"}
@@ -253,7 +317,7 @@ export default function Detail() {
                   ) : (
                     <></>
                   )}
-                  {amenities.parking ? (
+                  {property.amenities.parking === true ? (
                     <li className="flex gap-[5px] items-center">
                       <Image
                         src={"/icons/car-outline.svg"}
@@ -286,7 +350,7 @@ export default function Detail() {
                     height={24}
                   />
                   <p className="font-poppins text-[18px] font-normal leading-[27px] tracking-[-0.36px] text-blue_800">
-                    {`Av. Lucas Alamán 160`}
+                    {`${property.location.street} ${property.location.number} , ${property.location.neighbor}`}
                   </p>
                 </li>
                 <li className="flex gap-[4px]">
@@ -297,7 +361,7 @@ export default function Detail() {
                     height={24}
                   />
                   <p className="font-poppins text-[18px] font-normal leading-[27px] tracking-[-0.36px] text-blue_800">
-                    {`2,5 x 2 m2`}
+                    {`${property.measurements.long} x ${property.measurements.broad} m2`}
                   </p>
                 </li>
               </ul>
@@ -312,7 +376,7 @@ export default function Detail() {
                   height={24}
                 />
                 <span className="font-poppins text-[18px] font-normal leading-[27px] tracking-[-0.36px] text-blue_800">
-                  {`10:00 am - 8:00 pm`}
+                  {`${property.workTime.open} - ${property.workTime.close}`}
                 </span>
               </div>
               <div id="selectDatesDesktop" className="mt-[30px] hidden lg:flex">

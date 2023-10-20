@@ -7,4 +7,5 @@ export default interface Card {
   score: Number;
   onClicked: Function;
   _id: String;
+  image: string;
 }

@@ -51,7 +51,6 @@ export default function SaveNewPlace(props: any) {
   imagesUpload.forEach((image: any, index: any) => {
     formData.append(`propertyImages-${index}`, image);
   });
-
   const documentsUpload = props.props.propertyDocuments;
   documentsUpload.forEach((document: any, index: any) => {
     formData.append(`propertyDocuments-${index}`, document);
@@ -109,6 +108,10 @@ export default function SaveNewPlace(props: any) {
       })
       .then((response) => {
         console.log("response en raw de propiedad", response);
+        setBlur(true);
+        setTimeout(() => {
+          window.location.replace(url);
+        }, 4000);
       });
   };
 
