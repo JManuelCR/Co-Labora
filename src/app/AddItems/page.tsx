@@ -3,9 +3,20 @@ import FooterMobile from "@/components/FooterMobile";
 import Footer from "@/components/Footer";
 import CardItems from "@/components/CardItems";
 import CardReservationDetail from "@/components/CardReservationDetail";
+import { useState } from "react";
 
 
-export default function addItems() {
+export default function AddItems() {
+  const [checkboxes, setCheckboxes] = useState<{
+    [key: string]: boolean;
+  }>({
+    wifi: false,
+    parking: false,
+    airConditioner: false,
+    reception: false,
+    petFriendly: false,
+    cleanService: false,
+  });
   return (
     <>
       <section className="mx-[27px] md: my-10 lg:flex lg:mx-40 items-center 2xl:mx-[400px] 2xl:mb-20 lg:my-[6rem] gap-8 ">
