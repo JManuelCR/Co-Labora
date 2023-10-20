@@ -19,7 +19,7 @@ export default function Rent() {
   }
   const [properties, setProperties] = useState<Property[]>([]);
   useEffect(() => {
-    fetch("http://localhost:8080/property", {
+    fetch("https://co-labora-backend.jmanuelc.dev/property", {
       headers: {
         "Content-Type": "application/json",
       },
