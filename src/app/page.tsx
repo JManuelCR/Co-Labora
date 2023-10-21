@@ -28,7 +28,6 @@ export default function Home() {
 
           <main className="flex flex-col items-center justify-between h-auto max-lg:w-full">
             <Hero />
-            {/* <h1 className="text-blue_800">This is hero</h1> */}
             <section className="flex flex-col items-center justify-center px-[40px] lg:px-[80px] xl:px-[156px] pt-[56px] max-sm:pt-0 w-full">
               <div className="w-[520px] border-secondary border-solid border-b-[4px] mb-[60px] max-md:hidden">
                 <h2 className=" text-[40px] text-center font-acme text-blue_800">

@@ -1,4 +1,4 @@
-import CardReservationDetail from "@/components/CardReservationDetail";
+'use client'
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Star from "../../../public/icons/star-icon.webp";
