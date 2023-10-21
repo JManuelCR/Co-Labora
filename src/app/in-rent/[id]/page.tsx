@@ -52,8 +52,8 @@ interface Property {
 }
 export default function Detail({ params }: any) {
   const [isDesktop, setIsDesktop] = useState(false);
-  const [startDate, setStartDate] = useState<String>();
-  const [endDate, setEndDate] = useState<String>();
+  const [startDate, setStartDate] = useState<String>("");
+  const [endDate, setEndDate] = useState<String>("");
   const [property, setProperty] = useState<Property>({
     name: "test",
     comments: "test",

@@ -1,4 +1,4 @@
-"client";
+"use client";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useEffect, useState } from "react";
 import Link from "next/link";
@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function UserInput() {
   const [desc, setDesc] = useState("");
   const id = localStorage.getItem("id");
-  const token = localStorage.getItem("token");
+const token = localStorage.getItem("token");
   useEffect(() => {
     fetch(`http://localhost:8080/users/${id} `, {
       headers: {

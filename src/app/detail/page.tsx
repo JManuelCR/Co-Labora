@@ -84,10 +84,10 @@ export default function Detail() {
     },
     propertyImages: [""],
   });
-  const _id = localStorage.getItem("selectedPropertyId");
+  const _id: string | null = localStorage.getItem("selectedPropertyId");
   useEffect(() => {
     if (_id) {
-      fetch(`http://localhost:8080/property/${_id}`, {
+      fetch(`https://co-labora-backend.jmanuelc.dev/property/${_id}`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -152,7 +152,7 @@ export default function Detail() {
       comments: property.comments.length,
       score: property.score,
     };
-    localStorage.setItem("property", JSON.stringify(dataToPass));
+     localStorage.setItem("property", JSON.stringify(dataToPass));
   };
 
   return (

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import Image from "next/image";
 import confirm from "../../../public/illustrations/image 42.svg";
@@ -11,7 +12,7 @@ export default function SaveNewPlace(props: any) {
   const formDataEntries: any = props.props;
   // console.log("props", props.props);
   // ! ESTE ES EL QUE VA A MANDARSE EN EL FETCH  BD
-  const data = props.props.data;
+  const data = props.props && props.props.data ? props.props.data : {};
   const [render, setRender] = useState(false);
   useEffect(() => {
     setRender(data !== undefined);
@@ -65,7 +66,7 @@ export default function SaveNewPlace(props: any) {
   useEffect(() => {
     const getId = localStorage.getItem("id");
     const fetchData = async () => {
-      const data = {
+      const data: any = {
         id: getId,
       };
 
