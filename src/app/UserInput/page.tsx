@@ -5,49 +5,52 @@ import Link from "next/link";
 
 export default function UserInput() {
   const [desc, setDesc] = useState("");
-  const id = localStorage.getItem("id");
-  const token = localStorage.getItem("token");
   useEffect(() => {
-    fetch(`http://localhost:8080/users/${id} `, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((response) => {
-        return response.json();
-      })
-      .then((response) => {
-        // console.log("esta es la respuesta del getuser", response);
-        if (response.data.description) {
-          setDesc(response.data.description);
-        }
-      });
-  });
-
-  const onSubmit = (data: any) => {
-    console.log("esta es la data del user description", data);
-    console.log("esto es el userId", id);
-    console.log("esto es el token", token);
-    if (data.userDesc) {
-      fetch(`http://localhost:8080/users/`, {
-        method: "PATCH",
+    const token = localStorage.getItem("token");
+    if (token) {
+      const [header, payload, signature] = token.split(".");
+      const decodedPayload = JSON.parse(atob(payload));
+      const id = decodedPayload.id;
+      fetch(`http://localhost:8080/users/${id}`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({
-          id: id,
-          description: data.userDesc,
-        }),
       })
+        .then((response) => response.json())
         .then((response) => {
-          return response.json();
+          console.log("Esta es la respuesta del getUser", response);
+          if (response.data) {
+            setDesc(response.data);
+          }
         })
-        .then((response) => {
-          // console.log("esta es la respuesta al patch", response);
+        .catch((error) => {
+          alert(`${error} error al hacer el fetch`);
+          // Aquí puedes manejar el error de la manera que desees
         });
     }
+  }, []);
+
+  const onSubmit = (data: any) => {
+    // if (data.userDesc) {
+    //   fetch(`http://localhost:8080/users/`, {
+    //     method: "PATCH",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //       Authorization: `Bearer ${token}`,
+    //     },
+    //     body: JSON.stringify({
+    //       id: id,
+    //       description: data.userDesc,
+    //     }),
+    //   })
+    //     .then((response) => {
+    //       return response.json();
+    //     })
+    //     .then((response) => {
+    //       console.log("esta es la respuesta al patch", response);
+    //     });
+    // }
   };
 
   const {

@@ -16,7 +16,6 @@ export default function Login() {
     formState: { errors },
   } = useForm<inputs>();
   const onSubmit: SubmitHandler<inputs> = (data) => {
-    // console.log("esto es la data del login", data);
     fetch("https://co-labora-backend.jmanuelc.dev/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -28,6 +27,7 @@ export default function Login() {
       .then((response) => response.json())
       .then((response) => {
         if (response?.data) {
+          console.log("esto es el data ", response.data);
           localStorage.setItem("token", response.data);
           window.location.replace("/");
         } else {
