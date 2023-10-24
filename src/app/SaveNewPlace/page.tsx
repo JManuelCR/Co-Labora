@@ -4,7 +4,7 @@ import Image from "next/image";
 import confirm from "../../../public/illustrations/image 42.svg";
 import Carpenter from "../../../public/temporal-images/holder-carpenter.webp";
 import Stripe from "../../../public/temporal-images/stripe.png";
-import emergente from "../../../public/illustrations/Emergente.svg";
+import emergente from "../../../public/illustrations/Group 2198.png";
 import { dataConfirm } from "@/data/data-confirm";
 import { useState, useEffect, useRef } from "react";
 import loadConfig from "next/dist/server/config";

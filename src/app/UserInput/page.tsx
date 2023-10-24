@@ -5,30 +5,31 @@ import Link from "next/link";
 
 export default function UserInput() {
   const [desc, setDesc] = useState("");
-  const id = localStorage.getItem("id");
-const token = localStorage.getItem("token");
+  const [id, setId] = useState("");
+  const token = localStorage.getItem("token");
+  console.log("token", token);
+
   useEffect(() => {
-    fetch(`http://localhost:8080/users/${id} `, {
+    if (token) {
+      const [header, payload, signature] = token.split(".");
+      const decodedPayload = JSON.parse(atob(payload));
+      setId(decodedPayload.id);
+    }
+  }, [token]);
+  useEffect(() => {
+    fetch(`http://localhost:8080/users/${id}`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
     })
+      .then((response) => response.json())
       .then((response) => {
-        return response.json();
-      })
-      .then((response) => {
-        // console.log("esta es la respuesta del getuser", response);
-        if (response.data.description) {
-          setDesc(response.data.description);
-        }
+        console.log("esta es la respuesta al getID", response);
       });
-  });
+  }, [token, id]);
 
   const onSubmit = (data: any) => {
-    console.log("esta es la data del user description", data);
-    console.log("esto es el userId", id);
-    console.log("esto es el token", token);
     if (data.userDesc) {
       fetch(`http://localhost:8080/users/`, {
         method: "PATCH",
@@ -45,7 +46,7 @@ const token = localStorage.getItem("token");
           return response.json();
         })
         .then((response) => {
-          // console.log("esta es la respuesta al patch", response);
+          console.log("esta es la respuesta al patch", response);
         });
     }
   };

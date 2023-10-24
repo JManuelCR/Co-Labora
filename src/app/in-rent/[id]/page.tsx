@@ -49,6 +49,8 @@ interface Property {
     open: string;
   };
   propertyImages: [string];
+  userId: string;
+  _id: string;
 }
 export default function Detail({ params }: any) {
   const [isDesktop, setIsDesktop] = useState(false);
@@ -88,6 +90,8 @@ export default function Detail({ params }: any) {
       open: "8:00",
     },
     propertyImages: [""],
+    userId: "",
+    _id: "",
   });
   useEffect(() => {
     if (params.id) {
@@ -119,7 +123,7 @@ export default function Detail({ params }: any) {
       window.removeEventListener("resize", checkWindowWidth);
     };
   });
-
+  // console.log("property", property);
   const key = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!; // ! aqui va la llave de google maps
   const libraries = useMemo(() => ["places"], []);
   const mapCenter = useMemo(
@@ -155,8 +159,11 @@ export default function Detail({ params }: any) {
       comments: property.comments.length,
       score: property.score,
       propertyImages: property.propertyImages[0],
-      startDay: startDate,
-      endDay: endDate,
+      startDate: startDate,
+      endDate: endDate,
+      userId: property.userId,
+      _id: property._id,
+      price: property.price,
     };
     localStorage.setItem("property", JSON.stringify(dataToPass));
     // console.log(dataToPass);
