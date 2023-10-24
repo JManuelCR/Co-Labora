@@ -1,4 +1,4 @@
-"client";
+"use client";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useEffect, useState } from "react";
 import Link from "next/link";
@@ -15,7 +15,7 @@ export default function UserInput() {
     }
   }, [token]);
   useEffect(() => {
-    fetch(`http://localhost:8080/users/${id}`, {
+    fetch(`https://co-labora-backend.jmanuelc.dev/users/${id}`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
