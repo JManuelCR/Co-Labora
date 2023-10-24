@@ -17,7 +17,7 @@ export default function UserInput() {
     }
   }, [token]);
   useEffect(() => {
-    fetch(`http://localhost:8080/users/${id}`, {
+    fetch(`https://co-labora-backend.jmanuelc.dev/users/${id}`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
