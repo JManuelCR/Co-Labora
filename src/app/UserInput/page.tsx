@@ -1,4 +1,4 @@
-"client";
+"use client";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useEffect, useState } from "react";
 import Link from "next/link";
@@ -8,6 +8,7 @@ export default function UserInput() {
   const [id, setId] = useState("");
   const token = localStorage.getItem("token");
   console.log("token", token);
+
   useEffect(() => {
     if (token) {
       const [header, payload, signature] = token.split(".");

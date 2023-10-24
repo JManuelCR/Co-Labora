@@ -66,15 +66,6 @@ export default function Navbar(props: Navbar) {
                 En renta
               </Link>
             </li>
-            <li>
-              {" "}
-              <Link
-                href={"/contacts"}
-                className={isActive === "contacts" ? "navItemFocused" : ""}
-                onClick={handleNavContactsClick}>
-                Contáctanos
-              </Link>
-            </li>
           </ul>
           <span className="flex gap-[14px]  border border-secondary rounded-[42px] py-[6px] px-4 ">
             <button onClick={toogleMenu}>
