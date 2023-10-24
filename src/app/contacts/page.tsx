@@ -1,18 +1,25 @@
+'use client'
 import Navbar from "@/components/Navbar";
 import Link from "next/link";
+import React, { useState } from 'react';
 export default function Detail() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
+
+  const handleChange = (e:any) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = (e:any) => {
+    e.preventDefault();
+    console.log('Formulario enviado:', formData);
+  };
   return (
     <>
-    <Navbar page="contacts"/>
-      <h1 className="font-Acme">It works</h1>
-      <Link href={"/"}>Home</Link>
-      <Link href={"/Rent"}>
-        <div className="bg-primary w-10 h-10">hola</div>
-        <div className="bg-secondary w-10 h-10 mt-3">hola</div>
-      </Link>
-      <div>
-        <h2 className="decoration-solid text-primary underline">esto es un texto de prueba</h2>
-      </div>
     </>
   );
 }

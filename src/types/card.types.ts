@@ -1,7 +1,11 @@
 export default interface Card {
   name: string;
-  address: string;
-  rating: number;
+  location: any;
+  ratings: number;
   price: number;
-  opinions: number;
+  comments: string;
+  score: Number;
+  onClicked: Function;
+  _id: String;
+  image: string;
 }

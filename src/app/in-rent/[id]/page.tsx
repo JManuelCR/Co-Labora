@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import { GoogleMap, MarkerF, useLoadScript } from "@react-google-maps/api";
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, use } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FooterMobile from "@/components/FooterMobile";
@@ -11,6 +11,8 @@ import SliderRent from "@/components/SliderRentDetail";
 import { sliderRentImages } from "@/data/sliderRentData";
 import CalendarDesktop from "@/components/CalendarDesktop.";
 import Link from "next/link";
+import { dateData } from "@/types/dateData";
+import moment from "moment";
 
 const stars = [0, 1, 2];
 interface Property {
@@ -47,8 +49,13 @@ interface Property {
     open: string;
   };
   propertyImages: [string];
+  userId: string;
+  _id: string;
 }
-export default function Detail() {
+export default function Detail({ params }: any) {
+  const [isDesktop, setIsDesktop] = useState(false);
+  const [startDate, setStartDate] = useState<String>("");
+  const [endDate, setEndDate] = useState<String>("");
   const [property, setProperty] = useState<Property>({
     name: "test",
     comments: "test",
@@ -83,11 +90,12 @@ export default function Detail() {
       open: "8:00",
     },
     propertyImages: [""],
+    userId: "",
+    _id: "",
   });
-  const _id: string | null = localStorage.getItem("selectedPropertyId");
   useEffect(() => {
-    if (_id) {
-      fetch(`https://co-labora-backend.jmanuelc.dev/property/${_id}`, {
+    if (params.id) {
+      fetch(`https://co-labora-backend.jmanuelc.dev/property/${params.id}`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -102,9 +110,21 @@ export default function Detail() {
           console.error("Error fetching property:", error);
         });
     }
-  }, [_id]);
+  }, [params.id]);
+
+  useEffect(() => {
+    const checkWindowWidth = () => {
+      setIsDesktop(window.innerWidth >= 1024);
+    };
+    checkWindowWidth();
+    window.addEventListener("resize", checkWindowWidth);
+
+    return () => {
+      window.removeEventListener("resize", checkWindowWidth);
+    };
+  });
+  // console.log("property", property);
   const key = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!; // ! aqui va la llave de google maps
-  console.log("esta es la propiedad en el useState", property);
   const libraries = useMemo(() => ["places"], []);
   const mapCenter = useMemo(
     () => ({
@@ -126,20 +146,8 @@ export default function Detail() {
     libraries: libraries as any,
   });
 
-  const [isDesktop, setIsDesktop] = useState(false);
   const images = sliderRentImages;
   ("selectDatesDesktop");
-  useEffect(() => {
-    const checkWindowWidth = () => {
-      setIsDesktop(window.innerWidth >= 1024);
-    };
-    checkWindowWidth();
-    window.addEventListener("resize", checkWindowWidth);
-
-    return () => {
-      window.removeEventListener("resize", checkWindowWidth);
-    };
-  });
 
   const passData = (e: any) => {
     const dataToPass = {
@@ -148,13 +156,22 @@ export default function Detail() {
         property.location.street +
         property.location.number +
         property.location.neighbor,
-
       comments: property.comments.length,
       score: property.score,
+      propertyImages: property.propertyImages[0],
+      startDate: startDate,
+      endDate: endDate,
+      userId: property.userId,
+      _id: property._id,
+      price: property.price,
     };
-     localStorage.setItem("property", JSON.stringify(dataToPass));
+    localStorage.setItem("property", JSON.stringify(dataToPass));
+    // console.log(dataToPass);
   };
-
+  const getDates = (data: dateData) => {
+    setStartDate(moment(data.startDate).format("DD-MM-YYYY"));
+    setEndDate(moment(data.endDate).format("DD-MM-YYYY"));
+  };
   return (
     <>
       <Navbar page={"in rent"} />
@@ -398,22 +415,34 @@ export default function Detail() {
                   <p className="text-[14px] text-blue_700 font-poppins font-[700] leading-[22px] tracking-[-0.28px]">
                     Llegada
                   </p>
-                  <CalendarDesktop show={isDesktop} />
+                  <span
+                    id="startDate"
+                    className="text-black text-md font-poppins font-semibold inline-block w-full">
+                    {startDate}
+                  </span>
                 </div>
                 <div className="border-2 border-blue_300 rounded-[10px] w-[220px] h-[64px] flex flex-col ps-[14px] pt-2">
                   <p className="text-[14px] text-blue_700 font-poppins font-[700] leading-[22px] tracking-[-0.28px]">
                     Salida
                   </p>
+                  <span
+                    id="endDate"
+                    className="text-black text-md font-poppins font-semibold inline-block w-full">
+                    {endDate}
+                  </span>
                 </div>
               </div>
               <section className="hidden w-full justify-center items-center lg:flex flex-col gap-[10px] mb-[20px] mt-[24px]">
-                <button
-                  className={`bg-primary rounded-lg px-[18px] py-1 w-[400px] h-[35px] buttonMobileShadow`}>
-                  <span className="text-[14px] font-[600] leading-[27px] text-white tracking-[-0.28px]">
-                    Continuar con la reserva
-                  </span>
-                </button>
-
+                <Link href={"/BookingSteps"}>
+                  <button
+                    className={`bg-primary rounded-lg px-[18px] py-1 w-[400px] h-[35px] buttonMobileShadow`}>
+                    <button
+                      className="text-[14px] font-[600] leading-[27px] text-white tracking-[-0.28px]"
+                      onClick={passData}>
+                      Continuar con la reserva
+                    </button>
+                  </button>
+                </Link>
                 <div className="flex gap-[2px]">
                   <Image
                     src={"/icons/Flag.svg"}
@@ -450,17 +479,31 @@ export default function Detail() {
               </div>
             </div>
             <div className="hidden lg:block w-[470px] h-[260px] xl:w-[580px] xl:h-[295px]">
-              calendarios desktop
+              <div id="selectDatesDesktop" className="mt-[30px] hidden lg:flex">
+                <div className="border-2 border-blue_300 rounded-[10px] w-[220px] h-[64px] flex flex-col ps-[14px] pt-2">
+                  <p className="text-[14px] text-blue_700 font-poppins font-[700] leading-[22px] tracking-[-0.28px]">
+                    Llegada
+                  </p>
+                  <CalendarDesktop show={isDesktop} values={getDates} />
+                </div>
+                <div className="border-2 border-blue_300 rounded-[10px] w-[220px] h-[64px] flex flex-col ps-[14px] pt-2">
+                  <p className="text-[14px] text-blue_700 font-poppins font-[700] leading-[22px] tracking-[-0.28px]">
+                    Salida
+                  </p>
+                </div>
+              </div>
             </div>
           </section>
           <section className="w-full justify-center items-center flex flex-col gap-[10px] lg:hidden mb-[20px] mt-[60px]">
             <button
               className={`bg-primary rounded-lg px-[18px] py-1 w-[224px] h-[35px] buttonMobileShadow`}>
-              <button
-                className="text-[14px] font-[600] leading-[27px] text-white tracking-[-0.28px]"
-                onClick={passData}>
-                Continuar con la reserva
-              </button>
+              <Link href={"/BookingSteps"}>
+                <button
+                  className="text-[14px] font-[600] leading-[27px] text-white tracking-[-0.28px]"
+                  onClick={passData}>
+                  Continuar con la reserva
+                </button>
+              </Link>
             </button>
             <div className="flex gap-[2px]">
               <Image

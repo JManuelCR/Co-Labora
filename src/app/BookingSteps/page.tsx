@@ -5,8 +5,8 @@ import Footer from "@/components/Footer";
 import FooterMobile from "@/components/FooterMobile";
 
 import React, { useState, useEffect } from "react";
-import Extras from "../addItems/page";
-import Description from "../userInput/page";
+import Extras from "../AddItems/page";
+import Description from "../UserInput/page";
 import Confirm from "../ConfirmReservation/page";
 import OwnStepper from "@/components/OwnStepper";
 
@@ -24,10 +24,8 @@ export default function BookingSteps() {
   function gatSelectionStep() {
     switch (actualStep) {
       case 0:
-        return <Extras />;
-      case 1:
         return <Description />;
-      case 2:
+      case 1:
         return <Confirm />;
     }
   }
@@ -40,9 +38,9 @@ export default function BookingSteps() {
           <div className="flex flex-row justify-center">
             <OwnStepper
               actualStep={actualStep}
-              stepOne="Agregar extras"
-              stepTwo="Tu referencia"
-              stepThree="Confirma"
+              stepOne="Tu referencia"
+              stepTwo="Confirma"
+              stepThree=""
             />
           </div>
 
@@ -61,7 +59,14 @@ export default function BookingSteps() {
               {actualStep <= 1 && (
                 <button
                   className={`bg-primary rounded-lg px-[18px] py-1 w-[134px] h-[35px] buttonMobileShadow`}
-                  onClick={() => setStep(actualStep + 1)}>
+                  onClick={() => {
+                    setStep(actualStep + 1);
+                    const button =
+                      document.getElementById("submit-description");
+                    if (button) {
+                      button.click();
+                    }
+                  }}>
                   <span className="text-[14px] font-[600] leading-[27px] text-white tracking-[-0.28px]">
                     Siguiente
                   </span>

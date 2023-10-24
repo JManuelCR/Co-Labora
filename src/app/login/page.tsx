@@ -16,8 +16,9 @@ export default function Login() {
     formState: { errors },
   } = useForm<inputs>();
   const onSubmit: SubmitHandler<inputs> = (data) => {
-    console.log("esto es la data del login", data);
+
     fetch("http://localhost:8080/login", {
+
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -28,10 +29,11 @@ export default function Login() {
       .then((response) => response.json())
       .then((response) => {
         if (response?.data) {
+          console.log("esto es el data ", response.data);
           localStorage.setItem("token", response.data);
-          window.location.replace("/");
+          // window.location.replace("/");
         } else {
-          console.log("no se encontro el usuario");
+          // console.log("no se encontro el usuario");
           toast.error("No se encontro el usuario", {
             position: "top-center",
             autoClose: 2500,
@@ -45,7 +47,7 @@ export default function Login() {
         }
       })
       .catch(() => {
-        console.log("Error en los inputs, intentar de nuevo");
+        // console.log("Error en los inputs, intentar de nuevo");
       });
   };
 

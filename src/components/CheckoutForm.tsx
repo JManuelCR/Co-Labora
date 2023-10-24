@@ -16,7 +16,7 @@ const PayBox = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!stripe) {
-      console.log("Stripe no esta disponible");
+      // console.log("Stripe no esta disponible");
       return;
     }
 
@@ -27,15 +27,15 @@ const PayBox = () => {
       card: cardData,
     });
     if (!error) {
-      console.log(paymentMethod);
+      // console.log(paymentMethod);
       const { id } = paymentMethod;
       const { data } = await axios.post("http://localhost:8080/stripe", {
         id,
         amount: 20000,
       });
-      console.log(data);
+      // console.log(data);
     } else {
-      console.log("error de front", error);
+      // console.log("error de front", error);
     }
   };
 

@@ -12,7 +12,7 @@ export default function FiltersBar() {
   };
   return (
     <>
-      <article className="flex justify-evenly my-3 relative">
+      <article className="flex justify-evenly my-3 relative z-10">
         <section className="flex items-center gap-5">
           <div className="flex h-fit  border-solid border-2 border-blue_700 rounded-xl p-2 ">
             <input
