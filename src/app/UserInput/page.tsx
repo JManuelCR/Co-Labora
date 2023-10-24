@@ -7,7 +7,6 @@ export default function UserInput() {
   const [desc, setDesc] = useState("");
   const [id, setId] = useState("");
   const token = localStorage.getItem("token");
-  console.log("token", token);
   useEffect(() => {
     if (token) {
       const [header, payload, signature] = token.split(".");
@@ -24,7 +23,7 @@ export default function UserInput() {
     })
       .then((response) => response.json())
       .then((response) => {
-        console.log("esta es la respuesta al getID", response);
+        setDesc(response.data.description);
       });
   }, [token, id]);
 

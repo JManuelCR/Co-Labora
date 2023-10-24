@@ -27,11 +27,9 @@ export default function Login() {
       .then((response) => response.json())
       .then((response) => {
         if (response?.data) {
-          console.log("esto es el data ", response.data);
           localStorage.setItem("token", response.data);
-          // window.location.replace("/");
+          window.location.replace("/");
         } else {
-          // console.log("no se encontro el usuario");
           toast.error("No se encontro el usuario", {
             position: "top-center",
             autoClose: 2500,
@@ -44,8 +42,17 @@ export default function Login() {
           });
         }
       })
-      .catch(() => {
-        // console.log("Error en los inputs, intentar de nuevo");
+      .catch((error) => {
+        toast.error("No se encontro el usuario", {
+          position: "top-center",
+          autoClose: 2500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
       });
   };
 

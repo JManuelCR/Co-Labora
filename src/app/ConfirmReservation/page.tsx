@@ -47,17 +47,20 @@ export default function ConfirmReservation() {
   }, [getLocal]); // Empty dependency array to ensure this effect runs only once on component mount
 
   const [blur, setBlur] = useState(false);
-
+  const [id, setId] = useState("");
   const handleClick = () => {
     const token = localStorage.getItem("token");
-    console.log("esto es el token", token);
-    const id = localStorage.getItem("id");
     const stripeButton = document.getElementById("submit-stripe");
     stripeButton ? stripeButton.click() : "";
     const subtotal = days ? (data?.price ? parseFloat(data.price) : 0) : 0;
     const commission = subtotal * 0.03;
     const taxes = subtotal * 0.16;
     const total = subtotal + commission + taxes;
+    if (token) {
+      const [header, payload, signature] = token.split(".");
+      const decodedPayload = JSON.parse(atob(payload));
+      setId(decodedPayload.id);
+    }
     const toFetch = {
       property: {
         propertyId: data?._id,
@@ -234,13 +237,11 @@ export default function ConfirmReservation() {
             />
           </article>
           <article className="flex justify-center">
-            <Link href={"/"}>
-              <button
-                className="bg-primary text-white px-4 py-2 rounded-xl"
-                onClick={handleClick}>
-                Confirmar Reserva
-              </button>
-            </Link>
+            <button
+              className="bg-primary text-white px-4 py-2 rounded-xl"
+              onClick={handleClick}>
+              Confirmar Reserva
+            </button>
           </article>
         </section>
       </section>
