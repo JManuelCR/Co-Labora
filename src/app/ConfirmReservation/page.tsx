@@ -26,8 +26,12 @@ interface DataType {
 }
 export default function ConfirmReservation() {
   const [data, setData] = useState<DataType | null>();
-  const [days, setDays] = useState<number | null>(null); // Asegúrate de que days sea de tipo "number"
+  const [days, setDays] = useState<number | null>(null);
+  const [test, setTest] = useState({});
+  const [blur, setBlur] = useState(false);
+  const [id, setId] = useState("");
   const getLocal = localStorage.getItem("property");
+  const token = localStorage.getItem("token");
   useEffect(() => {
     if (!getLocal) {
       toast.error("A ocurrido un error, favor de re-intentar la reserva", {
@@ -44,23 +48,17 @@ export default function ConfirmReservation() {
       const parseData = JSON.parse(getLocal);
       setData(parseData);
     }
-  }, [getLocal]); // Empty dependency array to ensure this effect runs only once on component mount
-
-  const [blur, setBlur] = useState(false);
-  const [id, setId] = useState("");
-  const handleClick = () => {
-    const token = localStorage.getItem("token");
-    const stripeButton = document.getElementById("submit-stripe");
-    stripeButton ? stripeButton.click() : "";
-    const subtotal = days ? (data?.price ? parseFloat(data.price) : 0) : 0;
-    const commission = subtotal * 0.03;
-    const taxes = subtotal * 0.16;
-    const total = subtotal + commission + taxes;
+  }, [getLocal]);
+  useEffect(() => {
     if (token) {
       const [header, payload, signature] = token.split(".");
       const decodedPayload = JSON.parse(atob(payload));
       setId(decodedPayload.id);
     }
+    const subtotal = days ? (data?.price ? parseFloat(data.price) : 0) : 0;
+    const commission = subtotal * 0.03;
+    const taxes = subtotal * 0.16;
+    const total = subtotal + commission + taxes;
     const toFetch = {
       property: {
         propertyId: data?._id,
@@ -77,20 +75,8 @@ export default function ConfirmReservation() {
       taxes: taxes,
       total: total,
     };
-    fetch("http://localhost:8080/reservation", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(toFetch),
-    })
-      .then((response) => response.json())
-      .then((response) => {
-        console.log("respuesta al crear la reserva", response);
-      });
-    // setBlur(true);
-  };
+    setTest(toFetch);
+  }, [data, days, id, token]);
 
   useEffect(() => {
     if (data) {
@@ -102,6 +88,41 @@ export default function ConfirmReservation() {
       setDays(daysDifference);
     }
   }, [data]);
+
+  const handleClick = () => {
+    const stripeButton = document.getElementById("submit-stripe");
+    stripeButton ? stripeButton.click() : "";
+    console.log("esto es la info pal fetch", test);
+    fetch("http://localhost:8080/reservation", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(test),
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        console.log("respuesta al crear la reserva", response);
+        if (response.success) {
+          setTimeout(() => {
+            setBlur(true);
+            window.location.replace("/");
+          }, 4000);
+        } else {
+          toast.error("A ocurrido un error, favor de re-intentar la reserva", {
+            position: "top-center",
+            autoClose: 2500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        }
+      });
+  };
 
   return (
     <>

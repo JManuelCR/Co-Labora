@@ -15,7 +15,7 @@ export default function UserInput() {
     }
   }, [token]);
   useEffect(() => {
-    fetch(`https://co-labora-backend.jmanuelc.dev/users/${id}`, {
+    fetch(`http://localhost:8080/users/${id}`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
@@ -75,8 +75,7 @@ export default function UserInput() {
             value={desc}></textarea>
           <input type="text" />
           <p className="font-poppins text-small text-blue_700 mb-[30px]">
-            Porque elegiste el inmueble de Juan, cuéntanos que fue lo que te
-            gusto
+            Porque elegiste este inmueble , cuéntanos que fue lo que te gusto
           </p>
           <textarea
             id="inmueble"
