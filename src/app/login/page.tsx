@@ -16,7 +16,7 @@ export default function Login() {
     formState: { errors },
   } = useForm<inputs>();
   const onSubmit: SubmitHandler<inputs> = (data) => {
-    fetch("https://co-labora-backend.jmanuelc.dev/login", {
+    fetch("http://localhost:8080/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -29,7 +29,7 @@ export default function Login() {
         if (response?.data) {
           console.log("esto es el data ", response.data);
           localStorage.setItem("token", response.data);
-          window.location.replace("/");
+          // window.location.replace("/");
         } else {
           // console.log("no se encontro el usuario");
           toast.error("No se encontro el usuario", {

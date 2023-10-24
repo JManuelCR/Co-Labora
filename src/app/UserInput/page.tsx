@@ -5,52 +5,49 @@ import Link from "next/link";
 
 export default function UserInput() {
   const [desc, setDesc] = useState("");
+  const [id, setId] = useState("");
+  const token = localStorage.getItem("token");
+  console.log("token", token);
   useEffect(() => {
-    const token = localStorage.getItem("token");
     if (token) {
       const [header, payload, signature] = token.split(".");
       const decodedPayload = JSON.parse(atob(payload));
-      const id = decodedPayload.id;
-      fetch(`http://localhost:8080/users/${id}`, {
+      setId(decodedPayload.id);
+    }
+  }, [token]);
+  useEffect(() => {
+    fetch(`http://localhost:8080/users/${id}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        console.log("esta es la respuesta al getID", response);
+      });
+  }, [token, id]);
+
+  const onSubmit = (data: any) => {
+    if (data.userDesc) {
+      fetch(`http://localhost:8080/users/`, {
+        method: "PATCH",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
+        body: JSON.stringify({
+          id: id,
+          description: data.userDesc,
+        }),
       })
-        .then((response) => response.json())
         .then((response) => {
-          console.log("Esta es la respuesta del getUser", response);
-          if (response.data) {
-            setDesc(response.data);
-          }
+          return response.json();
         })
-        .catch((error) => {
-          alert(`${error} error al hacer el fetch`);
-          // Aquí puedes manejar el error de la manera que desees
+        .then((response) => {
+          console.log("esta es la respuesta al patch", response);
         });
     }
-  }, []);
-
-  const onSubmit = (data: any) => {
-    // if (data.userDesc) {
-    //   fetch(`http://localhost:8080/users/`, {
-    //     method: "PATCH",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //       Authorization: `Bearer ${token}`,
-    //     },
-    //     body: JSON.stringify({
-    //       id: id,
-    //       description: data.userDesc,
-    //     }),
-    //   })
-    //     .then((response) => {
-    //       return response.json();
-    //     })
-    //     .then((response) => {
-    //       console.log("esta es la respuesta al patch", response);
-    //     });
-    // }
   };
 
   const {
