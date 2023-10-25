@@ -129,13 +129,9 @@ export default function Login() {
               </p>
             </Link>
             <div className="m-10 flex justify-center">
-              <Link href={"/"}>
-                <button className="bg-primary rounded-lg w-[200px] h-[60px]">
-                  <p className="font-poppins text-suTitles text-white">
-                    Ingresa
-                  </p>
-                </button>
-              </Link>
+              <button className="bg-primary rounded-lg w-[200px] h-[60px]">
+                <p className="font-poppins text-suTitles text-white">Ingresa</p>
+              </button>
             </div>
           </form>
         </section>
