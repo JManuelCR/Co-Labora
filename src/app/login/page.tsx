@@ -16,9 +16,7 @@ export default function Login() {
     formState: { errors },
   } = useForm<inputs>();
   const onSubmit: SubmitHandler<inputs> = (data) => {
-
     fetch("http://localhost:8080/login", {
-
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -126,16 +124,18 @@ export default function Login() {
               </p>
             </div>
             <Link href={"/verifyAccount"}>
-              <p className="font-poppins text-[20px] text-blue_800 cursor-pointer hover:text-primary text-center">
+              <p className="font-poppins text-[20px] text-blue_800 cursor-pointer hover:text-primary text-center hover:underline">
                 Crear una cuenta nueva
               </p>
             </Link>
             <div className="m-10 flex justify-center">
-              {/* <Link href={"/"}> */}
-              <button className="bg-primary rounded-lg w-[200px] h-[60px]">
-                <p className="font-poppins text-suTitles text-white">Ingresa</p>
-              </button>
-              {/* </Link> */}
+              <Link href={"/"}>
+                <button className="bg-primary rounded-lg w-[200px] h-[60px]">
+                  <p className="font-poppins text-suTitles text-white">
+                    Ingresa
+                  </p>
+                </button>
+              </Link>
             </div>
           </form>
         </section>

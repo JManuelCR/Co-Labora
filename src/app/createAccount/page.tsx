@@ -7,17 +7,18 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 export default function CreateAccount({ props }: any) {
   const [type, setType] = useState("user");
+  const [activeButton, setActiveButton] = useState("user");
   const [passShow, setPassShow] = useState(false);
   const [valid, setValid] = useState(true);
   const handleTypeUser = () => {
-    setType("user");
+    setType("user"), setActiveButton("user");
   };
 
   const handleTypeSpace = () => {
-    setType("space");
+    setType("space"), setActiveButton("space");
   };
   useEffect(() => {
-    // console.log(type);
+    console.log(type);
   }, [type]);
 
   const {
@@ -94,14 +95,24 @@ export default function CreateAccount({ props }: any) {
               Encuentra tu espacio perfecto
             </p>
           </div>
+
           <div className="flex justify-between text-center mt-6">
-            <div className="font-poppins text-suTitles hover:text-primary hover:underline text-blue_800">
-              <button onClick={handleTypeUser}>Soy Usuario</button>
+            <div className="font-poppins text-suTitles text-black ">
+              <button
+                onClick={handleTypeUser}
+                className="focus:underline focus:text-primary">
+                Soy Usuario
+              </button>
             </div>
-            <div className="font-poppins text-suTitles hover:text-primary text-blue_800 hover:underline">
-              <button onClick={handleTypeSpace}>Soy Negocio</button>
+            <div className="font-poppins text-suTitles text-black ">
+              <button
+                onClick={handleTypeSpace}
+                className="focus:underline focus:text-primary">
+                Soy Negocio
+              </button>
             </div>
           </div>
+
           <form className="mt-[30px]" onSubmit={handleSubmit(onSubmit)}>
             <input
               type="email"

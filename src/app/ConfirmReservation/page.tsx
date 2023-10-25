@@ -50,35 +50,6 @@ export default function ConfirmReservation() {
     }
   }, [getLocal]);
   useEffect(() => {
-    if (token) {
-      const [header, payload, signature] = token.split(".");
-      const decodedPayload = JSON.parse(atob(payload));
-      setId(decodedPayload.id);
-    }
-    const subtotal = days ? (data?.price ? parseFloat(data.price) : 0) : 0;
-    const commission = subtotal * 0.03;
-    const taxes = subtotal * 0.16;
-    const total = subtotal + commission + taxes;
-    const toFetch = {
-      property: {
-        propertyId: data?._id,
-        propertyName: data?.name,
-        score: data?.score,
-        price: data?.price,
-      },
-      startDate: data?.startDate,
-      endDate: data?.endDate,
-      lessorId: data?.userId,
-      tenantId: id,
-      subtotal: subtotal,
-      commission: commission,
-      taxes: taxes,
-      total: total,
-    };
-    setTest(toFetch);
-  }, [data, days, id, token]);
-
-  useEffect(() => {
     if (data) {
       const startDate = new Date(data.startDate.split("-").reverse().join("-"));
       const endDate = new Date(data.endDate.split("-").reverse().join("-"));
@@ -88,6 +59,51 @@ export default function ConfirmReservation() {
       setDays(daysDifference);
     }
   }, [data]);
+
+  useEffect(() => {
+    if (token) {
+      const [header, payload, signature] = token.split(".");
+      const decodedPayload = JSON.parse(atob(payload));
+      setId(decodedPayload.id);
+    }
+
+    // Verifica si days y data están configurados correctamente
+    if (days !== null && data?.price !== undefined) {
+      const subtotal = parseFloat(data.price) * days;
+      const commission = subtotal * 0.03;
+      const taxes = subtotal * 0.16;
+      const total = subtotal + commission + taxes;
+      console.log(
+        "esto es el total",
+        total,
+        "estos son los taxes",
+        taxes,
+        "estas son las comisiones",
+        commission,
+        "esto es el subtotal",
+        subtotal,
+        "estos son los dias",
+        days
+      );
+      const toFetch = {
+        property: {
+          propertyId: data._id,
+          propertyName: data.name,
+          score: data.score,
+          price: data.price,
+        },
+        startDate: data.startDate,
+        endDate: data.endDate,
+        lessorId: data.userId,
+        tenantId: id,
+        subtotal: subtotal,
+        commission: commission,
+        taxes: taxes,
+        total: total,
+      };
+      setTest(toFetch);
+    }
+  }, [data, days, id, token]);
 
   const handleClick = () => {
     const stripeButton = document.getElementById("submit-stripe");
@@ -105,10 +121,7 @@ export default function ConfirmReservation() {
       .then((response) => {
         console.log("respuesta al crear la reserva", response);
         if (response.success) {
-          setTimeout(() => {
-            setBlur(true);
-            window.location.replace("/");
-          }, 4000);
+          console.log("esta es la respuesta ", response);
         } else {
           toast.error("A ocurrido un error, favor de re-intentar la reserva", {
             position: "top-center",
@@ -206,6 +219,22 @@ export default function ConfirmReservation() {
               ) : (
                 <p>No hay datos disponibles</p>
               )}
+              <h3>Comision Co-Labora</h3>
+              {data && days ? (
+                <p className="font-poppins font-semibold">
+                  ${(parseFloat(data.price) * days * 0.03).toFixed(2)}
+                </p>
+              ) : (
+                <p>No hay datos disponibles</p>
+              )}
+              <h3>Impuestos</h3>
+              {data && days ? (
+                <p className="font-poppins font-semibold">
+                  ${(parseFloat(data.price) * days * 0.16).toFixed(2)}
+                </p>
+              ) : (
+                <p>No hay datos disponibles</p>
+              )}
             </article>
           </article>
           <article>
@@ -230,7 +259,12 @@ export default function ConfirmReservation() {
             <strong className="font-bold text-suTitles">
               {data && days ? (
                 <p className="font-poppins font-semibold">
-                  Subtotal: ${(parseFloat(data.price) * days).toFixed(2)}
+                  Total: $
+                  {(
+                    parseFloat(data.price) * days +
+                    parseFloat(data.price) * days * 0.03 +
+                    parseFloat(data.price) * days * 0.16
+                  ).toFixed(2)}
                 </p>
               ) : (
                 <p>No hay datos disponibles</p>
