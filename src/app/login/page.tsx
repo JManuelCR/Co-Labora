@@ -15,6 +15,11 @@ export default function Login() {
     handleSubmit,
     formState: { errors },
   } = useForm<inputs>();
+
+  const setToken = (data: any) => {
+    localStorage.setItem("token", data);
+  };
+
   const onSubmit: SubmitHandler<inputs> = (data) => {
     fetch("http://localhost:8080/login", {
       method: "POST",
@@ -27,7 +32,7 @@ export default function Login() {
       .then((response) => response.json())
       .then((response) => {
         if (response?.data) {
-          localStorage.setItem("token", response.data);
+          setToken(response.data);
           window.location.replace("/");
         } else {
           toast.error("No se encontro el usuario", {
@@ -112,17 +117,6 @@ export default function Login() {
               </button>
             </div>
             <p className="text-primary">{errors.password?.message}</p>
-            <div className="flex my-[25px] gap-[10px] items-center">
-              <input
-                type="radio"
-                name="rememberPassword"
-                id="rememberPassword"
-                className="inputStyle accent-primary w-5 h-5 required"
-              />
-              <p className="font-poppins text-[20px] text-blue_800 ">
-                Recordar contraseña
-              </p>
-            </div>
             <Link href={"/verifyAccount"}>
               <p className="font-poppins text-[20px] text-blue_800 cursor-pointer hover:text-primary text-center hover:underline">
                 Crear una cuenta nueva

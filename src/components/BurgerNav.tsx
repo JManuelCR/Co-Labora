@@ -1,11 +1,25 @@
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function BurgerNav() {
-  const token = localStorage.getItem("token");
-  function onClick() {
+  const [token, setToken] = useState<string>();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setToken(token);
+    }
+  }, []);
+
+  const deleteToken = () => {
     localStorage.removeItem("token");
+  };
+
+  function onClick() {
+    deleteToken();
     window.location.replace("/");
   }
+
   return (
     <article className="flex flex-col gap-3 bg-white text-blue_800 font-poppins rounded-lg p-5 absolute right-0 top-0 z-10 border border-solid border-primary">
       {token ? (

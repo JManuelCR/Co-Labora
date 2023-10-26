@@ -123,8 +123,8 @@ export default function Detail({ params }: any) {
       window.removeEventListener("resize", checkWindowWidth);
     };
   });
-  // console.log("property", property);
-  const key = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!; // ! aqui va la llave de google maps
+
+  const key = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!;
   const libraries = useMemo(() => ["places"], []);
   const mapCenter = useMemo(
     () => ({
@@ -133,6 +133,7 @@ export default function Detail({ params }: any) {
     }),
     []
   );
+
   const mapOptions = useMemo<google.maps.MapOptions>(
     () => ({
       disableDefaultUI: false,
@@ -141,6 +142,7 @@ export default function Detail({ params }: any) {
     }),
     []
   );
+
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: key,
     libraries: libraries as any,
@@ -166,12 +168,13 @@ export default function Detail({ params }: any) {
       price: property.price,
     };
     localStorage.setItem("property", JSON.stringify(dataToPass));
-    // console.log(dataToPass);
   };
+
   const getDates = (data: dateData) => {
     setStartDate(moment(data.startDate).format("DD-MM-YYYY"));
     setEndDate(moment(data.endDate).format("DD-MM-YYYY"));
   };
+
   return (
     <>
       <Navbar page={"in rent"} />
