@@ -55,9 +55,13 @@ export default function GeneralInfo({ props }: any) {
   function childCallback(childData: any) {
     setAutoComplete(childData);
   }
+  const getId = () => {
+    const Id = localStorage.getItem("id");
+    return Id;
+  };
 
   const onSubmit = (data: any) => {
-    const id = localStorage.getItem("id");
+    const id = getId();
     const { broad, cost, description, long, name, tall, AM, PM } = data;
     const toFetch = {
       userId: id,

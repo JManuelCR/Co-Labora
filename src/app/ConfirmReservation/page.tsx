@@ -31,8 +31,18 @@ export default function ConfirmReservation() {
   const [blur, setBlur] = useState(false);
   const [id, setId] = useState("");
   const [amount, setAmount] = useState<any>();
-  const getLocal = localStorage.getItem("property");
-  const token = localStorage.getItem("token");
+  const [getLocal, setGetLocal] = useState<string>();
+  const [token, setToken] = useState<string>();
+  useEffect(() => {
+    const getLocal = localStorage.getItem("property");
+    if (getLocal) {
+      setGetLocal(getLocal);
+    }
+    const token = localStorage.getItem("token");
+    if (token) {
+      setToken(token);
+    }
+  }, []);
   useEffect(() => {
     if (!getLocal) {
       toast.error("A ocurrido un error, favor de re-intentar la reserva", {

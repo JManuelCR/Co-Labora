@@ -15,6 +15,11 @@ export default function Login() {
     handleSubmit,
     formState: { errors },
   } = useForm<inputs>();
+
+  const setToken = (data: any) => {
+    localStorage.setItem("token", data);
+  };
+
   const onSubmit: SubmitHandler<inputs> = (data) => {
     fetch("http://localhost:8080/login", {
       method: "POST",
@@ -27,7 +32,7 @@ export default function Login() {
       .then((response) => response.json())
       .then((response) => {
         if (response?.data) {
-          localStorage.setItem("token", response.data);
+          setToken(response.data);
           window.location.replace("/");
         } else {
           toast.error("No se encontro el usuario", {

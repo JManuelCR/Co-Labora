@@ -48,6 +48,11 @@ interface Property {
   };
   propertyImages: [string];
 }
+
+const getId = () => {
+  const propertyId = localStorage.getItem("selectedPropertyId");
+  return propertyId;
+};
 export default function Detail() {
   const [property, setProperty] = useState<Property>({
     name: "test",
@@ -84,7 +89,7 @@ export default function Detail() {
     },
     propertyImages: [""],
   });
-  const _id: string | null = localStorage.getItem("selectedPropertyId");
+  const _id: string | null = getId();
   useEffect(() => {
     if (_id) {
       fetch(`https://co-labora-backend.jmanuelc.dev/property/${_id}`, {
@@ -152,7 +157,7 @@ export default function Detail() {
       comments: property.comments.length,
       score: property.score,
     };
-     localStorage.setItem("property", JSON.stringify(dataToPass));
+    localStorage.setItem("property", JSON.stringify(dataToPass));
   };
 
   return (
