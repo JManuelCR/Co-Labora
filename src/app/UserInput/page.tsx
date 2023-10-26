@@ -7,8 +7,6 @@ export default function UserInput() {
   const [desc, setDesc] = useState("");
   const [id, setId] = useState("");
   const token = localStorage.getItem("token");
-  console.log("token", token);
-
   useEffect(() => {
     if (token) {
       const [header, payload, signature] = token.split(".");
@@ -17,7 +15,7 @@ export default function UserInput() {
     }
   }, [token]);
   useEffect(() => {
-    fetch(`https://co-labora-backend.jmanuelc.dev/users/${id}`, {
+    fetch(`http://localhost:8080/users/${id}`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
@@ -25,7 +23,7 @@ export default function UserInput() {
     })
       .then((response) => response.json())
       .then((response) => {
-        console.log("esta es la respuesta al getID", response);
+        setDesc(response.data.description);
       });
   }, [token, id]);
 
@@ -77,8 +75,7 @@ export default function UserInput() {
             value={desc}></textarea>
           <input type="text" />
           <p className="font-poppins text-small text-blue_700 mb-[30px]">
-            Porque elegiste el inmueble de Juan, cuéntanos que fue lo que te
-            gusto
+            Porque elegiste este inmueble , cuéntanos que fue lo que te gusto
           </p>
           <textarea
             id="inmueble"

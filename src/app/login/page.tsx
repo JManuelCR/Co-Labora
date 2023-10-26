@@ -16,9 +16,7 @@ export default function Login() {
     formState: { errors },
   } = useForm<inputs>();
   const onSubmit: SubmitHandler<inputs> = (data) => {
-
     fetch("http://localhost:8080/login", {
-
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -29,11 +27,9 @@ export default function Login() {
       .then((response) => response.json())
       .then((response) => {
         if (response?.data) {
-          console.log("esto es el data ", response.data);
           localStorage.setItem("token", response.data);
-          // window.location.replace("/");
+          window.location.replace("/");
         } else {
-          // console.log("no se encontro el usuario");
           toast.error("No se encontro el usuario", {
             position: "top-center",
             autoClose: 2500,
@@ -46,8 +42,17 @@ export default function Login() {
           });
         }
       })
-      .catch(() => {
-        // console.log("Error en los inputs, intentar de nuevo");
+      .catch((error) => {
+        toast.error("No se encontro el usuario", {
+          position: "top-center",
+          autoClose: 2500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
       });
   };
 
@@ -119,16 +124,18 @@ export default function Login() {
               </p>
             </div>
             <Link href={"/verifyAccount"}>
-              <p className="font-poppins text-[20px] text-blue_800 cursor-pointer hover:text-primary text-center">
+              <p className="font-poppins text-[20px] text-blue_800 cursor-pointer hover:text-primary text-center hover:underline">
                 Crear una cuenta nueva
               </p>
             </Link>
             <div className="m-10 flex justify-center">
-              {/* <Link href={"/"}> */}
-              <button className="bg-primary rounded-lg w-[200px] h-[60px]">
-                <p className="font-poppins text-suTitles text-white">Ingresa</p>
-              </button>
-              {/* </Link> */}
+              <Link href={"/"}>
+                <button className="bg-primary rounded-lg w-[200px] h-[60px]">
+                  <p className="font-poppins text-suTitles text-white">
+                    Ingresa
+                  </p>
+                </button>
+              </Link>
             </div>
           </form>
         </section>
