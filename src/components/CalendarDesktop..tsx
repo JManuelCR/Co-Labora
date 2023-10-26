@@ -52,7 +52,6 @@ export default function CalendarDesktop(props: any) {
           size={size}
           className="border-0 shadow-none text-[18px] text-blue_700 font-poppins font-500 p-0 w-[415px] flex gap-[20px] bg-[transparent]"
           disabledDate={(current) => {
-            debugger
             let customDate = moment().format("DD-MM-YYYY");
             return current && dates.includes(moment(current.toString()).format('L')) || current < moment(customDate, "DD-MM-YYYY");
           }}
