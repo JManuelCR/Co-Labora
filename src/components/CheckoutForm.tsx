@@ -9,7 +9,11 @@ import axios from "axios";
 import { FormEvent } from "react";
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY!);
 
-const PayBox = () => {
+interface CheckoutFormProps {
+  stripeProp: any; // Define the type of the prop
+}
+const PayBox = (stripeProp: CheckoutFormProps) => {
+  console.log("esto es lo que le paso en props al CheckoutForm", stripeProp);
   const stripe = useStripe();
   const elements = useElements();
 
@@ -31,7 +35,7 @@ const PayBox = () => {
       const { id } = paymentMethod;
       const { data } = await axios.post("http://localhost:8080/stripe", {
         id,
-        amount: 20000,
+        amount: stripeProp.stripeProp.stripeProp,
       });
       // console.log(data);
     } else {
@@ -46,10 +50,10 @@ const PayBox = () => {
     </form>
   );
 };
-export default function CheckoutForm() {
+export default function CheckoutForm(stripeProp: CheckoutFormProps) {
   return (
     <Elements stripe={stripePromise}>
-      <PayBox />
+      <PayBox stripeProp={stripeProp} />
     </Elements>
   );
 }

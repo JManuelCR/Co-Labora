@@ -30,6 +30,7 @@ export default function ConfirmReservation() {
   const [test, setTest] = useState({});
   const [blur, setBlur] = useState(false);
   const [id, setId] = useState("");
+  const [amount, setAmount] = useState<any>();
   const getLocal = localStorage.getItem("property");
   const token = localStorage.getItem("token");
   useEffect(() => {
@@ -85,6 +86,10 @@ export default function ConfirmReservation() {
         "estos son los dias",
         days
       );
+      if (total) {
+        const totalRounded = Math.round(total * 100);
+        setAmount(totalRounded);
+      }
       const toFetch = {
         property: {
           propertyId: data._id,
@@ -122,6 +127,10 @@ export default function ConfirmReservation() {
         console.log("respuesta al crear la reserva", response);
         if (response.success) {
           console.log("esta es la respuesta ", response);
+          setTimeout(() => {
+            setBlur(true);
+            window.location.replace("/");
+          }, 4000);
         } else {
           toast.error("A ocurrido un error, favor de re-intentar la reserva", {
             position: "top-center",
@@ -250,7 +259,7 @@ export default function ConfirmReservation() {
           </h3>
           <article className="flex w-full">
             <div>
-              <CheckoutForm />
+              <CheckoutForm stripeProp={amount} />
             </div>
           </article>
 
@@ -261,9 +270,10 @@ export default function ConfirmReservation() {
                 <p className="font-poppins font-semibold">
                   Total: $
                   {(
-                    parseFloat(data.price) * days +
-                    parseFloat(data.price) * days * 0.03 +
-                    parseFloat(data.price) * days * 0.16
+                    (parseFloat(data.price) * days * 100 +
+                      parseFloat(data.price) * days * 0.03 * 100 +
+                      parseFloat(data.price) * days * 0.16 * 100) /
+                    100
                   ).toFixed(2)}
                 </p>
               ) : (
