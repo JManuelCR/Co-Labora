@@ -91,6 +91,7 @@ export default function SaveNewPlace(props: any) {
       .then((response) => response.json())
       .then((data) => {
         console.log("Respuesta JSON:", data);
+        setUrl(data.data);
       });
   }, [Id]);
 

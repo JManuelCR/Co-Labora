@@ -69,7 +69,7 @@ export default function Navbar(props: Navbar) {
             <li>
               <Link
                 href={"/contacts"}
-                className={isActive === "in rent" ? "navItemFocused" : ""}
+                className={isActive === "contacts" ? "navItemFocused" : ""}
                 onClick={handleNavContactsClick}>
                 Contacto
               </Link>

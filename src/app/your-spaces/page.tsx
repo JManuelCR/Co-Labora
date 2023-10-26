@@ -1,11 +1,40 @@
+"use client";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FooterMobile from "@/components/FooterMobile";
 import Image from "next/image";
 import Spaceless from "../../../public/illustrations/No-spaces.svg";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function Detail() {
+  const [Id, setId] = useState();
+
+  useEffect(() => {
+    const getToken = localStorage.getItem("token");
+    if (getToken) {
+      const [header, payload, signature] = getToken.split(".");
+      const decodedPayload = JSON.parse(atob(payload));
+      setId(decodedPayload.id);
+    }
+  }, [Id]);
+
+  console.log("esto es ID", Id);
+  useEffect(() => {
+    fetch(`http://localhost:8080/property/${Id}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        console.log(
+          "esta es la respuesta al bajar las propiedades por ID",
+          response
+        );
+      });
+  }, [Id]);
+
   return (
     <>
       <Navbar page="your spaces" />
