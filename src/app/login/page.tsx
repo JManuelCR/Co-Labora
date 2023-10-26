@@ -112,17 +112,6 @@ export default function Login() {
               </button>
             </div>
             <p className="text-primary">{errors.password?.message}</p>
-            <div className="flex my-[25px] gap-[10px] items-center">
-              <input
-                type="radio"
-                name="rememberPassword"
-                id="rememberPassword"
-                className="inputStyle accent-primary w-5 h-5 required"
-              />
-              <p className="font-poppins text-[20px] text-blue_800 ">
-                Recordar contraseña
-              </p>
-            </div>
             <Link href={"/verifyAccount"}>
               <p className="font-poppins text-[20px] text-blue_800 cursor-pointer hover:text-primary text-center hover:underline">
                 Crear una cuenta nueva
