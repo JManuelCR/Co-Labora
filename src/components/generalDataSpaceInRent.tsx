@@ -9,10 +9,12 @@ import GoogleMaps from "./GoogleMaps";
 import Autcomplete from "./Autocomplete";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 export default function GeneralInfo({ props }: any) {
   const { register, handleSubmit } = useForm();
   const [autocomplete, setAutoComplete] = useState();
+  const [token, setToken] = useState("");
+  const [Id, setId] = useState("");
   const [checkboxes, setCheckboxes] = useState<{
     [key: string]: boolean;
   }>({
@@ -56,11 +58,22 @@ export default function GeneralInfo({ props }: any) {
     setAutoComplete(childData);
   }
 
+  useEffect(() => {
+    const getToken = localStorage.getItem("token");
+    if (getToken) {
+      setToken(getToken);
+      const [header, payload, signature] = getToken.split(".");
+      const decodedHeader = JSON.parse(atob(header));
+      const decodedPayload = JSON.parse(atob(payload));
+
+      setId(decodedPayload.id);
+    }
+  }, [Id]);
+
   const onSubmit = (data: any) => {
-    const id = localStorage.getItem("id");
     const { broad, cost, description, long, name, tall, AM, PM } = data;
     const toFetch = {
-      userId: id,
+      userId: Id,
       name: name,
       location: autocomplete,
       price: cost,
