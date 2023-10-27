@@ -21,12 +21,20 @@ import arrowRigth from "../../public/icons/icon-arrow-right-white.svg";
 import arrowLeft from "../../public/icons/icon-arrow-left-white.svg";
 
 interface arrayProperty {
-  properties: SliderHero[];
+  properties: {
+    props: SliderHero[]
+  }
 }
 
-export default function SliderHero(props: arrayProperty) {
+export default function SliderHero(data: arrayProperty) {
+  const properties = data.properties.props.slice(0,5)
   const navigationPrevRef = React.useRef(null);
   const navigationNextRef = React.useRef(null);
+
+const handleCardClick = (_id: any) => {
+    window.location.href = `/in-rent/${_id}`
+  }
+
   return (
     <div className="md:ps-[48px] flex gap-[26px] w-[100%]">
       <Swiper
@@ -54,13 +62,14 @@ export default function SliderHero(props: arrayProperty) {
         modules={[EffectCoverflow, Pagination, Autoplay, Navigation]}
         className="mySwiper absolute h-[310px] w-[200%] sliderHero"
       >
-        {props.properties.map((property, index) => {
+        {properties.map((property, index) => {
           const {
+            _id,
             name,
             description,
             location,
             amenities,
-            images,
+            propertyImages,
             measurements,
           } = property;
           return (
@@ -68,13 +77,13 @@ export default function SliderHero(props: arrayProperty) {
               <div className="flex absolute top-0 w-[100%]">
                 <div className="flex gap-4 md:gap-[28px] w-[100%]">
                   <img
-                    src={images[0]}
+                    src={propertyImages[0]}
                     alt="Property detail image"
                     className="propertyAvatar"
                   />
                   <div className="flex flex-col gap-2">
                     <h2 className="font-poppins text-4 md:text-[24px] font-[800] text-white">
-                      {name}
+                      {name.slice(0, 25)}
                     </h2>
                     <h3 className="max-w-[397px] block font-poppins text-[14px] md:text-[18px] font-[500   ]">
                       {description.length > 100
@@ -159,10 +168,16 @@ export default function SliderHero(props: arrayProperty) {
                       )}
                     </div>
                     <div className="flex gap-4 md:gap-[24px] mt-[20px]">
-                      <button className="w-[121px] md:w-[150px] h-[35px] px-[18px] py-[4px] border-[1px] border-primary rounded-lg bg-white font-[600] font-poppins text-[14px] text-primary">
+                      <button 
+                      onClick={() => handleCardClick(_id)}
+                      className="w-[121px] md:w-[150px] h-[35px] px-[18px] py-[4px] border-[1px] border-primary rounded-lg bg-white font-[600] font-poppins text-[14px] text-primary"
+                      >
                         Ver más
                       </button>
-                      <button className="w-[121px] md:w-[150px] h-[35px] px-[18px] py-[4px]   rounded-lg bg-primary font-[600] font-poppins text-[14px] text-white">
+                      <button 
+                      onClick={() => handleCardClick(_id)}
+                      className="w-[121px] md:w-[150px] h-[35px] px-[18px] py-[4px]   rounded-lg bg-primary font-[600] font-poppins text-[14px] text-white"
+                      >
                         Rentar
                       </button>
                     </div>
