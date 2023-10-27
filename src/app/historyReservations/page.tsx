@@ -24,7 +24,7 @@ export default function HistoryReservations() {
       const [header, payload, signature] = Token.split(".");
       const decodedPayload = JSON.parse(atob(payload));
       const id = decodedPayload.id;
-      fetch(`http://localhost:8080/users/${id}`, {
+      fetch(`https://co-labora-backend.jmanuelc.dev/users/${id}`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${Token}`,
