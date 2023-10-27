@@ -27,7 +27,7 @@ export default function Detail() {
       const decodedPayload = JSON.parse(atob(payload));
       const userId = decodedPayload.id;
 
-      fetch(`http://localhost:8080/property/user/${userId}`, {
+      fetch(`https://co-labora-backend.jmanuelc.dev/property/user/${userId}`, {
         headers: {
           "Content-Type": "application/json",
         },
