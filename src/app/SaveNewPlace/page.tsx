@@ -67,14 +67,18 @@ export default function SaveNewPlace(props: any) {
   });
 
   useEffect(() => {
-    const getToken = localStorage.getItem("token");
-    if (getToken) {
-      setToken(getToken);
-      const [header, payload, signature] = getToken.split(".");
-      const decodedHeader = JSON.parse(atob(header));
-      const decodedPayload = JSON.parse(atob(payload));
+    if (typeof localStorage !== "undefined") {
+      const getToken = localStorage.getItem("token");
+      if (getToken) {
+        setToken(getToken);
+        const [header, payload, signature] = getToken.split(".");
+        const decodedHeader = JSON.parse(atob(header));
+        const decodedPayload = JSON.parse(atob(payload));
 
-      setId(decodedPayload.id);
+        setId(decodedPayload.id);
+      }
+    } else {
+      console.log("localstorage not available");
     }
   }, [Id]);
 
