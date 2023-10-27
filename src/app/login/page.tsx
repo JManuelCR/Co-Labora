@@ -21,7 +21,7 @@ export default function Login() {
   };
 
   const onSubmit: SubmitHandler<inputs> = (data) => {
-    fetch("http://localhost:8080/login", {
+    fetch("https://co-labora-backend.jmanuelc.dev/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
