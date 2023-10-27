@@ -39,7 +39,7 @@ export default function CalendarDesktop(props: any) {
       endDate: endDate,
     };
     values(data);
-  }, [startDate, endDate]);
+  }, [startDate, endDate, values]);
 
   if (renderTimer && show) {
     return (

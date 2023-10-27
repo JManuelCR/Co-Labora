@@ -14,6 +14,9 @@ export default function UserInput() {
       const [header, payload, signature] = token.split(".");
       const decodedPayload = JSON.parse(atob(payload));
       setId(decodedPayload.id);
+    } else {
+      alert("Debes iniciar sesion");
+      window.location.replace("/login");
     }
   }, []);
 
@@ -32,7 +35,7 @@ export default function UserInput() {
   }, [id]);
 
   const onSubmit = (data: any) => {
-    const token = localStorage.getItem("token");
+    const token = getCookie("token");
     if (data.userDesc) {
       fetch(`https://co-labora-backend.jmanuelc.dev/users/`, {
         method: "PATCH",
@@ -44,13 +47,9 @@ export default function UserInput() {
           id: id,
           description: data.userDesc,
         }),
-      })
-        .then((response) => {
-          return response.json();
-        })
-        .then((response) => {
-          console.log("esta es la respuesta al patch", response);
-        });
+      }).then((response) => {
+        return response.json();
+      });
     }
   };
 

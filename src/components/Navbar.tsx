@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Navbar } from "@/types/navbar.types";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,9 +7,11 @@ import logo from "../../public/co-labora-logo.webp";
 import burgerLogo from "../../public/icons/nav-burger-menu-icon.svg";
 import userIcon from "../../public/icons/nav-user-icon.svg";
 import BurgerNav from "./BurgerNav";
+import { getCookie } from "cookies-next";
 
 export default function Navbar(props: Navbar) {
   const [isActive, setIsActive] = useState(props.page);
+  const [logued, setLogued] = useState(true);
   const handleNavHomeClick = (event: any) => {
     setIsActive((current) => (current = "home"));
   };
@@ -26,6 +28,14 @@ export default function Navbar(props: Navbar) {
   const toogleMenu = () => {
     setMenu(!menu);
   };
+
+  useEffect(() => {
+    const token = getCookie("token");
+    if (!token) {
+      setLogued(false);
+    }
+  }, []);
+
   return (
     <header className="flex items-center justify-center w-full h-[56px] px-1 min-lg:px-[65px] relative bg-white navbarShadow">
       <nav className="flex items-center justify-between w-full max-h-[56px]">
@@ -50,14 +60,18 @@ export default function Navbar(props: Navbar) {
                 Home
               </Link>
             </li>
-            <li>
-              <Link
-                href={"/your-spaces"}
-                className={isActive === "your spaces" ? "navItemFocused" : ""}
-                onClick={handleNavYourSpacesClick}>
-                Tus espacios
-              </Link>
-            </li>
+            {logued ? (
+              <li>
+                <Link
+                  href={"/your-spaces"}
+                  className={isActive === "your spaces" ? "navItemFocused" : ""}
+                  onClick={handleNavYourSpacesClick}>
+                  Tus espacios
+                </Link>
+              </li>
+            ) : (
+              ""
+            )}
             <li>
               <Link
                 href={"/in-rent"}

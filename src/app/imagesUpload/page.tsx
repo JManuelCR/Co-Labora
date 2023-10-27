@@ -23,9 +23,6 @@ export default function ImageUpload({ props }: any) {
   const onSubmit = (data: any) => console.log(data);
 
   const submit = (): any => {
-    console.log("upload files",
-    images,
-    "docs", files, "dni", identification)
     const toUpload = {
       images: images,
       documents: files,
@@ -67,8 +64,7 @@ export default function ImageUpload({ props }: any) {
             <section className="w-[300px] md:w-[700px] h-[140px] md:h-[340px] bg-secondary rounded-[20px]">
               <div
                 className="w-full h-full flex flex-col justify-center items-center"
-                {...getRootProps()}
-              >
+                {...getRootProps()}>
                 <input {...getInputProps()} />
                 {images === undefined ? (
                   <>
@@ -94,8 +90,7 @@ export default function ImageUpload({ props }: any) {
                         return (
                           <li
                             key={`img-${index}`}
-                            className="text-white font-semibold text-lg "
-                          >
+                            className="text-white font-semibold text-lg ">
                             {img.path}
                           </li>
                         );
@@ -110,8 +105,7 @@ export default function ImageUpload({ props }: any) {
         {images !== undefined ? (
           <button
             onClick={clearPropertyImages}
-            className="text-white text-[14px] font-semibold leading-[22px] tracking-[-0.28px] rounded-md bg-primary flex justify-center items-center w-[140px] md:w-[170px] h-[40px] mt-[19px] md:mt-[30px]"
-          >
+            className="text-white text-[14px] font-semibold leading-[22px] tracking-[-0.28px] rounded-md bg-primary flex justify-center items-center w-[140px] md:w-[170px] h-[40px] mt-[19px] md:mt-[30px]">
             Cancelar
           </button>
         ) : (
@@ -127,8 +121,7 @@ export default function ImageUpload({ props }: any) {
                 <section className="w-[300px] md:w-[328px] h-[140px] md:h-[340px] bg-secondary rounded-[20px] px-8">
                   <div
                     className="w-full h-full flex flex-col justify-center items-center md:mt-6"
-                    {...getRootProps()}
-                  >
+                    {...getRootProps()}>
                     <input {...getInputProps()} />
                     {files === undefined ? (
                       <>
@@ -154,8 +147,7 @@ export default function ImageUpload({ props }: any) {
                             return (
                               <li
                                 key={`img-${index}`}
-                                className="text-white font-semibold text-lg break-words"
-                              >
+                                className="text-white font-semibold text-lg break-words">
                                 {img.path}
                               </li>
                             );
@@ -170,8 +162,7 @@ export default function ImageUpload({ props }: any) {
             {files !== undefined ? (
               <button
                 onClick={clearPropertyFiles}
-                className="text-white text-[14px] font-semibold leading-[22px] tracking-[-0.28px] rounded-md bg-primary flex justify-center items-center w-[140px] md:w-[170px] h-[40px] mt-[19px] md:mt-[30px]"
-              >
+                className="text-white text-[14px] font-semibold leading-[22px] tracking-[-0.28px] rounded-md bg-primary flex justify-center items-center w-[140px] md:w-[170px] h-[40px] mt-[19px] md:mt-[30px]">
                 Cancelar
               </button>
             ) : (
@@ -191,8 +182,7 @@ export default function ImageUpload({ props }: any) {
                 <section className="w-[300px] md:w-[328px] h-[140px] md:h-[340px] bg-secondary rounded-[20px] mb-[12px] md:mb-0 px-8">
                   <div
                     className="w-full h-full flex flex-col justify-center items-center md:mt-6"
-                    {...getRootProps()}
-                  >
+                    {...getRootProps()}>
                     <input {...getInputProps()} />
                     {identification === undefined ? (
                       <>
@@ -218,8 +208,7 @@ export default function ImageUpload({ props }: any) {
                             return (
                               <li
                                 key={`img-${index}`}
-                                className="text-white font-semibold text-lg break-words"
-                              >
+                                className="text-white font-semibold text-lg break-words">
                                 {img.path}
                               </li>
                             );
@@ -234,8 +223,7 @@ export default function ImageUpload({ props }: any) {
             {identification !== undefined ? (
               <button
                 onClick={clearUserDNI}
-                className="text-white text-[14px] font-semibold leading-[22px] tracking-[-0.28px] rounded-md bg-primary flex justify-center items-center w-[140px] md:w-[170px] h-[40px] mt-[19px] md:mt-[30px]"
-              >
+                className="text-white text-[14px] font-semibold leading-[22px] tracking-[-0.28px] rounded-md bg-primary flex justify-center items-center w-[140px] md:w-[170px] h-[40px] mt-[19px] md:mt-[30px]">
                 Cancelar
               </button>
             ) : (
@@ -247,8 +235,7 @@ export default function ImageUpload({ props }: any) {
       <button
         className="bg-transparent"
         onClick={submit()}
-        id="upload-images"
-      ></button>
+        id="upload-images"></button>
     </div>
   );
 }

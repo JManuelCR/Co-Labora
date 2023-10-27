@@ -52,7 +52,6 @@ export default function SaveNewPlace(props: any) {
     // console.log("lkjdsalkjf", render)
   })();
   const formData = new FormData();
-  console.log("esto es data de las props", props.props.data);
   formData.append("data", JSON.stringify(props.props.data));
   const imagesUpload = props.props.propertyImages;
   imagesUpload.forEach((image: any, index: any) => {
@@ -92,15 +91,11 @@ export default function SaveNewPlace(props: any) {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Respuesta JSON:", data);
         setUrl(data.data);
       });
   }, [Id]);
 
   const handleClick = () => {
-    formData.forEach(function (value, key) {
-      console.log(key, value);
-    });
     fetch("https://co-labora-backend.jmanuelc.dev/property/", {
       method: "POST",
       headers: {
@@ -112,7 +107,6 @@ export default function SaveNewPlace(props: any) {
         return response.json();
       })
       .then((response) => {
-        console.log("response en raw de propiedad", response);
         if (response.success) {
           setBlur(true);
           setTimeout(() => {

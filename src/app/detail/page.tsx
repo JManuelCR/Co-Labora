@@ -109,7 +109,7 @@ export default function Detail() {
     }
   }, [_id]);
   const key = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!; // ! aqui va la llave de google maps
-  console.log("esta es la propiedad en el useState", property);
+
   const libraries = useMemo(() => ["places"], []);
   const mapCenter = useMemo(
     () => ({
