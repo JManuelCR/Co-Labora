@@ -5,6 +5,7 @@ import FooterMobile from "@/components/FooterMobile";
 import { reservations } from "@/data/reservations";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { getCookie } from "cookies-next";
 
 type Property = {
   id: number;
@@ -19,7 +20,7 @@ export default function HistoryReservations() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const Token = localStorage.getItem("token");
+    const Token = getCookie("token");
     if (Token) {
       const [header, payload, signature] = Token.split(".");
       const decodedPayload = JSON.parse(atob(payload));

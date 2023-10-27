@@ -1,4 +1,5 @@
 "use client";
+import { deleteCookie, getCookie } from "cookies-next";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -6,14 +7,14 @@ export default function BurgerNav() {
   const [token, setToken] = useState<string>();
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = getCookie("token");
     if (token) {
       setToken(token);
     }
   }, []);
 
   const deleteToken = () => {
-    localStorage.removeItem("token");
+    deleteCookie("token");
   };
 
   function onClick() {

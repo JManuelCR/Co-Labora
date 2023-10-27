@@ -11,6 +11,7 @@ import Link from "next/link";
 import CheckoutForm from "@/components/CheckoutForm";
 import { dataProperty } from "@/data/propertiesData";
 import { totalmem } from "os";
+import { getCookie } from "cookies-next";
 
 interface DataType {
   addres: string;
@@ -38,7 +39,7 @@ export default function ConfirmReservation() {
     if (getLocal) {
       setGetLocal(getLocal);
     }
-    const token = localStorage.getItem("token");
+    const token = getCookie("token");
     if (token) {
       setToken(token);
     }

@@ -2,13 +2,14 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { getCookie } from "cookies-next";
 
 export default function UserInput() {
   const [desc, setDesc] = useState("");
   const [id, setId] = useState("");
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = getCookie("token");
     if (token) {
       const [header, payload, signature] = token.split(".");
       const decodedPayload = JSON.parse(atob(payload));
@@ -17,7 +18,7 @@ export default function UserInput() {
   }, []);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = getCookie("token");
     fetch(`https://co-labora-backend.jmanuelc.dev/users/${id}`, {
       headers: {
         "Content-Type": "application/json",

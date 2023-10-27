@@ -8,6 +8,7 @@ import emergente from "../../../public/illustrations/Group 2198.png";
 
 import { useState, useEffect, useRef } from "react";
 import { propertyService } from "@/services/prperty.service";
+import { getCookie } from "cookies-next";
 
 export default function SaveNewPlace(props: any) {
   const [blur, setBlur] = useState(false);
@@ -67,18 +68,14 @@ export default function SaveNewPlace(props: any) {
   });
 
   useEffect(() => {
-    if (typeof localStorage !== "undefined") {
-      const getToken = localStorage.getItem("token");
-      if (getToken) {
-        setToken(getToken);
-        const [header, payload, signature] = getToken.split(".");
-        const decodedHeader = JSON.parse(atob(header));
-        const decodedPayload = JSON.parse(atob(payload));
+    const getToken = getCookie("token");
+    if (getToken) {
+      setToken(getToken);
+      const [header, payload, signature] = getToken.split(".");
+      const decodedHeader = JSON.parse(atob(header));
+      const decodedPayload = JSON.parse(atob(payload));
 
-        setId(decodedPayload.id);
-      }
-    } else {
-      console.log("localstorage not available");
+      setId(decodedPayload.id);
     }
   }, [Id]);
 

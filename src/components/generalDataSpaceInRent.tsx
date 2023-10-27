@@ -58,10 +58,6 @@ export default function GeneralInfo({ props }: any) {
   function childCallback(childData: any) {
     setAutoComplete(childData);
   }
-  const getId = () => {
-    const Id = localStorage.getItem("id");
-    return Id;
-  };
 
   useEffect(() => {
     const getToken = localStorage.getItem("token");
