@@ -33,10 +33,13 @@ const PayBox = (stripeProp: CheckoutFormProps) => {
     if (!error) {
       // console.log(paymentMethod);
       const { id } = paymentMethod;
-      const { data } = await axios.post("http://localhost:8080/stripe", {
-        id,
-        amount: stripeProp.stripeProp.stripeProp,
-      });
+      const { data } = await axios.post(
+        "https://co-labora-backend.jmanuelc.dev/stripe",
+        {
+          id,
+          amount: stripeProp.stripeProp.stripeProp,
+        }
+      );
       // console.log(data);
     } else {
       // console.log("error de front", error);

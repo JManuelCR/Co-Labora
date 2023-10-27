@@ -18,7 +18,7 @@ export default function UserInput() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    fetch(`http://localhost:8080/users/${id}`, {
+    fetch(`https://co-labora-backend.jmanuelc.dev/users/${id}`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
@@ -33,7 +33,7 @@ export default function UserInput() {
   const onSubmit = (data: any) => {
     const token = localStorage.getItem("token");
     if (data.userDesc) {
-      fetch(`http://localhost:8080/users/`, {
+      fetch(`https://co-labora-backend.jmanuelc.dev/users/`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
