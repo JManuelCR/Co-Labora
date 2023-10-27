@@ -7,7 +7,8 @@ import Stripe from "../../../public/temporal-images/stripe.png";
 import emergente from "../../../public/illustrations/Group 2198.png";
 
 import { useState, useEffect, useRef } from "react";
-import loadConfig from "next/dist/server/config";
+import { propertyService } from "@/services/prperty.service";
+
 export default function SaveNewPlace(props: any) {
   const [blur, setBlur] = useState(false);
   const [url, setUrl] = useState("");

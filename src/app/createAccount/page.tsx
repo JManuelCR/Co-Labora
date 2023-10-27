@@ -10,6 +10,7 @@ export default function CreateAccount({ props }: any) {
   const [activeButton, setActiveButton] = useState("user");
   const [passShow, setPassShow] = useState(false);
   const [valid, setValid] = useState(true);
+
   const handleTypeUser = () => {
     setType("user"), setActiveButton("user");
   };
@@ -17,9 +18,10 @@ export default function CreateAccount({ props }: any) {
   const handleTypeSpace = () => {
     setType("space"), setActiveButton("space");
   };
-  useEffect(() => {
-    console.log(type);
-  }, [type]);
+
+  // useEffect(() => {
+  //   console.log(type);
+  // }, [type]);
 
   const {
     register,
@@ -27,35 +29,47 @@ export default function CreateAccount({ props }: any) {
     formState: { errors },
   } = useForm<inputs>();
 
-  const onSubmit: SubmitHandler<inputs> = (data) => {
-    // console.log("aca estea el submit");
+  const remove = () => {
     localStorage.removeItem("otp");
-    const userType = type;
-    const toPass = {
-      email: data.email,
-      password: data.password,
-      userType: userType,
-    };
-    fetch("https://co-labora-backend.jmanuelc.dev/otp/", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
+  };
+
+  const setId = (id: string) => {
+    localStorage.setItem("id", id);
+  };
+
+  const onSubmit: SubmitHandler<inputs> = (data) => {
+    if (valid) {
+      remove();
+      const userType = type;
+      const toPass = {
         email: data.email,
         password: data.password,
         userType: userType,
-      }),
-    })
-      .then((response) => {
-        return response.json();
+      };
+      fetch("https://co-labora-backend.jmanuelc.dev/otp/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: data.email,
+          password: data.password,
+          userType: userType,
+        }),
       })
-      .then((responseData) => {
-        const id = responseData.data;
-        localStorage.setItem("id", id);
-      })
-      .catch((error) => {
-        // console.log("fetch error", error);
-      });
-    props(toPass);
+        .then((response) => {
+          return response.json();
+        })
+        .then((responseData) => {
+          const id = responseData.data;
+          setId(id);
+        })
+        .catch((error) => {
+          // console.log("fetch error", error);
+        });
+      props(toPass);
+    } else {
+      // Notify the user that the password is invalid
+      alert("Please enter a valid password.");
+    }
   };
 
   const tooglePass = (e: FormEvent) => {
@@ -167,17 +181,7 @@ export default function CreateAccount({ props }: any) {
                 <p className="text-blue_800 underline">Mostrar</p>
               </button>
             </div>
-            <div className="flex my-3 gap-[15px]">
-              <input
-                type="radio"
-                name="rememberPassword"
-                id="rememberPassword"
-                className="accent-primary w-5 h-5 required"
-              />
-              <p className="font-poppins text-[20px] text-blue_800 ">
-                Recordar contraseña
-              </p>
-            </div>
+            <div className="flex my-3 gap-[15px]"></div>
             <div className="m-3 flex justify-center "></div>
             <div className="h-1 w-full bg-primary mb-[11px] "></div>
             <p className="font-poppins text-[16px] text-blue_700 text-center">
@@ -187,7 +191,10 @@ export default function CreateAccount({ props }: any) {
               <span className="text-black">Aviso de privacidad</span> del
               servicio
             </p>
-            <button id="submit-user-register" type="submit"></button>
+            <button
+              id="submit-user-register"
+              type="submit"
+              disabled={!valid}></button>
           </form>
         </section>
       </section>

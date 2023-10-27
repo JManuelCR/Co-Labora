@@ -6,15 +6,18 @@ import Link from "next/link";
 export default function UserInput() {
   const [desc, setDesc] = useState("");
   const [id, setId] = useState("");
-  const token = localStorage.getItem("token");
+
   useEffect(() => {
+    const token = localStorage.getItem("token");
     if (token) {
       const [header, payload, signature] = token.split(".");
       const decodedPayload = JSON.parse(atob(payload));
       setId(decodedPayload.id);
     }
-  }, [token]);
+  }, []);
+
   useEffect(() => {
+    const token = localStorage.getItem("token");
     fetch(`http://localhost:8080/users/${id}`, {
       headers: {
         "Content-Type": "application/json",
@@ -25,9 +28,10 @@ export default function UserInput() {
       .then((response) => {
         setDesc(response.data.description);
       });
-  }, [token, id]);
+  }, [id]);
 
   const onSubmit = (data: any) => {
+    const token = localStorage.getItem("token");
     if (data.userDesc) {
       fetch(`http://localhost:8080/users/`, {
         method: "PATCH",

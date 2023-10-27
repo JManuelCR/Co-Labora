@@ -4,8 +4,12 @@ import { ToastContainer, toast } from "react-toastify";
 export default function DoubleAuth(props: any) {
   const [number, setNumber] = useState();
 
+  const getId = () => {
+    localStorage.getItem("id");
+  };
+
   const onSubmit = async () => {
-    const id = localStorage.getItem("id");
+    const id = getId();
     fetch("https://co-labora-backend.jmanuelc.dev/otp/validate", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
