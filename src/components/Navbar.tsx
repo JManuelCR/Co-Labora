@@ -66,19 +66,29 @@ export default function Navbar(props: Navbar) {
                 En renta
               </Link>
             </li>
+            <li>
+              <Link
+                href={"/contacts"}
+                className={isActive === "contacts" ? "navItemFocused" : ""}
+                onClick={handleNavContactsClick}>
+                Contacto
+              </Link>
+            </li>
           </ul>
           <span className="flex gap-[14px]  border border-secondary rounded-[42px] py-[6px] px-4 ">
             <button onClick={toogleMenu}>
               <Image src={burgerLogo} alt="" width={28} height={28} />
             </button>
             <div>
-              <Link href={"/login"}><Image
-                src={userIcon}
-                alt=""
-                width={28}
-                height={28}
-                className="rounded-full"
-              /></Link>
+              <Link href={"/login"}>
+                <Image
+                  src={userIcon}
+                  alt=""
+                  width={28}
+                  height={28}
+                  className="rounded-full"
+                />
+              </Link>
             </div>
           </span>
           {menu && (

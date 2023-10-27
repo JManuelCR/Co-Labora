@@ -76,7 +76,7 @@ export default function UserInput() {
               required: "Este campo es obligatorio",
               minLength: 10,
             })}
-            value={desc}></textarea>
+            defaultValue={desc}></textarea>
           <input type="text" />
           <p className="font-poppins text-small text-blue_700 mb-[30px]">
             Porque elegiste este inmueble , cuéntanos que fue lo que te gusto

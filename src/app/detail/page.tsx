@@ -1,5 +1,5 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
+/* eslint-disable react-hooks/exhaustive-deps */
 import { GoogleMap, MarkerF, useLoadScript } from "@react-google-maps/api";
 import React, { useState, useEffect, useMemo } from "react";
 import Navbar from "@/components/Navbar";

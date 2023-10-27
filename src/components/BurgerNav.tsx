@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -25,14 +26,8 @@ export default function BurgerNav() {
       {token ? (
         <section className="flex flex-col gap-3">
           <section>
-            <p>Mensajes</p>
-          </section>
-          <section>
-            <p>Notificaciones</p>
-          </section>
-          <section>
             <Link href={"/historyReservations"}>
-              <p>Favoritos</p>
+              <p>Reservas</p>
             </Link>
           </section>
           <div className="border border-b-primary px-5"></div>

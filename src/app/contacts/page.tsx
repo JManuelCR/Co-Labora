@@ -54,6 +54,7 @@ export default function Detail() {
                       {...field}
                       type="email"
                       className="flex rounded-[15px] border-2 border-primary w-full h-[65px] font-poppins text-[16px] text-blue_500 placeholder:p-[10px] p-[15px] placeholder:text-start focus:outline-0 focus:border-primary  my-5"
+                      placeholder="email@email.com"
                     />
                   )}
                 />
@@ -71,6 +72,7 @@ export default function Detail() {
                       {...field}
                       type="text"
                       className="flex rounded-[15px] border-2 border-primary w-full h-[65px] font-poppins text-[16px] text-blue_500 placeholder:p-[10px] p-[15px] placeholder:text-start focus:outline-0 focus:border-primary  my-5"
+                      placeholder="Escriba el asunto de su correo"
                     />
                   )}
                 />
@@ -86,6 +88,7 @@ export default function Detail() {
                       {...field}
                       rows={4}
                       className="flex rounded-[15px] border-2 border-primary w-full h-[65px] font-poppins text-[16px] text-blue_500 placeholder:p-[10px] p-[15px] placeholder:text-start focus:outline-0 focus:border-primary  my-5"
+                      placeholder="Mensaje..."
                     />
                   )}
                 />
