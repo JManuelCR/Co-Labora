@@ -56,7 +56,7 @@ export default function BookingSteps() {
                   </span>
                 </button>
               )}
-              {actualStep <= 1 && (
+              {actualStep !== 1 && (
                 <button
                   className={`bg-primary rounded-lg px-[18px] py-1 w-[134px] h-[35px] buttonMobileShadow`}
                   onClick={() => {

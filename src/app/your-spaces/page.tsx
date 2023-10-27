@@ -6,6 +6,7 @@ import Image from "next/image";
 import Spaceless from "../../../public/illustrations/No-spaces.svg";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { getCookie } from "cookies-next";
 
 type Property = {
   id: number;
@@ -21,13 +22,13 @@ export default function Detail() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const getToken = localStorage.getItem("token");
+    const getToken = getCookie("token");
     if (getToken) {
       const [header, payload, signature] = getToken.split(".");
       const decodedPayload = JSON.parse(atob(payload));
       const userId = decodedPayload.id;
 
-      fetch(`http://localhost:8080/property/user/${userId}`, {
+      fetch(`https://co-labora-backend.jmanuelc.dev/property/user/${userId}`, {
         headers: {
           "Content-Type": "application/json",
         },

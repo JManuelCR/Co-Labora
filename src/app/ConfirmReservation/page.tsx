@@ -11,6 +11,7 @@ import Link from "next/link";
 import CheckoutForm from "@/components/CheckoutForm";
 import { dataProperty } from "@/data/propertiesData";
 import { totalmem } from "os";
+import { getCookie } from "cookies-next";
 
 interface DataType {
   addres: string;
@@ -38,7 +39,7 @@ export default function ConfirmReservation() {
     if (getLocal) {
       setGetLocal(getLocal);
     }
-    const token = localStorage.getItem("token");
+    const token = getCookie("token");
     if (token) {
       setToken(token);
     }
@@ -124,7 +125,7 @@ export default function ConfirmReservation() {
     const stripeButton = document.getElementById("submit-stripe");
     stripeButton ? stripeButton.click() : "";
     console.log("esto es la info pal fetch", test);
-    fetch("http://localhost:8080/reservation", {
+    fetch("https://co-labora-backend.jmanuelc.dev/reservation", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -142,34 +143,13 @@ export default function ConfirmReservation() {
             window.location.replace("/");
           }, 4000);
         } else {
-          toast.error("A ocurrido un error, favor de re-intentar la reserva", {
-            position: "top-center",
-            autoClose: 2500,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-          });
+          alert("Error al crear tu reserva, vuelva a intentarlo");
         }
       });
   };
 
   return (
     <>
-      <ToastContainer
-        position="top-center"
-        autoClose={2500}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-      />
       {blur ? (
         <section className="flex items-center justify-center h-screen w-screen absolute top-0 left-0 z-20 ">
           <Image

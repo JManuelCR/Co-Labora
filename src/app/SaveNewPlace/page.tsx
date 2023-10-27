@@ -8,6 +8,7 @@ import emergente from "../../../public/illustrations/Group 2198.png";
 
 import { useState, useEffect, useRef } from "react";
 import { propertyService } from "@/services/prperty.service";
+import { getCookie } from "cookies-next";
 
 export default function SaveNewPlace(props: any) {
   const [blur, setBlur] = useState(false);
@@ -67,7 +68,7 @@ export default function SaveNewPlace(props: any) {
   });
 
   useEffect(() => {
-    const getToken = localStorage.getItem("token");
+    const getToken = getCookie("token");
     if (getToken) {
       setToken(getToken);
       const [header, payload, signature] = getToken.split(".");
@@ -82,7 +83,7 @@ export default function SaveNewPlace(props: any) {
     const data: any = {
       id: Id,
     };
-    fetch("http://localhost:8080/stripe/onBoard", {
+    fetch("https://co-labora-backend.jmanuelc.dev/stripe/onBoard", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -100,7 +101,7 @@ export default function SaveNewPlace(props: any) {
     formData.forEach(function (value, key) {
       console.log(key, value);
     });
-    fetch("http://localhost:8080/property/", {
+    fetch("https://co-labora-backend.jmanuelc.dev/property/", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,

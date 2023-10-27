@@ -58,10 +58,6 @@ export default function GeneralInfo({ props }: any) {
   function childCallback(childData: any) {
     setAutoComplete(childData);
   }
-  const getId = () => {
-    const Id = localStorage.getItem("id");
-    return Id;
-  };
 
   useEffect(() => {
     const getToken = localStorage.getItem("token");
@@ -76,10 +72,6 @@ export default function GeneralInfo({ props }: any) {
   }, [Id]);
 
   const onSubmit = (data: any) => {
-<<<<<<< HEAD
-=======
-    const id = getId();
->>>>>>> 6f11faa9b002acf3339e8f858f531c05f18d4d45
     const { broad, cost, description, long, name, tall, AM, PM } = data;
     const toFetch = {
       userId: Id,

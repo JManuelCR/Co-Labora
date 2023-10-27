@@ -7,6 +7,7 @@ import { FormEvent, useState } from "react";
 import inputs from "@/types/inputs.types";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { setCookie } from "cookies-next";
 import Link from "next/link";
 
 export default function Login() {
@@ -17,11 +18,11 @@ export default function Login() {
   } = useForm<inputs>();
 
   const setToken = (data: any) => {
-    localStorage.setItem("token", data);
+    setCookie("token", data);
   };
 
   const onSubmit: SubmitHandler<inputs> = (data) => {
-    fetch("http://localhost:8080/login", {
+    fetch("https://co-labora-backend.jmanuelc.dev/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
