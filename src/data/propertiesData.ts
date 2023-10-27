@@ -11,7 +11,7 @@ export const dataProperty = [
             city: 'Estado de México',
             mapCoordinates: "17.036889, -96.735139"
         },
-        images:[
+        propertyImages:[
             'https://trabaja.xyz/wp-content/uploads/2022/06/Salon-de-belleza-cerca-de-mi-que-hablen-espanol-800x534.jpg',
             'https://trabaja.xyz/wp-content/uploads/2022/06/Salon-de-belleza-cerca-de-mi-que-hablen-espanol-800x534.jpg',
             'https://trabaja.xyz/wp-content/uploads/2022/06/Salon-de-belleza-cerca-de-mi-que-hablen-espanol-800x534.jpg',
@@ -61,7 +61,7 @@ export const dataProperty = [
             city: 'Estado de México',
             mapCoordinates: "17.036889, -96.735139"
         },
-        images:[
+        propertyImages:[
             'https://trabaja.xyz/wp-content/uploads/2022/06/Salon-de-belleza-cerca-de-mi-que-hablen-espanol-800x534.jpg',
             'https://trabaja.xyz/wp-content/uploads/2022/06/Salon-de-belleza-cerca-de-mi-que-hablen-espanol-800x534.jpg',
             'https://trabaja.xyz/wp-content/uploads/2022/06/Salon-de-belleza-cerca-de-mi-que-hablen-espanol-800x534.jpg',
@@ -111,7 +111,7 @@ export const dataProperty = [
             city: 'Estado de México',
             mapCoordinates: "17.036889, -96.735139"
         },
-        images:[
+        propertyImages:[
             'https://trabaja.xyz/wp-content/uploads/2022/06/Salon-de-belleza-cerca-de-mi-que-hablen-espanol-800x534.jpg',
             'https://trabaja.xyz/wp-content/uploads/2022/06/Salon-de-belleza-cerca-de-mi-que-hablen-espanol-800x534.jpg',
             'https://trabaja.xyz/wp-content/uploads/2022/06/Salon-de-belleza-cerca-de-mi-que-hablen-espanol-800x534.jpg',
@@ -161,7 +161,7 @@ export const dataProperty = [
             city: 'Estado de México',
             mapCoordinates: "17.036889, -96.735139"
         },
-        images:[
+        propertyImages:[
             'https://trabaja.xyz/wp-content/uploads/2022/06/Salon-de-belleza-cerca-de-mi-que-hablen-espanol-800x534.jpg',
             'https://trabaja.xyz/wp-content/uploads/2022/06/Salon-de-belleza-cerca-de-mi-que-hablen-espanol-800x534.jpg',
             'https://trabaja.xyz/wp-content/uploads/2022/06/Salon-de-belleza-cerca-de-mi-que-hablen-espanol-800x534.jpg',
