@@ -1,93 +1,75 @@
-"use client"
+"use client";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FooterMobile from "@/components/FooterMobile";
 import { reservations } from "@/data/reservations";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 
-
-
+type Property = {
+  id: number;
+  name: string;
+  price: string;
+  length: number;
+  map: Function;
+};
 export default function HistoryReservations() {
-  const [term, setTerm] = useState("");
-  let pageNumbers =[];
-  let currentPage = 1;
-  const totaldata = reservations.length;
-  const dataPerPage = 8;
-  let totalPages = Math.ceil(totaldata / dataPerPage);
-  
- {
-  //if(Number(searchParams.page) >=1 ){
-    //currentPage = Number(searchParams.page)
-  //}
- }
+  const [reservations, setReservations] = useState<Property>();
+  const [loading, setLoading] = useState(true);
 
-  let offset= (currentPage -1) * dataPerPage;
-
-  for(let i = currentPage; i <= currentPage; i++){
-    if(i < 1) continue;
-    if(i > dataPerPage) break;
-    pageNumbers.push(i);
-  }
+  useEffect(() => {
+    const Token = localStorage.getItem("token");
+    if (Token) {
+      const [header, payload, signature] = Token.split(".");
+      const decodedPayload = JSON.parse(atob(payload));
+      const id = decodedPayload.id;
+      fetch(`http://localhost:8080/users/${id}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${Token}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((response) => {
+          console.log(
+            "esta es la respuesta del get user by id ",
+            response.data.reservations
+          );
+          setReservations(response.data.reservations);
+          setLoading(false);
+        });
+    }
+  }, []);
 
   return (
     <>
       <Navbar page="reservations" />
-      <article className="w-100% h-100% md:w-full md:h-100%">
-        <article className="flex flex-col justify-center items-center gap-5 lg:mx-20 lg:mt-40">
-          <h1 className="text-titles font-acme text-blue_800 text-center">
-            Tus reservas confirmadas
-          </h1>
-          <table className="border border-solid border-gray-300 text-blue_800 w-[900px] max-lg:w-[600px] max-md:w-[400px] max-sm:w-[250px] m-4 sm:mx-5 md:mb-20  lg:mt-40">
-            <thead className="font-bold">
+      <section className="flex flex-col h-screen w-auto ">
+        {!loading && reservations && reservations.length > 0 ? (
+          <table className="m-auto w-full max-w-3xl border border-solid border-primary text-black font-semibold">
+            <thead className="bg-primary text-white">
               <tr>
-                <th className="border border-solid border-secondary p-3">
-                <input type="search" placeholder="Titulo" value={term} onChange={(e) => setTerm(e.target.value)} className="flex w-full focus:outline-0 placeholder:text-blue_500 text-center" />
-                </th>
-                <th className="border border-solid border-secondary p-3">
-                  Fecha
-                </th>
-                <th className="border border-solid border-secondary p-3 max-md:hidden">
-                  Costo
-                </th>
+                <th className="p-2">Nombre de la propiedad</th>
+                <th className="p-2">Total</th>
+                <th className="p-2">Fecha de inicio</th>
+                <th className="p-2">Fecha de finalización</th>
               </tr>
             </thead>
-            <tbody className="font-semibold text-start">
-              {reservations?.filter((reservations) => reservations.name.toLocaleLowerCase().includes(term.toLocaleLowerCase()))
-              .map((reservation, index) => (
-                <tr key={index} >
-                  <td className="border border-solid border-secondary p-3">
-                    {reservation.name}
-                  </td>
-                  <td className="border border-solid border-secondary p-3">
-                    {reservation.start_date}
-                  </td>
-                  <td className="border border-solid border-secondary p-3 max-md:hidden">
-                    {`$ ${reservation.price}`}
-                  </td>
+            <tbody>
+              {reservations.map((reservation: any, index: any) => (
+                <tr key={index} className="border-t border-primary">
+                  <td className="p-2">{reservation.property.propertyName}</td>
+                  <td className="p-2">${reservation.total}</td>
+                  <td className="p-2">{reservation.startDate}</td>
+                  <td className="p-2">{reservation.endDate}</td>
                 </tr>
               ))}
             </tbody>
           </table>
-        </article>
-        <article className="flex text-blue_800 font-semibold font-poppins justify-center items-center my-14 pb-[120px] lg:pb-40">
-          <div className="justify-center flex gap-4">
-            {currentPage -1 >= 1 && (
-              <Link href="/confirmedReservations">{"<<"} </Link>
-            )}
-            {
-              pageNumbers.map((page) => <Link key={page} href={`/confirmedReservations?page=${page}`}
-              className={`page === currentPage ? text-secondary font-bold : ""`}
-              >{page}</Link>)
-            }
-            {currentPage +1 <= totalPages && (
-              <Link href="/confirmedReservations">{">>"} </Link>
-            )}
-          </div>
-          
-          
-        </article>
-      </article>
+        ) : (
+          <h1>Vaya parece que no tienes reservas hechas al momento</h1>
+        )}
+      </section>
       <footer className="hidden md:block ">
         <Footer />
       </footer>
