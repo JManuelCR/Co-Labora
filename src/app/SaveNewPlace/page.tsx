@@ -86,7 +86,7 @@ export default function SaveNewPlace(props: any) {
     const data: any = {
       id: Id,
     };
-    fetch("http://localhost:8080/stripe/onBoard", {
+    fetch("https://co-labora-backend.jmanuelc.dev/stripe/onBoard", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -104,7 +104,7 @@ export default function SaveNewPlace(props: any) {
     formData.forEach(function (value, key) {
       console.log(key, value);
     });
-    fetch("http://localhost:8080/property/", {
+    fetch("https://co-labora-backend.jmanuelc.dev/property/", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
