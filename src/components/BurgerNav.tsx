@@ -28,7 +28,7 @@ export default function BurgerNav() {
         <section className="flex flex-col gap-3">
           <section>
             <Link href={"/historyReservations"}>
-              <p>Reservas</p>
+              <p>Tus reservas</p>
             </Link>
           </section>
           <div className="border border-b-primary px-5"></div>

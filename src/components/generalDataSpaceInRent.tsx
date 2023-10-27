@@ -11,6 +11,7 @@ import Autcomplete from "./Autocomplete";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
+import { getCookie } from "cookies-next";
 export default function GeneralInfo({ props }: any) {
   const { register, handleSubmit } = useForm();
   const [autocomplete, setAutoComplete] = useState();
@@ -60,7 +61,7 @@ export default function GeneralInfo({ props }: any) {
   }
 
   useEffect(() => {
-    const getToken = localStorage.getItem("token");
+    const getToken = getCookie("token");
     if (getToken) {
       setToken(getToken);
       const [header, payload, signature] = getToken.split(".");

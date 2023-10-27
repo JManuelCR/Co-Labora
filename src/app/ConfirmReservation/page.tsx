@@ -34,8 +34,10 @@ export default function ConfirmReservation() {
   const [amount, setAmount] = useState<any>();
   const [getLocal, setGetLocal] = useState<string>();
   const [token, setToken] = useState<string>();
+
   useEffect(() => {
     const getLocal = localStorage.getItem("property");
+
     if (getLocal) {
       setGetLocal(getLocal);
     }
@@ -64,6 +66,7 @@ export default function ConfirmReservation() {
   useEffect(() => {
     if (data) {
       const startDate = new Date(data.startDate.split("-").reverse().join("-"));
+
       const endDate = new Date(data.endDate.split("-").reverse().join("-"));
 
       const timeDifference = endDate.getTime() - startDate.getTime();
@@ -80,23 +83,12 @@ export default function ConfirmReservation() {
     }
 
     // Verifica si days y data están configurados correctamente
+
     if (days !== null && data?.price !== undefined) {
       const subtotal = parseFloat(data.price) * days;
       const commission = subtotal * 0.03;
       const taxes = subtotal * 0.16;
       const total = subtotal + commission + taxes;
-      console.log(
-        "esto es el total",
-        total,
-        "estos son los taxes",
-        taxes,
-        "estas son las comisiones",
-        commission,
-        "esto es el subtotal",
-        subtotal,
-        "estos son los dias",
-        days
-      );
       if (total) {
         const totalRounded = Math.round(total * 100);
         setAmount(totalRounded);
@@ -124,7 +116,7 @@ export default function ConfirmReservation() {
   const handleClick = () => {
     const stripeButton = document.getElementById("submit-stripe");
     stripeButton ? stripeButton.click() : "";
-    console.log("esto es la info pal fetch", test);
+
     fetch("https://co-labora-backend.jmanuelc.dev/reservation", {
       method: "POST",
       headers: {
@@ -135,9 +127,7 @@ export default function ConfirmReservation() {
     })
       .then((response) => response.json())
       .then((response) => {
-        console.log("respuesta al crear la reserva", response);
         if (response.success) {
-          console.log("esta es la respuesta ", response);
           setTimeout(() => {
             setBlur(true);
             window.location.replace("/");
