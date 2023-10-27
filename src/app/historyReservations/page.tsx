@@ -13,6 +13,7 @@ type Property = {
   length: number;
   map: Function;
 };
+
 export default function HistoryReservations() {
   const [reservations, setReservations] = useState<Property>();
   const [loading, setLoading] = useState(true);
