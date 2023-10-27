@@ -1,5 +1,5 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
+/* eslint-disable @next/next/no-img-element */
 import { useForm, SubmitHandler } from "react-hook-form";
 import inputs from "@/types/inputs.types";
 import { FormEvent, useState, useEffect } from "react";

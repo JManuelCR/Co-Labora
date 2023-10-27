@@ -1,20 +1,24 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
+/* eslint-disable react-hooks/exhaustive-deps */
 import Image from "next/image";
 import confirm from "../../../public/illustrations/image 42.svg";
 import Carpenter from "../../../public/temporal-images/holder-carpenter.webp";
 import Stripe from "../../../public/temporal-images/stripe.png";
 import emergente from "../../../public/illustrations/Group 2198.png";
-import { dataConfirm } from "@/data/data-confirm";
+
 import { useState, useEffect, useRef } from "react";
 import { propertyService } from "@/services/prperty.service";
 
 export default function SaveNewPlace(props: any) {
+  const [blur, setBlur] = useState(false);
+  const [url, setUrl] = useState("");
+  const [Id, setId] = useState("");
+  const [token, setToken] = useState("");
+  const [render, setRender] = useState(false);
   const formDataEntries: any = props.props;
   // console.log("props", props.props);
   // ! ESTE ES EL QUE VA A MANDARSE EN EL FETCH  BD
   const data = props.props && props.props.data ? props.props.data : {};
-  const [render, setRender] = useState(false);
   useEffect(() => {
     setRender(data !== undefined);
   }, [data]);
@@ -47,6 +51,7 @@ export default function SaveNewPlace(props: any) {
     // console.log("lkjdsalkjf", render)
   })();
   const formData = new FormData();
+  console.log("esto es data de las props", props.props.data);
   formData.append("data", JSON.stringify(props.props.data));
   const imagesUpload = props.props.propertyImages;
   imagesUpload.forEach((image: any, index: any) => {
@@ -61,52 +66,62 @@ export default function SaveNewPlace(props: any) {
     formData.append(`propertyDni-${index}`, dni);
   });
 
-  const [blur, setBlur] = useState(false);
-  const [url, setUrl] = useState("");
+  useEffect(() => {
+    const getToken = localStorage.getItem("token");
+    if (getToken) {
+      setToken(getToken);
+      const [header, payload, signature] = getToken.split(".");
+      const decodedHeader = JSON.parse(atob(header));
+      const decodedPayload = JSON.parse(atob(payload));
+
+      setId(decodedPayload.id);
+    }
+  }, [Id]);
 
   useEffect(() => {
-    const getId = localStorage.getItem("id");
-    const fetchData = async () => {
-      const data: any = {
-        id: getId,
-      };
-
-      const response = await fetch(
-        "https://co-labora-backend.jmanuelc.dev/stripe/onBoard",
-        {
-          method: "POST", // Puedes ajustar el método según tus necesidades
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        }
-      );
-
-      if (response.ok) {
-        const responseData = await response.json();
-        // console.log("en teoria esta es la url del onBoarding", responseData);
-        setUrl(responseData.data);
-      } else {
-        console.error("Error al hacer la solicitud HTTP");
-      }
+    const data: any = {
+      id: Id,
     };
-
-    fetchData();
-  }, []);
+    fetch("http://localhost:8080/stripe/onBoard", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Respuesta JSON:", data);
+        setUrl(data.data);
+      });
+  }, [Id]);
 
   const handleClick = () => {
-    propertyService.create(formData).then((response) => {
-      setBlur(true);
-      setTimeout(() => {
-        window.location.replace(url);
-      }, 4000);
+    formData.forEach(function (value, key) {
+      console.log(key, value);
     });
+    fetch("http://localhost:8080/property/", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: formData,
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((response) => {
+        console.log("response en raw de propiedad", response);
+        if (response.success) {
+          setBlur(true);
+          setTimeout(() => {
+            window.location.replace(url);
+          }, 4000);
+        } else {
+          alert("La propiedad no se pudo crear, vuelva a intentarlo");
+        }
+      });
   };
-
-  const { name, address, addons, price, rating, opinions } = dataConfirm;
-  const total = price * 4;
-  const commision = total * 0.3;
-  const tax = total * 0.16;
 
   return (
     <>
@@ -128,8 +143,7 @@ export default function SaveNewPlace(props: any) {
           <section
             className={`flex justify-center items-center max-md:flex-wrap relative ${
               blur ? "blur-xl" : ""
-            } `}
-          >
+            } `}>
             <section className="flex flex-col font-poppins text-blue_800 border border-solid border-blue_800 p-[36px] rounded-[24px] max-md:border-none lg:w-[554px] mb-[48px]">
               <article className="flex justify-between md:gap-5 pb-[10px] md:pb-[28px] border-b-[2px] border-secondary">
                 <div className="flex flex-col gap-3 w-1/2">
@@ -150,8 +164,7 @@ export default function SaveNewPlace(props: any) {
                 </div>
                 <div
                   id="imageBox"
-                  className=" relative w-[170px] h-[128px] lg:w-[260px] md:h-[140px] bg-cover bg-no-repeat bg-center rounded-lg"
-                ></div>
+                  className=" relative w-[170px] h-[128px] lg:w-[260px] md:h-[140px] bg-cover bg-no-repeat bg-center rounded-lg"></div>
               </article>
               <article className="my-8">
                 <h3 className="font-acme text-blue_800 text-suTitles">
@@ -164,98 +177,7 @@ export default function SaveNewPlace(props: any) {
                   <p>{`$${data.price} x dia`}</p>
                 </div>
                 <h3 className="font-acme text-blue_800 text-suTitles">Items</h3>
-                <ul className="flex flex-col gap-3 list-inside list-disc">
-                  {data.addOns.screwdrivers ? (
-                    <li className="flex justify-between">
-                      <p className="flex h-1 gap-2">
-                        <div className="flex items-center justify-center h-1">
-                          <span className="block text-blue_800 text-[40px] h-16">
-                            .
-                          </span>
-                        </div>
-                        {`Screwdrivers`}
-                      </p>
-                      <p>{`${addons.hammer.price} MXN`}</p>
-                    </li>
-                  ) : (
-                    <></>
-                  )}
-                  {data.addOns.powerExtension ? (
-                    <li className="flex justify-between">
-                      <p className="flex h-1 gap-2">
-                        <div className="flex items-center justify-center h-1">
-                          <span className="block text-blue_800 text-[40px] h-16">
-                            .
-                          </span>
-                        </div>
-                        {`Power Extension`}
-                      </p>
-                      <p>{`${addons.jigsaw.price} MXN`}</p>
-                    </li>
-                  ) : (
-                    <></>
-                  )}
-                  {data.addOns.flexometer ? (
-                    <li className="flex justify-between">
-                      <p className="flex h-1 gap-2">
-                        <div className="flex items-center justify-center h-1">
-                          <span className="block text-blue_800 text-[40px] h-16">
-                            .
-                          </span>
-                        </div>
-                        {`Flexometer`}
-                      </p>
-                      <p>{`${addons.drill.price} MXN`}</p>
-                    </li>
-                  ) : (
-                    <></>
-                  )}
-                  {data.addOns.drill ? (
-                    <li className="flex justify-between">
-                      <p className="flex h-1 gap-2">
-                        <div className="flex items-center justify-center h-1">
-                          <span className="block text-blue_800 text-[40px] h-16">
-                            .
-                          </span>
-                        </div>
-                        {`${addons.screwdrivers.name} `}
-                      </p>
-                      <p>{`${addons.screwdrivers.price} MXN`}</p>
-                    </li>
-                  ) : (
-                    <></>
-                  )}
-                  {data.addOns.carpenterBrush ? (
-                    <li className="flex justify-between">
-                      <p className="flex h-1 gap-2">
-                        <div className="flex items-center justify-center h-1">
-                          <span className="block text-blue_800 text-[40px] h-16">
-                            .
-                          </span>
-                        </div>
-                        {` Carpenter Brush`}
-                      </p>
-                      <p>{`${addons.flexometer.price} MXN`}</p>
-                    </li>
-                  ) : (
-                    <></>
-                  )}
-                  {data.addOns.woodJigSaw ? (
-                    <li className="flex justify-between">
-                      <p className="flex h-1 gap-2">
-                        <div className="flex items-center justify-center h-1">
-                          <span className="block text-blue_800 text-[40px] h-16">
-                            .
-                          </span>
-                        </div>
-                        {`Wood Jigsaw`}
-                      </p>
-                      <p>{`${addons.markers.price} MXN`}</p>
-                    </li>
-                  ) : (
-                    <></>
-                  )}
-                </ul>
+                <ul className="flex flex-col gap-3 list-inside list-disc"></ul>
               </article>
               <h3 className="font-acme text-blue_800 text-suTitles my-2">
                 Cuenta de deposito
@@ -301,8 +223,7 @@ export default function SaveNewPlace(props: any) {
               <article className="flex justify-center">
                 <button
                   className="bg-primary text-white px-4 py-2 rounded-xl w-[134px]"
-                  onClick={handleClick}
-                >
+                  onClick={handleClick}>
                   Confirmar
                 </button>
               </article>
