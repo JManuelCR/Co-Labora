@@ -61,6 +61,10 @@ body {
   width: 300px !important;
   height: auto !important;
 }
+.mySwiperLanding{
+  width: 300px !important;
+  height: auto !important;
+}
 .propertyAvatar {
   width: 100px;
   height: 100px;
@@ -79,6 +83,10 @@ body {
 }
 .sliderHero{
   width: 200% !important; 
+}
+
+.sliderComents{
+  width: 92% !important;
 }
 
 @media (min-height:1144px) {
