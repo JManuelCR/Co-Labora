@@ -142,34 +142,13 @@ export default function ConfirmReservation() {
             window.location.replace("/");
           }, 4000);
         } else {
-          toast.error("A ocurrido un error, favor de re-intentar la reserva", {
-            position: "top-center",
-            autoClose: 2500,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-          });
+          alert("Error al crear tu reserva, vuelva a intentarlo");
         }
       });
   };
 
   return (
     <>
-      <ToastContainer
-        position="top-center"
-        autoClose={2500}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-      />
       {blur ? (
         <section className="flex items-center justify-center h-screen w-screen absolute top-0 left-0 z-20 ">
           <Image

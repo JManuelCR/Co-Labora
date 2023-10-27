@@ -3,8 +3,6 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import inputs from "@/types/inputs.types";
 import { FormEvent, useState, useEffect } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 export default function CreateAccount({ props }: any) {
   const [type, setType] = useState("user");
   const [activeButton, setActiveButton] = useState("user");
@@ -87,18 +85,6 @@ export default function CreateAccount({ props }: any) {
 
   return (
     <>
-      <ToastContainer
-        position="top-center"
-        autoClose={2500}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-      />
       <section className=" w-100%  md:w-full md:h-100% flex items-center justify-center mb-40">
         <section className="flex flex-col mx-5 md:w-[440px] md:h-[510px] windowXl">
           <div className=" lg:my-0 gap-[13px]">
