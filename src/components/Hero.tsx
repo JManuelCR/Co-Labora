@@ -12,7 +12,7 @@ import arrowLeft from "../../public/icons/icon-arrow-left-white.svg";
 import { dataProperty } from "@/data/propertiesData";
 import SliderHero from "./sliderHero";
 
-export default function Hero() {
+export default function Hero(props: any) {
   return (
     <>
       <section className="flex w-full lg:px-[60px] justify-center gap-5 max-xl:flex-col-reverse max-xl:items-center h-[528px] md:h-auto">
@@ -62,15 +62,7 @@ export default function Hero() {
             />
           </div>
           <div className="flex absolute bottom-[24px] md:bottom-3 w-[100%]">
-            <SliderHero properties={dataProperty} />
-            {/* <div className="flex gap-[28px] w-[100%]">
-              <div className="relative w-[100%] h-[100%] ">
-                <div className="absolute end-0 top-0 flex gap-[40px] pe-[60px]">
-                  <Image src={arrowLeft} alt={"Slider arrow left icon"} />
-                  <Image src={arrowRigth} alt={"Slider arrow right icon"} />
-                </div>
-              </div>
-            </div> */}
+            <SliderHero properties={props} />
           </div>
         </article>
       </section>

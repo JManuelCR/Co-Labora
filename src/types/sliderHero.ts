@@ -1,5 +1,5 @@
 export interface SliderHero{
-    id: string
+    _id: string
     name: string,
     location: {
         ownerDescription: string,
@@ -10,7 +10,7 @@ export interface SliderHero{
         city: string,
         mapCoordinates: string,
     },
-    images: string[],
+    propertyImages: string[],
     description: string,
     amenities: {
             wifi: boolean,
