@@ -13,7 +13,7 @@ export default function Detail() {
       asunto: data.asunto,
       mensaje: data.mensaje,
     };
-    fetch("http://localhost:8080/email/", {
+    fetch("https://co-labora-backend.jmanuelc.dev/email/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
