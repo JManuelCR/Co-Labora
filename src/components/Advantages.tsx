@@ -4,6 +4,7 @@ import Space from "../../public/icons/spaceship.webp";
 import Money from "../../public/icons/Icon-Money.svg";
 import User from "../../public/icons/Icon-Users.svg";
 import Compass from "../../public/icons/Icon-Compass.svg";
+import SliderUserLanding from "./slideUserLanding";
 
 interface Props {
   pictureProfile: string;
@@ -85,32 +86,9 @@ export default function Advantages(props: Props) {
           </div>
         </section>
       </section>
-      <section className="bg-secondary h-auto xl:h-[452px] w-full flex flex-col md:p-5 gap-14 max-md:p-2 max-md:w-full">
-        <div className="flex px-20 gap-5 py-3  max-md:px-5 max-md:justify-between">
-          <div className="flex basis-1/4 gap-5 ">
-            <Image
-              src="icons/Boton-back.svg"
-              width={40}
-              height={48}
-              alt="Boton-Back"
-            />
-            <Image
-              src="icons/Boton-back-1.svg"
-              width={40}
-              height={48}
-              alt="Boton-adelante"
-            />
-          </div>
-          <div className="basis-1/4 flex justify-end">
-            <img
-              src="icons/Progress-circulos.svg"
-              alt="Boton circulos"
-              className="w-12 h-12"
-            />
-          </div>
-        </div>
-        <section className="flex gap-24 lg:px-[90px] max-md:flex-col max-md:justify-center max-md:items-center pb-4">
-          <div className="flex flex-col gap-5 md:basis-1/2 ">
+      <section className="bg-secondary h-auto xl:h-[452px] w-full flex flex-col md:p-4 gap-6 max-md:p-2 max-md:w-full]">
+        <section className="max-w-full flex gap-8 lg:gap-[150px] xl:gap-[270px] md:px-[40px] xl:px-[90px] max-md:flex-col max-md:justify-center max-md:items-center pb-4 mt-[20px] md:mt-[100px]">
+          {/* <div className="flex flex-col gap-5 md:basis-1/2 ">
             <div>
               <p className="text-lg font-[poppins] text-white">{opinion}</p>
             </div>
@@ -138,7 +116,8 @@ export default function Advantages(props: Props) {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
+          <SliderUserLanding />
           <div className="gap-5 md:basis-1/2 max-md:flex flex-col items-center max-md:mb-4">
             <div className="flex ">
               <div className="md:border-l-4 px-3 md:basis-1/2 max-md:border-l-4 border-blue_800">
