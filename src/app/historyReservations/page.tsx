@@ -33,10 +33,6 @@ export default function HistoryReservations() {
       })
         .then((response) => response.json())
         .then((response) => {
-          console.log(
-            "esta es la respuesta del get user by id ",
-            response.data.reservations
-          );
           setReservations(response.data.reservations);
           setLoading(false);
         });

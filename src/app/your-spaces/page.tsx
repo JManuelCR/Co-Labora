@@ -42,9 +42,11 @@ export default function Detail() {
           console.error(error);
           setLoading(false);
         });
+    } else {
+      window.location.replace("/login");
     }
   }, []);
-  console.log("estas son las propiedades", properties);
+
   return (
     <>
       <Navbar page="your spaces" />
@@ -54,10 +56,10 @@ export default function Detail() {
             <h5 className="font-poppins text-suTitles text-blue_800 text-center">
               {loading ? (
                 "Cargando propiedades..."
-              ) : properties && properties.length > 0 ? (
+              ) : (properties ?? []).length > 0 ? (
                 <p>
-                  Tienes {properties.length} propiedades dadas de alta con tu
-                  cuenta
+                  Tienes {(properties ?? []).length} propiedades dadas de alta
+                  con tu cuenta
                 </p>
               ) : (
                 "Ninguna propiedad aún..."
@@ -97,6 +99,7 @@ export default function Detail() {
                   <p className="text-lg font-semibold mt-2">
                     ${property.price} costo por día
                   </p>
+                  <p>Tienes {property.reservations.length} reservaciones </p>
                 </div>
               </article>
             ))

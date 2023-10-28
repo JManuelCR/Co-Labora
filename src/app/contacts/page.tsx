@@ -7,7 +7,6 @@ import { useForm, Controller } from "react-hook-form";
 export default function Detail() {
   const { handleSubmit, control } = useForm();
   const onSubmit = (data: any) => {
-    console.log("Data de los inputs:", data);
     const requestData = {
       email: data.email,
       asunto: data.asunto,
@@ -22,10 +21,10 @@ export default function Detail() {
     })
       .then((response) => response.json())
       .then((responseData) => {
-        console.log("Respuesta del servidor:", responseData);
+        alert("Correo enviado!");
       })
       .catch((error) => {
-        console.error("Error al enviar la solicitud:", error);
+        alert("Error al enviar la solicitud:");
       });
   };
 
