@@ -61,7 +61,7 @@ export default function CreateAccount({ props }: any) {
           setId(id);
         })
         .catch((error) => {
-          // console.log("fetch error", error);
+          console.log("fetch error", error);
         });
       props(toPass);
     } else {
