@@ -4,12 +4,8 @@ import { ToastContainer, toast } from "react-toastify";
 export default function DoubleAuth(props: any) {
   const [number, setNumber] = useState();
 
-  const getId = () => {
-    localStorage.getItem("id");
-  };
-
   const onSubmit = async () => {
-    const id = getId();
+    const id = localStorage.getItem("id");
     fetch("https://co-labora-backend.jmanuelc.dev/otp/validate", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -22,9 +18,9 @@ export default function DoubleAuth(props: any) {
         return response.json();
       })
       .then((response) => {
-        // console.log("esta es la respuesta raw", response);
-        // console.log("este es el status de la respuesta", response.ok);
-        if (response.data.verified === true) {
+        console.log("esta es la respuesta raw", response);
+        if (response.success === true) {
+          localStorage.removeItem("id");
           window.location.replace("/login");
         } else {
           // console.log("Error al crear el usuario");
