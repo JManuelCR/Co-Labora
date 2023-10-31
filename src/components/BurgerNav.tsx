@@ -41,11 +41,15 @@ export default function BurgerNav() {
       ) : (
         <></>
       )}
-      <section>
+      <section className="flex ">
         {token ? (
-          <button onClick={onClick}>Cerrar sesion</button>
+          <button onClick={onClick} className="text-clip whitespace-nowrap">
+            Cerrar sesión
+          </button>
         ) : (
-          <Link href={"/login"}> Iniciar sesion </Link>
+          <Link href={"/login"} className="text-clip whitespace-nowrap">
+            Iniciar sesión
+          </Link>
         )}
       </section>
     </article>

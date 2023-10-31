@@ -74,7 +74,7 @@ export default function DoubleAuth(props: any) {
             onChange={handleInputChange}
           />
           <button
-            className="bg-primary px-2 py-3 text-white"
+            className="bg-primary px-2 py-3 text-white rounded-xl font-bold text-xl "
             onClick={onSubmit}>
             Verificar
           </button>
