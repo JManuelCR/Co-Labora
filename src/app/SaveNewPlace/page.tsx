@@ -17,7 +17,7 @@ export default function SaveNewPlace(props: any) {
   const [token, setToken] = useState("");
   const [render, setRender] = useState(false);
   const formDataEntries: any = props.props;
-  // console.log("props", props.props);
+
   // ! ESTE ES EL QUE VA A MANDARSE EN EL FETCH  BD
   const data = props.props && props.props.data ? props.props.data : {};
   useEffect(() => {
@@ -94,7 +94,7 @@ export default function SaveNewPlace(props: any) {
         setUrl(data.data);
       });
   }, [Id]);
-
+  console.log("esto es la url", url);
   const handleClick = () => {
     fetch("https://co-labora-backend.jmanuelc.dev/property/", {
       method: "POST",
@@ -171,8 +171,25 @@ export default function SaveNewPlace(props: any) {
                   </p>
                   <p>{`$${data.price} x dia`}</p>
                 </div>
-                <h3 className="font-acme text-blue_800 text-suTitles">Items</h3>
-                <ul className="flex flex-col gap-3 list-inside list-disc"></ul>
+                <h3 className="font-acme text-blue_800 text-suTitles">
+                  Extras inlcuidos sin costo extra
+                </h3>
+                <ul className="flex flex-col gap-3 list-inside list-disc">
+                  {data.amenities.wifi ? <li>WiFi</li> : ""}
+                  {data.amenities.parking ? <li>Estacionamiento</li> : ""}
+                  {data.amenities.airConditioner ? <li>Clima</li> : ""}
+                  {data.amenities.reception ? (
+                    <li>Servicio de Recepcion</li>
+                  ) : (
+                    ""
+                  )}
+                  {data.amenities.petFriendly ? <li>Pet Friendly</li> : ""}
+                  {data.amenities.cleanService ? (
+                    <li>Servicio de Limpieza</li>
+                  ) : (
+                    ""
+                  )}
+                </ul>
               </article>
               <h3 className="font-acme text-blue_800 text-suTitles my-2">
                 Cuenta de deposito

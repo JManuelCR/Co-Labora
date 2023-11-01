@@ -19,8 +19,17 @@ export default function ImageUpload({ props }: any) {
   const [images, setImages] = useState<any>();
   const [files, setFiles] = useState<any>();
   const [identification, setIdentification] = useState<any>();
+  const [ready, setReady] = useState(false);
   const { register, handleSubmit } = useForm();
   const onSubmit = (data: any) => console.log(data);
+
+  useEffect(() => {
+    if (images && files && identification) {
+      setReady(true);
+    } else {
+      setReady(false);
+    }
+  }, [images, files, identification]);
 
   const submit = (): any => {
     const toUpload = {
@@ -28,7 +37,12 @@ export default function ImageUpload({ props }: any) {
       documents: files,
       dni: identification,
     };
+    console.log("toUpload", toUpload);
     props(toUpload);
+    const button = document.getElementById("upload-space-steps");
+    if (button) {
+      button.click();
+    }
   };
 
   const PropertyImages = (image: any) => {
@@ -56,9 +70,6 @@ export default function ImageUpload({ props }: any) {
         <h1 className="font-acme text-blue_800 text-[24px] md:text-[40px] font-normal leading-[36px] tracking-[-0.8px] block h-[28px] mt-[17px]">
           Adjunta fotos del lugar
         </h1>
-        <h2 className="font-poppins text-blue_800 leading-[36px] tracking-[-0.46px] block">
-          (8min)
-        </h2>
         <Dropzone onDrop={(acceptedImages) => PropertyImages(acceptedImages)}>
           {({ getRootProps, getInputProps }) => (
             <section className="w-[300px] md:w-[700px] h-[140px] md:h-[340px] bg-secondary rounded-[20px]">
@@ -231,11 +242,17 @@ export default function ImageUpload({ props }: any) {
             )}
           </div>
         </div>
+        <div className="mt-5">
+          <button
+            className={`rounded-lg px-[18px] py-1 w-[134px] h-[35px] buttonMobileShadow bg-gray ${
+              ready ? "bg-primary" : "bg-gray-300"
+            }`}
+            onClick={submit}
+            disabled={!ready}>
+            Siguiente
+          </button>
+        </div>
       </div>
-      <button
-        className="bg-transparent"
-        onClick={submit()}
-        id="upload-images"></button>
     </div>
   );
 }
