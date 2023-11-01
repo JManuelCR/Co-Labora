@@ -13,6 +13,7 @@ import CalendarDesktop from "@/components/CalendarDesktop.";
 import Link from "next/link";
 import { dateData } from "@/types/dateData";
 import moment from "moment";
+import { ToastContainer, toast } from "react-toastify";
 
 const stars = [0, 1, 2];
 interface Property {
@@ -152,22 +153,37 @@ export default function Detail({ params }: any) {
   ("selectDatesDesktop");
 
   const passData = (e: any) => {
-    const dataToPass = {
-      name: property.name,
-      addres:
-        property.location.street +
-        property.location.number +
-        property.location.neighbor,
-      comments: property.comments.length,
-      score: property.score,
-      propertyImages: property.propertyImages[0],
-      startDate: startDate,
-      endDate: endDate,
-      userId: property.userId,
-      _id: property._id,
-      price: property.price,
-    };
-    localStorage.setItem("property", JSON.stringify(dataToPass));
+    console.log("estas son las fechas al inicio", startDate, endDate);
+    if (startDate && endDate) {
+      const dataToPass = {
+        name: property.name,
+        addres:
+          property.location.street +
+          property.location.number +
+          property.location.neighbor,
+        comments: property.comments.length,
+        score: property.score,
+        propertyImages: property.propertyImages[0],
+        startDate: startDate,
+        endDate: endDate,
+        userId: property.userId,
+        _id: property._id,
+        price: property.price,
+      };
+      localStorage.setItem("property", JSON.stringify(dataToPass));
+      // window.location.replace("/BookingSteps");
+    } else {
+      toast.error("Selecciona fechas disponibles", {
+        position: "top-center",
+        autoClose: 2500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
   };
 
   const getDates = (data: dateData) => {
@@ -178,10 +194,23 @@ export default function Detail({ params }: any) {
   return (
     <>
       <Navbar page={"in rent"} />
+
       {!property ? (
         <p>Cargando...</p>
       ) : (
         <main className="lg:flex flex-col items-center">
+          <ToastContainer
+            position="top-center"
+            autoClose={2500}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="colored"
+          />
           <header>
             <div className="flex flex-row w-full justify-center items-center gap-[18px]">
               <div className="relative w-[358px] h-[245px] md:w-[460px] md:h-[280px] lg:w-[520px] lg:h-[380px] xl:w-[600px] xl:h-[420px]">
@@ -500,13 +529,11 @@ export default function Detail({ params }: any) {
           <section className="w-full justify-center items-center flex flex-col gap-[10px] lg:hidden mb-[20px] mt-[60px]">
             <button
               className={`bg-primary rounded-lg px-[18px] py-1 w-[224px] h-[35px] buttonMobileShadow`}>
-              <Link href={"/BookingSteps"}>
-                <button
-                  className="text-[14px] font-[600] leading-[27px] text-white tracking-[-0.28px]"
-                  onClick={passData}>
-                  Continuar con la reserva
-                </button>
-              </Link>
+              <button
+                className="text-[14px] font-[600] leading-[27px] text-white tracking-[-0.28px]"
+                onClick={passData}>
+                Continuar con la reserva
+              </button>
             </button>
             <div className="flex gap-[2px]">
               <Image
