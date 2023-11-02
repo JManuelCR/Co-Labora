@@ -5,6 +5,7 @@ import FooterMobile from "@/components/FooterMobile";
 import FiltersBar from "@/components/FiltersBar";
 import CardsAvailable from "@/components/CardsAvailable";
 import { useState, useEffect } from "react";
+import { propertyService } from "@/services/property.service";
 export default function Rent() {
   interface Property {
     name: string;
@@ -19,14 +20,7 @@ export default function Rent() {
   }
   const [properties, setProperties] = useState<Property[]>([]);
   useEffect(() => {
-    fetch("https://co-labora-backend.jmanuelc.dev/property", {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => {
-        return response.json();
-      })
+      propertyService.getAll()
       .then((response) => {
         setProperties(response.data);
         return;
@@ -45,7 +39,7 @@ export default function Rent() {
           Espacios disponibles
         </h1>
       </section>
-      <section className="flex flex-wrap gap-20 h-[100%] px-10 py-5 justify-center max-md:gap-5 ">
+      <section className="flex flex-wrap gap-20 h-[100%] px-10 py-5 justify-center max-md:gap-5">
         {properties.map((card, index) => (
           <div key={index}>
             <CardsAvailable

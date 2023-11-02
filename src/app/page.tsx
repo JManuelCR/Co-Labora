@@ -12,7 +12,7 @@ import Footer from "@/components/Footer";
 import building from "../../public/icons/building-mobile-nav.svg";
 import house from "../../public/icons/home-mobile-nav.svg";
 import FooterMobile from "@/components/FooterMobile";
-import { propertyService } from "@/services/prperty.service";
+import { propertyService } from "@/services/property.service";
 import { Link } from "@nextui-org/react";
 
 export default function Home() {

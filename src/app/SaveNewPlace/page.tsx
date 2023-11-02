@@ -7,7 +7,7 @@ import Stripe from "../../../public/temporal-images/stripe.png";
 import emergente from "../../../public/illustrations/Group 2198.png";
 
 import { useState, useEffect, useRef } from "react";
-import { propertyService } from "@/services/prperty.service";
+import { propertyService } from "@/services/property.service";
 import { getCookie } from "cookies-next";
 
 export default function SaveNewPlace(props: any) {
