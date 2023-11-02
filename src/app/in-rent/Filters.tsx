@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
-import Star from "../../public/icons/star-shape-1-svgrepo-com.svg";
-import ButtonAmenities from "../app/in-rent/ButtonAmenities";
+import Star from "../../../public/icons/star-shape-1-svgrepo-com.svg";
+import ButtonAmenities from "./ButtonAmenities";
 import { amenities } from "@/data/amenities";
 import { useState, useEffect } from "react";
 export default function Filters() {
