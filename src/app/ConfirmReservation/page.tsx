@@ -66,12 +66,17 @@ export default function ConfirmReservation() {
   useEffect(() => {
     if (data) {
       const startDate = new Date(data.startDate.split("-").reverse().join("-"));
-
       const endDate = new Date(data.endDate.split("-").reverse().join("-"));
 
-      const timeDifference = endDate.getTime() - startDate.getTime();
-      const daysDifference = timeDifference / (1000 * 3600 * 24);
-      setDays(daysDifference);
+      // Verifica si startDate y endDate son el mismo día
+      if (startDate.toDateString() === endDate.toDateString()) {
+        // En caso de ser el mismo día, el cálculo se basa en 1 día
+        setDays(1);
+      } else {
+        const timeDifference = endDate.getTime() - startDate.getTime();
+        const daysDifference = timeDifference / (1000 * 3600 * 24);
+        setDays(daysDifference);
+      }
     }
   }, [data]);
 

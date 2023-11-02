@@ -76,37 +76,29 @@ export default function ReservationSteps() {
             stepThree="Confirma"
           />
           {getSelectionComponent()}
-          <div className="w-full flex justify-center pb-[37px]">
+          <div className="w-full flex justify-center items-center pb-[37px]">
             <div className="flex flex-col-reverse md:flex-row gap-[18px] md:gap-[100px] justify-center items-center">
               {actualStep !== 0 && actualStep <= 3 && (
                 <button
-                  className="bg-white rounded-lg px-[18px] py-1 w-[134px] h-[35px] border border-primary buttonMobileShadow"
+                  className={
+                    actualStep == 1
+                      ? `bg-transparent`
+                      : `bg-white rounded-lg px-[18px] py-1 w-[134px] h-[35px] border border-primary buttonMobileShadow`
+                  }
                   onClick={() => setStep(actualStep - 1)}>
                   <span className="text-[14px] font-[600] leading-[27px] text-primary tracking-[-0.28px]">
-                    Ir atrás
+                    {actualStep == 1 ? "" : "Ir atrás"}
                   </span>
                 </button>
               )}
               {actualStep <= 1 && (
                 <button
-                  className={`bg-primary rounded-lg px-[18px] py-1 w-[134px] h-[35px] buttonMobileShadow`}
+                  // className={`bg-primary rounded-lg px-[18px] py-1 w-[134px] h-[35px] buttonMobileShadow`}
                   onClick={() => {
                     setStep(actualStep + 1);
-                    const button = document.getElementById(
-                      "submit-button-data-form"
-                    );
-                    if (button) {
-                      button.click();
-                    }
-                    const uploadImages =
-                      document.getElementById("upload-images");
-                    if (uploadImages) {
-                      uploadImages.click();
-                    }
-                  }}>
-                  <span className="text-[14px] font-[600] leading-[27px] text-white tracking-[-0.28px]">
-                    Siguiente
-                  </span>
+                  }}
+                  id="upload-space-steps">
+                  <span className="text-[14px] font-[600] leading-[27px] text-white tracking-[-0.28px]"></span>
                 </button>
               )}
             </div>

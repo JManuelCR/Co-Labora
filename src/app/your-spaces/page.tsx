@@ -47,6 +47,10 @@ export default function Detail() {
     }
   }, []);
 
+  function handleCardClick(_id: any) {
+    localStorage.setItem("selectedPropertyId", _id);
+  }
+
   return (
     <>
       <Navbar page="your spaces" />
@@ -100,6 +104,13 @@ export default function Detail() {
                     ${property.price} costo por día
                   </p>
                   <p>Tienes {property.reservations.length} reservaciones </p>
+                  <Link href={`/EditProperty/${property._id}`}>
+                    <button
+                      className="bg-primary rounded-2xl px-3 py-1 text-white font-bold"
+                      onClick={() => handleCardClick(property._id)}>
+                      Editar
+                    </button>
+                  </Link>
                 </div>
               </article>
             ))
