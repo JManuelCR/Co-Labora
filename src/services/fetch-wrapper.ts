@@ -1,6 +1,7 @@
 export const fetchWrapper = {
   get, 
   getLogged,
+  getBody,
   login,
   postProperty,
   postUser,
@@ -13,6 +14,16 @@ export const fetchWrapper = {
 function get(url: any) {
   const requestOptions = {
     method:'GET'
+  };
+  return fetch(url, requestOptions).then(handleResponse);
+}
+function getBody(url: any, body: any) {
+  const requestOptions = {
+    method:'GET',
+    headers: { 
+      'Content-Type': 'application/json'
+    },
+    body: body
   };
   return fetch(url, requestOptions).then(handleResponse);
 }

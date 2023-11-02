@@ -2,43 +2,127 @@ import Image from "next/image";
 import location from "../../public/illustrations/mobile-location-ilustration.svg";
 import consult from "../../public/temporal-images/temporal-image-consult.webp";
 import bubble from "../../public/illustrations/conversation-asset.webp";
-import wifi from "../../public/icons/icon-wifi-white.svg";
-import camera from "../../public/icons/icon-videocam-outline-white.svg";
-import restaurant from "../../public/icons/icon-restaurant-outline-white.svg";
-import pets from "../../public/icons/icon-paw-outline-white.svg";
-import firstAidKit from "../../public/icons/icon-medkit-outline-white.svg";
-import arrowRigth from "../../public/icons/icon-arrow-right-white.svg";
-import arrowLeft from "../../public/icons/icon-arrow-left-white.svg";
-import { dataProperty } from "@/data/propertiesData";
+import { FormEvent, SetStateAction, useEffect, useState } from "react";
+import { propertyService } from "@/services/property.service";
 import SliderHero from "./sliderHero";
+import CardsAvailable from "./CardsAvailable";
+
+interface Property {
+  name: string;
+  location: any;
+  ratings: number;
+  price: number;
+  comments: string;
+  score: Number;
+  onClicked: Function;
+  _id: String;
+  propertyImages: string;
+}
 
 export default function Hero(props: any) {
+  interface Property {
+    name: string;
+    location: any;
+    ratings: number;
+    price: number;
+    comments: string;
+    score: Number;
+    onClicked: Function;
+    _id: String;
+    propertyImages: string;
+  }
+  const [filterOption, setFilterOption] = useState<string | null>("");
+  const [options, setOptions] = useState<Property[]>([]);
+  useEffect(() => {
+    propertyService
+      .getByFilter(filterOption)
+      .then((response) => {
+        console.log("response", response);
+        setOptions(response.data);
+      })
+      .catch((err) => {
+        setOptions([]);
+        console.log("Error in request", err);
+      });
+  }, [filterOption]);
+
+  const filterProperties = (event: FormEvent) => {
+    event.preventDefault();
+    const inputElement = event.currentTarget.querySelector("input");
+    const searchValue = inputElement?.value || "";
+    setFilterOption(searchValue);
+  };
+  function handleCardClick(_id: any) {
+    localStorage.setItem("selectedPropertyId", _id);
+  }
   return (
     <>
       <section className="flex w-full lg:px-[60px] justify-center gap-5 max-xl:flex-col-reverse max-xl:items-center h-[528px] md:h-auto">
         <article className="flex flex-col gap-3 max-md:px-4">
-          <div className="flex gap-[18px] border-b border-secondary pb-3 w-[343px]">
+          <form
+            onSubmit={filterProperties}
+            className="flex gap-[18px] border-b border-secondary pb-3 w-[343px]"
+          >
             <input
               type="text"
               placeholder="Encuentra tu espacio..."
               className="border focus:outline-none p-2 rounded-md focus:bg-gray-100 focus:shadow-md text-blue_800 w-[205px]"
             />
-            <button className="bg-primary rounded-lg font-bold px-10 py-1 w-[120px]">
+            <button
+              type="submit"
+              className="bg-primary rounded-lg font-bold px-10 py-1 w-[120px]"
+            >
               Buscar
             </button>
-          </div>
-          <div>
-            <h5 className="text-lg text-primary font-bold max-xl:hidden">
-              ¡Encuentra tu espacio perfecto!
-            </h5>
-          </div>
-          <div className="max-xl:hidden">
-            <Image
-              src={location}
-              width={416}
-              height={416}
-              alt="mobile-with-pin-location"
-            />
+          </form>
+
+          <div className="max-xl:hidden max-h-[690px] overflow-y-auto flex flex-col gap-4">
+            {options.length !== 0 ? (
+              <>
+                {
+                  <p className="text-primary font-acme text-lg font-bold">
+                    Resultados:
+                  </p>
+                }
+                {options.map((option, index) => (
+                  <div key={index}>
+                    <CardsAvailable
+                      name={option.name}
+                      location={option.location}
+                      score={option.score}
+                      price={option.price}
+                      comments={option.comments}
+                      ratings={option.ratings}
+                      onClicked={() => handleCardClick(option._id)}
+                      image={option.propertyImages[0]}
+                      _id={option._id}
+                    />
+                  </div>
+                ))}
+              </>
+            ) : (
+              <>
+                {filterOption === "" ? (
+                  <>
+                    <div>
+                      <h5 className="text-lg text-primary font-bold max-xl:hidden">
+                        ¡Encuentra tu espacio perfecto!
+                      </h5>
+                    </div>
+                    <Image
+                      src={location}
+                      width={416}
+                      height={416}
+                      alt="mobile-with-pin-location"
+                    />
+                  </>
+                ) : (
+                  <>
+                    <h2 className="text-3xl text-primary font-acme font-bold leading-8 tracking-widest">No se encontraron propiedades <br /> en esta búsqueda</h2>
+                  </>
+                )}
+              </>
+            )}
           </div>
         </article>
         <article className="relative backgroundGradienHero h-[756px] w-full">
