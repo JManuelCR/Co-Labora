@@ -29,7 +29,7 @@ export default function Login() {
       window.location.replace("your-spaces");
     }
   }, [Type]);
-
+  // ! https://co-labora-backend.jmanuelc.dev
   const onSubmit: SubmitHandler<inputs> = (data) => {
     fetch("https://co-labora-backend.jmanuelc.dev/login", {
       method: "POST",

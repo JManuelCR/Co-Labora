@@ -35,7 +35,7 @@ export default function CreateAccount({ props }: any) {
   const setId = (id: string) => {
     localStorage.setItem("id", id);
   };
-
+  // ! https://co-labora-backend.jmanuelc.dev
   const onSubmit: SubmitHandler<inputs> = (data) => {
     if (valid && data.email !== undefined) {
       remove();
@@ -49,6 +49,7 @@ export default function CreateAccount({ props }: any) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          name: data.name,
           email: data.email,
           password: data.password,
           userType: userType,
@@ -133,13 +134,15 @@ export default function CreateAccount({ props }: any) {
                 onClick={handleTypeUser}
                 className={`focus:underline focus:text-primary ${
                   activeButton === "user" ? "text-primary underline" : ""
-                }`}>
+                }`}
+              >
                 Soy Usuario
               </button>
               <div
                 className={`absolute bg-secondary text-white p-2 rounded-lg mt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible whitespace-pre-line ${
                   activeButton === "user" ? "opacity-100 visible" : ""
-                }`}>
+                }`}
+              >
                 Me interesa rentar espacios únicamente
               </div>
             </div>
@@ -148,13 +151,15 @@ export default function CreateAccount({ props }: any) {
                 onClick={handleTypeSpace}
                 className={`focus:underline focus:text-primary ${
                   activeButton === "space" ? "text-primary underline" : ""
-                }`}>
+                }`}
+              >
                 Soy Negocio
               </button>
               <div
                 className={`absolute bg-secondary text-white p-2 rounded-lg mt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible whitespace-pre-line ${
                   activeButton === "space" ? "opacity-100 visible" : ""
-                }`}>
+                }`}
+              >
                 Me interesa publicar mis espacios para rentarlos
               </div>
             </div>
@@ -162,16 +167,28 @@ export default function CreateAccount({ props }: any) {
 
           <form
             className="flex flex-col mt-[30px] justify-center items-center"
-            onSubmit={handleSubmit(onSubmit)}>
-            <input
-              type="email"
-              {...register("email", {
-                required: "Este campo es obligatorio",
-                minLength: 10,
-              })}
-              placeholder="Correo Electronico"
-              className="flex rounded-[15px] border-2 border-primary w-full h-[65px] font-poppins text-[16px] text-blue_500 placeholder:p-[10px] p-[15px] placeholder:text-start focus:outline-0 focus:border-primary required"
-            />
+            onSubmit={handleSubmit(onSubmit)}
+          >
+            <div className="flex flex-col gap-5 w-full">
+              <input
+                type="text"
+                {...register("name", {
+                  required: "Este campo es obligatorio",
+                  minLength: 10,
+                })}
+                placeholder="Nombre Completo"
+                className="flex rounded-[15px] border-2 border-primary w-full h-[65px] font-poppins text-[16px] text-blue_500 placeholder:p-[10px] p-[15px] placeholder:text-start focus:outline-0 focus:border-primary required"
+              />
+              <input
+                type="email"
+                {...register("email", {
+                  required: "Este campo es obligatorio",
+                  minLength: 10,
+                })}
+                placeholder="Correo Electronico"
+                className="flex rounded-[15px] border-2 border-primary w-full h-[65px] font-poppins text-[16px] text-blue_500 placeholder:p-[10px] p-[15px] placeholder:text-start focus:outline-0 focus:border-primary required"
+              />
+            </div>
             <p className="text-primary">{errors.email?.message}</p>
             <div className="my-5 flex rounded-[15px] border-2 border-primary font-poppins text-[16px] text-blue_500 px-3 w-full">
               <input
@@ -215,7 +232,8 @@ export default function CreateAccount({ props }: any) {
               disabled={!valid}
               className={`rounded-lg px-[18px] py-1 w-[134px] h-[35px] buttonMobileShadow  ${
                 !valid ? "bg-gray" : "bg-primary"
-              }`}>
+              }`}
+            >
               Siguiente
             </button>
           </form>

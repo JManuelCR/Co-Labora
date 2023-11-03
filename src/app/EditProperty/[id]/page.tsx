@@ -46,7 +46,6 @@ export default function EditProperty({ params }: any) {
     location: any;
   } | null>(null);
 
-  const { isDirty } = formState;
   useEffect(() => {
     if (params.id) {
       fetch(`https://co-labora-backend.jmanuelc.dev/property/${params.id}`, {
@@ -176,6 +175,7 @@ export default function EditProperty({ params }: any) {
       });
     }
   };
+
   return (
     <>
       <Navbar page="your-spaces" />
@@ -426,7 +426,12 @@ export default function EditProperty({ params }: any) {
                   </div>
                 </div>
               </div>
-              <div className="flex justify-center items-center">
+              <div className="flex justify-center items-center gap-5 my-2">
+                <Link href={"/your-spaces"}>
+                  <button className="rounded-lg px-[18px] py-1 w-[134px] h-[35px] buttonMobileShadow text-primary border-primary ">
+                    Regresar
+                  </button>
+                </Link>
                 <button
                   className="rounded-lg px-[18px] py-1 w-[134px] h-[35px] buttonMobileShadow bg-primary "
                   type="submit"

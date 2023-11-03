@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import error from "../../public/illustrations/Error.svg";
 import Navbar from "@/components/Navbar";
@@ -5,7 +6,11 @@ import Footer from "@/components/Footer";
 import Refresh from "../../public/illustrations/coffee break.svg";
 import Bug from "../../public/illustrations/Bug Fixed.svg";
 import Return from "../../public/illustrations/Refresh.svg";
+import Link from "next/link";
 export default function NotFoundPage() {
+  const reload = () => {
+    window.location.reload();
+  };
   return (
     <>
       <Navbar page="404" />
@@ -21,10 +26,15 @@ export default function NotFoundPage() {
             Ops! algo va mal
           </h2>
           <div className="flex justify-center gap-5 mt-3">
-            <button className="border border-solid border-primary rounded-lg text-primary px-3 py-1  font-poppins">
-              Ir atras
-            </button>
-            <button className="bg-primary rounded-lg text-white px-3 py-1 font-poppins">
+            <Link href={"/"}>
+              <button className="border border-solid border-primary rounded-lg text-primary px-3 py-1  font-poppins">
+                Ir atras
+              </button>
+            </Link>
+            <button
+              className="bg-primary rounded-lg text-white px-3 py-1 font-poppins"
+              onClick={reload}
+            >
               Recargar
             </button>
           </div>

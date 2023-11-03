@@ -6,6 +6,7 @@ import Carpenter from "../../../public/temporal-images/holder-carpenter.webp";
 import emergente from "../../../public/illustrations/Emergente.svg";
 import { dataConfirm } from "@/data/data-confirm";
 import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import CheckoutForm from "@/components/CheckoutForm";
@@ -87,8 +88,6 @@ export default function ConfirmReservation() {
       setId(decodedPayload.id);
     }
 
-    // Verifica si days y data están configurados correctamente
-
     if (days !== null && data?.price !== undefined) {
       const subtotal = parseFloat(data.price) * days;
       const commission = subtotal * 0.03;
@@ -121,7 +120,7 @@ export default function ConfirmReservation() {
   const handleClick = () => {
     const stripeButton = document.getElementById("submit-stripe");
     stripeButton ? stripeButton.click() : "";
-
+    // !
     fetch("https://co-labora-backend.jmanuelc.dev/reservation", {
       method: "POST",
       headers: {
@@ -138,7 +137,19 @@ export default function ConfirmReservation() {
             window.location.replace("/");
           }, 4000);
         } else {
-          alert("Error al crear tu reserva, vuelva a intentarlo");
+          toast.error(
+            "Vaya, ocurrio un error al generar tu reserva, intentalo de nuevo",
+            {
+              position: "top-center",
+              autoClose: 2500,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+            }
+          );
         }
       });
   };
@@ -161,7 +172,8 @@ export default function ConfirmReservation() {
       <section
         className={`flex justify-center items-center max-md:flex-wrap relative my-[7rem] ${
           blur ? "blur-xl" : ""
-        } `}>
+        } `}
+      >
         <section className="flex flex-col font-poppins text-blue_800 border border-solid border-blue_800 p-5 rounded-lg max-md:border-none">
           <article className="flex justify-between gap-5">
             <div className="flex flex-col gap-3 w-1/2">
@@ -289,7 +301,8 @@ export default function ConfirmReservation() {
           <article className="flex justify-center">
             <button
               className="bg-primary text-white px-4 py-2 rounded-xl"
-              onClick={handleClick}>
+              onClick={handleClick}
+            >
               Confirmar Reserva
             </button>
           </article>
