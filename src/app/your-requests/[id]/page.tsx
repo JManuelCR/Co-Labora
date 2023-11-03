@@ -41,12 +41,15 @@ export default function Request({ params }: any) {
   useEffect(() => {
     const tok = getCookie("token");
     if (params.id) {
-      fetch(`http://localhost:8080/reservation/pr/${params.id}`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${tok}`,
-        },
-      })
+      fetch(
+        `https://co-labora-backend.jmanuelc.dev/reservation/pr/${params.id}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${tok}`,
+          },
+        }
+      )
         .then((response) => response.json())
         .then((response) => {
           setProperty(response.data);
