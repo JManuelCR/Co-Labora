@@ -5,11 +5,15 @@ import { useEffect, useState } from "react";
 
 export default function BurgerNav() {
   const [token, setToken] = useState<string>();
-
+  const [Type, setType] = useState();
   useEffect(() => {
     const token = getCookie("token");
     if (token) {
       setToken(token);
+      const [header, payload, signature] = token.split(".");
+      const decodedPayload = JSON.parse(atob(payload));
+      console.log("esto es la payload", decodedPayload);
+      setType(decodedPayload.userType);
     }
   }, []);
 
@@ -27,8 +31,12 @@ export default function BurgerNav() {
       {token ? (
         <section className="flex flex-col gap-3">
           <section>
-            <Link href={"/historyReservations"}>
-              <p>Tus reservas</p>
+            <Link
+              href={
+                Type === "space" ? "/your-requests" : "/historyReservations"
+              }
+            >
+              <p>{Type === "space" ? "Tus solicitudes" : "Tus reservas"}</p>
             </Link>
           </section>
           <div className="border border-b-primary px-5"></div>

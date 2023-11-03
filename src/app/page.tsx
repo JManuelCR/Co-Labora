@@ -24,23 +24,22 @@ export default function Home() {
     }, 500);
   });
   useEffect(() => {
-    propertyService.getAll()
-    .then((response) => {
-      setProperties(response.data)
-    })
+    propertyService.getAll().then((response) => {
+      setProperties(response.data);
+    });
   }, []);
 
   function handleMoreClick() {
-    window.location.href = "/in-rent"
+    window.location.href = "/in-rent";
   }
   return (
-    <div className="w-full h-full flex justify-center items-center relative">
+    <div className="w-full h-full flex justify-center items-center relative text-white">
       {timer ? (
         <div className="2xl:max-w-[1440px] w-full h-full flex flex-col  relative over">
           <Navbar page="home" />
 
           <main className="flex flex-col items-center justify-between h-auto max-lg:w-full">
-            <Hero props={properties}/>
+            <Hero props={properties} />
             <section className="flex flex-col items-center justify-center px-[40px] lg:px-[80px] xl:px-[156px] pt-[56px] max-sm:pt-0 w-full">
               <div className="w-[520px] border-secondary border-solid border-b-[4px] mb-[60px] max-md:hidden">
                 <h2 className=" text-[40px] text-center font-acme text-blue_800">
@@ -48,9 +47,9 @@ export default function Home() {
                 </h2>
               </div>
               <div className="flex md:w-[700px] xl:w-full max-md:flex-col md:flex-wrap  md:gap-x-[60px] 2xl:gap-x-[84px] mb-[42px] gap-y-[80px] h-auto max-sm:hidden mt-[80px] md:mt-0">
-                {properties.slice(0, 6).map((card:any , index) => (
+                {properties.slice(0, 6).map((card: any, index) => (
                   <div key={index} className="flex flex-ro gap-1">
-                  <Cards
+                    <Cards
                       id={card._id}
                       name={card.name}
                       address={`${card.location.street}, ${card.location.number}. ${card.location.city}`}
@@ -66,9 +65,9 @@ export default function Home() {
                 ))}
               </div>
               <div className="flex w-[100%] justify-center max-sm:hidden">
-                <button 
-                onClick={() => handleMoreClick()}
-                className="w-[280px] px-[18px] py-[4px]   rounded-lg bg-primary font-[600] font-poppins text-[20px] text-white"
+                <button
+                  onClick={() => handleMoreClick()}
+                  className="w-[280px] px-[18px] py-[4px]   rounded-lg bg-primary font-[600] font-poppins text-[20px] text-white"
                 >
                   ¡Explora más lugares!
                 </button>
@@ -76,7 +75,7 @@ export default function Home() {
             </section>
             <section className="max-md:flex w-full justify-around max-lg:z-50  md:hidden font-semibold p-5 mt-4 bg-back rounded-b-2xl sticky top-0">
               <article className="text-blue_800 flex">
-                  <a href="/your-spaces">Tus espacios</a>
+                <a href="/your-spaces">Tus espacios</a>
               </article>
               <article className="text-blue_800 flex">
                 <Image

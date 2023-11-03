@@ -13,6 +13,7 @@ import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { getCookie } from "cookies-next";
 import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export default function GeneralInfo({ props }: any) {
   const { register, handleSubmit } = useForm();
   const [autocomplete, setAutoComplete] = useState();
@@ -29,25 +30,6 @@ export default function GeneralInfo({ props }: any) {
     Limpieza: false,
   });
 
-  // const [toolsBox, setToolBox] = useState<{
-  //   [key: string]: boolean;
-  // }>({
-  //   screwdrivers: false,
-  //   powerExtension: false,
-  //   flexometer: false,
-  //   drill: false,
-  //   carpenterBrush: false,
-  //   woodJigSaw: false,
-  // });
-
-  // const handleTools = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   const { name, checked } = event.target;
-  //   setToolBox({
-  //     ...toolsBox,
-  //     [name]: checked,
-  //   });
-  // };
-  // console.log(toolsBox);
   const handleCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = event.target;
     setCheckboxes({
@@ -145,7 +127,8 @@ export default function GeneralInfo({ props }: any) {
                 </h1>
                 <label
                   htmlFor="location"
-                  className="text-center text-[16px] font-[300] leading-[22px] tracking-[-0.32px]">
+                  className="text-center text-[16px] font-[300] leading-[22px] tracking-[-0.32px]"
+                >
                   Por favor ingrese la direccion con calle numero y colonia
                 </label>
                 <Autcomplete props={childCallback} />
@@ -179,7 +162,8 @@ export default function GeneralInfo({ props }: any) {
             <section className="rounded-[25px] w-full h-[144px] flex flex-col items-center px-[8px] border-2 border-secondary mt-[40px] justify-center lg:w-[600px] xl:w-[800px]">
               <label
                 htmlFor=""
-                className="text-blue_700 text-center text-[20px] font-[500] leading-[25px] font-poppins">
+                className="text-blue_700 text-center text-[20px] font-[500] leading-[25px] font-poppins"
+              >
                 <h1>¿Cuál es el nombre del negocio?</h1>
               </label>
               <input
@@ -193,7 +177,8 @@ export default function GeneralInfo({ props }: any) {
             <section className="rounded-[25px] w-full h-[144px] flex flex-col items-center px-[8px] border-2 border-secondary mt-[40px] justify-center lg:w-[390px]">
               <label
                 htmlFor=""
-                className="text-blue_700 text-center text-[20px] font-[500] leading-[25px] font-poppins">
+                className="text-blue_700 text-center text-[20px] font-[500] leading-[25px] font-poppins"
+              >
                 <h1>¿Cuánto costaría por día?</h1>
               </label>
               <input
@@ -290,16 +275,16 @@ export default function GeneralInfo({ props }: any) {
               <h1 className="mt-[16px] font-poppins font-[500] text-[1rem] leading-[1rem] text-center">
                 Ayúdanos dando una descripción de ti y de tu negocio
               </h1>
-              <label htmlFor="">
+              <label htmlFor="description">
                 <p className="mt-[9px] font-poppins font-[300] text-[0.625rem] leading-[1rem] text-center">
                   Esto con la finalidad de que el huesped pueda conocer un poco
                   de ti y de como es el negocio
                 </p>
               </label>
-              <input
+              <textarea
                 {...register("description", { required: "Campo requerido" })}
-                type="text"
-                className="bg-white rounded-[15px] border-[2px] border-primary w-[280px] h-[30px] text-blue_700 boxShadow-details text-center font-[400] font-poppins leading-[25px] mt-[6px]"
+                id="description"
+                className="bg-white rounded-[15px] border-[2px] border-primary w-[280px] h-[100px] text-blue_700 boxShadow-details text-center font-[400] font-poppins leading-[25px] mt-[6px]"
               />
             </section>
           </div>
@@ -399,7 +384,8 @@ export default function GeneralInfo({ props }: any) {
         <div className="flex justify-center items-center">
           <button
             className="rounded-lg px-[18px] py-1 w-[134px] h-[35px] buttonMobileShadow bg-primary "
-            type="submit">
+            type="submit"
+          >
             Siguiente
           </button>
         </div>
