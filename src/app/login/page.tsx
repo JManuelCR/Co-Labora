@@ -48,7 +48,7 @@ export default function Login() {
           console.log("esto es la payload", decodedPayload);
           setType(decodedPayload.userType);
         } else {
-          toast.error("No se encontro el usuario", {
+          toast.error("Credenciales invalidas 💀", {
             position: "top-center",
             autoClose: 2500,
             hideProgressBar: false,

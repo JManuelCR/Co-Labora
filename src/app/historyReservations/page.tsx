@@ -33,6 +33,7 @@ export default function HistoryReservations() {
       })
         .then((response) => response.json())
         .then((response) => {
+          console.log("esta es la respuesta", response.data);
           setReservations(response.data.reservations);
           setLoading(false);
         });
@@ -49,23 +50,28 @@ export default function HistoryReservations() {
       </div>
       <section className="bg-gray-100 flex flex-col min-h-screen items-center">
         {!loading && reservations && reservations.length > 0 ? (
-          <div className="w-full max-w-3xl bg-white shadow-lg rounded-lg overflow-hidden">
+          <div className="w-full max-w-3xl bg-white shadow-lg rounded-lg overflow-y-auto">
             <table className="w-full border border-solid border-primary text-black font-semibold">
               <thead className="bg-primary text-white">
                 <tr>
                   <th className="p-2">Nombre de la propiedad</th>
-                  <th className="p-2">Total</th>
                   <th className="p-2">Fecha de inicio</th>
                   <th className="p-2">Fecha de finalización</th>
+                  <th className="p-2">Total</th>
                 </tr>
               </thead>
               <tbody>
                 {reservations.map((reservation: any, index: any) => (
-                  <tr key={index} className="border-t border-primary">
-                    <td className="p-2">{reservation.property.propertyName}</td>
-                    <td className="p-2">${reservation.total}</td>
+                  <tr
+                    key={index}
+                    className="border-t border-primary text-center"
+                  >
+                    <td className="p-2 text-center">
+                      {reservation.property.propertyName}
+                    </td>
                     <td className="p-2">{reservation.startDate}</td>
                     <td className="p-2">{reservation.endDate}</td>
+                    <td className="p-2">${reservation.total.toFixed(2)}</td>
                   </tr>
                 ))}
               </tbody>
