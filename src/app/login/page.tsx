@@ -31,7 +31,7 @@ export default function Login() {
   }, [Type]);
   // ! https://co-labora-backend.jmanuelc.dev
   const onSubmit: SubmitHandler<inputs> = (data) => {
-    fetch("https://co-labora-backend.jmanuelc.dev/login", {
+    fetch("http://localhost:8080/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -48,7 +48,7 @@ export default function Login() {
           console.log("esto es la payload", decodedPayload);
           setType(decodedPayload.userType);
         } else {
-          toast.error("No se encontro el usuario", {
+          toast.error("Credenciales invalidas 💀", {
             position: "top-center",
             autoClose: 2500,
             hideProgressBar: false,

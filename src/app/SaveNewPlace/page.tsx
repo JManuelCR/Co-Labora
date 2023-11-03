@@ -94,7 +94,7 @@ export default function SaveNewPlace(props: any) {
         setUrl(data.data);
       });
   }, [Id]);
-  console.log("esto es la url", url);
+
   const handleClick = () => {
     fetch("https://co-labora-backend.jmanuelc.dev/property/", {
       method: "POST",
@@ -138,7 +138,8 @@ export default function SaveNewPlace(props: any) {
           <section
             className={`flex justify-center items-center max-md:flex-wrap relative ${
               blur ? "blur-xl" : ""
-            } `}>
+            } `}
+          >
             <section className="flex flex-col font-poppins text-blue_800 border border-solid border-blue_800 p-[36px] rounded-[24px] max-md:border-none lg:w-[554px] mb-[48px]">
               <article className="flex justify-between md:gap-5 pb-[10px] md:pb-[28px] border-b-[2px] border-secondary">
                 <div className="flex flex-col gap-3 w-1/2">
@@ -159,7 +160,8 @@ export default function SaveNewPlace(props: any) {
                 </div>
                 <div
                   id="imageBox"
-                  className=" relative w-[170px] h-[128px] lg:w-[260px] md:h-[140px] bg-cover bg-no-repeat bg-center rounded-lg"></div>
+                  className=" relative w-[170px] h-[128px] lg:w-[260px] md:h-[140px] bg-cover bg-no-repeat bg-center rounded-lg"
+                ></div>
               </article>
               <article className="my-8">
                 <h3 className="font-acme text-blue_800 text-suTitles">
@@ -235,7 +237,8 @@ export default function SaveNewPlace(props: any) {
               <article className="flex justify-center">
                 <button
                   className="bg-primary text-white px-4 py-2 rounded-xl w-[134px]"
-                  onClick={handleClick}>
+                  onClick={handleClick}
+                >
                   Confirmar
                 </button>
               </article>

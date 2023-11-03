@@ -47,7 +47,7 @@ export default function Navbar(props: Navbar) {
     <header className="flex items-center justify-center w-full h-[56px] px-1 min-lg:px-[65px] relative bg-white navbarShadow">
       <nav className="flex items-center justify-between w-full max-h-[56px]">
         <div>
-          <Link href="/">
+          <Link href={Type === "user" ? "/" : "/your-spaces"}>
             <Image
               src={logo}
               width={104}
@@ -57,6 +57,7 @@ export default function Navbar(props: Navbar) {
             />
           </Link>
         </div>
+
         <div className="flex gap-[35px] items-center">
           <ul className="flex gap-[35px] text-[14px] text-blue_700 font-semibold max-md:hidden">
             {Type !== "space" && (
