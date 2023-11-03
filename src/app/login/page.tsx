@@ -3,7 +3,7 @@ import Navbar from "@/components/Navbar";
 import FooterMobile from "@/components/FooterMobile";
 import Footer from "@/components/Footer";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import inputs from "@/types/inputs.types";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -11,6 +11,7 @@ import { setCookie } from "cookies-next";
 import Link from "next/link";
 
 export default function Login() {
+  const [Type, setType] = useState("");
   const {
     register,
     handleSubmit,
@@ -20,6 +21,14 @@ export default function Login() {
   const setToken = (data: any) => {
     setCookie("token", data);
   };
+
+  useEffect(() => {
+    if (Type === "user") {
+      window.location.replace("/");
+    } else if (Type === "space") {
+      window.location.replace("your-spaces");
+    }
+  }, [Type]);
 
   const onSubmit: SubmitHandler<inputs> = (data) => {
     fetch("https://co-labora-backend.jmanuelc.dev/login", {
@@ -34,7 +43,10 @@ export default function Login() {
       .then((response) => {
         if (response?.data) {
           setToken(response.data);
-          window.location.replace("/");
+          const [header, payload, signature] = response.data.split(".");
+          const decodedPayload = JSON.parse(atob(payload));
+          console.log("esto es la payload", decodedPayload);
+          setType(decodedPayload.userType);
         } else {
           toast.error("No se encontro el usuario", {
             position: "top-center",

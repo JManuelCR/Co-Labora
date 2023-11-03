@@ -16,7 +16,7 @@ type Property = {
 };
 
 export default function HistoryReservations() {
-  const [reservations, setReservations] = useState<Property>();
+  const [reservations, setReservations] = useState<Property[]>();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -42,36 +42,45 @@ export default function HistoryReservations() {
   return (
     <>
       <Navbar page="reservations" />
-      <section className="flex flex-col h-screen w-auto ">
+      <div className="p-4">
+        <h1 className="font-acme text-primary text-suTitles text-center">
+          Historial de Reservaciones:
+        </h1>
+      </div>
+      <section className="bg-gray-100 flex flex-col min-h-screen items-center">
         {!loading && reservations && reservations.length > 0 ? (
-          <table className="m-auto w-full max-w-3xl border border-solid border-primary text-black font-semibold">
-            <thead className="bg-primary text-white">
-              <tr>
-                <th className="p-2">Nombre de la propiedad</th>
-                <th className="p-2">Total</th>
-                <th className="p-2">Fecha de inicio</th>
-                <th className="p-2">Fecha de finalización</th>
-              </tr>
-            </thead>
-            <tbody>
-              {reservations.map((reservation: any, index: any) => (
-                <tr key={index} className="border-t border-primary">
-                  <td className="p-2">{reservation.property.propertyName}</td>
-                  <td className="p-2">${reservation.total}</td>
-                  <td className="p-2">{reservation.startDate}</td>
-                  <td className="p-2">{reservation.endDate}</td>
+          <div className="w-full max-w-3xl bg-white shadow-lg rounded-lg overflow-hidden">
+            <table className="w-full border border-solid border-primary text-black font-semibold">
+              <thead className="bg-primary text-white">
+                <tr>
+                  <th className="p-2">Nombre de la propiedad</th>
+                  <th className="p-2">Total</th>
+                  <th className="p-2">Fecha de inicio</th>
+                  <th className="p-2">Fecha de finalización</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {reservations.map((reservation: any, index: any) => (
+                  <tr key={index} className="border-t border-primary">
+                    <td className="p-2">{reservation.property.propertyName}</td>
+                    <td className="p-2">${reservation.total}</td>
+                    <td className="p-2">{reservation.startDate}</td>
+                    <td className="p-2">{reservation.endDate}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         ) : (
-          <h1>Vaya parece que no tienes reservas hechas al momento</h1>
+          <h1 className="text-center text-primary mt-4">
+            Vaya, parece que no tienes reservas hechas en este momento.
+          </h1>
         )}
       </section>
-      <footer className="hidden md:block ">
+      <footer className="hidden md:block">
         <Footer />
       </footer>
-      <footer className="block md:hidden ">
+      <footer className="block md:hidden">
         <FooterMobile />
       </footer>
     </>
