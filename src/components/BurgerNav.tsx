@@ -29,24 +29,23 @@ export default function BurgerNav() {
 
   return (
     <article className="font-poppins flex flex-col gap-3 bg-white text-black rounded-lg p-3 absolute right-0 top-0 z-10 border border-solid border-primary w-fit">
-      <p className="text-lg ">
-        Hola {""}
-        <span className="font-medium">{Name}</span>
-      </p>
       {token ? (
         <section className="flex flex-col gap-3">
+          <p className="text-lg ">
+            Hola {""}
+            <span className="font-medium">{Name}</span>
+          </p>
           <section>
-            <Link
-              href={
-                Type === "space" ? "/your-requests" : "/historyReservations"
-              }
-              className="text-black hover:underline"
-            >
-              <p className="text-lg">
-                {Type === "space" ? "Tus solicitudes" : "Tus reservas"}
-              </p>
-            </Link>
+            {Type !== "space" && (
+              <Link
+                href="/historyReservations"
+                className="text-black hover:underline"
+              >
+                <p className="text-lg">Tus reservas</p>
+              </Link>
+            )}
           </section>
+
           <div className="border border-b-primary"></div>
           <section>
             <Link

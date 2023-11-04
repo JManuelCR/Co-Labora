@@ -2,9 +2,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import Image from "next/image";
 import confirm from "../../../public/illustrations/image 42.svg";
-import Carpenter from "../../../public/temporal-images/holder-carpenter.webp";
 import Stripe from "../../../public/temporal-images/stripe.png";
-import emergente from "../../../public/illustrations/Group 2198.png";
+import emergente from "../../../public/illustrations/Space-Emergente.png";
 
 import { useState, useEffect, useRef } from "react";
 import { propertyService } from "@/services/property.service";

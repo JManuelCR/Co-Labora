@@ -148,7 +148,9 @@ export default function EditProperty({ params }: any) {
           });
         })
         .then(() => {
-          window.location.replace("/your-spaces");
+          setTimeout(() => {
+            window.location.replace("/your-spaces");
+          }, 2000);
         })
         .catch((error) => {
           toast.error("Vaya, parece que dejaste campos vacios", {
