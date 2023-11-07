@@ -1,7 +1,8 @@
 "use client";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
-import Link from "next/link";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { getCookie } from "cookies-next";
 
 export default function UserInput() {
@@ -15,23 +16,38 @@ export default function UserInput() {
       const decodedPayload = JSON.parse(atob(payload));
       setId(decodedPayload.id);
     } else {
-      alert("Debes iniciar sesion");
-      window.location.replace("/login");
+      toast.error("Debes de iniciar sesion 💀", {
+        position: "top-center",
+        autoClose: 2500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+      setTimeout(function () {
+        window.location.replace("/login");
+      }, 2000);
     }
   }, []);
 
   useEffect(() => {
     const token = getCookie("token");
-    fetch(`https://co-labora-backend.jmanuelc.dev/users/${id}`, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((response) => response.json())
-      .then((response) => {
-        setDesc(response.data.description);
-      });
+    if (token) {
+      fetch(`https://co-labora-backend.jmanuelc.dev/users/${id}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((response) => {
+          setDesc(response.data.description);
+        });
+    } else {
+      return;
+    }
   }, [id]);
 
   const onSubmit = (data: any) => {
@@ -61,6 +77,18 @@ export default function UserInput() {
   return (
     <>
       <section className="mx-[29px] my-[42px] lg:mx-[180px] xl:mx-[350px] lg:my-24 items-center md:mx-36">
+        <ToastContainer
+          position="top-center"
+          autoClose={2500}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
         <h1 className="font-poppins text-suTitles text-blue_700 font-bold text-center">
           Permite a Juan conocer mas de ti
         </h1>
@@ -76,7 +104,8 @@ export default function UserInput() {
               required: "Este campo es obligatorio",
               minLength: 10,
             })}
-            defaultValue={desc}></textarea>
+            defaultValue={desc}
+          ></textarea>
           <input type="text" />
           <p className="font-poppins text-small text-blue_700 mb-[30px]">
             Porque elegiste este inmueble , cuéntanos que fue lo que te gusto
@@ -88,7 +117,8 @@ export default function UserInput() {
             {...register("property", {
               required: "Este campo es obligatorio",
               minLength: 10,
-            })}></textarea>
+            })}
+          ></textarea>
           <div className="border-2 border-primary rounded-[10px] w-full">
             <p className="font-poppins text-small text-blue_500 p-[19px] ">
               Por que te pedimos esta información? Es importante para los

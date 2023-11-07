@@ -23,7 +23,10 @@ interface DataType {
   propertyImages: string;
   score: number;
   startDate: string;
-  userId: string;
+  userId: {
+    stripe_id: string;
+    _id: string;
+  };
   _id: string;
 }
 export default function ConfirmReservation() {
@@ -32,7 +35,15 @@ export default function ConfirmReservation() {
   const [test, setTest] = useState({});
   const [blur, setBlur] = useState(false);
   const [id, setId] = useState("");
-  const [amount, setAmount] = useState<any>();
+  const [amount, setAmount] = useState<{
+    total: number;
+    acc: string;
+    sub: number;
+  }>({
+    total: 0,
+    acc: "",
+    sub: 0,
+  });
   const [getLocal, setGetLocal] = useState<string>();
   const [token, setToken] = useState<string>();
 
@@ -47,23 +58,16 @@ export default function ConfirmReservation() {
       setToken(token);
     }
   }, []);
+
   useEffect(() => {
     if (!getLocal) {
-      toast.error("A ocurrido un error, favor de re-intentar la reserva", {
-        position: "top-center",
-        autoClose: 2500,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
+      console.log("cargando...");
     } else {
       const parseData = JSON.parse(getLocal);
       setData(parseData);
     }
   }, [getLocal]);
+
   useEffect(() => {
     if (data) {
       const startDate = new Date(data.startDate.split("-").reverse().join("-"));
@@ -95,7 +99,12 @@ export default function ConfirmReservation() {
       const total = subtotal + commission + taxes;
       if (total) {
         const totalRounded = Math.round(total * 100);
-        setAmount(totalRounded);
+        const subtoRounded = Math.round(subtotal * 100);
+        setAmount({
+          total: totalRounded,
+          acc: data.userId.stripe_id,
+          sub: subtoRounded,
+        });
       }
       const toFetch = {
         property: {
@@ -106,7 +115,7 @@ export default function ConfirmReservation() {
         },
         startDate: data.startDate,
         endDate: data.endDate,
-        lessorId: data.userId,
+        lessorId: data.userId._id,
         tenantId: id,
         subtotal: subtotal,
         commission: commission,
@@ -120,7 +129,6 @@ export default function ConfirmReservation() {
   const handleClick = () => {
     const stripeButton = document.getElementById("submit-stripe");
     stripeButton ? stripeButton.click() : "";
-    // !
     fetch("https://co-labora-backend.jmanuelc.dev/reservation", {
       method: "POST",
       headers: {
@@ -156,6 +164,18 @@ export default function ConfirmReservation() {
 
   return (
     <>
+      <ToastContainer
+        position="top-center"
+        autoClose={2500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
       {blur ? (
         <section className="flex items-center justify-center h-screen w-screen absolute top-0 left-0 z-20 ">
           <Image
