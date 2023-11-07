@@ -14,18 +14,19 @@ interface CheckoutFormProps {
 }
 const PayBox = (stripeProp: CheckoutFormProps) => {
   console.log("esto es lo que le paso en props al CheckoutForm", stripeProp);
+  const { total, acc, sub } = stripeProp.stripeProp.stripeProp;
   const stripe = useStripe();
   const elements = useElements();
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!stripe) {
-      // console.log("Stripe no esta disponible");
+      console.log("Stripe no esta disponible");
       return;
     }
 
     const cardData: any = elements?.getElement(CardElement);
-
+    //! https://co-labora-backend.jmanuelc.dev
     const { error, paymentMethod } = await stripe?.createPaymentMethod({
       type: "card",
       card: cardData,
@@ -37,10 +38,12 @@ const PayBox = (stripeProp: CheckoutFormProps) => {
         "https://co-labora-backend.jmanuelc.dev/stripe",
         {
           id,
-          amount: stripeProp.stripeProp.stripeProp,
+          amount: total,
+          acc: acc,
+          subtotal: sub,
         }
       );
-      // console.log(data);
+      console.log(data);
     } else {
       // console.log("error de front", error);
     }

@@ -50,7 +50,9 @@ interface Property {
     open: string;
   };
   propertyImages: [string];
-  userId: string;
+  userId: {
+    stripe_id: String;
+  };
   _id: string;
 }
 export default function Detail({ params }: any) {
@@ -91,10 +93,13 @@ export default function Detail({ params }: any) {
       open: "8:00",
     },
     propertyImages: [""],
-    userId: "",
+    userId: {
+      stripe_id: "",
+    },
     _id: "",
   });
   useEffect(() => {
+    localStorage.removeItem("property");
     if (params.id) {
       fetch(`https://co-labora-backend.jmanuelc.dev/property/${params.id}`, {
         headers: {
@@ -151,7 +156,7 @@ export default function Detail({ params }: any) {
 
   const images = sliderRentImages;
   ("selectDatesDesktop");
-
+  console.log(property);
   const passData = (e: any) => {
     console.log("estas son las fechas al inicio", startDate, endDate);
     if (startDate && endDate) {
@@ -169,9 +174,9 @@ export default function Detail({ params }: any) {
         userId: property.userId,
         _id: property._id,
         price: property.price,
+        acc: property.userId.stripe_id,
       };
       localStorage.setItem("property", JSON.stringify(dataToPass));
-      // window.location.replace("/BookingSteps");
     } else {
       toast.error("Selecciona fechas disponibles", {
         position: "top-center",
@@ -229,7 +234,8 @@ export default function Detail({ params }: any) {
                     }}
                     mapTypeId={google.maps.MapTypeId.ROADMAP}
                     mapContainerStyle={{ width: "550px", height: "420px" }}
-                    onLoad={() => console.log("Map Component Loaded...")}>
+                    onLoad={() => console.log("Map Component Loaded...")}
+                  >
                     <MarkerF
                       position={{
                         lat: property.location.mapCoordinates.lat,
@@ -286,7 +292,8 @@ export default function Detail({ params }: any) {
                   }}
                   mapTypeId={google.maps.MapTypeId.ROADMAP}
                   mapContainerStyle={{ width: "328px", height: "230px" }}
-                  onLoad={() => console.log("Map Component Loaded...")}>
+                  onLoad={() => console.log("Map Component Loaded...")}
+                >
                   <MarkerF
                     position={{
                       lat: property.location.mapCoordinates.lat,
@@ -449,7 +456,8 @@ export default function Detail({ params }: any) {
                   </p>
                   <span
                     id="startDate"
-                    className="text-black text-md font-poppins font-semibold inline-block w-full">
+                    className="text-black text-md font-poppins font-semibold inline-block w-full"
+                  >
                     {startDate}
                   </span>
                 </div>
@@ -459,7 +467,8 @@ export default function Detail({ params }: any) {
                   </p>
                   <span
                     id="endDate"
-                    className="text-black text-md font-poppins font-semibold inline-block w-full">
+                    className="text-black text-md font-poppins font-semibold inline-block w-full"
+                  >
                     {endDate}
                   </span>
                 </div>
@@ -467,10 +476,12 @@ export default function Detail({ params }: any) {
               <section className="hidden w-full justify-center items-center lg:flex flex-col gap-[10px] mb-[20px] mt-[24px]">
                 <Link href={"/BookingSteps"}>
                   <button
-                    className={`bg-primary rounded-lg px-[18px] py-1 w-[400px] h-[35px] buttonMobileShadow`}>
+                    className={`bg-primary rounded-lg px-[18px] py-1 w-[400px] h-[35px] buttonMobileShadow`}
+                  >
                     <button
                       className="text-[14px] font-[600] leading-[27px] text-white tracking-[-0.28px]"
-                      onClick={passData}>
+                      onClick={passData}
+                    >
                       Continuar con la reserva
                     </button>
                   </button>
@@ -528,10 +539,12 @@ export default function Detail({ params }: any) {
           </section>
           <section className="w-full justify-center items-center flex flex-col gap-[10px] lg:hidden mb-[20px] mt-[60px]">
             <button
-              className={`bg-primary rounded-lg px-[18px] py-1 w-[224px] h-[35px] buttonMobileShadow`}>
+              className={`bg-primary rounded-lg px-[18px] py-1 w-[224px] h-[35px] buttonMobileShadow`}
+            >
               <button
                 className="text-[14px] font-[600] leading-[27px] text-white tracking-[-0.28px]"
-                onClick={passData}>
+                onClick={passData}
+              >
                 Continuar con la reserva
               </button>
             </button>
