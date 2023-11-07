@@ -431,7 +431,7 @@ export default function Detail({ params }: any) {
                     height={24}
                   />
                   <p className="font-poppins text-[18px] font-normal leading-[27px] tracking-[-0.36px] text-blue_800">
-                    {`${property.measurements.long} x ${property.measurements.broad} m2`}
+                    {`${property.measurements.long} x ${property.measurements.long} m2`}
                   </p>
                 </li>
               </ul>
