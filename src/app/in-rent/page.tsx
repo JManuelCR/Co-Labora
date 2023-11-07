@@ -135,13 +135,13 @@ export default function Rent() {
           -
         </span>
         <div className="relative flex justify-end">
-          <button
+          {/* <button
             className="flex gap-4 bg-blue_800 lg:bg-primary text-white font-poppins p-4 lg:px-10 py-2 lg:py-3 rounded-md mr-4 lg:rounded-xl"
             onClick={loader}
           >
             Filter
             <Image src={FilterIcn} alt="filter button" width={24} height={24} />
-          </button>
+          </button> */}
           {range === true ? (
             <article className="absolute top-0 right-4 z-20 p-4 flex flex-col bg-white text-blue_800 w-80 rounded-lg border border-solid border-b-blue_800">
               <section className="flex justify-between p-2  rounded-t-lg">
