@@ -65,7 +65,7 @@ export default function GeneralInfo({ props }: any) {
         price: cost,
         description: description,
         measurements: {
-          width: broad,
+          broad: broad,
           area: tall,
           long: long,
         },
