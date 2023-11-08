@@ -72,7 +72,7 @@ export default function ImageUpload({ props }: any) {
         </h1>
         <Dropzone onDrop={(acceptedImages) => PropertyImages(acceptedImages)}>
           {({ getRootProps, getInputProps }) => (
-            <section className="w-[300px] md:w-[700px] h-[140px] md:h-[340px] bg-secondary rounded-[20px]">
+            <section className="w-[300px] md:w-[700px] h-[140px] md:h-[340px] bg-secondary rounded-[20px] mt-6">
               <div
                 className="w-full h-full flex flex-col justify-center items-center"
                 {...getRootProps()}>
