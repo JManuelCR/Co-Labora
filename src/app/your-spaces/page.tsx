@@ -49,7 +49,7 @@ export default function Detail() {
   return (
     <>
       <Navbar page="your spaces" />
-      <article className="flex my-10 justify-evenly  max-md:flex-col max-md:items-center max-md:gap-44">
+      <article className="flex my-10 justify-evenly  max-md:flex-col max-md:items-center lg:gap-44 gap-6">
         <section className="flex flex-col justify-between items-center border border-solid border-secondary rounded-xl w-96 p-3">
           <div className="h-24">
             <h5 className="font-poppins text-suTitles text-blue_800 text-center">
@@ -73,7 +73,7 @@ export default function Detail() {
             </Link>
           </div>
         </section>
-        <section className="flex flex-col justify-around w-[50rem] items-center max-md:w-fit mb-28 gap-11 lg:flex-row h-screen">
+        <section className="flex flex-col lg:justify-around w-[365px] items-center  mb-28 gap-11 lg:flex-row h-auto lg:flex-wrap max-sm:gap-3 lg:w-[50rem] justify-start">
           {!loading && properties && properties.length > 0 ? (
             properties.map((property: any, index: any) => (
               <article
