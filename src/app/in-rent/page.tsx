@@ -1,4 +1,5 @@
 "use client";
+/* eslint-disable @next/next/no-img-element */
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CardsAvailable from "@/components/CardsAvailable";
@@ -11,6 +12,17 @@ import starImg from "../../../public/icons/star-shape-1-svgrepo-com.svg";
 import { amenities } from "@/data/amenities";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useForm, SubmitHandler } from "react-hook-form";
+type InputAmenities = {
+  minValue: number,
+  maxValue: number,
+  wifi: boolean,
+  cleanService: boolean,
+  parking: boolean,
+  reception: boolean,
+  petFriendly: boolean,
+  airConditioner: boolean
+}
 
 export default function Rent() {
   interface Property {
@@ -64,7 +76,6 @@ export default function Rent() {
       return setHandleProperties(properties);
     } else {
       const filter = properties.filter((property: Property, index: number) => {
-        console.log("properties", property.name.toLocaleLowerCase());
         return property.name
           .toLocaleLowerCase()
           .includes(searchValue.toLocaleLowerCase());
@@ -73,6 +84,11 @@ export default function Rent() {
       changeAvailability(filter.length);
     }
   };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<InputAmenities | String | any>()
   const [range, setRange] = useState(false);
   function loader() {
     setTimeout(() => {
@@ -88,9 +104,10 @@ export default function Rent() {
       }, 3000);
     }
   };
-  const setAmenity = (amenity: string) => [
+  const amenitiesFilter: SubmitHandler<InputAmenities | String | any> = (data) => {
+    console.log({data})
+  };
 
-  ]
   return (
     <>
       <Navbar page="in rent" />
@@ -154,99 +171,67 @@ export default function Rent() {
                   </button>
                 </div>
               </section>
-              <section className="">
-                <h4 className="text-center font-bold text-blue_800">
-                  Rango de precios
-                </h4>
-                <div id="slider"></div>
-                <div className="flex justify-around p-1">
-                  <input
-                    type="number"
-                    placeholder="Minimo $0.00"
-                    className="text-start border-none focus:outline-none w-36"
-                  />
-                  <input
-                    type="number"
-                    placeholder="Maximo $0.00"
-                    className="text-start border-none focus:outline-none w-36"
-                  />
-                </div>
-              </section>
-              <span className="border-b border-solid border-blue_800 my-3 w-full" />
-              <section>
-                <h4 className="text-center font-bold text-blue_800">
-                  Por amenidades
-                </h4>
-                <div className="flex gap-3 flex-wrap p-2">
-                  {amenities.map((am, index) => (
-                    <>
-                      <div className="border border-solid border-blue_800 rounded-xl p-2 flex justify-between relative">
-                        <input type="checkbox" className="absolute top-0 left-0 w-full h-full opacity-60 appearance-none checked:bg-secondary checked:border-primary focus:ring-secondary rounded-2xl" />
-                        <Image
-                          src={am.src}
-                          alt=""
-                          width={16}
-                          height={16}
-                          className="mt-1 mx-1"
-                        />
-                        {/* <img src={src} alt="amenity-icon" /> */}
-                        <p>{am.name}</p>
-                      </div>
-                    </>
-                  ))}
-                  {/* <ButtonAmenities name={"hola"} src={`/icons/dog-paw-icon.webp`} /> */}
-                </div>
-              </section>
-              <span className="border-b border-solid border-blue_800 my-3 w-full" />
-              <section>
-                <h4 className="text-center font-bold text-blue_800">
-                  Por calificación
-                </h4>
-                <div className="flex justify-center p-2">
-                  <button className="text-yellow-500 stroke-yellow-400 fill-current w-[24px] h-[24px]">
-                  <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M15.0859 8.50266L12.0001 2.25L8.9142 8.50266L2.01398 9.50532L7.00702 14.3723L5.82833 21.2447L12.0001 18L18.1718 21.2447L16.9931 14.3723L21.9862 9.50532L15.0859 8.50266ZM18.7627 10.5527L14.0898 9.87367L12.0001 5.63933L9.9103 9.87367L5.23742 10.5527L8.61875 13.8487L7.82052 18.5027L12.0001 16.3053L16.1796 18.5027L15.3814 13.8487L18.7627 10.5527Z" fill="#080341"/>
-</svg>
-                  </button>
-                  <button>
-                    <Image
-                      src={starImg}
-                      alt="rating-star"
-                      width={30}
-                      height={30}
+              <form 
+              onSubmit={handleSubmit(amenitiesFilter)}
+              >
+                <section className="">
+                  <h4 className="text-center font-bold text-blue_800">
+                    Rango de precios
+                  </h4>
+                  <div id="slider"></div>
+                  <div className="flex justify-around p-1">
+                    <input
+                    {...register("minValue") }
+                      type="number"
+                      placeholder="Minimo $0.00"
+                      className="text-start border-none focus:outline-none w-36"
                     />
-                  </button>
-                  <button>
-                    <Image
-                      src={starImg}
-                      alt="rating-star"
-                      width={30}
-                      height={30}
+                    <input
+                    {...register("maxValue") }
+                      type="number"
+                      placeholder="Maximo $0.00"
+                      className="text-start border-none focus:outline-none w-36"
                     />
-                  </button>
-                  <button>
-                    <Image
-                      src={starImg}
-                      alt="rating-star"
-                      width={30}
-                      height={30}
-                    />
-                  </button>
-                  <button>
-                    <Image
-                      src={starImg}
-                      alt="rating-star"
-                      width={30}
-                      height={30}
-                    />
-                  </button>
-                </div>
-                <div className="w-full flex justify-center">
-                  <button className="px-8 bg-primary py-2 text-white font-extrabold rounded-lg">
-                    Filtrar
-                  </button>
-                </div>
-              </section>
+                  </div>
+                </section>
+                <span className="border-b border-solid border-blue_800 my-3 w-full" />
+                <section>
+                  <h4 className="text-center font-bold text-blue_800">
+                    Por amenidades
+                  </h4>
+                  <div className="flex gap-3 flex-wrap p-2">
+                    {amenities.map((am, index) => (
+                      <>
+                        <div className="border border-solid border-blue_800 rounded-xl p-2 flex justify-between relative">
+                          <input
+                            type="checkbox"
+                            {...register(`${am.name}`) }
+                            className="absolute top-0 left-0 w-full h-full opacity-60 appearance-none checked:bg-secondary checked:border-primary focus:ring-secondary rounded-2xl"
+                          />
+                          <Image
+                            src={am.src}
+                            alt=""
+                            width={16}
+                            height={16}
+                            className="mt-1 mx-1"
+                          />
+                          {/* <img src={src} alt="amenity-icon" /> */}
+                          <p>{am.name}</p>
+                        </div>
+                      </>
+                    ))}
+                    {/* <ButtonAmenities name={"hola"} src={`/icons/dog-paw-icon.webp`} /> */}
+                  </div>
+                </section>
+                <span className="border-b border-solid border-blue_800 my-3 w-full" />
+                <section>
+                  <div className="w-full flex justify-center">
+                    <button type="submit" className="px-8 bg-primary py-2 text-white font-extrabold rounded-lg">
+                      Filtrar
+                    </button>
+                  </div>
+                </section>
+              </form>
             </article>
           ) : (
             <></>
