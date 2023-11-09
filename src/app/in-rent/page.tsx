@@ -14,15 +14,15 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useForm, SubmitHandler } from "react-hook-form";
 type InputAmenities = {
-  minValue: number,
-  maxValue: number,
-  wifi: boolean,
-  cleanService: boolean,
-  parking: boolean,
-  reception: boolean,
-  petFriendly: boolean,
-  airConditioner: boolean
-}
+  minValue: number;
+  maxValue: number;
+  wifi: boolean;
+  cleanService: boolean;
+  parking: boolean;
+  reception: boolean;
+  petFriendly: boolean;
+  airConditioner: boolean;
+};
 
 export default function Rent() {
   interface Property {
@@ -54,7 +54,6 @@ export default function Rent() {
       return;
     });
   }, []);
-  // console.log("ahora estas son las propiedades en el useState", properties);
   function handleCardClick(_id: any) {
     localStorage.setItem("selectedPropertyId", _id);
   }
@@ -88,7 +87,7 @@ export default function Rent() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<InputAmenities | String | any>()
+  } = useForm<InputAmenities | String | any>();
   const [range, setRange] = useState(false);
   function loader() {
     setTimeout(() => {
@@ -104,8 +103,10 @@ export default function Rent() {
       }, 3000);
     }
   };
-  const amenitiesFilter: SubmitHandler<InputAmenities | String | any> = (data) => {
-    console.log({data})
+  const amenitiesFilter: SubmitHandler<InputAmenities | String | any> = (
+    data
+  ) => {
+    console.log({ data });
   };
 
   return (
@@ -171,9 +172,7 @@ export default function Rent() {
                   </button>
                 </div>
               </section>
-              <form 
-              onSubmit={handleSubmit(amenitiesFilter)}
-              >
+              <form onSubmit={handleSubmit(amenitiesFilter)}>
                 <section className="">
                   <h4 className="text-center font-bold text-blue_800">
                     Rango de precios
@@ -181,13 +180,13 @@ export default function Rent() {
                   <div id="slider"></div>
                   <div className="flex justify-around p-1">
                     <input
-                    {...register("minValue") }
+                      {...register("minValue")}
                       type="number"
                       placeholder="Minimo $0.00"
                       className="text-start border-none focus:outline-none w-36"
                     />
                     <input
-                    {...register("maxValue") }
+                      {...register("maxValue")}
                       type="number"
                       placeholder="Maximo $0.00"
                       className="text-start border-none focus:outline-none w-36"
@@ -205,7 +204,7 @@ export default function Rent() {
                         <div className="border border-solid border-blue_800 rounded-xl p-2 flex justify-between relative">
                           <input
                             type="checkbox"
-                            {...register(`${am.name}`) }
+                            {...register(`${am.name}`)}
                             className="absolute top-0 left-0 w-full h-full opacity-60 appearance-none checked:bg-secondary checked:border-primary focus:ring-secondary rounded-2xl"
                           />
                           <Image
@@ -226,7 +225,10 @@ export default function Rent() {
                 <span className="border-b border-solid border-blue_800 my-3 w-full" />
                 <section>
                   <div className="w-full flex justify-center">
-                    <button type="submit" className="px-8 bg-primary py-2 text-white font-extrabold rounded-lg">
+                    <button
+                      type="submit"
+                      className="px-8 bg-primary py-2 text-white font-extrabold rounded-lg"
+                    >
                       Filtrar
                     </button>
                   </div>

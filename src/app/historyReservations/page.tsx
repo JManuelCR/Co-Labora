@@ -33,7 +33,6 @@ export default function HistoryReservations() {
       })
         .then((response) => response.json())
         .then((response) => {
-          console.log("esta es la respuesta", response.data);
           setReservations(response.data.reservations);
           setLoading(false);
         });

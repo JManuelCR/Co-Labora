@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Star from "../../../public/icons/star-icon.webp";
@@ -24,7 +24,6 @@ export default function AddItems() {
     setProperty(parsedInfo);
     setIsLoading(false);
   }, []);
-  // console.log(property);
   const [checkboxes, setCheckboxes] = useState<{ [key: string]: boolean }>({
     screwdrivers: false,
     powerExtension: false,
@@ -40,7 +39,6 @@ export default function AddItems() {
       [name]: checked,
     });
   };
-  // console.log("toolbox", checkboxes);
   return (
     <>
       {isLoading ? (

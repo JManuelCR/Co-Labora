@@ -86,7 +86,6 @@ export default function EditProperty({ params }: any) {
   function childCallback(childData: any) {
     setAutoComplete(childData);
   }
-  console.log("esto es property", property);
 
   const onSubmit = (data: any) => {
     const isDataChanged =
