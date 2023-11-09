@@ -14,15 +14,15 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useForm, SubmitHandler } from "react-hook-form";
 type InputAmenities = {
-  minValue: number,
-  maxValue: number,
-  wifi: boolean,
-  cleanService: boolean,
-  parking: boolean,
-  reception: boolean,
-  petFriendly: boolean,
-  airConditioner: boolean
-}
+  minValue: number;
+  maxValue: number;
+  wifi: boolean;
+  cleanService: boolean;
+  parking: boolean;
+  reception: boolean;
+  petFriendly: boolean;
+  airConditioner: boolean;
+};
 
 export default function Rent() {
   interface Property {
@@ -54,7 +54,6 @@ export default function Rent() {
       return;
     });
   }, []);
-  // console.log("ahora estas son las propiedades en el useState", properties);
   function handleCardClick(_id: any) {
     localStorage.setItem("selectedPropertyId", _id);
   }
@@ -87,8 +86,9 @@ export default function Rent() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
-  } = useForm<InputAmenities | String | any>()
+  } = useForm<InputAmenities | String | any>();
   const [range, setRange] = useState(false);
   function loader() {
     setTimeout(() => {
@@ -104,9 +104,63 @@ export default function Rent() {
       }, 3000);
     }
   };
-  const amenitiesFilter: SubmitHandler<InputAmenities | String | any> = (data) => {
-    console.log({data})
+  const amenitiesFilter: SubmitHandler<InputAmenities | String | any> = (
+    data
+  ) => {
+    const filterProperties = properties.filter((property: any) => {
+      const optionsSelected = data;
+      let priceRange = true;
+      if (optionsSelected.minValue) {
+        if (optionsSelected.maxValue) {
+          priceRange =
+            property.price >= optionsSelected.minValue &&
+            property.price <= optionsSelected.maxValue;
+        } else {
+          priceRange = property.price >= optionsSelected.minValue;
+        }
+      } else if (optionsSelected.maxValue) {
+        property.price <= optionsSelected.maxValue;
+      }
+      let amenitiesAirConditioner = true;
+      let amenitiesWifi = true;
+      let amenitiesReception = true;
+      let amenitiesPetFriendly = true;
+      let amenitiesParking = true;
+      let amenitiesCleanService = true;
+
+      if (optionsSelected.Limpieza) {
+        amenitiesCleanService =
+          property.amenities.cleanService && optionsSelected.Limpieza;
+      } else if (optionsSelected.Estacionamiento) {
+        amenitiesParking =
+          property.amenities.parking && optionsSelected.Estacionamiento;
+      } else if (optionsSelected["Pet Friendly"]) {
+        amenitiesPetFriendly =
+          property.amenities.petFriendly && optionsSelected["Pet Friendly"];
+      } else if (optionsSelected.Recepcion) {
+        amenitiesReception =
+          property.amenities.reception && optionsSelected.Recepcion;
+      } else if (optionsSelected.WiFi) {
+        amenitiesWifi = property.amenities.wifi && optionsSelected.WiFi;
+      } else if (optionsSelected["Aire acondicionado"]) {
+        amenitiesAirConditioner =
+          property.amenities.airConditioner &&
+          optionsSelected["Aire acondicionado"];
+      }
+
+      return (
+        priceRange &&
+        amenitiesAirConditioner &&
+        amenitiesCleanService &&
+        amenitiesParking &&
+        amenitiesPetFriendly &&
+        amenitiesReception &&
+        amenitiesWifi
+      );
+    });
+    return setHandleProperties(filterProperties);
   };
+
 
   return (
     <>
@@ -164,48 +218,50 @@ export default function Rent() {
           {range === true ? (
             <article className="absolute top-0 right-4 z-20 p-4 flex flex-col bg-white text-blue_800 w-80 rounded-lg border border-solid border-b-blue_800">
               <section className="flex justify-between p-2  rounded-t-lg">
-                <p className="font-semibold">Filters:</p>
+                <p className="font-semibold">Filtros disponibles:</p>
                 <div className=" flex gap-3 ">
                   <button className="hover:font-bold" onClick={loader}>
                     Close
                   </button>
                 </div>
               </section>
-              <form 
-              onSubmit={handleSubmit(amenitiesFilter)}
-              >
+              <form onSubmit={handleSubmit(amenitiesFilter)}>
                 <section className="">
-                  <h4 className="text-center font-bold text-blue_800">
+                  <h4 className="text-center text-[18px] tracking-wide font-bold text-blue_800 font-poppins">
                     Rango de precios
                   </h4>
                   <div id="slider"></div>
-                  <div className="flex justify-around p-1">
-                    <input
-                    {...register("minValue") }
-                      type="number"
-                      placeholder="Minimo $0.00"
-                      className="text-start border-none focus:outline-none w-36"
-                    />
-                    <input
-                    {...register("maxValue") }
-                      type="number"
-                      placeholder="Maximo $0.00"
-                      className="text-start border-none focus:outline-none w-36"
-                    />
+                  <div className="flex flex-1 justify-around p-1 gap-4 w-full">
+                    <div className="border-2 border-blue_700 rounded-md max-w-1/ px-2">
+                      <input
+                        {...register("minValue")}
+                        type="number"
+                        placeholder="Minimo $0.00"
+                        className="text-start font-acme  border-none focus:outline-none w-full"
+                      />
+                    </div>
+                    <div className="border-2 border-blue_700 rounded-md max-w-1/2 px-2">
+                      <input
+                        {...register("maxValue")}
+                        type="number"
+                        placeholder="Maximo $0.00"
+                        className="text-start font-acme  border-none focus:outline-none w-full"
+                      />
+                    </div>
                   </div>
                 </section>
                 <span className="border-b border-solid border-blue_800 my-3 w-full" />
                 <section>
-                  <h4 className="text-center font-bold text-blue_800">
+                  <h4 className="text-center font-bold text-blue_800 text-[18px] tracking-wide font-poppins">
                     Por amenidades
                   </h4>
                   <div className="flex gap-3 flex-wrap p-2">
                     {amenities.map((am, index) => (
                       <>
-                        <div className="border border-solid border-blue_800 rounded-xl p-2 flex justify-between relative">
+                        <div key={index} className="border border-solid border-blue_800 rounded-xl p-2 flex justify-between relative">
                           <input
                             type="checkbox"
-                            {...register(`${am.name}`) }
+                            {...register(`${am.name}`)}
                             className="absolute top-0 left-0 w-full h-full opacity-60 appearance-none checked:bg-secondary checked:border-primary focus:ring-secondary rounded-2xl"
                           />
                           <Image
@@ -216,7 +272,7 @@ export default function Rent() {
                             className="mt-1 mx-1"
                           />
                           {/* <img src={src} alt="amenity-icon" /> */}
-                          <p>{am.name}</p>
+                          <p className="text-[16px] font-acme">{am.name}</p>
                         </div>
                       </>
                     ))}
@@ -225,9 +281,29 @@ export default function Rent() {
                 </section>
                 <span className="border-b border-solid border-blue_800 my-3 w-full" />
                 <section>
-                  <div className="w-full flex justify-center">
-                    <button type="submit" className="px-8 bg-primary py-2 text-white font-extrabold rounded-lg">
+                  <div className="w-full flex gap-4 justify-center">
+                    <button
+                      type="submit"
+                      className="px-8 bg-primary py-2 text-white font-extrabold rounded-lg"
+                    >
                       Filtrar
+                    </button>
+                    <button
+                    className="px-4 bg-white py-2 text-primary border-2 border-primary font-extrabold rounded-lg"
+                     onClick={() => {
+                      reset({
+                        minValue: null,
+                        maxValue: null,
+                        Limpieza: false,
+                        Estacionamiento: false,
+                        WiFi: false,
+                        Recepcion: false,
+                        'Aire acondicionado': false,
+                        'Pet Friendly': false
+                      })
+                      setHandleProperties(properties)
+                    }}> 
+                      Limpiar filtros
                     </button>
                   </div>
                 </section>

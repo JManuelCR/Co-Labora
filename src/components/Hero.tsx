@@ -37,7 +37,6 @@ export default function Hero(props: any) {
     propertyService
       .getByFilter(filterOption)
       .then((response) => {
-        console.log("response", response);
         setOptions(response.data);
       })
       .catch((err) => {
@@ -45,6 +44,18 @@ export default function Hero(props: any) {
         console.log("Error in request", err);
       });
   }, [filterOption]);
+
+  useEffect(() => {
+    propertyService
+    .getByFilter('Ciudad')
+    .then((response) => {
+      setOptions(response.data);
+    })
+    .catch((err) => {
+      setOptions([]);
+      console.log("Error in request", err);
+    });
+  }, []);
 
   const filterProperties = (event: FormEvent) => {
     event.preventDefault();

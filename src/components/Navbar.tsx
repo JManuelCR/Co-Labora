@@ -47,7 +47,7 @@ export default function Navbar(props: Navbar) {
     <header className="flex items-center justify-center w-full h-[56px] px-1 min-lg:px-[65px] relative bg-white navbarShadow">
       <nav className="flex items-center justify-between w-full max-h-[56px]">
         <div>
-          <Link href={Type === "user" ? "/" : "/your-spaces"}>
+          <Link href={Type === "space" ? "/your-spaces" : "/"}>
             <Image
               src={logo}
               width={104}
