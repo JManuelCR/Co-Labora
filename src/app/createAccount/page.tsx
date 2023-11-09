@@ -34,7 +34,6 @@ export default function CreateAccount({ props }: any) {
   };
 
   const onSubmit: SubmitHandler<inputs> = (data) => {
-    console.log("estoy aca");
     if (valid && data.email !== undefined) {
       remove();
       const userType = type;
@@ -97,7 +96,7 @@ export default function CreateAccount({ props }: any) {
     const isValid = passRegex.test(input);
     setValid(isValid);
   };
-  console.log("esto es isvalid", valid);
+
   return (
     <>
       <ToastContainer
@@ -178,6 +177,7 @@ export default function CreateAccount({ props }: any) {
                 placeholder="Nombre Completo"
                 className="flex rounded-[15px] border-2 border-primary w-full h-[65px] font-poppins text-[16px] text-blue_500 placeholder:p-[10px] p-[15px] placeholder:text-start focus:outline-0 focus:border-primary required"
               />
+               {errors.name && <p role="alert" className="text-red-700 font-semibold ps-8">{errors.name.message}</p>}
               <input
                 type="email"
                 {...register("email", {
@@ -187,6 +187,7 @@ export default function CreateAccount({ props }: any) {
                 placeholder="Correo Electronico"
                 className="flex rounded-[15px] border-2 border-primary w-full h-[65px] font-poppins text-[16px] text-blue_500 placeholder:p-[10px] p-[15px] placeholder:text-start focus:outline-0 focus:border-primary required"
               />
+              {errors.email && <p role="alert" className="text-red-700 font-semibold ps-8">{errors.email.message}</p>}
             </div>
             <p className="text-primary">{errors.email?.message}</p>
             <div className="my-5 flex rounded-[15px] border-2 border-primary font-poppins text-[16px] text-blue_500 px-3 w-full">
@@ -200,7 +201,7 @@ export default function CreateAccount({ props }: any) {
                 placeholder="Contraseña"
                 className="flex w-full focus:outline-0 focus:border-primary my-5 "
               />
-
+              {errors.password && <p role="alert" className="text-red-700 font-semibold ps-8">{errors.password.message}</p>}
               <button onClick={tooglePass} form="password1">
                 <p className="text-blue_800 underline">Mostrar</p>
               </button>
