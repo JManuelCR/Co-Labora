@@ -92,7 +92,7 @@ export default function UserInput() {
         <h1 className="font-poppins text-suTitles text-blue_700 font-bold text-center">
           Permite a Juan conocer mas de ti
         </h1>
-        <p className="font-poppins text-small text-blue_700 mt-[34px] mb-[30px] text-[14px]">
+        <p className="font-poppins text-small text-blue_700 mt-[34px] mb-[30px]">
           Danos una breve reseña de ti y del trabajo que desempeñas
         </p>
         <form className="" onSubmit={handleSubmit(onSubmit)}>

@@ -37,7 +37,7 @@ export default function CreateAccount({ props }: any) {
   };
   // ! https://co-labora-backend.jmanuelc.dev
   const onSubmit: SubmitHandler<inputs> = (data) => {
-    console.log("estoy aca")
+    console.log("estoy aca");
     if (valid && data.email !== undefined) {
       remove();
       const userType = type;
@@ -88,7 +88,7 @@ export default function CreateAccount({ props }: any) {
   };
 
   const tooglePass = (e: FormEvent) => {
-    console.log({register})
+    console.log({ register });
     e.preventDefault();
     setPassShow(!passShow);
   };

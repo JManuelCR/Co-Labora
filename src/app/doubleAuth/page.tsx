@@ -75,7 +75,8 @@ export default function DoubleAuth(props: any) {
           />
           <button
             className="bg-primary px-2 py-3 text-white rounded-xl font-bold text-xl "
-            onClick={onSubmit}>
+            onClick={onSubmit}
+          >
             Verificar
           </button>
         </section>
