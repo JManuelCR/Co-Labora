@@ -119,7 +119,7 @@ export default function Rent() {
           priceRange = property.price >= optionsSelected.minValue;
         }
       } else if (optionsSelected.maxValue) {
-        property.price <= optionsSelected.maxValue;
+        priceRange = property.price <= optionsSelected.maxValue;
       }
       let amenitiesAirConditioner = true;
       let amenitiesWifi = true;
