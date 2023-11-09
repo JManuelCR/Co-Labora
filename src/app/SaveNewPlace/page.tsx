@@ -25,10 +25,10 @@ export default function SaveNewPlace(props: any) {
 
   (async () => {
     const dataImage = await props.props.propertyImages;
-    // console.log("images", dataImage[0])
+
     const imageBox = document.getElementById("imageBox");
     const renderImage = document.getElementById("renderImage");
-    // console.log("acacacac")
+
     if (renderImage) {
       return;
     }
@@ -36,19 +36,17 @@ export default function SaveNewPlace(props: any) {
     render.onload = (e) => {
       const image: any = document.createElement("img");
       if (e !== null) {
-        // console.log("event", e.target?.result)
         image.src = e.target?.result;
         image.id = "renderImage";
         image.style = "";
       } else {
         image.src = "";
       }
-      // console.log("image to render", image)
+
       // imageBox?.appendChild(image)
       imageBox?.setAttribute("style", `background-image: url(${image.src})`);
     };
     render.readAsDataURL(dataImage[0]);
-    // console.log("lkjdsalkjf", render)
   })();
   const formData = new FormData();
   formData.append("data", JSON.stringify(props.props.data));

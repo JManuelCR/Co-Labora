@@ -18,12 +18,10 @@ export default function DoubleAuth(props: any) {
         return response.json();
       })
       .then((response) => {
-        console.log("esta es la respuesta raw", response);
         if (response.success === true) {
           localStorage.removeItem("id");
           window.location.replace("/login");
         } else {
-          // console.log("Error al crear el usuario");
           toast.error("Error al verificar tu codigo", {
             position: "top-center",
             autoClose: 2500,

@@ -45,7 +45,6 @@ export default function Login() {
           setToken(response.data);
           const [header, payload, signature] = response.data.split(".");
           const decodedPayload = JSON.parse(atob(payload));
-          console.log("esto es la payload", decodedPayload);
           setType(decodedPayload.userType);
         } else {
           toast.error("Credenciales invalidas 💀", {

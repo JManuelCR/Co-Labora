@@ -13,7 +13,6 @@ interface CheckoutFormProps {
   stripeProp: any; // Define the type of the prop
 }
 const PayBox = (stripeProp: CheckoutFormProps) => {
-  console.log("esto es lo que le paso en props al CheckoutForm", stripeProp);
   const { total, acc, sub } = stripeProp.stripeProp.stripeProp;
   const stripe = useStripe();
   const elements = useElements();
@@ -21,7 +20,6 @@ const PayBox = (stripeProp: CheckoutFormProps) => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!stripe) {
-      console.log("Stripe no esta disponible");
       return;
     }
 
@@ -32,7 +30,6 @@ const PayBox = (stripeProp: CheckoutFormProps) => {
       card: cardData,
     });
     if (!error) {
-      // console.log(paymentMethod);
       const { id } = paymentMethod;
       const { data } = await axios.post(
         "https://co-labora-backend.jmanuelc.dev/stripe",
@@ -43,9 +40,7 @@ const PayBox = (stripeProp: CheckoutFormProps) => {
           subtotal: sub,
         }
       );
-      console.log(data);
     } else {
-      // console.log("error de front", error);
     }
   };
 

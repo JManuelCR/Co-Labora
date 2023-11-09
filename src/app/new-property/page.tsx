@@ -20,18 +20,14 @@ export default function ReservationSteps() {
   const getPropertyData = (propertyData: any) => {
     try {
       setData(propertyData);
-    } catch (err) {
-      // console.log("error", err)
-    }
+    } catch (err) {}
   };
   const getPropertyImages = (propertyImages: any) => {
     try {
       setImages(propertyImages.images);
       setDocuments(propertyImages.documents);
       setDni(propertyImages.dni);
-    } catch (err) {
-      // console.log("error", err)
-    }
+    } catch (err) {}
   };
 
   useEffect(() => {
@@ -60,9 +56,7 @@ export default function ReservationSteps() {
         ); // * para aca
     }
   }
-  function bookingConfirm() {
-    // console.log("Reserva confirmada");
-  }
+  function bookingConfirm() {}
 
   if (showComponent) {
     return (
@@ -85,7 +79,8 @@ export default function ReservationSteps() {
                       ? `bg-transparent`
                       : `bg-white rounded-lg px-[18px] py-1 w-[134px] h-[35px] border border-primary buttonMobileShadow`
                   }
-                  onClick={() => setStep(actualStep - 1)}>
+                  onClick={() => setStep(actualStep - 1)}
+                >
                   <span className="text-[14px] font-[600] leading-[27px] text-primary tracking-[-0.28px]">
                     {actualStep == 1 ? "" : "Ir atrás"}
                   </span>
@@ -97,7 +92,8 @@ export default function ReservationSteps() {
                   onClick={() => {
                     setStep(actualStep + 1);
                   }}
-                  id="upload-space-steps">
+                  id="upload-space-steps"
+                >
                   <span className="text-[14px] font-[600] leading-[27px] text-white tracking-[-0.28px]"></span>
                 </button>
               )}

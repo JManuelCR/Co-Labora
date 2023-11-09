@@ -156,9 +156,8 @@ export default function Detail({ params }: any) {
 
   const images = sliderRentImages;
   ("selectDatesDesktop");
-  console.log(property);
+
   const passData = (e: any) => {
-    console.log("estas son las fechas al inicio", startDate, endDate);
     if (startDate && endDate) {
       const dataToPass = {
         name: property.name,
