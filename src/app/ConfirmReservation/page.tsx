@@ -125,7 +125,7 @@ export default function ConfirmReservation() {
       setTest(toFetch);
     }
   }, [data, days, id, token]);
-
+  // https://co-labora-backend.jmanuelc.dev
   const handleClick = () => {
     const stripeButton = document.getElementById("submit-stripe");
     stripeButton ? stripeButton.click() : "";
@@ -140,10 +140,11 @@ export default function ConfirmReservation() {
       .then((response) => response.json())
       .then((response) => {
         if (response.success) {
+          console.log(response);
           setTimeout(() => {
             setBlur(true);
             window.location.replace("/");
-          }, 4000);
+          }, 2000);
         } else {
           toast.error(
             "Vaya, ocurrio un error al generar tu reserva, intentalo de nuevo",
