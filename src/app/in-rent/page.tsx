@@ -9,7 +9,6 @@ import Search from "../../../public/icons/search.svg";
 import FilterIcn from "../../../public/icons/adjustments.svg";
 import starImg from "../../../public/icons/star-shape-1-svgrepo-com.svg";
 import { amenities } from "@/data/amenities";
-import ButtonAmenities from "./ButtonAmenities";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 

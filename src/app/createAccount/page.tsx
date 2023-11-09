@@ -18,9 +18,6 @@ export default function CreateAccount({ props }: any) {
     setType("space"), setActiveButton("space");
   };
 
-  // useEffect(() => {
-  //   console.log(type);
-  // }, [type]);
 
   const {
     register,
@@ -35,7 +32,7 @@ export default function CreateAccount({ props }: any) {
   const setId = (id: string) => {
     localStorage.setItem("id", id);
   };
-  // ! https://co-labora-backend.jmanuelc.dev
+
   const onSubmit: SubmitHandler<inputs> = (data) => {
     console.log("estoy aca");
     if (valid && data.email !== undefined) {
@@ -176,7 +173,7 @@ export default function CreateAccount({ props }: any) {
                 type="text"
                 {...register("name", {
                   required: "Este campo es obligatorio",
-                  minLength: 10,
+                  minLength: 3,
                 })}
                 placeholder="Nombre Completo"
                 className="flex rounded-[15px] border-2 border-primary w-full h-[65px] font-poppins text-[16px] text-blue_500 placeholder:p-[10px] p-[15px] placeholder:text-start focus:outline-0 focus:border-primary required"
