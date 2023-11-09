@@ -41,7 +41,6 @@ export default function Hero(props: any) {
       })
       .catch((err) => {
         setOptions([]);
-        console.log("Error in request", err);
       });
   }, [filterOption]);
 
@@ -53,7 +52,6 @@ export default function Hero(props: any) {
     })
     .catch((err) => {
       setOptions([]);
-      console.log("Error in request", err);
     });
   }, []);
 
