@@ -92,13 +92,13 @@ export default function UserInput() {
         <h1 className="font-poppins text-suTitles text-blue_700 font-bold text-center">
           Permite a Juan conocer mas de ti
         </h1>
-        <p className="font-poppins text-small text-blue_700 mt-[34px] mb-[30px] ">
+        <p className="font-poppins text-small text-blue_700 mt-[34px] mb-[30px] text-[14px]">
           Danos una breve reseña de ti y del trabajo que desempeñas
         </p>
         <form className="" onSubmit={handleSubmit(onSubmit)}>
           <textarea
             id="reseña"
-            className="border-2 accent-primary border-primary rounded-[10px] focus:outline-0 focus:border-primary required p-4 mb-[30px] placeholder:font-roboto placeholder:text-small placeholder:text-blue_300 w-full text-black"
+            className="border-2 accent-primary border-primary rounded-[10px] focus:outline-0 focus:border-primary required p-4 mb-[30px] placeholder:font-roboto placeholder:text-small placeholder:text-blue_300 w-full text-black text-[16px] font-semibold"
             placeholder="Redacta el mensaje aca ..."
             {...register("userDesc", {
               required: "Este campo es obligatorio",
@@ -107,12 +107,12 @@ export default function UserInput() {
             defaultValue={desc}
           ></textarea>
           <input type="text" />
-          <p className="font-poppins text-small text-blue_700 mb-[30px]">
+          <p className="font-poppins text-[14px] text-blue_700 mb-[30px]">
             Porque elegiste este inmueble , cuéntanos que fue lo que te gusto
           </p>
           <textarea
             id="inmueble"
-            className="border-2 accent-primary border-primary rounded-[10px] focus:outline-0 focus:border-primary required p-4 mb-[30px] placeholder:font-roboto placeholder:text-small placeholder:text-blue_300 w-full text-black"
+            className="border-2 accent-primary border-primary rounded-[10px] focus:outline-0 focus:border-primary required p-4 mb-[30px] placeholder:font-roboto placeholder:text-small placeholder:text-blue_300 w-full text-black text-[16px] font-semibold"
             placeholder="Redacta el mensaje aca ..."
             {...register("property", {
               required: "Este campo es obligatorio",
