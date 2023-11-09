@@ -7,7 +7,7 @@ import { propertyService } from "@/services/property.service";
 import Image from "next/image";
 import Search from "../../../public/icons/search.svg";
 import FilterIcn from "../../../public/icons/adjustments.svg";
-import Star from "../../../public/icons/star-shape-1-svgrepo-com.svg";
+import starImg from "../../../public/icons/star-shape-1-svgrepo-com.svg";
 import { amenities } from "@/data/amenities";
 import ButtonAmenities from "./ButtonAmenities";
 import { ToastContainer, toast } from "react-toastify";
@@ -52,7 +52,7 @@ export default function Rent() {
     const inputFilter = e.currentTarget.querySelector("input");
     const searchValue = inputFilter?.value || "";
     if (searchValue === "") {
-      toast.warn(' 😐Wow, no podemos buscar sin parámetros', {
+      toast.warn(" 😐Wow, no podemos buscar sin parámetros", {
         position: "top-center",
         autoClose: 2000,
         hideProgressBar: false,
@@ -61,7 +61,7 @@ export default function Rent() {
         draggable: true,
         progress: undefined,
         theme: "light",
-        });
+      });
       return setHandleProperties(properties);
     } else {
       const filter = properties.filter((property: Property, index: number) => {
@@ -80,7 +80,7 @@ export default function Rent() {
       return setRange(!range);
     }, 100);
   }
-  const changeAvailability = ((proper: number) => {
+  const changeAvailability = (proper: number) => {
     if (proper === 0) {
       setAvailability(false);
       setTimeout(() => {
@@ -88,7 +88,10 @@ export default function Rent() {
         setHandleProperties(properties);
       }, 3000);
     }
-  });
+  };
+  const setAmenity = (amenity: string) => [
+
+  ]
   return (
     <>
       <Navbar page="in rent" />
@@ -135,13 +138,13 @@ export default function Rent() {
           -
         </span>
         <div className="relative flex justify-end">
-          {/* <button
+          <button
             className="flex gap-4 bg-blue_800 lg:bg-primary text-white font-poppins p-4 lg:px-10 py-2 lg:py-3 rounded-md mr-4 lg:rounded-xl"
             onClick={loader}
           >
             Filter
             <Image src={FilterIcn} alt="filter button" width={24} height={24} />
-          </button> */}
+          </button>
           {range === true ? (
             <article className="absolute top-0 right-4 z-20 p-4 flex flex-col bg-white text-blue_800 w-80 rounded-lg border border-solid border-b-blue_800">
               <section className="flex justify-between p-2  rounded-t-lg">
@@ -177,11 +180,20 @@ export default function Rent() {
                 </h4>
                 <div className="flex gap-3 flex-wrap p-2">
                   {amenities.map((am, index) => (
-                    <ButtonAmenities
-                      name={am.name}
-                      src={`${am.src}`}
-                      key={index}
-                    />
+                    <>
+                      <div className="border border-solid border-blue_800 rounded-xl p-2 flex justify-between relative">
+                        <input type="checkbox" className="absolute top-0 left-0 w-full h-full opacity-60 appearance-none checked:bg-secondary checked:border-primary focus:ring-secondary rounded-2xl" />
+                        <Image
+                          src={am.src}
+                          alt=""
+                          width={16}
+                          height={16}
+                          className="mt-1 mx-1"
+                        />
+                        {/* <img src={src} alt="amenity-icon" /> */}
+                        <p>{am.name}</p>
+                      </div>
+                    </>
                   ))}
                   {/* <ButtonAmenities name={"hola"} src={`/icons/dog-paw-icon.webp`} /> */}
                 </div>
@@ -192,9 +204,14 @@ export default function Rent() {
                   Por calificación
                 </h4>
                 <div className="flex justify-center p-2">
-                  <button className="text-yellow-500 fill-current">
+                  <button className="text-yellow-500 stroke-yellow-400 fill-current w-[24px] h-[24px]">
+                  <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M15.0859 8.50266L12.0001 2.25L8.9142 8.50266L2.01398 9.50532L7.00702 14.3723L5.82833 21.2447L12.0001 18L18.1718 21.2447L16.9931 14.3723L21.9862 9.50532L15.0859 8.50266ZM18.7627 10.5527L14.0898 9.87367L12.0001 5.63933L9.9103 9.87367L5.23742 10.5527L8.61875 13.8487L7.82052 18.5027L12.0001 16.3053L16.1796 18.5027L15.3814 13.8487L18.7627 10.5527Z" fill="#080341"/>
+</svg>
+                  </button>
+                  <button>
                     <Image
-                      src={Star}
+                      src={starImg}
                       alt="rating-star"
                       width={30}
                       height={30}
@@ -202,7 +219,7 @@ export default function Rent() {
                   </button>
                   <button>
                     <Image
-                      src={Star}
+                      src={starImg}
                       alt="rating-star"
                       width={30}
                       height={30}
@@ -210,7 +227,7 @@ export default function Rent() {
                   </button>
                   <button>
                     <Image
-                      src={Star}
+                      src={starImg}
                       alt="rating-star"
                       width={30}
                       height={30}
@@ -218,15 +235,7 @@ export default function Rent() {
                   </button>
                   <button>
                     <Image
-                      src={Star}
-                      alt="rating-star"
-                      width={30}
-                      height={30}
-                    />
-                  </button>
-                  <button>
-                    <Image
-                      src={Star}
+                      src={starImg}
                       alt="rating-star"
                       width={30}
                       height={30}
@@ -246,21 +255,22 @@ export default function Rent() {
         </div>
       </section>
       <section className="mt-[100px] w-full flex flex-col max-md:flex-wrap-reverse">
-            {availability ? 
-            (<>
-                     <h1 className="font-acme text-titles text-blue_800 text-center">
-          Espacios disponibles
-        </h1>
-            </>) 
-            : 
-            (<>
-                   <h1 className="font-acme text-titles text-blue_800 text-center">
-          La búsqueda no dio resultados 🙄
-        </h1>
-            </>)}
+        {availability ? (
+          <>
+            <h1 className="font-acme text-titles text-blue_800 text-center">
+              Espacios disponibles
+            </h1>
+          </>
+        ) : (
+          <>
+            <h1 className="font-acme text-titles text-blue_800 text-center">
+              La búsqueda no dio resultados 🙄
+            </h1>
+          </>
+        )}
       </section>
       <section className="flex flex-wrap gap-20 h-[100%] px-10 py-5 justify-center max-md:gap-5 mb-24 lg:mb-8">
-      {handleProperties.map((card, index) => (
+        {handleProperties.map((card, index) => (
           <div key={index}>
             <CardsAvailable
               name={card.name}
@@ -276,7 +286,7 @@ export default function Rent() {
           </div>
         ))}
       </section>
-        <Footer />
+      <Footer />
     </>
   );
 }
