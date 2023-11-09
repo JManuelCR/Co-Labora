@@ -127,7 +127,9 @@ export default function Hero(props: any) {
                   </>
                 ) : (
                   <>
-                    <h2 className="text-3xl text-primary font-acme font-bold leading-8 tracking-widest">No se encontraron propiedades <br /> en esta búsqueda</h2>
+                    <h2 className="text-3xl text-primary font-acme font-bold leading-8 tracking-widest">
+                      No se encontraron propiedades <br /> en esta búsqueda
+                    </h2>
                   </>
                 )}
               </>

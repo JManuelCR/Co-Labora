@@ -4,9 +4,7 @@ import type { DatePickerProps } from "antd";
 import moment from "moment";
 import { DatePicker, Space } from "antd";
 
-const onChange: DatePickerProps["onChange"] = (date, dateString) => {
-  // console.log("esto es date", date);
-};
+const onChange: DatePickerProps["onChange"] = (date, dateString) => {};
 
 const CalendarMobile: React.FC = () => (
   <Space direction="vertical">

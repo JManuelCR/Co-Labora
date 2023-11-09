@@ -140,10 +140,9 @@ export default function ConfirmReservation() {
       .then((response) => response.json())
       .then((response) => {
         if (response.success) {
-          console.log(response);
           setTimeout(() => {
             setBlur(true);
-            window.location.replace("/");
+            window.location.replace("/historyReservations");
           }, 2000);
         } else {
           toast.error(

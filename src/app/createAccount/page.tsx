@@ -18,7 +18,6 @@ export default function CreateAccount({ props }: any) {
     setType("space"), setActiveButton("space");
   };
 
-
   const {
     register,
     handleSubmit,
@@ -60,7 +59,16 @@ export default function CreateAccount({ props }: any) {
           setId(id);
         })
         .catch((error) => {
-          console.log("fetch error", error);
+          toast.error("Error!", {
+            position: "top-center",
+            autoClose: 2500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
         });
       const button = document.getElementById("step-register");
       if (button) {
@@ -68,8 +76,6 @@ export default function CreateAccount({ props }: any) {
       }
       props(toPass);
     } else {
-      // Notify the user that the password is invalid
-      alert("Please enter a valid password.");
       toast.error("Error al verificar tu codigo", {
         position: "top-center",
         autoClose: 2500,
@@ -84,7 +90,6 @@ export default function CreateAccount({ props }: any) {
   };
 
   const tooglePass = (e: FormEvent) => {
-    console.log({ register });
     e.preventDefault();
     setPassShow(!passShow);
   };
@@ -177,7 +182,11 @@ export default function CreateAccount({ props }: any) {
                 placeholder="Nombre Completo"
                 className="flex rounded-[15px] border-2 border-primary w-full h-[65px] font-poppins text-[16px] text-blue_500 placeholder:p-[10px] p-[15px] placeholder:text-start focus:outline-0 focus:border-primary required"
               />
-               {errors.name && <p role="alert" className="text-red-700 font-semibold ps-8">{errors.name.message}</p>}
+              {errors.name && (
+                <p role="alert" className="text-red-700 font-semibold ps-8">
+                  {errors.name.message}
+                </p>
+              )}
               <input
                 type="email"
                 {...register("email", {
@@ -187,7 +196,11 @@ export default function CreateAccount({ props }: any) {
                 placeholder="Correo Electronico"
                 className="flex rounded-[15px] border-2 border-primary w-full h-[65px] font-poppins text-[16px] text-blue_500 placeholder:p-[10px] p-[15px] placeholder:text-start focus:outline-0 focus:border-primary required"
               />
-              {errors.email && <p role="alert" className="text-red-700 font-semibold ps-8">{errors.email.message}</p>}
+              {errors.email && (
+                <p role="alert" className="text-red-700 font-semibold ps-8">
+                  {errors.email.message}
+                </p>
+              )}
             </div>
             <p className="text-primary">{errors.email?.message}</p>
             <div className="my-5 flex rounded-[15px] border-2 border-primary font-poppins text-[16px] text-blue_500 px-3 w-full">
@@ -201,7 +214,11 @@ export default function CreateAccount({ props }: any) {
                 placeholder="Contraseña"
                 className="flex w-full focus:outline-0 focus:border-primary my-5 "
               />
-              {errors.password && <p role="alert" className="text-red-700 font-semibold ps-8">{errors.password.message}</p>}
+              {errors.password && (
+                <p role="alert" className="text-red-700 font-semibold ps-8">
+                  {errors.password.message}
+                </p>
+              )}
               <button onClick={tooglePass} form="password1">
                 <p className="text-blue_800 underline">Mostrar</p>
               </button>

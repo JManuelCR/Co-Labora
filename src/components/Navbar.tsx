@@ -39,7 +39,7 @@ export default function Navbar(props: Navbar) {
     if (token) {
       const [header, payload, signature] = token.split(".");
       const decodedPayload = JSON.parse(atob(payload));
-      console.log("esto es la payload", decodedPayload);
+
       setType(decodedPayload.userType);
     }
   }, []);

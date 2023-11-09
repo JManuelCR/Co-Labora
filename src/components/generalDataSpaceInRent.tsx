@@ -37,7 +37,6 @@ export default function GeneralInfo({ props }: any) {
       [name]: checked,
     });
   };
-  // console.log(checkboxes);
 
   function childCallback(childData: any) {
     setAutoComplete(childData);
@@ -88,7 +87,6 @@ export default function GeneralInfo({ props }: any) {
       if (button) {
         button.click();
       }
-      console.log("esta es la data de la propiedad del lado del hijo", toFetch);
     } else {
       toast.error("Vaya, parece que dejaste campos vacios", {
         position: "top-center",

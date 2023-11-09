@@ -88,7 +88,6 @@ export default function Request({ params }: any) {
     }
   }, [Token, params.id]);
 
-  console.log("esto es property", property);
   return (
     <>
       <Navbar page="your-spaces" />
