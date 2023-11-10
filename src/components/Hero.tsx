@@ -44,6 +44,17 @@ export default function Hero(props: any) {
       });
   }, [filterOption]);
 
+  useEffect(() => {
+    propertyService
+    .getByFilter('Ciudad')
+    .then((response) => {
+      setOptions(response.data);
+    })
+    .catch((err) => {
+      setOptions([]);
+    });
+  }, []);
+
   const filterProperties = (event: FormEvent) => {
     event.preventDefault();
     const inputElement = event.currentTarget.querySelector("input");
