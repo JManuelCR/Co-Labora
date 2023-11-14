@@ -15,19 +15,19 @@ export default function SaveNewPlace(props: any) {
   const [Id, setId] = useState("");
   const [token, setToken] = useState("");
   const [render, setRender] = useState(false);
-  const formDataEntries: any = props.props;
+  const formDataEntries: any = props.props || {};
 
   // ! ESTE ES EL QUE VA A MANDARSE EN EL FETCH  BD
-  const data = props.props && props.props.data ? props.props.data : {};
+  const data = formDataEntries && formDataEntries.data ? formDataEntries.data : {};
   useEffect(() => {
     setRender(data !== undefined);
   }, [data]);
 
-  (async () => {
-    const dataImage = await props.props.propertyImages;
+  useEffect(() => {
+    const dataImage =  formDataEntries.propertyImages;
 
-    const imageBox = document.getElementById("imageBox");
-    const renderImage = document.getElementById("renderImage");
+    const imageBox = document?.getElementById("imageBox");
+    const renderImage = document?.getElementById("renderImage");
 
     if (renderImage) {
       return;
@@ -47,19 +47,20 @@ export default function SaveNewPlace(props: any) {
       imageBox?.setAttribute("style", `background-image: url(${image.src})`);
     };
     render.readAsDataURL(dataImage[0]);
-  })();
+  }, []);
+
   const formData = new FormData();
-  formData.append("data", JSON.stringify(props.props.data));
-  const imagesUpload = props.props.propertyImages;
-  imagesUpload.forEach((image: any, index: any) => {
+  formData.append("data", JSON.stringify(formDataEntries.data));
+  const imagesUpload = formDataEntries.propertyImages;
+  imagesUpload?.forEach((image: any, index: any) => {
     formData.append(`propertyImages-${index}`, image);
   });
-  const documentsUpload = props.props.propertyDocuments;
-  documentsUpload.forEach((document: any, index: any) => {
+  const documentsUpload = formDataEntries.propertyDocuments;
+  documentsUpload?.forEach((document: any, index: any) => {
     formData.append(`propertyDocuments-${index}`, document);
   });
-  const dniUpload = props.props.propertyDni;
-  dniUpload.forEach((dni: any, index: any) => {
+  const dniUpload = formDataEntries.propertyDni;
+  dniUpload?.forEach((dni: any, index: any) => {
     formData.append(`propertyDni-${index}`, dni);
   });
 
