@@ -140,10 +140,10 @@ export default function ConfirmReservation() {
       .then((response) => response.json())
       .then((response) => {
         if (response.success) {
-          setTimeout(() => {
-            setBlur(true);
-            window.location.replace("/historyReservations");
-          }, 2000);
+          // setTimeout(() => {
+          //   setBlur(true);
+          //   window.location.replace("/historyReservations");
+          // }, 2000);
         } else {
           toast.error(
             "Vaya, ocurrio un error al generar tu reserva, intentalo de nuevo",
