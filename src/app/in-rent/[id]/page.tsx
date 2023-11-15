@@ -57,8 +57,9 @@ interface Property {
 }
 export default function Detail({ params }: any) {
   const [isDesktop, setIsDesktop] = useState(false);
-  const [startDate, setStartDate] = useState<String>("");
-  const [endDate, setEndDate] = useState<String>("");
+  const [startDate, setStartDate] = useState<String>(" ");
+  const [endDate, setEndDate] = useState<String>(" ");
+  const [beginning, setBeginning] = useState(0);
   const [property, setProperty] = useState<Property>({
     name: "test",
     comments: "test",
@@ -117,6 +118,10 @@ export default function Detail({ params }: any) {
         });
     }
   }, [params.id]);
+
+  useEffect(() => {
+    setBeginning(beginning + 1)
+  }, [endDate]);
 
   useEffect(() => {
     const checkWindowWidth = () => {
@@ -457,7 +462,7 @@ export default function Detail({ params }: any) {
                     id="startDate"
                     className="text-black text-md font-poppins font-semibold inline-block w-full"
                   >
-                    {startDate}
+                    {beginning < 3 ? '' : startDate}
                   </span>
                 </div>
                 <div className="border-2 border-blue_300 rounded-[10px] w-[220px] h-[64px] flex flex-col ps-[14px] pt-2">
@@ -468,7 +473,7 @@ export default function Detail({ params }: any) {
                     id="endDate"
                     className="text-black text-md font-poppins font-semibold inline-block w-full"
                   >
-                    {endDate}
+                    {beginning < 3 ? '' : endDate}
                   </span>
                 </div>
               </div>
