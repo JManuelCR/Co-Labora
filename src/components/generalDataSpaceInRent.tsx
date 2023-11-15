@@ -381,7 +381,7 @@ export default function GeneralInfo({ props }: any) {
         </div>
         <div className="flex justify-center items-center">
           <button
-            className="rounded-lg px-[18px] py-1 w-[134px] h-[35px] buttonMobileShadow bg-primary "
+            className="rounded-lg px-[18px] py-1 w-[134px] h-[35px] buttonMobileShadow bg-primary relative left-[120px] top-[35px]"
             type="submit"
           >
             Siguiente

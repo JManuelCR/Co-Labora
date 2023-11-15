@@ -75,14 +75,14 @@ export default function ReservationSteps() {
               {actualStep !== 0 && actualStep <= 3 && (
                 <button
                   className={
-                    actualStep == 1
+                    actualStep === 0
                       ? `bg-transparent`
                       : `bg-white rounded-lg px-[18px] py-1 w-[134px] h-[35px] border border-primary buttonMobileShadow`
                   }
                   onClick={() => setStep(actualStep - 1)}
                 >
                   <span className="text-[14px] font-[600] leading-[27px] text-primary tracking-[-0.28px]">
-                    {actualStep == 1 ? "" : "Ir atrás"}
+                    {actualStep === 0 ? "" : "Ir atrás"}
                   </span>
                 </button>
               )}
