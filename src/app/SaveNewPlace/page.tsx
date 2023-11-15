@@ -20,8 +20,33 @@ export default function SaveNewPlace(props: any) {
   // ! ESTE ES EL QUE VA A MANDARSE EN EL FETCH  BD
   const data = formDataEntries && formDataEntries.data ? formDataEntries.data : {};
   useEffect(() => {
-    setRender(data !== undefined);
-  }, [data]);
+    setRender(formDataEntries !== undefined);
+    setTimeout(() => {
+      const dataImage =  formDataEntries.propertyImages;
+
+      const imageBox = document?.getElementById("imageBox");
+      const renderImage = document?.getElementById("renderImage");
+  
+      if (renderImage) {
+        return;
+      }
+      const render = new FileReader();
+      render.onload = (e) => {
+        const image: any = document.createElement("img");
+        if (e !== null) {
+          image.src = e.target?.result;
+          image.id = "renderImage";
+          image.style = "";
+        } else {
+          image.src = "";
+        }
+  
+        // imageBox?.appendChild(image)
+        imageBox?.setAttribute("style", `background-image: url(${image.src})`);
+      };
+      render.readAsDataURL(dataImage[0]);
+    }, 200);
+  }, [formDataEntries]);
 
   useEffect(() => {
     const dataImage =  formDataEntries.propertyImages;
@@ -47,7 +72,7 @@ export default function SaveNewPlace(props: any) {
       imageBox?.setAttribute("style", `background-image: url(${image.src})`);
     };
     render.readAsDataURL(dataImage[0]);
-  }, []);
+  }, [formDataEntries]);
 
   const formData = new FormData();
   formData.append("data", JSON.stringify(formDataEntries.data));
