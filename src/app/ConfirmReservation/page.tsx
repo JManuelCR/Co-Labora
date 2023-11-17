@@ -2,17 +2,13 @@
 import Image from "next/image";
 import star from "../../../public/icons/star-shape-1-svgrepo-com.svg";
 import confirm from "../../../public/illustrations/image 42.svg";
-import Carpenter from "../../../public/temporal-images/holder-carpenter.webp";
-import emergente from "../../../public/illustrations/Emergente.svg";
-import { dataConfirm } from "@/data/data-confirm";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import CheckoutForm from "@/components/CheckoutForm";
-import { dataProperty } from "@/data/propertiesData";
-import { totalmem } from "os";
+import { Elements, useStripe, useElements } from "@stripe/react-stripe-js";
 import { getCookie } from "cookies-next";
+import { loadStripe } from "@stripe/stripe-js";
 
 interface DataType {
   addres: string;
@@ -29,20 +25,24 @@ interface DataType {
   };
   _id: string;
 }
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY!);
 export default function ConfirmReservation() {
   const [data, setData] = useState<DataType | null>();
   const [days, setDays] = useState<number | null>(null);
   const [test, setTest] = useState({});
   const [blur, setBlur] = useState(false);
   const [id, setId] = useState("");
+  const [Email, setEmail] = useState("");
   const [amount, setAmount] = useState<{
     total: number;
     acc: string;
     sub: number;
+    email: string;
   }>({
     total: 0,
     acc: "",
     sub: 0,
+    email: "",
   });
   const [getLocal, setGetLocal] = useState<string>();
   const [token, setToken] = useState<string>();
@@ -90,6 +90,7 @@ export default function ConfirmReservation() {
       const [header, payload, signature] = token.split(".");
       const decodedPayload = JSON.parse(atob(payload));
       setId(decodedPayload.id);
+      setEmail(decodedPayload.email);
     }
 
     if (days !== null && data?.price !== undefined) {
@@ -104,6 +105,7 @@ export default function ConfirmReservation() {
           total: totalRounded,
           acc: data.userId.stripe_id,
           sub: subtoRounded,
+          email: Email,
         });
       }
       const toFetch = {
@@ -124,8 +126,7 @@ export default function ConfirmReservation() {
       };
       setTest(toFetch);
     }
-  }, [data, days, id, token]);
-  // https://co-labora-backend.jmanuelc.dev
+  }, [data, days, id, token, Email]);
   const handleClick = () => {
     const stripeButton = document.getElementById("submit-stripe");
     stripeButton ? stripeButton.click() : "";
@@ -140,10 +141,16 @@ export default function ConfirmReservation() {
       .then((response) => response.json())
       .then((response) => {
         if (response.success) {
-          setTimeout(() => {
-            setBlur(true);
-            window.location.replace("/historyReservations");
-          }, 2000);
+          toast.success(" Tu reservacion se ha creado 🦄", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
         } else {
           toast.error(
             "Vaya, ocurrio un error al generar tu reserva, intentalo de nuevo",
@@ -176,19 +183,7 @@ export default function ConfirmReservation() {
         pauseOnHover
         theme="colored"
       />
-      {blur ? (
-        <section className="flex items-center justify-center h-screen w-screen absolute top-0 left-0 z-20 ">
-          <Image
-            src={emergente}
-            alt="emergent image"
-            width={600}
-            height={200}
-            className="z-30"
-          />
-        </section>
-      ) : (
-        <></>
-      )}
+
       <section
         className={`flex justify-center items-center max-md:flex-wrap relative my-[7rem] ${
           blur ? "blur-xl" : ""
@@ -274,11 +269,11 @@ export default function ConfirmReservation() {
           <h3 className="font-acme text-blue_800 text-suTitles my-2">
             Metodo de pago
           </h3>
-          <article className="flex w-full">
-            <div>
+          <Elements stripe={stripePromise}>
+            <article className="flex w-full">
               <CheckoutForm stripeProp={amount} />
-            </div>
-          </article>
+            </article>
+          </Elements>
 
           <article className="flex justify-between">
             <h3 className="font-acme text-blue_800 text-suTitles">Total MXN</h3>
