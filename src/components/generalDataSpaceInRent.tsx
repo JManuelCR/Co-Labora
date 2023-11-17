@@ -269,7 +269,7 @@ export default function GeneralInfo({ props }: any) {
                 layout="fill"
               />
             </div>
-            <section className="bg-secondary rounded-[25px] w-full h-[144px] flex flex-col items-center px-[14px] mt-[42px] lg:w-[800px]">
+            <section className="bg-secondary rounded-[25px] w-full h-[184px] flex flex-col items-center px-[14px] mt-[42px] lg:w-[800px]">
               <h1 className="mt-[16px] font-poppins font-[500] text-[1rem] leading-[1rem] text-center">
                 Ayúdanos dando una descripción de ti y de tu negocio
               </h1>
@@ -381,7 +381,7 @@ export default function GeneralInfo({ props }: any) {
         </div>
         <div className="flex justify-center items-center">
           <button
-            className="rounded-lg px-[18px] py-1 w-[134px] h-[35px] buttonMobileShadow bg-primary "
+            className="rounded-lg px-[18px] py-1 w-[134px] h-[35px] buttonMobileShadow bg-primary relative left-[120px] top-[35px]"
             type="submit"
           >
             Siguiente

@@ -106,7 +106,6 @@ export default function UserInput() {
             })}
             defaultValue={desc}
           ></textarea>
-          <input type="text" />
           <p className="font-poppins text-[14px] text-blue_700 mb-[30px]">
             Porque elegiste este inmueble , cuéntanos que fue lo que te gusto
           </p>
