@@ -240,7 +240,7 @@ export default function SaveNewPlace(props: any) {
             <section className="flex flex-col lg:px-[90px] lg:py-[30px] font-poppins text-blue_800 items-stretch gap-10 lg:w-[541px]">
               <article className="max-lg:hidden">
                 <h1 className="font-acme text-titles font">
-                  Estas a un solo paso de registrar tu propiedad
+                  Estás a un solo paso de registrar tu propiedad
                 </h1>
               </article>
               <article className="max-lg:hidden">
