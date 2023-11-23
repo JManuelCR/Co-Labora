@@ -184,7 +184,7 @@ export default function ConfirmReservation() {
         theme="colored"
       />
 
-      <section
+      { data ? (   <section
         className={`flex justify-center items-center max-md:flex-wrap relative my-[7rem] ${
           blur ? "blur-xl" : ""
         } `}
@@ -297,7 +297,7 @@ export default function ConfirmReservation() {
         <section className="flex flex-col p-5 font-poppins text-blue_800 items-stretch gap-10">
           <article className="max-md:hidden">
             <h1 className="font-acme text-titles font">
-              Estas a un solo paso de completar tu reserva
+              Estás a un solo paso de completar tu reserva
             </h1>
           </article>
           <article className="max-md:hidden">
@@ -322,7 +322,8 @@ export default function ConfirmReservation() {
             </button>
           </article>
         </section>
-      </section>
+      </section>) : (<></>)}
+   
     </>
   );
 }

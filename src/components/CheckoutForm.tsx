@@ -89,7 +89,7 @@ const CheckoutForm = ({ stripeProp }: CheckoutFormProps) => {
       />
       <form onSubmit={handleSubmit} className="w-96 flex flex-col gap-5">
         <CardElement />
-        <button type="submit" className="bg-primary" id="submit-stripe">
+        <button type="submit" className="bg-transparent text-transparent h-2" id="submit-stripe">
           test
         </button>
       </form>

@@ -40,7 +40,7 @@ export default function Advantages(props: Props) {
               Experiencias únicas
             </h2>
             <p className="text-lg font-poppins text-blue_800">
-              Cada vez que rentes estas abriendo la ventana a una experiencia
+              Cada vez que rentes estás abriendo la ventana a una experiencia
               nueva
             </p>
           </div>
