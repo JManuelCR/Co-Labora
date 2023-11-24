@@ -49,8 +49,8 @@ export default function HistoryReservations() {
       </div>
       <section className="bg-gray-100 flex flex-col min-h-screen items-center mb-6">
         {!loading && reservations && reservations.length > 0 ? (
-          <div className="w-full max-w-3xl bg-white shadow-lg rounded-lg overflow-y-auto">
-            <table className="w-full border border-solid border-primary text-black font-semibold">
+          <div className="w-full max-w-3xl bg-white shadow-lg border-2 border-solid border-primary rounded-lg overflow-y-auto">
+            <table className="w-full text-black font-semibold">
               <thead className="bg-primary text-white">
                 <tr>
                   <th className="p-2">Nombre de la propiedad</th>
