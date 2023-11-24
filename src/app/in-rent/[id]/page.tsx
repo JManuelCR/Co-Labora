@@ -205,6 +205,7 @@ export default function Detail({ params }: any) {
         acc: property.userId.stripe_id,
       };
       setDataOfReservation(dataToPass);
+      window.location.replace('/BookingSteps')
     } else {
       toast.error("Selecciona fechas disponibles", {
         position: "top-center",
@@ -230,6 +231,7 @@ export default function Detail({ params }: any) {
      }catch(err){
       window.history.back();
      }
+     return
   }
 
   return (
@@ -510,7 +512,6 @@ export default function Detail({ params }: any) {
                 </div>
               </div>
               <section className="hidden w-full justify-center items-center lg:flex flex-col gap-[10px] mb-[20px] mt-[24px]">
-                <Link href={"/BookingSteps"}>
                   <button
                     className={`bg-primary rounded-lg px-[18px] py-1 w-[400px] h-[35px] buttonMobileShadow`}
                   >
@@ -521,7 +522,6 @@ export default function Detail({ params }: any) {
                       Continuar con la reserva
                     </button>
                   </button>
-                </Link>
                 <div className="flex gap-[2px]">
                   <Image
                     src={"/icons/Flag.svg"}
