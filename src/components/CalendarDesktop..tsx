@@ -12,26 +12,35 @@ const { RangePicker } = DatePicker;
 export default function CalendarDesktop(props: any) {
   const [size, setSize] = useState<SizeType>("middle");
   const [renderTimer, setRenderTimer] = useState(false);
-  const { show, values } = props;
+  const { show, values, datesArray } = props;
   const [startDate, setStartDate] = useState<Date>();
   const [endDate, setEndDate] = useState<Date>();
   const [dates, setDates] = useState([
-    moment(new Date("11-09-2023").toString()).format("L"),
-    moment(new Date("11-08-2023").toString()).format("L"),
-    moment(new Date("11-10-2023").toString()).format("L"),
-    moment(new Date("11-16-2023").toString()).format("L"),
-    moment(new Date("11-17-2023").toString()).format("L"),
-    moment(new Date("11-18-2023").toString()).format("L"),
-    moment(new Date("11-19-2023").toString()).format("L"),
-    moment(new Date("11-20-2023").toString()).format("L"),
-    moment(new Date("11-21-2023").toString()).format("L"),
+    moment(new Date("12-08-2023").toString()).format("L"),
+    moment(new Date("12-09-2023").toString()).format("L"),
+    moment(new Date("12-10-2023").toString()).format("L"),
+    moment(new Date("12-11-2023").toString()).format("L"),
+    moment(new Date("12-12-2023").toString()).format("L"),
+    moment(new Date("12-13-2023").toString()).format("L"),
+    moment(new Date("12-14-2023").toString()).format("L"),
+    moment(new Date("12-25-2023").toString()).format("L"),
+    moment(new Date("12-26-2023").toString()).format("L"),
   ]);
   const handleSizeChange = (e: RadioChangeEvent) => {
     setSize(e.target.value);
   };
   setTimeout(() => {
     setRenderTimer(true);
-  }, 50);
+  }, 100);
+  
+  useEffect(() => {
+    const datesToBlock = datesArray.map((dates: string) => {
+      return moment(new Date(dates).toString()).format("L")
+    })
+    console.log("arraysalida", datesToBlock)
+    console.log("una fecha muestra",  [moment(new Date("12-26-2023").toString()).format("L")])
+    setDates(datesToBlock)
+  }, [datesArray]);
 
   useEffect(() => {
     const data = {
