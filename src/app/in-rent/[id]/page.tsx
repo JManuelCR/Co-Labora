@@ -15,6 +15,30 @@ import { dateData } from "@/types/dateData";
 import moment from "moment";
 import { ToastContainer, toast } from "react-toastify";
 
+interface DataShare {
+  
+acc: String;
+addres: String; 
+
+comments: Number;
+
+endDate: String;
+
+name: String;
+
+price: String;
+
+propertyImages: String; 
+
+score: Number;
+
+startDate: String;
+
+userId: {
+
+}
+_id: String;
+}
 const stars = [0, 1, 2];
 interface Property {
   name: string;
@@ -180,7 +204,7 @@ export default function Detail({ params }: any) {
         price: property.price,
         acc: property.userId.stripe_id,
       };
-      localStorage.setItem("property", JSON.stringify(dataToPass));
+      setDataOfReservation(dataToPass);
     } else {
       toast.error("Selecciona fechas disponibles", {
         position: "top-center",
@@ -199,6 +223,14 @@ export default function Detail({ params }: any) {
     setStartDate(moment(data.startDate).format("DD-MM-YYYY"));
     setEndDate(moment(data.endDate).format("DD-MM-YYYY"));
   };
+
+  const setDataOfReservation  = (data: DataShare) => {
+     try{
+      localStorage.setItem("property", JSON.stringify(data));
+     }catch(err){
+      window.history.back();
+     }
+  }
 
   return (
     <>
