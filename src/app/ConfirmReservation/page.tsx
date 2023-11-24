@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import star from "../../../public/icons/star-shape-1-svgrepo-com.svg";
-import confirm from "../../../public/illustrations/image-42.svg";
+import confirm from "../../../public/illustrations/image 42.svg";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useEffect, useState } from "react";
