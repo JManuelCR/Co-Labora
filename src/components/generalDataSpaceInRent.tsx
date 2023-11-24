@@ -132,7 +132,14 @@ export default function GeneralInfo({ props }: any) {
                 <Autcomplete props={childCallback} />
               </div>
               <div className="w-full">
-                <GoogleMaps />
+                {<GoogleMaps /> || 
+                <Image 
+                src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbRf5P7-lYcET49InbfJcnPw_aAUDTU3jjgg&usqp=CAU"} 
+                alt={"GoogleMaps View, service out of service"} 
+                objectFit="cover"
+                objectPosition="center"
+                />}
+                
               </div>
             </article>
             <div className=" hidden relative w-[358px] h-[245px] lg:block  lg:w-[520px] lg:h-[380px] xl:w-[600px] xl:h-[420px]">
