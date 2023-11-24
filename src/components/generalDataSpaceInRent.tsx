@@ -139,7 +139,6 @@ export default function GeneralInfo({ props }: any) {
                 objectFit="cover"
                 objectPosition="center"
                 />}
-                
               </div>
             </article>
             <div className=" hidden relative w-[358px] h-[245px] lg:block  lg:w-[520px] lg:h-[380px] xl:w-[600px] xl:h-[420px]">
