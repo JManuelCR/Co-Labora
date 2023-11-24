@@ -45,6 +45,7 @@ interface Property {
   comments: string;
   description: string;
   price: string;
+  noAvailabilityDays: string[];
   location: {
     city: string;
     neighbor: string;
@@ -88,6 +89,7 @@ export default function Detail({ params }: any) {
     name: "test",
     comments: "test",
     description: "test",
+    noAvailabilityDays: ['08-12-2023'],
     price: "0",
     location: {
       city: "test",
@@ -135,6 +137,7 @@ export default function Detail({ params }: any) {
           return response.json();
         })
         .then((response) => {
+          console.log("response", response.data)
           setProperty(response.data);
         })
         .catch((error) => {
@@ -563,7 +566,7 @@ export default function Detail({ params }: any) {
                   <p className="text-[14px] text-blue_700 font-poppins font-[700] leading-[22px] tracking-[-0.28px]">
                     Llegada
                   </p>
-                  <CalendarDesktop show={isDesktop} values={getDates} />
+                  <CalendarDesktop show={isDesktop} values={getDates} datesArray={property.noAvailabilityDays} />
                 </div>
                 <div className="border-2 border-blue_300 rounded-[10px] w-[220px] h-[64px] flex flex-col ps-[14px] pt-2">
                   <p className="text-[14px] text-blue_700 font-poppins font-[700] leading-[22px] tracking-[-0.28px]">

@@ -130,7 +130,7 @@ export default function ConfirmReservation() {
   const handleClick = () => {
     const stripeButton = document.getElementById("submit-stripe");
     stripeButton ? stripeButton.click() : "";
-    fetch("https://co-labora-backend.jmanuelc.dev/reservation", {
+    fetch("http://localhost:8080/reservation", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
